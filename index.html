@@ -610,10 +610,10 @@ $(document).ready(function () {
   });
   var stars = 800;
   var $stars = $(".stars");
-  for (var i = 0; i < stars; i++) {if (window.CP.shouldStopExecution(0)) break;
+  for (var i = 0; i < stars; i++) {
     var $star = $("<div/>").addClass("star");
     $stars.append($star);
-  }window.CP.exitedLoop(0);
+  }
   $(".star").each(function () {
     var cur = $(this);
     var s = 0.2 + Math.random() * 1;
@@ -632,7 +632,6 @@ $(document).ready(function () {
       "," +
       s +
       ")" });
-
   });
 });
 
