@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>CodePen - Spaceship travel</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+
+<style>
+body {
+	background-color: #363640;
+	overflow: hidden;
+}
+
+#planets .map-point, #banner {
+	border-radius: 100%;
+	position: fixed;
+	z-index: 1;
+	transition:0.4s ease-in-out;
+}
+
+#test1 {
+	width: 5vw;
+	height: 5vw;
+	background-color: #76777a;
+	box-shadow: inset -0.6vw -0.6vw #67686b;
+}
+
+#planets div::before,
+#planets div::after {
+	content: "";
+	position: absolute;
+}
+
+#test1::before,
+#test1::after {
+	background-color: #67686b;
+	border-radius: 100%;
+}
+
+#test1::before {
+	height: 17%;
+	left: 15%;
+	top: 57.5%;
+	width: 17%;
+}
+
+#test1::after {
+	height: 15%;
+	left: 50%;
+	top: 15%;
+	width: 15%;
+}
+
+#test2 {
+	background-color: #496282;
+	box-shadow: inset -0.6vw -0.6vw #3a5373;
+	height: 10vw;
+	width: 10vw;
+}
+
+#test2::before,
+#test2::after {
+	background-color: #5e8249;
+	border-radius: 100% 70% 100% 70%;
+}
+
+#test2::before {
+	height: 64%;
+	left: 6%;
+	top: 30%;
+	width: 30%;
+	transform: rotate(-30deg);
+	-webkit-transform: rotate(-30deg);
+	-moz-transform: rotate(-30deg);
+}
+
+#test2::after {
+	height: 24%;
+	left: 54%;
+	top: 6%;
+	width: 20%;
+	transform: rotate(-45deg);
+	-webkit-transform: rotate(-45deg);
+	-moz-transform: rotate(-45deg);
+}
+
+#test3 {
+	background-color: #c25447;
+	box-shadow: inset -0.6vw -0.6vw #b34538;
+	height: 8.4vw;
+	width: 8.4vw;
+}
+
+#test3::before,
+#test3::after {
+	background-color: #ae4033;
+	border-radius: 100%;
+}
+
+#test3::before {
+	height: 28%;
+	left: 55%;
+	top: 55%;
+	width: 28%;
+}
+
+#test3::after {
+	height: 20%;
+	left: 12%;
+	top: 24%;
+	width: 20%;
+}
+
+#test4,
+#test4 .inner {
+	background-color: #d1aa5e;
+	box-shadow: inset -0.6vw -0.6vw #b89145;
+	height: 13vw;
+	width: 13vw;
+	border-radius: 100%;
+}
+
+#test4::before,
+#test4::after,
+#test5::before,
+#test5::after {
+	height: 85%;
+	left: -7.7%;
+	width: 85%;
+	border-radius: 100%;
+}
+
+#test4::before,
+#test4::after {
+	top: -4.6%;
+	border: 2vw solid #a98236;
+	transform: rotate(-30deg) skew(65deg);
+	-webkit-transform: rotate(-30deg) skew(65deg);
+	-moz-transform: rotate(-30deg) skew(65deg);
+}
+
+#test4 .inner,
+#test5 .inner {
+	z-index: 1;
+}
+
+#test4::before {
+	border-width: 2vw 2vw 0 0;
+	z-index: -1;
+}
+
+#test4::after {
+	border-width: 0 0 2vw 2vw;
+	z-index: 2;
+}
+
+#test5,
+#test5 .inner {
+	background-color: #9db1bf;
+	box-shadow: inset -0.6vw -0.6vw #8498a6;
+	height: 13.4vw;
+	width: 13.4vw;
+	border-radius: 100%;
+}
+
+#test5::before,
+#test5::after {
+	border: 1vw solid #f0f3f5;
+	transform: rotate(-90deg) skew(65deg);
+	-webkit-transform: rotate(-90deg) skew(65deg);
+	-moz-transform: rotate(-90deg) skew(65deg);
+	opacity: 0.5;
+	top: 4.6%;
+}
+
+#test5::before {
+	border-width: 1vw 1vw 0 0;
+	z-index: -1;
+}
+
+#test5::after {
+	border-width: 0 0 1vw 1vw;
+	z-index: 2;
+}
+
+#test6 {
+	background-color: #5870a8;
+	box-shadow: inset -0.6vw -0.6vw #3f578f;
+	height: 12vw;
+	width: 12vw;
+}
+
+.map-point:hover {
+	-webkit-transform:scale(1.5);
+	-ms-transform:scale(1.5);
+	transform:scale(1.5);
+	cursor:pointer;
+}
+
+#banner {
+	background-color: #f2bc46;
+	height: 30vw;
+	width: 30vw;
+	left: 35vw;
+	top: calc(50vh - 15vw);
+	box-shadow: 0 0 2.5vw 2.5vw #ffd55f;
+}
+
+.path {
+	position: fixed;
+	border-radius: 100%;
+	z-index: -2;
+	opacity: 0;
+}
+
+#path1 {
+	width: 100vw;
+	height: 100vh;
+	left: 0;
+	top: 0;
+}
+
+#path2 {
+	width: 90vw;
+	height: 90vh;
+	left: 5vw;
+	top: 5vh;
+}
+
+#path3 {
+	width: 80vw;
+	height: 80vh;
+	left: 10vw;
+	top: 10vh;
+}
+
+#path4 {
+	width: 70vw;
+	height: 70vh;
+	left: 15vw;
+	top: 15vh;
+}
+
+#path5 {
+	width: 60vw;
+	height: 60vh;
+	left: 20vw;
+	top: 20vh;
+}
+
+#path6 {
+	width: 50vw;
+	height: 50vh;
+	left: 25vw;
+	top: 25vh;
+}
+
+@media all and (orientation: landscape) {
+	#test1 {
+		width: 5vh;
+		height: 5vh;
+		box-shadow: inset -0.6vh -0.6vh #67686b;
+	}
+	#test2 {
+		height: 10vh;
+		width: 10vh;
+		box-shadow: inset -0.6vh -0.6vh #3a5373;
+	}
+	#test3 {
+		box-shadow: inset -0.6vh -0.6vh #b34538;
+		height: 8.4vh;
+		width: 8.4vh;
+	}
+	#test4,
+	#test4 .inner {
+		box-shadow: inset -0.6vh -0.6vh #b89145;
+		height: 13vh;
+		width: 13vh;
+	}
+	#test4::before {
+		border-width: 2vh 2vh 0 0;
+	}
+	#test4::after {
+		border-width: 0 0 2vh 2vh;
+	}
+	#test5,
+	#test5 .inner {
+		box-shadow: inset -0.6vh -0.6vh #8498a6;
+		height: 13.4vh;
+		width: 13.4vh;
+	}
+	#test5::before {
+		border-width: 1vh 1vh 0 0;
+	}
+	#test5::after {
+		border-width: 0 0 1vh 1vh;
+	}
+	#test6 {
+		box-shadow: inset -0.6vh -0.6vh #3f578f;
+		height: 12vh;
+		width: 12vh;
+	}
+	#banner {
+		width: 30vh;
+		height: 30vh;
+		top: 35vh;
+		left: calc(50vw - 15vh);
+		box-shadow: 0 0 2.5vh 2.5vh #ffd55f;
+	}
+}
+
+@keyframes rotate {
+	0% {
+		transform: perspective(360px) rotateZ(-20deg) rotateX(-40deg) rotateY(0);
+	}
+	100% {
+		transform: perspective(360px) rotateZ(20deg) rotateX(-40deg) rotateY(-360deg);
+	}
+}
+@keyframes blink {
+	50% {
+		opacity: 0.2;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+.star:nth-child(4) {
+	animation-duration: 8s;
+}
+
+.star:nth-child(2) {
+	animation-duration: 1s;
+}
+
+.star:nth-child(8),
+.star:nth-child(10),
+.star:nth-child(3) {
+	animation-duration: 5s;
+}
+
+.stars {
+	transform: perspective(500px);
+	transform-style: preserve-3d;
+	perspective-origin: 50% 100%;
+	position: fixed;
+	bottom: 0;
+	left: 50%;
+	animation: rotate 180s infinite linear;
+	z-index:-1;
+}
+
+.star {
+	width: 2px;
+	height: 2px;
+	background: #f7f7b6;
+	position: absolute;
+	top: 0;
+	left: 0;
+	transform-origin: 0 0 -300px;
+	transform: translate3d(0, 0, -300px);
+	backface-visibility: hidden;
+}
+
+#plane {
+  position: absolute;
+  -webkit-transition: -webkit-transform .2s ease-in-out;
+  transition: -webkit-transform .2s ease-in-out;
+  transition: transform .2s ease-in-out;
+  transition: transform .2s ease-in-out, -webkit-transform .2s ease-in-out;
+	z-index:99999;
+}
+
+.fuselage {
+  width: 25px;
+}
+
+.nose {
+  width: 12.5px;
+  margin: 0 auto;
+  border-top: 7.5px solid #363636;
+  border-top-left-radius: 50%;
+  border-top-right-radius: 50%;
+}
+
+.head {
+  possition: relative;
+  display: block;
+  border-bottom: 12.5px solid white;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  height: 0;
+  width: 12.5px;
+  margin: 0 auto;
+}
+
+.neck {
+  position: relative;
+  width: 22.5px;
+  height: 15px;
+  margin: 0 auto;
+  background: #f4f4f4;
+}
+.neck:after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  content: '';
+  width: 11.25px;
+  height: 15px;
+  background: #e0e0e0;
+}
+
+.body {
+  position: relative;
+  width: 25px;
+  height: 60px;
+  background: #f4f4f4;
+  border-bottom: 1.5px solid #a81237;
+  border-top: 1.5px solid #a81237;
+}
+.body:after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  content: '';
+  width: 12.5px;
+  height: 60px;
+  background: #e0e0e0;
+}
+
+.reactor {
+  position: relative;
+  border-bottom: 15px solid #4f4f4f;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  height: 0;
+  width: 15px;
+  margin: 0 auto;
+}
+.reactor:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -5px;
+  width: 7.5px;
+  opacity: 0.3;
+  border-bottom: 15px solid #e0e0e0;
+  border-left: 5px solid transparent;
+}
+
+.fire {
+  position: relative;
+  width: 12.5px;
+  height: 35px;
+  margin: 0 auto;
+  -webkit-animation: fire 0.2s infinite;
+          animation: fire 0.2s infinite;
+  opacity:0;
+}
+
+.left-fin {
+  position: absolute;
+  top: 36.5px;
+  right: 25px;
+  width: 2.5px;
+  border-bottom: 55px solid white;
+  border-left: 30px solid transparent;
+}
+.left-fin-end {
+  position: absolute;
+  top: 56.5px;
+  right: 35px;
+  border-bottom: 35px solid white;
+  border-left: 35px solid transparent;
+  border-top-left-radius: 50%;
+  border-bottom-left-radius: 10%;
+}
+
+.right-fin {
+  position: absolute;
+  top: 36.5px;
+  left: 25px;
+  width: 2.5px;
+  border-bottom: 55px solid white;
+  border-right: 30px solid transparent;
+}
+.right-fin-end {
+  position: absolute;
+  top: 56.5px;
+  left: 35px;
+  border-bottom: 35px solid white;
+  border-right: 35px solid transparent;
+  border-bottom-right-radius: 10%;
+}
+.right-fin:after {
+  content: '';
+  z-index: 2;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 2px;
+  border-bottom: 55px solid #c4c4c4;
+  border-right: 5px solid transparent;
+}
+
+@-webkit-keyframes fire {
+  0% {
+    background: -webkit-gradient(linear, left top, left bottom, from(#ff861c), color-stop(50%, #ef017c), to(#ed0303));
+    background: linear-gradient(to bottom, #ff861c 0%, #ef017c 50%, #ed0303 100%);
+  }
+  50% {
+    background: -webkit-gradient(linear, left top, left bottom, from(#ed0303), color-stop(51%, #ff861c), to(#ef017c));
+    background: linear-gradient(to bottom, #ed0303 0%, #ff861c 51%, #ef017c 100%);
+  }
+  100% {
+    background: -webkit-gradient(linear, left top, left bottom, from(#ef017c), color-stop(51%, #ed0303), to(#ff861c));
+    background: linear-gradient(to bottom, #ef017c 0%, #ed0303 51%, #ff861c 100%);
+  }
+}
+
+@keyframes fire {
+  0% {
+    background: -webkit-gradient(linear, left top, left bottom, from(#ff861c), color-stop(50%, #ef017c), to(#ed0303));
+    background: linear-gradient(to bottom, #ff861c 0%, #ef017c 50%, #ed0303 100%);
+  }
+  50% {
+    background: -webkit-gradient(linear, left top, left bottom, from(#ed0303), color-stop(51%, #ff861c), to(#ef017c));
+    background: linear-gradient(to bottom, #ed0303 0%, #ff861c 51%, #ef017c 100%);
+  }
+  100% {
+    background: -webkit-gradient(linear, left top, left bottom, from(#ef017c), color-stop(51%, #ed0303), to(#ff861c));
+    background: linear-gradient(to bottom, #ef017c 0%, #ed0303 51%, #ff861c 100%);
+  }
+}
+</style>
+<script>
+  window.console = window.console || function(t) {};
+</script>
+<script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+</head>
+<body translate="no">
+<div id="planets">
+<div class="map-point" id="test1">
+</div>
+<div class="map-point" id="test2">
+</div>
+<div class="map-point" id="test3">
+</div>
+<div class="map-point" id="test4">
+<div class="inner"></div>
+</div>
+<div class="map-point" id="test5">
+<div class="inner"></div>
+</div>
+<div class="map-point" id="test6">
+</div>
+<div id="banner">
+</div>
+</div>
+<div class="path" id="path1">
+</div>
+<div class="path" id="path2">
+</div>
+<div class="path" id="path3">
+</div>
+<div class="path" id="path4">
+</div>
+<div class="path" id="path5">
+</div>
+<div class="path" id="path6">
+</div>
+<div class="stars">
+</div>
+<div id="plane">
+<div class="fuselage">
+<div class="nose"></div>
+<div class="head"></div>
+<div class="neck"></div>
+<div class="body"></div>
+<div class="reactor"></div>
+<div class="fire">
+<div class="spark1"></div>
+<div class="spark2"></div>
+<div class="spark3"></div>
+<div class="spark4"></div>
+<div class="spark5"></div>
+<div class="spark6"></div>
+</div>
+</div>
+<div class="left-fin"></div>
+<div class="left-fin-end"></div>
+<div class="right-fin"></div>
+<div class="right-fin-end"></div>
+</div>
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+
+<script>
+$(document).ready(function () {
+  orbitPlanet();
+  $(window).on("resize", function () {
+    orbitPlanet();
+  });
+  var stars = 800;
+  var $stars = $(".stars");
+  for (var i = 0; i < stars; i++) {if (window.CP.shouldStopExecution(0)) break;
+    var $star = $("<div/>").addClass("star");
+    $stars.append($star);
+  }window.CP.exitedLoop(0);
+  $(".star").each(function () {
+    var cur = $(this);
+    var s = 0.2 + Math.random() * 1;
+    var curR = stars + Math.random() * 300;
+    cur.css({
+      transformOrigin: "0 0 " + curR + "px",
+      transform:
+      " translate3d(0,0,-" +
+      curR +
+      "px) rotateY(" +
+      Math.random() * 360 +
+      "deg) rotateX(" +
+      Math.random() * -50 +
+      "deg) scale(" +
+      s +
+      "," +
+      s +
+      ")" });
+
+  });
+});
+
+function orbitPlanet() {
+  var count = $(".path").length;
+  var x0 = window.innerWidth / 2;
+  var y0 = window.innerHeight / 2;
+  for (var i = 1; i <= count; i++) {if (window.CP.shouldStopExecution(1)) break;
+    var rx =
+    $(".path").
+    eq(count - i).
+    innerWidth() / 2;
+    var ry =
+    $(".path").
+    eq(count - i).
+    innerHeight() / 2;
+    var t = Math.tan(i * Math.PI / count + Math.atan(2 * ry / rx) / 2);
+    var x = x0 + rx * (1 - t ** 2) / (1 + t ** 2);
+    var y = y0 + ry * 2 * t / (1 + t ** 2);
+    $("#planets > div").
+    eq(i - 1).
+    each(function () {
+      var ri = $(this).innerWidth() / 2;
+      $(this).css({
+        top: y - ri,
+        left: x - ri });
+
+    });
+  }
+}
+
+$(document).ready(function () {
+  var windowH = $("html").innerHeight();
+  var windowW = $("html").innerWidth();
+  var airportPos = $("#banner").position();
+  $("#plane").css("left", airportPos.left + $("#plane").width() / 2);
+  $("#plane").css("top", airportPos.top + $("#plane").height() / 2);
+  $(".map-point").
+  on("mouseover", function () {
+    hoverMap($(this));
+  }).
+  on("mouseout", function () {
+    $("#map > div").fadeOut(function () {
+      $(this).remove();
+    });
+    $("#plane").css({
+      "-webkit-transform": "rotate(0deg)",
+      "-ms-transform": "rotate(0deg)",
+      transform: "rotate(0deg)" });
+
+    $(".fire").animate({
+      "opacity": 0 });
+
+  });
+  $(".map-point").click(function (e) {
+    var point = $(this).offset();
+    $(".map-point").off("mouseover", hoverMap($(this)));
+    $("#plane").animate(
+    {
+      left: point.left,
+      top: point.top },
+
+    function () {
+      $(".map-point").on("mouseover", function () {
+        hoverMap($(this));
+      });
+      if ($('.map-point:hover').length)
+      $('.map-point:hover').trigger("mouseover");
+    });
+
+    e.preventDefault();
+  });
+});
+
+function hoverMap($this) {
+  var pointID = $this.attr("id");
+  var turn = 180 - drawLine("#plane", "#" + pointID);
+  $("#plane").css({
+    "-webkit-transform": "rotate(" + turn + "deg)",
+    "-ms-transform": "rotate(" + turn + "deg)",
+    "transform": "rotate(" + turn + "deg)" });
+
+  $(".fire").animate({
+    "opacity": 1 });
+
+}
+
+function lineDistance(x, y, x0, y0) {
+  return Math.sqrt((x -= x0) * x + (y -= y0) * y);
+}
+
+function drawLine(a, b) {
+  var pointA = $(a).offset();
+  var pointB = $(b).offset();
+  var pointAcenterX = $(a).innerWidth() / 2;
+  var pointAcenterY = $(a).innerHeight() / 2;
+  var pointBcenterX = $(b).innerWidth() / 2;
+  var pointBcenterY = $(b).innerHeight() / 2;
+  var angle =
+  Math.atan2(pointB.top - pointA.top, pointB.left - pointA.left) *
+  180 /
+  Math.PI;
+  var angle2 =
+  Math.atan2(pointB.left - pointA.left, pointB.top - pointA.top) *
+  180 /
+  Math.PI;
+  var distance = lineDistance(pointA.left, pointA.top, pointB.left, pointB.top);
+  return angle2;
+}
+</script>
+</body>
+</html>
