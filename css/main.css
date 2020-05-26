@@ -937,6 +937,7 @@ p.caption {
         width:95vw;
         left:2.5vw;
         top:50vh;
+	margin-left:0;
     }
 }
 
