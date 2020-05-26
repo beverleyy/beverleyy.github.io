@@ -4,743 +4,485 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Beverley</title>
+<title>Beverley Yeo</title>
+
+<link href='https://fonts.googleapis.com/css?family=B612:400,400i,700,700i|Ubuntu+Mono:400,400i,700,700i' rel='stylesheet'>
+<link rel="stylesheet" href="css/ailerons.css">
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
 
-<style>
-body {
-	background-color: #363640;
-	overflow: hidden;
-}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
 
-#planets .map-point, #banner {
-	border-radius: 100%;
-	position: fixed;
-	z-index: 1;
-	transition:0.4s ease-in-out;
-}
+<link rel="stylesheet" href="css/stars.css">
+<link rel="stylesheet" href="css/main.css"/>
 
-#test1 {
-	width: 5vw;
-	height: 5vw;
-	background-color: #76777a;
-	box-shadow: inset -0.6vw -0.6vw #67686b;
-}
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script src="https://code.jquery.com/ui/1.10.4/jquery-ui.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<script src="https://unpkg.com/feather-icons@4.7.3/dist/feather.min.js"></script>
 
-#planets div::before,
-#planets div::after {
-	content: "";
-	position: absolute;
-}
-
-#test1::before,
-#test1::after {
-	background-color: #67686b;
-	border-radius: 100%;
-}
-
-#test1::before {
-	height: 17%;
-	left: 15%;
-	top: 57.5%;
-	width: 17%;
-}
-
-#test1::after {
-	height: 15%;
-	left: 50%;
-	top: 15%;
-	width: 15%;
-}
-
-#test2 {
-	background-color: #496282;
-	box-shadow: inset -0.6vw -0.6vw #3a5373;
-	height: 10vw;
-	width: 10vw;
-}
-
-#test2::before,
-#test2::after {
-	background-color: #5e8249;
-	border-radius: 100% 70% 100% 70%;
-}
-
-#test2::before {
-	height: 64%;
-	left: 6%;
-	top: 30%;
-	width: 30%;
-	transform: rotate(-30deg);
-	-webkit-transform: rotate(-30deg);
-	-moz-transform: rotate(-30deg);
-}
-
-#test2::after {
-	height: 24%;
-	left: 54%;
-	top: 6%;
-	width: 20%;
-	transform: rotate(-45deg);
-	-webkit-transform: rotate(-45deg);
-	-moz-transform: rotate(-45deg);
-}
-
-#test3 {
-	background-color: #c25447;
-	box-shadow: inset -0.6vw -0.6vw #b34538;
-	height: 8.4vw;
-	width: 8.4vw;
-}
-
-#test3::before,
-#test3::after {
-	background-color: #ae4033;
-	border-radius: 100%;
-}
-
-#test3::before {
-	height: 28%;
-	left: 55%;
-	top: 55%;
-	width: 28%;
-}
-
-#test3::after {
-	height: 20%;
-	left: 12%;
-	top: 24%;
-	width: 20%;
-}
-
-#test4,
-#test4 .inner {
-	background-color: #d1aa5e;
-	box-shadow: inset -0.6vw -0.6vw #b89145;
-	height: 13vw;
-	width: 13vw;
-	border-radius: 100%;
-}
-
-#test4::before,
-#test4::after,
-#test5::before,
-#test5::after {
-	height: 85%;
-	left: -7.7%;
-	width: 85%;
-	border-radius: 100%;
-}
-
-#test4::before,
-#test4::after {
-	top: -4.6%;
-	border: 2vw solid #a98236;
-	transform: rotate(-30deg) skew(65deg);
-	-webkit-transform: rotate(-30deg) skew(65deg);
-	-moz-transform: rotate(-30deg) skew(65deg);
-}
-
-#test4 .inner,
-#test5 .inner {
-	z-index: 1;
-}
-
-#test4::before {
-	border-width: 2vw 2vw 0 0;
-	z-index: -1;
-}
-
-#test4::after {
-	border-width: 0 0 2vw 2vw;
-	z-index: 2;
-}
-
-#test5,
-#test5 .inner {
-	background-color: #9db1bf;
-	box-shadow: inset -0.6vw -0.6vw #8498a6;
-	height: 13.4vw;
-	width: 13.4vw;
-	border-radius: 100%;
-}
-
-#test5::before,
-#test5::after {
-	border: 1vw solid #f0f3f5;
-	transform: rotate(-90deg) skew(65deg);
-	-webkit-transform: rotate(-90deg) skew(65deg);
-	-moz-transform: rotate(-90deg) skew(65deg);
-	opacity: 0.5;
-	top: 4.6%;
-}
-
-#test5::before {
-	border-width: 1vw 1vw 0 0;
-	z-index: -1;
-}
-
-#test5::after {
-	border-width: 0 0 1vw 1vw;
-	z-index: 2;
-}
-
-#test6 {
-	background-color: #5870a8;
-	box-shadow: inset -0.6vw -0.6vw #3f578f;
-	height: 12vw;
-	width: 12vw;
-}
-
-.map-point:hover {
-	-webkit-transform:scale(1.5);
-	-ms-transform:scale(1.5);
-	transform:scale(1.5);
-	cursor:pointer;
-}
-
-#banner {
-	background-color: #f2bc46;
-	height: 30vw;
-	width: 30vw;
-	left: 35vw;
-	top: calc(50vh - 15vw);
-	box-shadow: 0 0 2.5vw 2.5vw #ffd55f;
-}
-
-.path {
-	position: fixed;
-	border-radius: 100%;
-	z-index: -2;
-	opacity: 0;
-}
-
-#path1 {
-	width: 100vw;
-	height: 100vh;
-	left: 0;
-	top: 0;
-}
-
-#path2 {
-	width: 90vw;
-	height: 90vh;
-	left: 5vw;
-	top: 5vh;
-}
-
-#path3 {
-	width: 80vw;
-	height: 80vh;
-	left: 10vw;
-	top: 10vh;
-}
-
-#path4 {
-	width: 70vw;
-	height: 70vh;
-	left: 15vw;
-	top: 15vh;
-}
-
-#path5 {
-	width: 60vw;
-	height: 60vh;
-	left: 20vw;
-	top: 20vh;
-}
-
-#path6 {
-	width: 50vw;
-	height: 50vh;
-	left: 25vw;
-	top: 25vh;
-}
-
-@media all and (orientation: landscape) {
-	#test1 {
-		width: 5vh;
-		height: 5vh;
-		box-shadow: inset -0.6vh -0.6vh #67686b;
-	}
-	#test2 {
-		height: 10vh;
-		width: 10vh;
-		box-shadow: inset -0.6vh -0.6vh #3a5373;
-	}
-	#test3 {
-		box-shadow: inset -0.6vh -0.6vh #b34538;
-		height: 8.4vh;
-		width: 8.4vh;
-	}
-	#test4,
-	#test4 .inner {
-		box-shadow: inset -0.6vh -0.6vh #b89145;
-		height: 13vh;
-		width: 13vh;
-	}
-	#test4::before {
-		border-width: 2vh 2vh 0 0;
-	}
-	#test4::after {
-		border-width: 0 0 2vh 2vh;
-	}
-	#test5,
-	#test5 .inner {
-		box-shadow: inset -0.6vh -0.6vh #8498a6;
-		height: 13.4vh;
-		width: 13.4vh;
-	}
-	#test5::before {
-		border-width: 1vh 1vh 0 0;
-	}
-	#test5::after {
-		border-width: 0 0 1vh 1vh;
-	}
-	#test6 {
-		box-shadow: inset -0.6vh -0.6vh #3f578f;
-		height: 12vh;
-		width: 12vh;
-	}
-	#banner {
-		width: 30vh;
-		height: 30vh;
-		top: 35vh;
-		left: calc(50vw - 15vh);
-		box-shadow: 0 0 2.5vh 2.5vh #ffd55f;
-	}
-}
-
-@keyframes rotate {
-	0% {
-		transform: perspective(360px) rotateZ(-20deg) rotateX(-40deg) rotateY(0);
-	}
-	100% {
-		transform: perspective(360px) rotateZ(20deg) rotateX(-40deg) rotateY(-360deg);
-	}
-}
-@keyframes blink {
-	50% {
-		opacity: 0.2;
-	}
-	100% {
-		opacity: 1;
-	}
-}
-.star:nth-child(4) {
-	animation-duration: 8s;
-}
-
-.star:nth-child(2) {
-	animation-duration: 1s;
-}
-
-.star:nth-child(8),
-.star:nth-child(10),
-.star:nth-child(3) {
-	animation-duration: 5s;
-}
-
-.stars {
-	transform: perspective(500px);
-	transform-style: preserve-3d;
-	perspective-origin: 50% 100%;
-	position: fixed;
-	bottom: 0;
-	left: 50%;
-	animation: rotate 180s infinite linear;
-	z-index:-1;
-}
-
-.star {
-	width: 2px;
-	height: 2px;
-	background: #f7f7b6;
-	position: absolute;
-	top: 0;
-	left: 0;
-	transform-origin: 0 0 -300px;
-	transform: translate3d(0, 0, -300px);
-	backface-visibility: hidden;
-}
-
-#plane {
-  position: absolute;
-  -webkit-transition: -webkit-transform .2s ease-in-out;
-  transition: -webkit-transform .2s ease-in-out;
-  transition: transform .2s ease-in-out;
-  transition: transform .2s ease-in-out, -webkit-transform .2s ease-in-out;
-	z-index:99999;
-}
-
-.fuselage {
-  width: 25px;
-}
-
-.nose {
-  width: 12.5px;
-  margin: 0 auto;
-  border-top: 7.5px solid #363636;
-  border-top-left-radius: 50%;
-  border-top-right-radius: 50%;
-}
-
-.head {
-  possition: relative;
-  display: block;
-  border-bottom: 12.5px solid white;
-  border-left: 5px solid transparent;
-  border-right: 5px solid transparent;
-  height: 0;
-  width: 12.5px;
-  margin: 0 auto;
-}
-
-.neck {
-  position: relative;
-  width: 22.5px;
-  height: 15px;
-  margin: 0 auto;
-  background: #f4f4f4;
-}
-.neck:after {
-  position: absolute;
-  top: 0;
-  right: 0;
-  content: '';
-  width: 11.25px;
-  height: 15px;
-  background: #e0e0e0;
-}
-
-.body {
-  position: relative;
-  width: 25px;
-  height: 60px;
-  background: #f4f4f4;
-  border-bottom: 1.5px solid #a81237;
-  border-top: 1.5px solid #a81237;
-}
-.body:after {
-  position: absolute;
-  top: 0;
-  right: 0;
-  content: '';
-  width: 12.5px;
-  height: 60px;
-  background: #e0e0e0;
-}
-
-.reactor {
-  position: relative;
-  border-bottom: 15px solid #4f4f4f;
-  border-left: 5px solid transparent;
-  border-right: 5px solid transparent;
-  height: 0;
-  width: 15px;
-  margin: 0 auto;
-}
-.reactor:after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -5px;
-  width: 7.5px;
-  opacity: 0.3;
-  border-bottom: 15px solid #e0e0e0;
-  border-left: 5px solid transparent;
-}
-
-.fire {
-  position: relative;
-  width: 12.5px;
-  height: 35px;
-  margin: 0 auto;
-  -webkit-animation: fire 0.2s infinite;
-          animation: fire 0.2s infinite;
-  opacity:0;
-}
-
-.left-fin {
-  position: absolute;
-  top: 36.5px;
-  right: 25px;
-  width: 2.5px;
-  border-bottom: 55px solid white;
-  border-left: 30px solid transparent;
-}
-.left-fin-end {
-  position: absolute;
-  top: 56.5px;
-  right: 35px;
-  border-bottom: 35px solid white;
-  border-left: 35px solid transparent;
-  border-top-left-radius: 50%;
-  border-bottom-left-radius: 10%;
-}
-
-.right-fin {
-  position: absolute;
-  top: 36.5px;
-  left: 25px;
-  width: 2.5px;
-  border-bottom: 55px solid white;
-  border-right: 30px solid transparent;
-}
-.right-fin-end {
-  position: absolute;
-  top: 56.5px;
-  left: 35px;
-  border-bottom: 35px solid white;
-  border-right: 35px solid transparent;
-  border-bottom-right-radius: 10%;
-}
-.right-fin:after {
-  content: '';
-  z-index: 2;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 2px;
-  border-bottom: 55px solid #c4c4c4;
-  border-right: 5px solid transparent;
-}
-
-@-webkit-keyframes fire {
-  0% {
-    background: -webkit-gradient(linear, left top, left bottom, from(#ff861c), color-stop(50%, #ef017c), to(#ed0303));
-    background: linear-gradient(to bottom, #ff861c 0%, #ef017c 50%, #ed0303 100%);
-  }
-  50% {
-    background: -webkit-gradient(linear, left top, left bottom, from(#ed0303), color-stop(51%, #ff861c), to(#ef017c));
-    background: linear-gradient(to bottom, #ed0303 0%, #ff861c 51%, #ef017c 100%);
-  }
-  100% {
-    background: -webkit-gradient(linear, left top, left bottom, from(#ef017c), color-stop(51%, #ed0303), to(#ff861c));
-    background: linear-gradient(to bottom, #ef017c 0%, #ed0303 51%, #ff861c 100%);
-  }
-}
-
-@keyframes fire {
-  0% {
-    background: -webkit-gradient(linear, left top, left bottom, from(#ff861c), color-stop(50%, #ef017c), to(#ed0303));
-    background: linear-gradient(to bottom, #ff861c 0%, #ef017c 50%, #ed0303 100%);
-  }
-  50% {
-    background: -webkit-gradient(linear, left top, left bottom, from(#ed0303), color-stop(51%, #ff861c), to(#ef017c));
-    background: linear-gradient(to bottom, #ed0303 0%, #ff861c 51%, #ef017c 100%);
-  }
-  100% {
-    background: -webkit-gradient(linear, left top, left bottom, from(#ef017c), color-stop(51%, #ed0303), to(#ff861c));
-    background: linear-gradient(to bottom, #ef017c 0%, #ed0303 51%, #ff861c 100%);
-  }
-}
-</style>
-<script>
-  window.console = window.console || function(t) {};
-</script>
-<script>
-  if (document.location.search.match(/type=embed/gi)) {
-    window.parent.postMessage("resize", "*");
-  }
-</script>
+<script src="js/scripts.js"></script>
 </head>
-<body translate="no">
+<body>
+
+<!------ planetary map ------>
 <div id="planets">
-<div class="map-point" id="test1">
+    <a class="map-point" id="test1" href="#" data-terminal="#exp">
+        <span class="label">
+            experience
+        </span>
+    </a>
+    
+    <a class="map-point" id="test2" href="#" data-terminal="#educate">
+        <div class="inner"></div>
+        <span class="label">
+            education
+        </span>
+    </a>
+    
+    <a class="map-point" id="test3" href="#" data-terminal="#eng">
+        <span class="label">
+            engineering
+        </span>
+    </a>
+    
+    <a class="map-point" id="test4" href="#" data-terminal="#design">
+        <div class="inner"></div>
+        <span class="label">
+            design
+        </span>
+    </a>
+    
+    <a class="map-point" id="test5" href="#" data-terminal="#about">
+        <div class="inner"></div>
+        <span class="label">
+            about
+        </span>
+    </a>
+    
+    <a class="map-point" id="test6" href="#" data-terminal="#contact">
+        <span class="label">
+            contact
+        </span>
+    </a>
+    
+    <!--sun-->
+    <div id="banner"></div>
 </div>
-<div class="map-point" id="test2">
+<!-- end planetary map -->
+
+<!------ INSTRUCTIONS TERMINAL ------>
+<div id="terminal" class="console">
+    <div class="topper">
+        <div class="buttons">
+            <a href="#" class="x" title="close"></a>
+            <a class="res"></a>
+            <a class="min"></a>
+        </div>
+    </div>
+    <div class="command">
+        <span class="bash"><span>info@beverleyy:~$</span> info</span><br>
+        Beverley, she/her, 21y/o aerospace engineering undergrad from Singapore<br>
+        > <a href="/resume.pdf" class="down">Download resume</a><br>
+        > <a href="/cv.pdf" class="down">Download academic CV</a>
+        </p>
+        <span class="bash"><span>info@beverleyy:~$</span> help</span><br>
+        Click the planets to navigate<br>
+        Click the spacecraft to return to this screen<br>
+        Click the sun to reopen this window<br>
+        Click the red button to close the window<br>
+        Best viewed on Firefox or Chrome
+    </div>
 </div>
-<div class="map-point" id="test3">
+
+<!------ DESIGNS TERMINAL ------>
+<div id="design" class="console">
+    <div class="topper">
+        design@beverleyy:~
+        <div class="buttons">
+            <a href="#" class="x" title="close"></a>
+            <a class="res"></a>
+            <a class="min"></a>
+        </div>
+    </div>
+    <div class="command">
+        <span class="bash"><span>design@beverleyy:~$</span> help</span><br>
+        Click project to view details
+        </p>
+        
+        <span class="bash"><span>design@beverleyy:~$</span> cd web_design</span><br>
+        <span class="bash"><span>design@beverleyy:~/web_design$</span> ls</span><br>
+        <a class="sub" data-popup="#thm" href="#">
+            magnusthemes@tumblr
+        </a>
+        <br>
+        <a class="sub" data-popup="#yip" href="#">
+            year_in_pixels_page
+        </a>
+        <br>
+        <a class="sub" data-popup="#aae" href="#">
+            purdue_aae450_website
+        </a>
+        <br>
+        <a class="sub" data-popup="#cny" href="#">
+            cnyang_scholars_club_website
+        </a>
+        <br>
+        <a class="sub" data-popup="#ntu" href="#">
+            ntulearn_redesign
+        </a>
+        <br>
+        <span class="bash"><span>design@beverleyy:~/web_design</span> cd ~</span>
+        </p><!--end webdesign-->
+        
+        <span class="bash"><span>design@beverleyy:~$</span> cd graphics</span><br>
+        <span class="bash"><span>design@beverleyy:~/graphics$</span> ls</span><br>
+        <a class="sub" data-popup="#port" href="#">
+            graphics_portfolio
+        </a>
+    </div>
 </div>
-<div class="map-point" id="test4">
-<div class="inner"></div>
+
+<!------ ENGINEERING WORKS TERMINAL ------>
+<div id="eng" class="console">
+    <div class="topper">
+        engineering@beverleyy:~
+        <div class="buttons">
+            <a href="#" class="x" title="close"></a>
+            <a class="res"></a>
+            <a class="min"></a>
+        </div>
+    </div>
+    <div class="command">
+        <span class="bash"><span>engineering@beverleyy:~$</span> help</span><br>
+        Click project to view details
+        </p>
+        
+        <span class="bash"><span>engineering@beverleyy:~$</span> cd projects</span><br>
+        <span class="bash"><span>engineering@beverleyy:~/projects</span> ls</span><br>
+        <a class="sub" data-popup="#drone" href="#">
+            mini_delivery_quadcopter
+        </a>
+        <br>
+        <span class="bash"><span>engineering@beverleyy:~/projects</span> cd ~</span>
+        </p><!--end engineering-->
+        
+        <span class="bash"><span>engineering@beverleyy:~$</span> cd research</span><br>
+        <span class="bash"><span>engineering@beverleyy:~/research</span> ls</span><br>
+        <a class="sub" data-popup="#vortex" href="#">
+            vortex-ring_projects
+        </a>
+        <br>
+        <a class="sub" data-popup="#sys" href="#">
+            system_identification
+        </a>
+        <br>
+        <a class="sub" data-popup="#edn" href="#">
+            coteaching_analysis
+        </a>
+    </div>
 </div>
-<div class="map-point" id="test5">
-<div class="inner"></div>
+
+<!------ EDUCATION TERMINAL ------>
+<div id="educate" class="console">
+    <div class="topper">
+        education@beverleyy:~
+        <div class="buttons">
+            <a href="#" class="x" title="close"></a>
+            <a class="res"></a>
+            <a class="min"></a>
+        </div>
+    </div>
+    <div class="command">
+        <span class="bash"><span>education@beverleyy:~$</span> cd college</span><br>
+        <span class="bash"><span>education@beverleyy:~/college$</span> info -detailed</span><br>
+        Nanyang Technological University, Singapore<br>
+        Bachelor of Engineering (Honors)<br>
+        Graduation: expected 2021
+        </p>
+        <span class="bash"><span>education@beverleyy:~/college$</span> major -all</span><br>
+        Aerospace Engineering<br>
+        CN Yang Scholars Programme
+    </div>
 </div>
-<div class="map-point" id="test6">
+
+<!------ ABOUT TERMINAL ------>
+<div id="about" class="console">
+    <div class="topper">
+        about@beverleyy:~
+        <div class="buttons">
+            <a href="#" class="x" title="close"></a>
+            <a class="res"></a>
+            <a class="min"></a>
+        </div>
+    </div>
+    <div class="command">
+        <span class="bash"><span>about@beverleyy:~$</span> info -brief</span><br>
+        I'm Bev, a 21 y/o college junior majoring in aerospace engineering. Self-proclaimed lab slave. My main interest is in aerodynamics and fluid dynamics, both experimental and computational. I like large vehicles and flying machines, subsist on coffee and watch way too much football #YNWA
+        </p>
+        <span class="bash"><span>about@beverleyy:~$</span> cd skills</span><br>
+        <span class="bash"><span>about@beverleyy:~/skills$</span> ls -programming</span><br>
+        <strong>MATLAB C Javascript HTML CSS</strong><br>
+        <span class="bash"><span>about@beverleyy:~/skills$</span> ls -software</span><br>
+        <strong>TeX SolidWorks Photoshop Illustrator</strong><br>
+        <span class="bash"><span>about@beverleyy:~/skills$</span> ls -others</span><br>
+        <strong>CFD 3D_printing Soldering Arduino</strong>
+    </div>
 </div>
-<div id="banner">
+
+<!------ CONTACT LINKS TERMINAL ------>
+<div id="contact" class="console">
+    <div class="topper">
+        contact@beverleyy:~
+        <div class="buttons">
+            <a href="#" class="x" title="close"></a>
+            <a class="res"></a>
+            <a class="min"></a>
+        </div>
+    </div>
+    <nav class="social">
+        <a href="mailto:turboairjet@gmail.com">
+            <span class="ftr" data-feather="mail"></span>
+            <span class="sc">Email</span>
+        </a>
+        <a href="https://linkedin.com/in/beverleyy">
+            <span class="ftr" data-feather="linkedin"></span>
+            <span class="sc">LinkedIn</span>
+        </a>
+        <a href="https://github.com/beverleyy">
+            <span class="ftr" data-feather="github"></span>
+            <span class="sc">Github</span>
+        </a>
+        <a href="https://codepen.io/orbitalnight">
+            <span class="ftr" data-feather="codepen"></span>
+            <span class="sc">Codepen</span>
+        </a>
+    </nav>
 </div>
-</div>
-<div class="path" id="path1">
-</div>
-<div class="path" id="path2">
-</div>
-<div class="path" id="path3">
-</div>
-<div class="path" id="path4">
-</div>
-<div class="path" id="path5">
-</div>
-<div class="path" id="path6">
-</div>
-<div class="stars">
-</div>
+
+<!------ SUBTERMINALS ------>
+<!-- Design -->
+<div id="subts">
+
+    <div class="console inner1" id="thm">
+        <div class="topper">
+            design@beverleyy:~/web_design/magnusthemes
+            <div class="buttons">
+                <a href="#" class="c" title="close"></a>
+                <a class="res"></a>
+                <a class="min"></a>
+            </div>
+        </div>
+        <div class="viewer command">
+			<div class="slider slider-nav">
+				<div>
+                    <img src="images/magnusthemes/main.png"/>
+				</div>
+				<div>
+                    <img src="images/magnusthemes/centum.png"/>
+				</div>
+				<div>
+                    <img src="images/magnusthemes/nocturne.png"/>
+				</div>
+				<div>
+                    <img src="images/magnusthemes/aeolus.png"/>
+				</div>
+				<div>
+                    <img src="images/magnusthemes/deltaf.png"/>
+				</div>
+				<div>
+				    <img src="images/magnusthemes/phantombullet.png"/>
+				</div>
+			</div><!--top-slider-->
+            <div class="slider slider-for">
+				<div>
+                    <img src="images/magnusthemes/main.png"/>
+                    <p class="caption">
+                        <span class="bash"><span>design@beverleyy:~/web_design/magnusthemes$</span> info</span><br>
+                        MagnusThemes is a Tumblr theme blog featuring fun, sleek and quirky themes. I have been running this since 2014.<br>
+                        <a href="https://magnusthemes.tumblr.com" class="down">Live view</a>
+                    </p>
+                    <p class="caption">
+                        <span class="bash"><span>design@beverleyy:~/web_design/magnusthemes$</span> home_page</span><br>
+                        Blog layout: fully responsive, featuring a hand-drawn isometric-style hero image on the home page.
+                    </p>
+				</div>
+				<div>
+                    <img src="images/magnusthemes/centum.png"/>
+                    <p class="caption">
+                        <span class="bash"><span>design@beverleyy:~/web_design/magnusthemes$</span> centum_theme</span><br>
+                        A constructed grid theme with a fixed grid sidebar, API-generated featured posts. Very Javascript-based.<br>
+                        <a href="https://magnusthemes.tumblr.com/post/188239367015/" class="down">View on Tumblr</a>
+                    </p>
+				</div>
+				<div>
+                    <img src="images/magnusthemes/nocturne.png"/>
+                    <p class="caption">
+                        <span class="bash"><span>design@beverleyy:~/web_design/magnusthemes$</span> nocturne_theme</span><br>
+                        A sleek and functional Wordpress-style theme with related posts and API-generated featured posts.<br>
+                        <a href="https://magnusthemes.tumblr.com/post/129886464850/" class="down">View on Tumblr</a>
+                    </p>
+				</div>
+				<div>
+                    <img src="images/magnusthemes/aeolus.png"/>
+                    <p class="caption">
+                        <span class="bash"><span>design@beverleyy:~/web_design/magnusthemes$</span> aeolus_page</span><br>
+                        A modular CSS-grid-based custom about page layout. It's like a building-block set, choose whatever blocks you want and place them in any order you want.<br>
+                        <a href="https://magnusthemes.tumblr.com/post/181831970200" class="down">View on Tumblr</a>
+                    </p>
+				</div>
+				<div>
+                    <img src="images/magnusthemes/deltaf.png"/>
+                    <p class="caption">
+                        <span class="bash"><span>design@beverleyy:~/web_design/magnusthemes$</span> fulminata_theme</span><br>
+                        A simple, minimalist sidebar theme with stripe accents.<br>
+                        <a href="https://magnusthemes.tumblr.com/post/100664687930" class="down">View on Tumblr</a>
+                    </p>
+				</div>
+				<div>
+				    <img src="images/magnusthemes/phantombullet.png"/>
+                    <p class="caption">
+                        <span class="bash"><span>design@beverleyy:~/web_design/magnusthemes$</span> phantom-bullet_theme</span><br>
+                        A fresh, clean take on Sword Art Online's UI.<br>
+                        <a href="https://magnusthemes.tumblr.com/post/171993295520" class="down">View on Tumblr</a>
+                    </p>
+				</div>
+			</div><!--slider-->
+        </div>
+    </div>
+    
+    <div class="console inner1" id="yip">
+        <div class="topper">
+            design@beverleyy:~/web_design/year_in_pixels
+            <div class="buttons">
+                <a href="#" class="c" title="close"></a>
+                <a class="res"></a>
+                <a class="min"></a>
+            </div>
+        </div>
+        <div class="viewer command">
+            <img src="images/website/year-in-pixels.png"/>
+            <p>
+            <span class="bash"><span>design@beverleyy:~/web_design/year_in_pixels$</span> info</span><br>
+            A simple diary-like webpage with a Javascript-generated grid. Every day is a different color.</p>
+            <a href="https://magnusstatics.tumblr.com/yeet" class="down">Live view</a>
+        </div>
+    </div>
+    
+    <div class="console inner1" id="cny">
+        <div class="topper">
+            design@beverleyy:~/web_design/cnysc
+            <div class="buttons">
+                <a href="#" class="c" title="close"></a>
+                <a class="res"></a>
+                <a class="min"></a>
+            </div>
+        </div>
+        <div class="viewer command">
+            <img src="images/website/cnysc.PNG"/>
+            <p>
+            <span class="bash"><span>design@beverleyy:~/web_design/cnysc$</span> info</span><br>
+            As the Press & Publicity (P&P) Director of the 11th Executive Committee, I redesigned the CN Yang Scholars' Club website using Wordpress, improving the accessibility and ease of usage for future P&P subcommittees.</p>
+            <a href="https://clubs.ntu.edu.sg/cnysc/" class="down">Live view</a>
+        </div>
+    </div>
+    
+    <div class="console inner1" id="aae">
+        <div class="topper">
+            design@beverleyy:~/web_design/purdue_aae450
+            <div class="buttons">
+                <a href="#" class="c" title="close"></a>
+                <a class="res"></a>
+                <a class="min"></a>
+            </div>
+        </div>
+        <div class="viewer command">
+            <img src="images/website/aae450.png"/>
+            <p>
+            <span class="bash"><span>design@beverleyy:~/web_design/purdue_aae450$</span> info</span><br>
+            As the webmaster for our senior design project during my time at Purdue University, I was tasked with uploading all our files to the Purdue servers as well as making the site compliant with the Americans for Disabilities Act. This involved redoing the color scheme, increasing the font size and using better semantic elements. I was also in charge of all designs and graphics.</p>
+            <a href="https://engineering.purdue.edu/AAECourses/aae450/2020/Spring%202020" class="down">Live view</a><br>
+            <a href="https://engineering.purdue.edu/AAECourses/aae450/2020/Spring%202020/docs/ProjectEscalator_Brochure.pdf" class="down">Brochure</a>
+        </div>
+    </div>
+    
+    <div class="console inner1" id="ntu">
+        <div class="topper">
+            design@beverleyy:~/web_design/ntulearn_redesign
+            <div class="buttons">
+                <a href="#" class="c" title="close"></a>
+                <a class="res"></a>
+                <a class="min"></a>
+            </div>
+        </div>
+        <div class="viewer command">
+            <img src="images/website/ntulearn.png"/>
+            <p>
+            <span class="bash"><span>design@beverleyy:~/web_design/ntulearn_redesign$</span> info</span><br>
+            The default NTULearn UI has small text and a cluttered feel - using custom CSS injected into the browser via Stylus, I cleaned up NTULearn, increased accessibility and made it look classier.
+        </div>
+    </div>
+    
+    <div class="console inner2" id="port">
+        <div class="topper">
+            design@beverleyy:~/graphics/portfolio
+            <div class="buttons">
+                <a href="#" class="c" title="close"></a>
+                <a class="res"></a>
+                <a class="min"></a>
+            </div>
+        </div>
+        <div class="gwrap">
+            <div class="grid">
+                <img class="graph" src="images/iso.png">
+                <img class="graph" src="images/poster/ewp.png">
+                <img class="graph" src="images/poster/exhb.png">
+                <img class="graph" src="images/poster/halloween.jpg">
+                <img class="graph" src="images/poster/homecoming.jpg">
+                <img class="graph" src="images/poster/nightsafari.png">
+                <img class="graph" src="images/poster/beachday.jpg">
+                <img class="graph" src="images/poster/purge.jpg">
+                <img class="graph" src="images/poster/homecoming_old.png">
+            </div>
+        </div>
+    </div>
+    
+</div><!--Design-->
+
+<!------ ORBITAL PATHS AND STARS ------>
+<div class="path" id="path1"></div>
+<div class="path" id="path2"></div>
+<div class="path" id="path3"></div>
+<div class="path" id="path4"></div>
+<div class="path" id="path5"></div>
+<div class="path" id="path6"></div>
+<div id="stars"></div>
+<div id="stars2"></div>
+<div id="stars3"></div>
+
+<!------ SPACECRAFT ------>
 <div id="plane">
-<div class="fuselage">
-<div class="nose"></div>
-<div class="head"></div>
-<div class="neck"></div>
-<div class="body"></div>
-<div class="reactor"></div>
-<div class="fire">
-<div class="spark1"></div>
-<div class="spark2"></div>
-<div class="spark3"></div>
-<div class="spark4"></div>
-<div class="spark5"></div>
-<div class="spark6"></div>
-</div>
-</div>
-<div class="left-fin"></div>
-<div class="left-fin-end"></div>
-<div class="right-fin"></div>
-<div class="right-fin-end"></div>
+    <div class="fuselage">
+        <div class="tip"></div>
+        <div class="head"></div>
+        <div class="neck"></div>
+        <div class="body"></div>
+        <div class="reactor"></div>
+        <div class="fire"></div>
+    </div>
+    <div class="left-wing"></div>
+    <div class="left-tail"></div>
+    <div class="right-wing"></div>
+    <div class="right-tail"></div>
 </div>
 
-<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+<script>feather.replace()</script>
 
-<script>
-$(document).ready(function () {
-  orbitPlanet();
-  $(window).on("resize", function () {
-    orbitPlanet();
-  });
-  var stars = 800;
-  var $stars = $(".stars");
-  for (var i = 0; i < stars; i++) {
-    var $star = $("<div/>").addClass("star");
-    $stars.append($star);
-  }
-  $(".star").each(function () {
-    var cur = $(this);
-    var s = 0.2 + Math.random() * 1;
-    var curR = stars + Math.random() * 300;
-    cur.css({
-      transformOrigin: "0 0 " + curR + "px",
-      transform:
-      " translate3d(0,0,-" +
-      curR +
-      "px) rotateY(" +
-      Math.random() * 360 +
-      "deg) rotateX(" +
-      Math.random() * -50 +
-      "deg) scale(" +
-      s +
-      "," +
-      s +
-      ")" });
-  });
-});
+<script src="js/anime.min.js"></script>
+<script src="js/charming.min.js"></script>
 
-function orbitPlanet() {
-  var count = $(".path").length;
-  var x0 = window.innerWidth / 2;
-  var y0 = window.innerHeight / 2;
-  for (var i = 1; i <= count; i++) {
-    var rx =
-    $(".path").
-    eq(count - i).
-    innerWidth() / 2;
-    var ry =
-    $(".path").
-    eq(count - i).
-    innerHeight() / 2;
-    var t = Math.tan(i * Math.PI / count + Math.atan(2 * ry / rx) / 2);
-    var x = x0 + rx * (1 - t ** 2) / (1 + t ** 2);
-    var y = y0 + ry * 2 * t / (1 + t ** 2);
-    $("#planets > div").
-    eq(i - 1).
-    each(function () {
-      var ri = $(this).innerWidth() / 2;
-      $(this).css({
-        top: y - ri,
-        left: x - ri });
+<script src="js/typo.js"></script>
 
-    });
-  }
-}
-
-$(document).ready(function () {
-  var windowH = $("html").innerHeight();
-  var windowW = $("html").innerWidth();
-  var airportPos = $("#banner").position();
-  $("#plane").css("left", airportPos.left + $("#plane").width() / 2);
-  $("#plane").css("top", airportPos.top + $("#plane").height() / 2);
-  $(".map-point").
-  on("mouseover", function () {
-    hoverMap($(this));
-  }).
-  on("mouseout", function () {
-    $("#map > div").fadeOut(function () {
-      $(this).remove();
-    });
-    $("#plane").css({
-      "-webkit-transform": "rotate(0deg)",
-      "-ms-transform": "rotate(0deg)",
-      transform: "rotate(0deg)" });
-
-    $(".fire").animate({
-      "opacity": 0 });
-
-  });
-  $(".map-point").click(function (e) {
-    var point = $(this).offset();
-    $(".map-point").off("mouseover", hoverMap($(this)));
-    $("#plane").animate(
-    {
-      left: point.left,
-      top: point.top },
-
-    function () {
-      $(".map-point").on("mouseover", function () {
-        hoverMap($(this));
-      });
-      if ($('.map-point:hover').length)
-      $('.map-point:hover').trigger("mouseover");
-    });
-
-    e.preventDefault();
-  });
-});
-
-function hoverMap($this) {
-  var pointID = $this.attr("id");
-  var turn = 180 - drawLine("#plane", "#" + pointID);
-  $("#plane").css({
-    "-webkit-transform": "rotate(" + turn + "deg)",
-    "-ms-transform": "rotate(" + turn + "deg)",
-    "transform": "rotate(" + turn + "deg)" });
-
-  $(".fire").animate({
-    "opacity": 1 });
-
-}
-
-function lineDistance(x, y, x0, y0) {
-  return Math.sqrt((x -= x0) * x + (y -= y0) * y);
-}
-
-function drawLine(a, b) {
-  var pointA = $(a).offset();
-  var pointB = $(b).offset();
-  var pointAcenterX = $(a).innerWidth() / 2;
-  var pointAcenterY = $(a).innerHeight() / 2;
-  var pointBcenterX = $(b).innerWidth() / 2;
-  var pointBcenterY = $(b).innerHeight() / 2;
-  var angle =
-  Math.atan2(pointB.top - pointA.top, pointB.left - pointA.left) *
-  180 /
-  Math.PI;
-  var angle2 =
-  Math.atan2(pointB.left - pointA.left, pointB.top - pointA.top) *
-  180 /
-  Math.PI;
-  var distance = lineDistance(pointA.left, pointA.top, pointB.left, pointB.top);
-  return angle2;
-}
-</script>
 </body>
 </html>
