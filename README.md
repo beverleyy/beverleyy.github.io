@@ -14,6 +14,5 @@ Personal website
 * Anime.min.js - [Julian Garnier](https://github.com/juliangarnier/anime)
 * Charming.js - [Github/yuanqing](https://github.com/yuanqing/charming)
 * Isotope.js - [Metafizzy](https://isotope.metafizzy.co/)
-* [jQuery](https://jquery.com/) & [jQuery UI](https://jqueryui.com/)
-* [Normalize.css] - [Nicolas Gallagher and Jonathan Neal](https://necolas.github.io/normalize.css/)
+* Normalize.css - [Nicolas Gallagher and Jonathan Neal](https://necolas.github.io/normalize.css/)
 <!-- * Spaceship - Based on a [pen by Bathia](https://codepen.io/JDoe/details/QxvgOZ) -->
