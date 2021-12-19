@@ -1,1 +1,907 @@
-Work in progress. Please check back later, thank you!
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Beverley Yeo</title> 
+
+<meta name='robots' content='noindex,nofollow' />
+<link rel="icon" href="images/favicon.png" type="image/png">
+
+<link href='https://fonts.googleapis.com/css?family=Space+Grotesk:300,400,500,700|Space+Mono:400,400i,700,700i' rel='stylesheet'>
+<link href="fonts/ailerons.css" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+
+<link rel="stylesheet" href="css/stars.css">
+<link rel="stylesheet" href="css/main.css"/>
+
+<script src="https://unpkg.com/phosphor-icons"></script>
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script src="https://code.jquery.com/ui/1.10.4/jquery-ui.min.js"></script>
+<script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/metafizzy/isotope-packery@master/packery-mode.pkgd.min.js"></script>
+
+<script src="js/combofilters.js"></script>
+<script src="js/scripts.js"></script>
+
+</head>
+<body class="day">
+
+<!------ STARS ------>
+<div class="stars">
+    <div id="stars"></div> 
+    <div id="stars2"></div>
+    <div id="stars3"></div> 
+</div>
+
+<div id="top">
+    <ul id="pubs">
+        <li>07.2021 - present | Project Officer, NTU MAE</li>
+        <li>09.2020 - 04.2021 | Project Manager Intern, NTU MAE</li>
+        <li>06.2020 - 08.2020 | Intern, Temasek Laboratories@NUS</li>
+        <li class="link"><a href="assets/Beverley_CV_Graduate.pdf" class="blink-right">
+            <i class="ph-download"></i>
+            <span>Download Academic CV</span>
+        </a></li>
+    </ul>
+    <nav id="right">
+        <a href="#pubslist" class="popp" title="Publications"><i class="ph-newspaper-fill"></i></a>
+        <a href="assets/Beverley_Resume_Graduate.pdf" title="Download my resume"><i class="ph-download-fill"></i></a>
+        <a href="mailto:a170092@e.ntu.edu.sg" title="Email"><i class="ph-envelope-fill"></i></a>
+        <a href="http://github.com/beverleyy" title="Github"><i class="ph-github-logo-fill"></i></a>
+        <a href="http://linkedin.com/in/beverleyy" title="LinkedIn"><i class="ph-linkedin-logo-fill"></i></a>
+    </nav>
+</div>
+
+<main>
+    <header>
+        <h1>Hi, I'm <span>Beverley <i class="ph ph-airplane-tilt-light"></i></i></span></h1>
+        <h2 id="switch">
+            <a href="#" data-id="day" class="blink-left">CFD engineer <span>by day,</span></a><br>
+            <a href="#" data-id="night" class="blink-left">Web design <span>by night</span></a>
+        </h2>
+        <p>
+            I am currently a Master of Engineering candidate at Nanyang Technological University's School of Mechanical & Aerospace Engineering. I am interested in <strong>turbulence, fluid dynamics, pretty flows</strong>, and solving numerical problems through efficient computing. 
+            I aspire to <em>develop computational fluid dynamics (CFD) codes</em> that can produce high-fidelity flow visualizations on consumer computers. 
+            And in my spare time, I enjoy playing MapleStory and watching Liverpool FC play football :)
+        </p>
+        <p>
+            Due to the nature of aerospace, only personal/academic/university projects are included on this page.
+        </p>
+    </header> 
+ 
+    <nav id="d" class="iso">
+        <!-- Add class="exclusive" for radio filter -->
+        <ul class="filter option-set exclusive" data-filter-group="type">
+            <li><a href="#" data-filter-value="" class="selected">
+                <span>Work</span><i class="ph-caret-right"></i>
+            </a></li>
+            <li><a href="#" data-filter-value=".edu"><span>Education</span></a></li>
+            <li><a href="#" data-filter-value=".res"><span>Research</span></a></li>
+            <li><a href="#" data-filter-value=".dev"><span>Development</span></a></li>
+            <li><a href="#" data-filter-value=".eng"><span>Engineering</span></a></li>
+        </ul>
+    </nav>
+
+    <nav id="n" class="iso">
+        <!-- Add class="exclusive" for radio filter -->
+        <ul class="filter option-set exclusive" data-filter-group="type">
+            <li><a href="#" data-filter-value="" class="selected">
+                <span>Play</span><i class="ph-caret-right"></i>
+            </a></li>
+            <li><a href="#" data-filter-value=".gfx"><span>Design</span></a></li>
+            <li><a href="#" data-filter-value=".dev"><span>Development</span></a></li>
+        </ul>
+    </nav>
+
+    <section class="grid">
+        <article class="one item edu d">
+            <div class="topper">
+                <span>education@beverleyy:~</span>
+                <a href="#" class="close" title="close"></a>
+            </div>
+            <div class="front">
+                <h3>Master of Engineering <span>(Mechanical & Aerospace Engineering)</span></h3>
+                <h4>Nanyang Technological University, Singapore</h4>
+            </div>
+            <div class="back">
+                <p>
+                    Expected Aug 2022
+                </p>
+                <h4>Thesis</h4>
+                <p>
+                    Investigating Galilean invariance in CFD
+                </p>
+                <h4>Coursework</h4>
+                <ul>
+                    <li>Advanced Engineering Mathematics</li>
+                    <li>Advanced Thermal Engineering</li>
+                    <li>Computational Methods in Engineering</li>
+                    <li>Design & Analysis of Experiments</li>
+                    <li>Finite Element Methods</li>
+                </ul>
+            </div>
+            <div class="head">
+                08.2021 - 08.2022
+                <span style="float:right;">
+                    Education
+                </span>
+            </div>
+        </article>
+            
+        <article class="one alt item res d">
+            <div class="topper">
+                <span>research@beverleyy:~</span>
+                <a href="#" class="close" title="close"></a>
+            </div>
+            <div class="front">
+                <img src="images/research/wakezoom.jpg"/>
+                <div class="overlay"></div>
+                <h3>Investigating Galilean Invariance in CFD</h3>
+                <h4>Masters Thesis</h4>
+            </div>
+            <div class="back">
+                <p>
+                    Supervisors: Dr. Basman Elhadidi, Dr. Chan Wai Lee
+                </p>
+                <h4>Description</h4>
+                <ul>
+                    <li>Comparison between flow properties and wakes calculated from CFD simulations of moving body in stationary flow vs stationary body in moving flow.</li>
+                    <li>Implementation of transitional turbulence model with overset mesh in OpenFOAM.</li>
+                    <li>Validation of results with flow visualization and force measurements.</li>
+                </ul>
+            </div>
+            <div class="foot">
+                <span>Fluent</span>
+                <span>OpenFOAM</span>
+                <span>Pointwise</span>
+                <span>TECPLOT</span>
+                <span>C++</span>
+                <span>Python</span>
+                <span>MATLAB</span>
+                <span>Unix</span>
+            </div>
+            <div class="head">
+                05.2021 - present
+                <span style="float:right;">
+                    Research
+                </span>
+            </div>
+        </article>
+
+        <article class="two alt item dev big d n">
+            <div class="topper">
+                <span>dev@beverleyy:~</span>
+                <a href="#" class="close" title="close"></a>
+            </div>
+            <div class="front">
+                <img src="images/website/bloom.jpg"/>
+                <div class="overlay"></div>
+                <h3>Bloomscroller</h3>
+                <h4>MindfulHacks 2021 - 1st (Team)</h4>
+            </div>
+            <div class="back">
+                <p>
+                    Non-intrusive browser extension for Twitter that combats doomscrolling using AI, gamification, and psychology. 
+                </p>
+            </div>
+            <div class="foot">
+                <a href="https://devpost.com/software/bloomscroller" title="Devpost">
+                    <i class="ph-link-simple-horizontal"></i>
+                </a>
+                <a href="https://github.com/Archeri2000/Bloomscroller" title="Github Repository">
+                    <i class="ph-github-logo"></i>
+                </a>
+                <span>HTML</span>
+                <span>CSS</span>
+                <span>Javascript</span>
+                <span>Python</span>
+                <span>AWS</span>
+            </div>
+            <div class="head">
+                09.2021
+                <span style="float:right;">
+                    Development
+                </span>
+            </div>
+        </article>
+
+        <article class="one alt item dev big n">
+            <div class="topper">
+                <span>dev@beverleyy:~</span>
+                <a href="#" class="close" title="close"></a>
+            </div>
+            <div class="front">
+                <img src="images/website/m_eng-timeline.png"/>
+                <div class="overlay"></div>
+                <h3>M.Eng. Timeline</h3>
+            </div>
+            <div class="back">
+                <p>
+                    Made a timeline for my Masters degree progress cause I didn't really want a grainy pic of my prof's whiteboard as my homepage
+                </p>
+            </div>
+            <div class="foot">
+                <a href="https://beverleyy.github.io/m-eng_timeline" title="Live View">
+                    <i class="ph-link-simple-horizontal"></i>
+                </a>
+                <a href="https://github.com/beverleyy/m-eng_timeline" title="Github Repository">
+                    <i class="ph-github-logo"></i>
+                </a>
+                <span>HTML</span>
+                <span>CSS</span>
+                <span>SCSS</span>
+                <span>Javascript</span>
+            </div>
+            <div class="head">
+                06.2021
+                <span style="float:right;">
+                    Development
+                </span>
+            </div>
+        </article>
+
+        <article class="two item edu d">
+            <div class="topper">
+                <span>education@beverleyy:~</span>
+                <a href="#" class="close" title="close"></a>
+            </div>
+            <div class="front">
+                <h3>Bachelor of Engineering <span>(Aerospace Engineering)</span></h3>
+                <h4>Nanyang Technological University, Singapore</h4>
+            </div>
+            <div class="back">
+                <p>
+                    Jul 2017 - Jun 2021<br>
+                    CGPA: 4.37 / 5.00 (Honors with Distinction)
+                </p>
+                <h4>Awards & Scholarships</h4>
+                <ul>
+                    <li>CN Yang Scholars Programme</li>
+                    <li>CNYSP Research Award (Gold)</li>
+                    <li>Dean's List AY19/20</li>
+                    <li>Nanyang Scholarship</li>
+                    <li>Professional Attachment Certificate of Distinction</li>
+                    <li>T.H. New Flow Visualization Award</li>
+                </ul>
+            </div>
+            <div class="head">
+                08.2017 - 06.2021
+                <span style="float:right;">
+                    Education
+                </span>
+            </div>
+        </article>
+
+        <article class="one alt item res d">
+            <div class="topper">
+                <span>research@beverleyy:~</span>
+                <a href="#" class="close" title="close"></a>
+            </div>
+            <div class="front">
+                <img src="images/research/cvr.png"/>
+                <div class="overlay"></div>
+                <h3>On the flow behavior of confined<br>vortex-rings</h3>
+                <h4>Final Year Project</h4>
+            </div>
+            <div class="back">
+                <p>
+                    Supervisor: Dr. Daniel New
+                </p>
+                <h4>Description</h4>
+                <ul>
+                    <li>CFD simulations of vortex-rings in confined domain.</li>
+                    <li>Experimental validation of CFD simulations using dye flow visualization.</li>
+                    <li>Investigation of wall shear stress and pressure induced by vortex-rings on confinement wall.</li>
+                </ul>
+            </div>
+            <div class="foot">
+                <span>Fluent</span>
+                <span>Flow visualization</span>
+                <span>Pointwise</span>
+                <span>TECPLOT</span>
+                <span>MATLAB</span>
+            </div>
+            <div class="head">
+                12.2020 - 06.2021
+                <span style="float:right;">
+                    Research
+                </span>
+            </div>
+        </article>
+
+        <article class="two alt item eng big d">
+            <div class="topper">
+                <span>engineering@beverleyy:~</span>
+                <a href="#" class="close" title="close"></a>
+            </div>
+            <div class="front">
+                <img src="images/research/waffles.png"/>
+                <div class="overlay"></div>
+                <h3>Weird Take-Off and Landing UAV</h3>
+                <h4>UAV Senior Design</h4>
+            </div>
+            <div class="back">
+                <p>
+                    Novel quadrotor VTOL concept to improve transition performance using two forward-canted rotors at the front and two outward-canted rotors at the back.
+                </p>
+            </div>
+            <div class="foot">
+                <a href="https://youtu.be/I5h49ASUCJA" title="Watch Video">
+                    <i class="ph-monitor-play"></i>
+                </a>
+                <span>MATLAB</span>
+                <span>Simulink</span>
+                <span>Arduino</span>
+                <span>SolidWorks</span>
+                <span>Datalogging</span>
+                <span>C</span>
+            </div>
+            <div class="head">
+                01.2021 - 06.2021
+                <span style="float:right;">
+                    Engineering
+                </span>
+            </div>
+        </article>
+
+        <article class="one item res d">
+            <div class="topper">
+                <span>research@beverleyy:~</span>
+                <a href="#" class="close" title="close"></a>
+            </div>
+            <div class="front">
+                <h3>Fusing communication skills with engineering knowledge</h3>
+            </div>
+            <div class="back">
+                <p>
+                    Supervisor: Dr. Chan Wai Lee
+                </p>
+                <h4>Coteaching program to improve engineering students’ communication skills</h4>
+                <ul>
+                    <li>Statistics analysis in MATLAB from a study of different teaching programs to determine usefulness of coteaching program.</li>
+                    <li>Transcription of recorded focus group discussions with participants.</li>
+                    <li>Qualitative analysis of participants’ learning outcomes and feedback.</li>
+                </ul>
+            </div>
+            <div class="foot">
+                <span>MATLAB</span>
+                <span>Python</span>
+                <span>Excel</span>
+            </div>
+            <div class="head">
+                05.2020 - 07.2021
+                <span style="float:right;">
+                    Research
+                </span>
+            </div>
+        </article>
+
+        <article class="two alt item dev big d n">
+            <div class="topper">
+                <span>dev@beverleyy:~</span>
+                <a href="#" class="close" title="close"></a>
+            </div>
+            <div class="front">
+                <img src="images/website/moe2018trf005.png"/>
+                <div class="overlay"></div>
+                <h3>Self-help attendance check</h3>
+            </div>
+            <div class="back">
+                <h4>Part of coteaching project</h4>
+                <p>
+                    This page was made to reduce emails by automating retrieval of participants' attendance records.
+                </p>
+            </div>
+            <div class="foot">
+                <a href="http://moe2018trf005check.herokuapp.com" title="Live View">
+                    <i class="ph-link-simple-horizontal"></i>
+                </a>
+                <a href="http://github.com/beverleyy/moe2018trf005" title="Github Repository">
+                    <i class="ph-github-logo"></i>
+                </a>
+                <span>NodeJS</span>
+                <span>SQL</span>
+                <span>CSS</span>
+                <span>ExpressJS</span>
+            </div>
+            <div class="head">
+                02.2021
+                <span style="float:right;">
+                    Development
+                </span>
+            </div>
+        </article>
+
+        <article class="one item res d">
+            <div class="topper">
+                <span>research@beverleyy:~</span>
+                <a href="#" class="close" title="close"></a>
+            </div>
+            <div class="front">
+                <h3>System identification of novel VTOL UAV</h3>
+            </div>
+            <div class="back">
+                <p>
+                    Supervisor: Dr. Basman Elhadidi
+                </p>
+                <h4>Description</h4>
+                <ul>
+                    <li>Investigate possibility to reduce wind tunnel usage in aerodynamic analysis and determine aerodynamic coefficients from dynamic system response.</li>
+                    <li>Develop least-square regression models combined with usage of MATLAB system identification toolbox to determine stability and aerodynamic coefficients.</li>
+                </ul>
+            </div>
+            <div class="foot">
+                <span>MATLAB</span>
+                <span>Datalogging</span>
+                <span>Arduino</span>
+            </div>
+            <div class="head">
+                06.2019 - 05.2021
+                <span style="float:right;">
+                    Research
+                </span>
+            </div>
+        </article>
+
+        <article class="two alt item gfx inactive big n">
+            <div class="topper">
+                <span>design@beverleyy:~</span>
+                <a href="#" class="close" title="close"></a>
+            </div>
+            <div class="front">
+                <img src="images/poster/iso.png"/>
+                <div class="overlay"></div>
+                <h3>This is Anfield</h3>
+                <h4>
+                    <span>Photoshop</span>
+                    <span>Illustrator</span>
+                </h4>
+            </div>
+            <div class="head">
+                08.2020
+                <span style="float:right;">
+                    Design
+                </span>
+            </div>
+        </article>
+
+        <article class="two alt item gfx big n">
+            <div class="topper">
+                <span>design@beverleyy:~</span>
+                <a href="#" class="close" title="close"></a>
+            </div>
+            <div class="front">
+                <img src="images/website/lfc.png"/>
+                <div class="overlay"></div>
+                <h3>Liverpool FC 19/20 kit with CSS</h3>
+            </div>
+            <div class="back">
+                <h4>Let's get this title party started~</h4>
+                <ul>
+                    <li>CSS home and away kits for title-winning season</li>
+                    <li>Logos are SVGs from Wikipedia</li>
+                </ul>
+            </div>
+            <div class="foot">
+                <a href="https://github.com/beverleyy/lfc_jersey_1920" title="Github Repository">
+                    <i class="ph-github-logo"></i>
+                </a>
+                <span>HTML</span>
+                <span>CSS</span>
+                <span>SVG</span>
+            </div>
+            <div class="head">
+                06.2020
+                <span style="float:right;">
+                    Design
+                </span>
+            </div>
+        </article>
+
+        <article class="two item edu d">
+            <div class="topper">
+                <span>education@beverleyy:~</span>
+                <a href="#" class="close" title="close"></a>
+            </div>
+            <div class="front">
+                <h3>Overseas Exchange</h3>
+                <h4>Purdue University</h4>
+            </div>
+            <div class="back">
+                <h4>Aeronautics & Astronautics</h4>
+                <ul>
+                    <li>Aerospace Structural Analysis</li>
+                    <li>Computational Aerodynamics</li>
+                    <li>Experimental Aerodynamics</li>
+                    <li>Spacecraft Design</li>
+                    <li>Thermal Sciences</li>
+                </ul>
+                <h4>Awards & Scholarships</h4>
+                <ul>
+                    <li>Dean's List & Semester Honors, Spring 2020</li>
+                </ul>
+            </div>
+            <div class="head">
+                01.2020 - 05.2020
+                <span style="float:right;">
+                    Education
+                </span>
+            </div>
+        </article>
+
+        <article class="two item eng d">
+            <div class="topper">
+                <span>engineering@beverleyy:~</span>
+                <a href="#" class="close" title="close"></a>
+            </div>
+            <div class="front">
+                <h3>Project Escalator</h3>
+                <h4>Senior Spacecraft Design</h4>
+            </div>
+            <div class="back">
+                <ul>
+                    <li>Numerical simulation and investigation of propellantless space propulsion technologies and cycler vehicle trajectories to and from Mars using MATLAB/Simulink.</li>
+                    <li>Investigate cycler vehicle dynamics and design of controller.</li>
+                </ul>
+            </div>
+            <div class="foot">
+                <a href="https://engineering.purdue.edu/AAECourses/aae450/2020/Spring%202020" title="Website">
+                    <i class="ph-link-simple-horizontal"></i>
+                </a>
+                <span>MATLAB</span>
+                <span>Simulink</span>
+                <span>GMAT</span>
+            </div>
+            <div class="head">
+                01.2020 - 05.2020
+                <span style="float:right;">
+                    Engineering
+                </span>
+            </div>
+        </article>
+
+        <article class="two alt item dev big d n">
+            <div class="topper">
+                <span>dev@beverleyy:~</span>
+                <a href="#" class="close" title="close"></a>
+            </div>
+            <div class="front">
+                <img src="images/website/aae450.png"/>
+                <div class="overlay"></div>
+                <h3>Project Escalator Website</h3>
+                <h4>Senior Spacecraft Design</h4>
+            </div>
+            <div class="back">
+                <p>
+                    I did all the promotional material for our senior design project - website, banners, brochure.
+                </p>
+            </div>
+            <div class="foot">
+                <a href="https://engineering.purdue.edu/AAECourses/aae450/2020/Spring%202020" title="Live View">
+                    <i class="ph-link-simple-horizontal"></i>
+                </a>
+                <span>HTML</span>
+                <span>CSS</span>
+                <span>Javascript</span>
+                <span>Zope</span>
+                <span>Python</span>
+                <span>Adobe Photoshop</span>
+
+            </div>
+            <div class="head">
+                04.2020
+                <span style="float:right;">
+                    Development
+                </span>
+            </div>
+        </article>
+
+        <article class="one alt item dev big n">
+            <div class="topper">
+                <span>dev@beverleyy:~</span>
+                <a href="#" class="close" title="close"></a>
+            </div>
+            <div class="front">
+                <img src="images/website/year-in-pixels.png"/>
+                <div class="overlay"></div>
+                <h3>Year in Pixels</h3>
+            </div>
+            <div class="back">
+                <p>
+                    A simple diary-like webpage with a Javascript-generated grid. Fake backend with Google Sheets for easy data entry.
+                </p>
+            </div>
+            <div class="foot">
+                <a href="https://beverleyy.github.io/year-in-pixels" title="Live View">
+                    <i class="ph-link-simple-horizontal"></i>
+                </a>
+                <a href="https://github.com/beverleyy/year-in-pixels" title="Github Repository">
+                    <i class="ph-github-logo"></i>
+                </a>
+                <span>HTML</span>
+                <span>CSS</span>
+                <span>Javascript</span>
+            </div>
+            <div class="head">
+                01.2020
+                <span style="float:right;">
+                    Development
+                </span>
+            </div>
+        </article>
+
+        <article class="two alt item gfx inactive small big n">
+            <div class="topper">
+                <span>design@beverleyy:~</span>
+                <a href="#" class="close" title="close"></a>
+            </div>
+            <div class="front">
+                <img src="images/poster/nightsafari.png"/>
+                <div class="overlay"></div>
+                <h3>CNYSC Night Safari 2019</h3>
+                <h4>
+                    <span>Photoshop</span>
+                </h4>
+            </div>
+            <div class="head">
+                05.2019
+                <span style="float:right;">
+                    Design
+                </span>
+            </div>
+        </article>
+
+        <article class="two alt item gfx inactive big n">
+            <div class="topper">
+                <span>design@beverleyy:~</span>
+                <a href="#" class="close" title="close"></a>
+            </div>
+            <div class="front">
+                <img src="images/poster/exhb.png"/>
+                <div class="overlay"></div>
+                <h3>CNYSP Exhibition 2019</h3>
+                <h4>
+                    <span>Photoshop</span>
+                    <span>Illustrator</span>
+                </h4>
+            </div>
+            <div class="head">
+                02.2019
+                <span style="float:right;">
+                    Design
+                </span>
+            </div>
+        </article>
+
+        <article class="two alt item dev big n">
+            <div class="topper">
+                <span>dev@beverleyy:~</span>
+                <a href="#" class="close" title="close"></a>
+            </div>
+            <div class="front">
+                <img src="images/website/cnysc.PNG" class="t"/>
+                <div class="overlay"></div>
+                <h3>CN Yang Scholars Club Website</h3>
+            </div>
+            <div class="back">
+                <p>
+                    As the Press & Publicity (P&P) Director of the 11th Executive Committee, I redesigned the CN Yang Scholars' Club website using Wordpress, improving the accessibility and ease of usage for future P&P subcommittees.
+                </p>
+            </div>
+            <div class="foot">
+                <a href="https://clubs.ntu.edu.sg/cnysc/" title="Live View">
+                    <i class="ph-link-simple-horizontal"></i>
+                </a>
+                <span>Wordpress</span>
+                <span>HTML</span>
+                <span>CSS</span>
+                <span>Javascript</span>
+                <span>PHP</span>
+
+            </div>
+            <div class="head">
+                01.2019
+                <span style="float:right;">
+                    Development
+                </span>
+            </div>
+        </article>
+
+        <article class="two alt item gfx inactive big n">
+            <div class="topper">
+                <span>design@beverleyy:~</span>
+                <a href="#" class="close" title="close"></a>
+            </div>
+            <div class="front">
+                <img src="images/poster/beachday.jpg"/>
+                <div class="overlay"></div>
+                <h3>MAE Beach Day 2018</h3>
+                <h4>
+                    <span>Photoshop</span>
+                </h4>
+            </div>
+            <div class="head">
+                02.2018
+                <span style="float:right;">
+                    Design
+                </span>
+            </div>
+        </article>
+
+        <article class="one alt item res d">
+            <div class="topper">
+                <span>research@beverleyy:~</span>
+                <a href="#" class="close" title="close"></a>
+            </div>
+            <div class="front">
+                <img src="images/research/vortex.png"/>
+                <div class="overlay"></div>
+                <h3>Flow transitions of vortex-ring collisions</h3>
+                <h4>CN Yang Scholars Programme Undergraduate Research</h4>
+            </div>
+            <div class="back">
+                <p>
+                    Supervisor: Dr. Daniel New
+                </p>
+                <h4>Description</h4>
+                <ul>
+                    <li>Planar laser-induced fluorescence</li>
+                    <li>Time-resolved particle-image velocimetry</li>
+                </ul>
+                <h4>Published in</h4>
+                <ul>
+                    <li>Journal of Visualization</li>
+                    <li>15th Asian Symposium on Visualization</li>
+                    <li>17th European Turbulence Conference</li>
+                </ul>
+            </div>
+            <div class="foot">
+                <a href="https://doi.org/10.1007/s12650-020-00666-7" title="Journal paper">
+                    <i class="ph-link-simple-horizontal"></i>
+                </a>
+                <span>Flow visualization</span>
+                <span>MATLAB</span>
+                <span>TECPLOT</span>
+            </div>
+            <div class="head">
+                12.2017 - 06.2020
+                <span style="float:right;">
+                    Research
+                </span>
+            </div>
+        </article>
+
+        <article class="two alt item eng big d">
+            <div class="topper">
+                <span>engineering@beverleyy:~</span>
+                <a href="#" class="close" title="close"></a>
+            </div>
+            <div class="front">
+                <img src="images/research/charmcube.jpg"/>
+                <div class="overlay"></div>
+                <h3>Mini Delivery Quadcopter</h3>
+                <h4>Making & Tinkering - Drone Inc.</h4>
+            </div>
+            <div class="back">
+                <p>
+                    Modified racing drone for autonomous package delivery. 
+                </p>
+            </div>
+            <div class="foot">
+                <a href="https://blogs.ntu.edu.sg/ps9888-2018-droneinc" title="Website">
+                    <i class="ph-link-simple-horizontal"></i>
+                </a>
+                <span>Pixhawk</span>
+                <span>SolidWorks</span>
+                <span>C</span>
+            </div>
+            <div class="head">
+                06.2018 - 08.2018
+                <span style="float:right;">
+                    Engineering
+                </span>
+            </div>
+        </article>
+
+        <article class="two item edu d">
+            <div class="topper">
+                <span>education@beverleyy:~</span>
+                <a href="#" class="close" title="close"></a>
+            </div>
+            <div class="front">
+                <h3><span>Singapore-Cambridge</span> GCE 'A' Level</h3>
+                <h4>National Junior College</h4>
+            </div>
+            <div class="back">
+                <h4>Integrated Programme</h4>
+                <p>
+                    2011-2016
+                </p>
+                <h4>Subjects</h4>
+                <ul>
+                    <li>H1 Chinese (B)</li>
+                    <li>H1 General Paper (A)</li>
+                    <li>H1 Project Work (A)</li>
+                    <li>H2 Chemistry (A)</li>
+                    <li>H2 Economics (A)</li>
+                    <li>H2 Mathematics (A)</li>
+                    <li>H2 Physics (A)</li>
+                </ul>
+            </div>
+            <div class="head">
+                01.2011 - 12.2016
+                <span style="float:right;">
+                    Education
+                </span>
+            </div>
+        </article>
+
+        <article class="one alt item dev big n">
+            <div class="topper">
+                <span>dev@beverleyy:~</span>
+                <a href="#" class="close" title="close"></a>
+            </div>
+            <div class="front">
+                <img src="images/website/main.png" class="t"/>
+                <div class="overlay"></div>
+                <h3>MagnusThemes</h3>
+                <h4>Free Tumblr Themes</h4>
+            </div>
+            <div class="back">
+                <p>
+                    I first learnt how to code by making free themes for Tumblr, a social media blogging platform. My work is fun, quirky and sleek, and most bugs are fixed promptly.
+                </p>
+            </div>
+            <div class="foot">
+                <a href="https://magnusthemes.tumblr.com" title="Live View">
+                    <i class="ph-link-simple-horizontal"></i>
+                </a>
+                <a href="https://github.com/orbitalnight/magnusthemes" title="Live View">
+                    <i class="ph-github-logo"></i>
+                </a>
+                <span>HTML</span>
+                <span>CSS</span>
+                <span>Javascript</span>
+                <span>Adobe Photoshop</span>
+
+            </div>
+            <div class="head">
+                01.2014 - present
+                <span style="float:right;">
+                    Development
+                </span>
+            </div>
+        </article>
+    </section>
+</main> 
+
+<div class="clouds">
+    <!-- <div id="plane">
+        <div class="fuselage">
+            <div class="tip"></div>
+            <div class="cone"></div>
+            <div class="neck"></div>
+            <div class="body"></div>
+            <div class="reactor"></div>
+            <div class="fire"></div>
+        </div>
+        <div class="left-wing"></div>
+        <div class="left-tail"></div>
+        <div class="right-wing"></div>
+        <div class="right-tail"></div>
+    </div>  -->
+</div>
+<footer>
+    <span>&copy; 2021 Beverley Yeo</span> <a href="#pubslist" class="popp">Publication List</a> | <a title="under construction">Google Scholar</a> | <a title="under construction">ResearchGate</a> | <a title="under construction">ORCID</a>
+</footer>
+ 
+<script src="js/anime.min.js"></script>
+<script src="js/charming.min.js"></script>
+<script src="js/typo.js"></script>
+
+</body>
+</html>

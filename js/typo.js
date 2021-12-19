@@ -1,9 +1,9 @@
-const items = Array.from(document.querySelectorAll('.social a'));
+const items = Array.from(document.querySelectorAll('.item'));
 class Item {
 	constructor(el) {
 		this.DOM = {};
 		this.DOM.el = el;
-		this.DOM.label = el.querySelector('.sc');
+		this.DOM.label = el.querySelector('.head');
 		charming(this.DOM.label);
 		this.DOM.labelLetters = Array.from(this.DOM.label.querySelectorAll('span'));
 		this.initEvents();
