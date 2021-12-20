@@ -6,6 +6,7 @@
     --accent-three:#6d98ab;
     --accent-text:#ffffff;
     --transparency:rgba(255,255,255,0.5);
+    --shadow:rgba(25,25,25,0.1);
     --menu:#a8b1b8;
     --highlight:#6d98ab;
 }
@@ -18,6 +19,7 @@
     --accent-two:#ffcb05;
     --accent-text:#ffffff;
     --transparency:rgba(25,25,25,0.5);
+    --shadow:rgba(240,240,240,0.1);
     --menu:#6d98ab;
     --highlight:#ffcb05;
 }
@@ -118,7 +120,7 @@ a:hover {
     -webkit-backdrop-filter:blur(5px);
     border-bottom:1px solid var(--accent-two);
     transition:0.4s ease-in-out;
-    min-height:55px;
+    min-height:50px;
 }
 
 .night #top {
@@ -383,7 +385,12 @@ header h2 span {
         padding 0s linear;
 	flex-wrap:wrap;
     flex-direction:column;
-    min-height:15rem; /* fallback for aspect-ratio */
+    @supports not (aspect-ratio: auto) { 
+        padding-top:100%;
+        height:0;
+        position:relative;
+        overflow:hidden;
+    }
 }
 
 .grid .item:not(.expand):not(.inactive){
@@ -586,7 +593,12 @@ header h2 span {
 	width:32rem;
 	padding:3rem;
 	align-content:flex-start;
-    min-height:32rem; /* fallback for aspect-ratio */
+}
+
+.grid .item.expand,
+.grid .item.inactive:not(.small):hover,
+.popup {
+    box-shadow: 5px 5px 0 var(--shadow);
 }
 
 .item.expand h3,
@@ -985,6 +997,116 @@ footer span {
     border-bottom-right-radius:10%;
 }
 
+/* modal */
+
+body.noscroll {
+	overflow:hidden;
+}
+
+modal {
+	background:var(--transparency);
+	width:100%;
+	height:100%;
+	position:fixed;
+	z-index:999999;
+	left:0;
+	top:0;
+	-webkit-backdrop-filter:blur(5px);
+	backdrop-filter:blur(5px);
+	display:flex;
+	align-items:center;
+	justify-content:center;
+}
+
+#pubslist {
+	display:none;
+}
+
+.popup {
+	background:var(--transparency);
+	border:1px solid var(--highlight);
+	padding:3rem;
+	min-width:30rem;
+	max-width:90vw;
+	box-sizing:border-box;
+	position:relative;
+	font-size:1em;
+	line-height:1.5em;
+	font-family:"Space Mono",consolas,monospace;
+}
+
+.popup .topper {
+	display:block;
+	background:var(--highlight);
+	color:var(--background);
+}
+
+.popup .topper .close {
+	background:var(--background);
+}
+
+.popup .cmd {
+	color:var(--text);
+}
+
+.terminal {
+	max-height:calc(90vh - 6rem - 25px);
+	overflow:auto;
+	font-size:0.9em;
+	margin-top:25px;
+	padding-right:2rem;
+	margin-right:-2rem;
+}
+
+.popup p,
+.popup ul {
+	margin:0;
+}
+
+.popup ul {
+	list-style-type:none;
+	margin-bottom:1em;
+}
+
+.popup ul li {
+	position:relative;
+}
+
+.popup ul li::before {
+	font-family: 'phosphor';
+	content:"\f0c4";
+	width:1em;
+	height:1.5em;
+	left:-1em;
+	top:0;
+	margin-left:-5px;
+	position:absolute;
+	display:block;
+    color:var(--accent-two);
+}
+
+.popup ul li:hover::before {
+    background:var(--accent-two);
+	animation:blinkblink 0.4s cubic-bezier(0.5,0,1,1) infinite alternate;
+}
+
+.popup .terminal em {
+	border-bottom:1px solid var(--accent-three);
+}
+
+.popup .terminal a {
+	background:var(--menu);
+	color:var(--accent-text);
+	padding:0 5px;
+}
+
+.popup .terminal a:hover {
+	background:var(--highlight);
+	color:var(--background);
+}
+
+/* responsive */
+
 @media screen and (max-width:640px) {
     main,#pubs {
         padding:0 30px;
@@ -1090,8 +1212,14 @@ footer span {
     .grid .item.expand,
     .grid .item.inactive:not(.small) {
         width:95%;
-        min-height:0;
         aspect-ratio:unset;
+
+        @supports not (aspect-ratio: auto) { 
+            padding-top:2rem;
+            height:auto;
+            position:relative;
+            overflow:visible;
+        }
     }
 
     .grid .item.inactive:not(.small) .front img {
@@ -1123,6 +1251,22 @@ footer span {
     footer a {
         display:none;
     }
+}
+
+@media screen and (max-width:540px){
+	.popup {
+		padding:2rem;
+	}
+	
+	.terminal {
+		max-height:calc(90vh - 4rem - 25px);
+		padding-right:1rem;
+		margin-right:-1rem;
+	}
+	
+	.popup ul {
+		padding-left:20px;
+	}
 }
 
 @media screen and (max-width:420px){
@@ -1157,6 +1301,16 @@ footer span {
     .grid .item.expand h4 {
         font-size:0.8rem;
     }
+
+	.popup {
+		padding:1rem;
+	}
+	
+	.terminal {
+		max-height:calc(90vh - 2rem - 25px);
+		padding-right:0.5rem;
+		margin-right:-0.5rem;
+	}
 }
 
 @media screen and (max-width:360px){
