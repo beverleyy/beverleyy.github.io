@@ -24,6 +24,15 @@
     --highlight:#ffcb05;
 }
 
+@supports not ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
+    .day {
+        --transparency:rgba(255, 255, 255, 0.8);
+    }
+    .night {
+        --transparency:rgba(25, 25, 25, 0.8);
+    }
+}
+
 *[class^="ph-"]:before {
     display:block;
 }

@@ -74,7 +74,9 @@ $(document).ready(function(){
 		e.preventDefault();
 		var id=$(this).attr("href");
         $('body').addClass('noscroll');
-		$('modal'+id).fadeIn();
+		$('modal'+id).fadeIn(function(){
+            $('modal'+id).css("display","flex");
+        });
 	});
 	$(".popup .topper .close").on("click",function(e){
         $('body').removeClass('noscroll');
