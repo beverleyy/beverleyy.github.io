@@ -383,6 +383,7 @@ header h2 span {
         padding 0s linear;
 	flex-wrap:wrap;
     flex-direction:column;
+    min-height:15rem; /* fallback for aspect-ratio */
 }
 
 .grid .item:not(.expand):not(.inactive){
@@ -585,6 +586,7 @@ header h2 span {
 	width:32rem;
 	padding:3rem;
 	align-content:flex-start;
+    min-height:32rem; /* fallback for aspect-ratio */
 }
 
 .item.expand h3,
@@ -1088,6 +1090,7 @@ footer span {
     .grid .item.expand,
     .grid .item.inactive:not(.small) {
         width:95%;
+        min-height:0;
         aspect-ratio:unset;
     }
 
