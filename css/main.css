@@ -24,7 +24,7 @@
     --highlight:#ffcb05;
 }
 
-@supports not ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
+@supports (not (-webkit-backdrop-filter:none)) and (not (backdrop-filter:none)) {
     .day {
         --transparency:rgba(255, 255, 255, 0.8);
     }
