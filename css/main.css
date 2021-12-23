@@ -1082,8 +1082,7 @@ modal {
 }
 
 .popup ul li::before {
-    font-family:'phosphor';
-    content:"\f0c4";
+    line-height:inherit;
     width:1em;
     height:1.5em;
     left:-1em;
