@@ -94,5 +94,5 @@ $(document).ready(function(){
             e.preventDefault();
         }
     });
-    $(".popup#pubslist .terminal ul li").addClass("ph-caret-right");
+    $("#pubslist .terminal ul li").addClass("ph-caret-right");
 });
