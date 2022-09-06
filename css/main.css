@@ -156,12 +156,12 @@ a:hover {
 #pubs {
     overflow:hidden;
     max-height:30px;
-    padding:0 90px;
+    padding:0 60px;
     margin:10px 0;
     font-size:0.8em;
     font-weight:400;
     text-transform:uppercase;
-    letter-spacing:0.1em;
+    letter-spacing:0.05em;
     list-style:none;
     transition:0.4s ease-in-out;
     color:var(--text);
@@ -198,7 +198,7 @@ a:hover {
 
 #right {
     position:fixed;
-    right:90px; 
+    right:60px; 
     top:0px;
     height:50px;
     line-height:50px;
@@ -276,7 +276,7 @@ main {
     width:100%;
     box-sizing:border-box;
     margin:150px auto 30px;
-    padding:0 90px;
+    padding:0 60px;
 }
 
 /* header */
@@ -393,7 +393,7 @@ header h2 span {
 /* grid */
 
 .grid {
-    margin:0 -1rem;
+    margin:0 -0.5rem;
 }
 
 .grid .item {
@@ -401,8 +401,8 @@ header h2 span {
     display:flex;
     align-content:center;
     padding:1.5em;
-    width:15rem;
-    margin:1rem;
+    width:16rem;
+    margin:0.5rem;
 	box-sizing:border-box;
 	position:relative;
 	border:2px solid transparent;
@@ -796,7 +796,7 @@ header h2 span {
 
 footer {
     position:fixed;
-    left:90px;
+    left:60px;
     bottom:0;
     z-index:2;
     height:30px;
@@ -972,6 +972,18 @@ modal {
 @media screen and (min-width:1280px) {
     .popup {
         max-width:60vw;
+    }
+
+    main,#pubs {
+        padding:0 90px;
+    }
+
+    #right {
+        right:90px;
+    }
+
+    footer {
+        left:90px;
     }
 }
 
