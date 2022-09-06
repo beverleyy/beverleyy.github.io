@@ -1,27 +1,27 @@
 .day {
-    --text:#666666;
-    --background:#fefefe;
-    --accent-one:#00274c;
-    --accent-two:#ffcb05;
-    --accent-three:#6d98ab;
+    --text:#363640;
+    --background:#ffffff;
+    --accent-one:#2b2d42;
+    --accent-two:#d90429;
+    --accent-three:#8d99ae;
     --accent-text:#ffffff;
-    --transparency:rgba(255,255,255,0.5);
+    --transparency:rgba(255,255,255,0.8);
     --shadow:rgba(25,25,25,0.1);
-    --menu:#a8b1b8;
-    --highlight:#6d98ab;
+    --menu:#2b2d42;
+    --highlight:#ef233c;
 }
 
 .night {
-    --text:#a8b1b8;
+    --text:#edf2f4;
     --background:#272730;
-    --accent-one:#C8102E;
-    --accent-three:#363640;
-    --accent-two:#ffcb05;
+    --accent-one:#ef233c;
+    --accent-three:#2b2d42;
+    --accent-two:#8d99ae;
     --accent-text:#ffffff;
     --transparency:rgba(25,25,25,0.5);
     --shadow:rgba(240,240,240,0.1);
-    --menu:#6d98ab;
-    --highlight:#ffcb05;
+    --menu:#d90429;
+    --highlight:#8d99ae;
 }
 
 @supports (not (-webkit-backdrop-filter:none)) and (not (backdrop-filter:none)) {
@@ -58,7 +58,7 @@
 body {
     color:var(--text);
 	background-attachment:fixed;
-	font:300 1em/1.7em "Space Grotesk",sans-serif;
+	font:400 1em/1.7em "Rubik",sans-serif;
     margin:0;
     padding:0;
     transition:0.4s ease-in-out;
@@ -68,7 +68,7 @@ body {
 
 .day {
 	background-color:#fff;
-	background-image:radial-gradient(220% 105% at bottom center, #eaeaea 10%, #f6f6f6 40%, #fcfcfc 65%, #fff);
+	/* background-image:radial-gradient(220% 105% at bottom center, #eaeaea 10%, #f6f6f6 40%, #fcfcfc 65%, #fff); */
 }
 
 .night {
@@ -115,6 +115,23 @@ a:hover {
     border-radius:100%;
 }
 
+/* selection */
+
+::selection {
+    background:var(--accent-two);
+    color:var(--accent-text);
+}
+
+::-webkit-selection {
+    background:var(--accent-two);
+    color:var(--accent-text);
+}
+
+::-moz-selection {
+    background:var(--accent-two);
+    color:var(--accent-text);
+}
+
 /* top */
 
 #top {
@@ -127,7 +144,7 @@ a:hover {
     background:var(--transparency);
     backdrop-filter:blur(5px);
     -webkit-backdrop-filter:blur(5px);
-    border-bottom:1px solid var(--accent-two);
+    border-bottom:1px solid var(--accent-three);
     transition:0.4s ease-in-out;
     min-height:50px;
 }
@@ -139,7 +156,7 @@ a:hover {
 #pubs {
     overflow:hidden;
     max-height:30px;
-    padding:0 60px;
+    padding:0 90px;
     margin:10px 0;
     font-size:0.8em;
     font-weight:400;
@@ -181,7 +198,7 @@ a:hover {
 
 #right {
     position:fixed;
-    right:60px; 
+    right:90px; 
     top:0px;
     height:50px;
     line-height:50px;
@@ -259,7 +276,7 @@ main {
     width:100%;
     box-sizing:border-box;
     margin:150px auto 30px;
-    padding:0 60px;
+    padding:0 90px;
 }
 
 /* header */
@@ -269,14 +286,15 @@ header {
 }
 
 header h1 {
-    font:normal 300 6rem/6rem "Space Grotesk",sans-serif;
+    font:normal 300 6rem/6rem "Rubik",sans-serif;
     margin:0 0 1rem;
     color:var(--accent-one);
 }
 
 header h1 span {
     color:var(--highlight);
-    font-weight:bold
+    font-family:"Rubik Glitch",sans-serif;
+    font-weight:normal;
 }
 
 header h1 span i {
@@ -288,7 +306,7 @@ header h1 span i {
 }
 
 header h2 {
-    font:normal 1.2rem/2rem "Space Mono",sans-serif;
+    font:normal 1.2rem/2rem "Rubik",sans-serif;
     text-transform:uppercase;
     position:relative;
     display:inline-block;
@@ -331,9 +349,9 @@ header h2 span {
     padding:0;
     overflow:hidden;
     list-style-type:none;
-    font-family:"Space Mono",consolas,monospace;
+    font-weight:300;
+    font-family:"Rubik",sans-serif;
     text-transform:uppercase;
-    letter-spacing:1px;
     position:relative;
     font-size:1.2em
 }
@@ -387,7 +405,7 @@ header h2 span {
     margin:1rem;
 	box-sizing:border-box;
 	position:relative;
-	border:1px solid transparent;
+	border:2px solid transparent;
 	transition:0.4s ease-in-out,
         width 0s linear,
         height 0s linear,
@@ -425,7 +443,7 @@ header h2 span {
 	bottom:0.5em;
 	font-size:1.4em;
     text-transform:capitalize;
-	font-family:"Space Grotesk",sans-serif;
+	font-family:"Rubik",sans-serif;
 	text-align:right;
 }
 
@@ -439,14 +457,14 @@ header h2 span {
 }
 
 .item h3 span {
-	font-family:"Space Grotesk",sans-serif;
+	font-family:"Rubik",sans-serif;
 	text-transform:uppercase;
 	font-size:0.5em;
 	display:block;
 	letter-spacing:0.1em;
 	line-height:100%;
 	margin:0.5em 0;
-	font-weight:500;
+	font-weight:300;
 	transition:0.4s ease-in-out;
 }
 
@@ -573,7 +591,7 @@ header h2 span {
 
 .one.alt:not(.expand) .overlay ~ h3 {
     color:var(--accent-text);
-    text-shadow:2px 2px 2px var(--accent-one);
+    /* text-shadow:2px 2px 2px var(--accent-one); */
 }
 
 .two .overlay {
@@ -582,7 +600,7 @@ header h2 span {
 
 .two.alt:not(.expand) .overlay ~ h3 {
     color:var(--accent-text);
-    text-shadow:2px 2px 2px var(--accent-three);
+    /* text-shadow:2px 2px 2px var(--accent-three); */
 }
 
 .back {
@@ -628,7 +646,7 @@ header h2 span {
 	bottom:100%;
 	left:0;
 	opacity:0;
-	font:0.8em/150% "Space Mono",consolas,monospace;
+	font:0.8em/150% "Rubik",sans-serif;
 	transition:opacity 0s ease-in-out 0.1s;
     text-transform:uppercase;
 }
@@ -646,7 +664,7 @@ header h2 span {
     left:0;
     display:none;
     overflow:hidden;
-	font:0.7rem "Space Mono",consolas,monospace;
+	font:0.7rem "Rubik",sans-serif;
     text-transform:uppercase;
     padding:10px;
     box-sizing:border-box;
@@ -704,7 +722,7 @@ header h2 span {
 
 .item .back p, .item .back ul {
 	font-size:0.9em;
-	font-weight:300;
+	font-weight:400;
 	list-style-type:none;
 }
 
@@ -729,7 +747,7 @@ header h2 span {
 	box-sizing:border-box;
 	position:absolute;
 	color:var(--accent-text);
-	font:0.8em/15px "Space Mono",consolas,monospace;
+	font:0.8em/15px "Rubik",sans-serif;
 	display:none;
 }
 
@@ -778,7 +796,7 @@ header h2 span {
 
 footer {
     position:fixed;
-    left:60px;
+    left:90px;
     bottom:0;
     z-index:2;
     height:30px;
@@ -841,171 +859,6 @@ footer span {
     -webkit-filter:blur(2px);
 }
 
-@-webkit-keyframes fire {
-    0% {
-        background: -webkit-gradient(linear, left top, left bottom, from(#ff861c), color-stop(50%, #ef017c), to(#ed0303));
-        background: linear-gradient(to bottom, #ff861c 0%, #ef017c 50%, #ed0303 100%);
-    }
-    50% {
-        background: -webkit-gradient(linear, left top, left bottom, from(#ed0303), color-stop(51%, #ff861c), to(#ef017c));
-        background: linear-gradient(to bottom, #ed0303 0%, #ff861c 51%, #ef017c 100%);
-    }
-    100% {
-        background: -webkit-gradient(linear, left top, left bottom, from(#ef017c), color-stop(51%, #ed0303), to(#ff861c));
-        background: linear-gradient(to bottom, #ef017c 0%, #ed0303 51%, #ff861c 100%);
-    }
-}
-  
-@keyframes fire {
-    0% {
-        background: -webkit-gradient(linear, left top, left bottom, from(#ff861c), color-stop(50%, #ef017c), to(#ed0303));
-        background: linear-gradient(to bottom, #ff861c 0%, #ef017c 50%, #ed0303 100%);
-    }
-    50% {
-        background: -webkit-gradient(linear, left top, left bottom, from(#ed0303), color-stop(51%, #ff861c), to(#ef017c));
-        background: linear-gradient(to bottom, #ed0303 0%, #ff861c 51%, #ef017c 100%);
-    }
-    100% {
-        background: -webkit-gradient(linear, left top, left bottom, from(#ef017c), color-stop(51%, #ed0303), to(#ff861c));
-        background: linear-gradient(to bottom, #ef017c 0%, #ed0303 51%, #ff861c 100%);
-    }
-}
-
-/* spaceship */
-
-#plane {
-    position:absolute;
-	z-index:99999;
-    -webkit-transform:rotate(-45deg);
-    transform:rotate(-45deg);
-    right:5rem;
-    bottom:0;
-}
-
-.fuselage {
-    width:25px;
-}
-
-.tip {
-    width:12.5px;
-    margin:0 auto;
-    border-top:6.25px solid #363636;
-    border-top-left-radius:50%;
-    border-top-right-radius:50%;
-}
-
-.cone {
-    position:relative;
-    border-bottom:12.5px solid #fff;
-    border-left:5px solid transparent;
-    border-right:5px solid transparent;
-    height:0;
-    width:15px;
-    margin:0 auto;
-}
-
-.neck::after, .body::after, .reactor::after {
-    content:"";
-    position:absolute;
-    top:0;
-}
-
-.neck {
-    position:relative;
-    width:25px;
-    height:15px;
-    margin:0 auto;
-    background:#f3f3f3;
-}
-
-.neck:after {
-    right:0;
-    width:11px;
-    height:15px;
-    background:#dfdfdf;
-}
-
-.body {
-    position:relative;
-    width:25px;
-    height:55px;
-    background:#f3f3f3;
-    border-bottom:1px solid #cc3e54;
-    border-top:1px solid #cc3e54;
-}
-
-.body:after {
-    right:0;
-    width:12.5px;
-    height:55px;
-    background:#dfdfdf;
-}
-
-.reactor {
-    position:relative;
-    border-bottom:15px solid #404040;
-    border-left:5px solid transparent;
-    border-right:5px solid transparent;
-    height:0;
-    width:15px;
-    margin:0 auto;
-}
-
-.reactor:after {
-    left:-5px;
-    width:7.5px;
-    opacity:0.25;
-    border-bottom:15px solid #dfdfdf;
-    border-left:5px solid transparent;
-}
-
-.fire {
-    position:relative;
-    width:12.5px;
-    height:35px;
-    margin:0 auto;
-    -webkit-animation:fire 0.3s infinite;
-    animation:fire 0.3s infinite;
-}
-
-.left-wing {
-    position:absolute;
-    top:35px;
-    right:25px;
-    width:2px;
-    border-bottom:55px solid white;
-    border-left:30px solid transparent;
-}
-
-.left-tail {
-    position:absolute;
-    top:55px;
-    right:35px;
-    border-bottom:35px solid white;
-    border-left:35px solid transparent;
-    border-top-left-radius:50%;
-    border-bottom-left-radius:10%;
-}
-
-.right-wing {
-    position:absolute;
-    top:35px;
-    left:25px;
-    width:2px;
-    border-bottom:55px solid white;
-    border-right:30px solid transparent;
-    z-index:-1;
-}
-
-.right-tail {
-    position:absolute;
-    top:55px;
-    left:35px;
-    border-bottom:35px solid white;
-    border-right:35px solid transparent;
-    border-bottom-right-radius:10%;
-}
-
 /* modal */
 
 body.noscroll {
@@ -1041,7 +894,7 @@ modal {
     position:relative;
     font-size:1em;
     line-height:1.5em;
-    font-family:"Space Mono",consolas,monospace;
+    font-family:"Rubik",sans-serif;
 }
 
 .popup .topper {
@@ -1055,7 +908,7 @@ modal {
 }
 
 .popup .cmd {
-    color:var(--text);
+    color:var(--highlight);
 }
 
 .terminal {
@@ -1116,6 +969,12 @@ modal {
 
 /* responsive */
 
+@media screen and (min-width:1280px) {
+    .popup {
+        max-width:60vw;
+    }
+}
+
 @media screen and (max-width:640px) {
     main,#pubs {
         padding:0 30px;
@@ -1132,10 +991,6 @@ modal {
 
     #pubs:hover li {
         opacity:1;
-    }
-
-    #plane {
-        display:none;
     }
 
     footer {
