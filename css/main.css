@@ -111,6 +111,14 @@ a:hover {
     letter-spacing:-0.1em;
 }
 
+.ptool img {
+    display:block;
+}
+
+.ptool .ui-tooltip-content {
+    padding:10px;
+}
+
 #stars, #stars2, #stars3 {
     border-radius:100%;
 }
@@ -617,7 +625,7 @@ header h2 span {
 
 .grid .item.expand,
 .grid .item.inactive:not(.small) {
-	width:32rem;
+	width:33rem;
 	padding:3rem;
 	align-content:flex-start;
 }

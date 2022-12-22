@@ -2,6 +2,14 @@ $(document).ready(function(){
     $(document).tooltip({
         track:true
     });
+    $("#proff").each(function(){
+        $(this).attr("title","");
+        $(this).tooltip({
+            content:'<img src="assets/OKH_0026.JPG"/>',
+            tooltipClass:"ptool",
+            track:true
+        });
+    })
     $("#pubs").hover(function(){
         $("#right").fadeOut("fast");
         $("#top").addClass("active");
