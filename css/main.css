@@ -697,7 +697,8 @@ header h1 span i {
     flex:1;
 }
 
-.grid .item:not(.expand):not(.inactive):hover {
+.grid .item:not(.expand):not(.inactive):hover,
+.grid .item:not(.expand):not(.inactive):hover > * {
 	animation:softblink 0.1s cubic-bezier(0.5,0,1,1) infinite alternate;
     border-color:var(--highlight);
 }
