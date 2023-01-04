@@ -5,8 +5,7 @@ Personal website
 
 ### Fonts, Icons
 * Ailerons - [Adilson Gonzales](https://www.behance.net/gallery/25541553/Ailerons-Typeface)
-* Rubik - [Google Fonts](https://fonts.google.com/specimen/Rubik)
-* Rubik Glitch - [Google Fonts](https://fonts.google.com/specimen/Rubik+Glitch)
+* Oxygen - [Google Fonts](https://fonts.google.com/specimen/Oxygen)
 * Icon font - [Phosphoricons](https://phosphoricons.com/)
 
 ### Dependencies
