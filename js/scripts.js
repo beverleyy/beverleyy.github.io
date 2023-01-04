@@ -70,13 +70,19 @@ $(document).ready(function(){
     function shuffle(){
         $grid.isotope('layout');
     }
-    $("#switch a").on("click",function(e){
-        $("body").addClass($(this).attr("data-id"));
-        $("body").removeClass($(this).siblings("a").attr("data-id"));
-        $(".option-set a").removeClass("selected");
-        $(".option-set a[data-filter-value='']").addClass("selected");
-        $grid.isotope({filter:''});
+    var now = new Date().getHours();
+    if (now >= 20 || now < 8){
+        $("body").addClass("night").removeClass("day");
+        $("#switch i").addClass("ph-sun-fill").removeClass("ph-moon-stars-fill");
+    } else {
+        $("body").addClass("day").removeClass("night");
+        $("#switch i").addClass("ph-moon-stars-fill").removeClass("ph-sun-fill");
+    }
+    $("#switch").on("click",function(e){
+        $("body").toggleClass("day night");
+        $(this).children("i").toggleClass("ph-sun-fill ph-moon-stars-fill");
         e.preventDefault();
+        console.log("click")
     });
     $(".popp").on("click",function(e){
         e.preventDefault();
