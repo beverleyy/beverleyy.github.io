@@ -461,13 +461,14 @@ header h1 span i {
 }
 
 .iso ul li a span {
-    border-bottom:3px solid transparent;
+    border-bottom:10px solid transparent;
     line-height:100%;
 }
 
 .iso ul li a i[class*="ph"] {
     font-size:1em;
     margin-left:0.1em;
+    border-bottom:10px solid transparent;
 }
 
 .iso ul li a.selected {
