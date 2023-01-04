@@ -79,7 +79,7 @@
 
 @keyframes softblink {
 	from {
-		opacity: 0.9;
+		opacity: 0.95;
 	}
 	to {
 		opacity: 1;
