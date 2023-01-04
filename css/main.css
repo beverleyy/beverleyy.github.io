@@ -565,15 +565,6 @@ header h1 span i {
 	background:var(--accent-one);
 }
 
-.one.expand {
-	border-color:var(--accent-one);
-}
-
-.one.expand h3,
-.one.expand h4 {
-    color:var(--header);
-}
-
 .two {
 	background:var(--accent-three);
 }
@@ -581,15 +572,6 @@ header h1 span i {
 .two.item h3,
 .two.item h4 {
     color:var(--accent-text);
-}
-
-.two.expand {
-	border-color:var(--accent-three);
-}
-
-.two.expand h3,
-.two.expand h4 {
-    color:var(--header);
 }
 
 .item.one.alt,
@@ -617,6 +599,24 @@ header h1 span i {
 .item.two.alt h3,
 .item.two.alt h4 {
 	color:var(--accent-three);
+}
+
+.one.expand {
+	border-color:var(--accent-one);
+}
+
+.one.expand h3, .one.expand.alt h3,
+.one.expand h4, .one.expand.alt h4 {
+    color:var(--header);
+}
+
+.two.expand {
+	border-color:var(--accent-three);
+}
+
+.two.expand h3, .two.expand.alt h3,
+.two.expand h4, .two.expand.alt h4 {
+    color:var(--header);
 }
 
 .item:not(.expand) .front img,
