@@ -655,7 +655,7 @@ header h1 span i {
 
 .big.expand .front img {
     width:calc(100% + 6rem);
-    margin:calc(25px - 3rem) -3rem 25px;
+    margin:calc(25px - 3rem) -3rem calc(25px - 1em);
     max-height:12rem;
     object-fit:cover;
     border-bottom:1px solid;
@@ -739,10 +739,10 @@ header h1 span i {
 .item.expand h3,
 .item.expand h4 {
 	position:relative;
-	margin:0;
+	margin:1em 0 0;
 	left:0;
 	right:0;
-    bottom:auto;
+	bottom:auto;
 	text-align:left;
 }
 
