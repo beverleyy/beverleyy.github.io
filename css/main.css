@@ -446,9 +446,14 @@ header h1 span i {
 }
 
 .iso ul li {
-    display:block;
-    float:left;
+    /* display:block; */
+    /* float:left; */
+    display:inline-block;
     margin-right:2em;
+}
+
+.iso ul li:last-child {
+    margin-right:0;
 }
 
 .iso ul li a {
@@ -471,13 +476,18 @@ header h1 span i {
     border-bottom:10px solid transparent;
 }
 
-.iso ul li a.selected {
+.iso ul.exclusive li a.selected {
     color:var(--header);
     font-weight:bold;
 }
 
-.iso ul li a.selected span {
+.iso ul.exclusive li a.selected span {
     border-bottom-color:var(--accent-two);
+}
+
+.iso ul:not(.exclusive) li a.selected {
+    color:var(--highlight);
+    font-weight:bold;
 }
 
 /* grid */
@@ -696,6 +706,8 @@ header h1 span i {
 	display:none;
     overflow:auto;
     flex:1;
+    padding-right:1em;
+    margin:1em -1em 1em 0;
 }
 
 .grid .item:not(.expand):not(.inactive):hover,
@@ -730,11 +742,8 @@ header h1 span i {
 	margin:0;
 	left:0;
 	right:0;
+    bottom:auto;
 	text-align:left;
-}
-
-.item.expand h3 {
-	margin-top:20px;
 }
 
 .head {
@@ -832,6 +841,14 @@ header h1 span i {
 	font-size:0.9em;
 	font-weight:400;
 	list-style-type:none;
+}
+
+.item .back *:first-child {
+    margin-top:0;
+}
+
+.item .back *:last-child {
+    margin-bottom:0;
 }
 
 .item .back ul li::before {
@@ -1095,7 +1112,11 @@ modal {
     }
 }
 
-@media screen and (max-width:640px) {
+@media screen and (max-width:720px) {
+    #pubs {
+        display:none;
+    }
+
     main,#pubs {
         padding:0 30px;
     }
@@ -1104,6 +1125,12 @@ modal {
         right:30px;
     }
 
+    footer {
+        left:30px;
+    }
+}
+
+@media screen and (max-width:600px) {
     #pubs li {
         opacity:0;
         transition:opacity 0.4s ease-in-out;
@@ -1111,10 +1138,6 @@ modal {
 
     #pubs:hover li {
         opacity:1;
-    }
-
-    footer {
-        left:30px;
     }
 
     header {
@@ -1141,9 +1164,8 @@ modal {
     }
 
     .big.expand .front img {
-        margin-left:-2rem;
-        margin-right:-2rem;
         width:calc(100% + 4rem);
+        margin:calc(25px - 2rem) -2rem 25px;
     }
 
     .grid .item h3 {
@@ -1260,10 +1282,6 @@ modal {
 }
 
 @media screen and (max-width:420px){
-    #pubs {
-        display:none;
-    }
-
     header h1,
     header h1 span i {
         font-size:4rem;
