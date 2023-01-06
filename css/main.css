@@ -630,6 +630,10 @@ header h1 span i {
     color:var(--header);
 }
 
+.front img {
+    display:block;
+}
+
 .item:not(.expand) .front img,
 .front .overlay {
     position:absolute;
