@@ -19,3 +19,4 @@ Personal website
 ## To-do
 * Add a section/popup/page to write news or blog
 * Reorganize the categories/section
+* Improve analytics
