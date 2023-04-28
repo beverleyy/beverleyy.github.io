@@ -13,4 +13,9 @@ Personal website
 * Anime.min.js - [Julian Garnier](https://github.com/juliangarnier/anime)
 * Charming.js - [Github/yuanqing](https://github.com/yuanqing/charming)
 * Isotope.js - [Metafizzy](https://isotope.metafizzy.co/)
+* Flickity.js - [Metafizzy](https://flickity.metafizzy.co/)
 * Normalize.css - [Nicolas Gallagher and Jonathan Neal](https://necolas.github.io/normalize.css/)
+
+## To-do
+* Add a section/popup/page to write news or blog
+* Reorganize the categories/section
