@@ -517,7 +517,7 @@ header h1 span i {
     }
 }
 
-.main-carousel img {
+.iain-carousel img {
     width:100%;
     aspect-ratio:1;
     @supports not (aspect-ratio: auto) { 
@@ -1187,7 +1187,6 @@ modal {
     .grid .item,
     .main-carousel {
         width:12rem;
-        margin:0.5rem;
     }
 
     .grid .item.expand,
