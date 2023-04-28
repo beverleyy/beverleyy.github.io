@@ -537,6 +537,10 @@ header h1 span i {
     opacity:0.5;
 }
 
+.flickity-page-dots .dot:hover {
+    background:var(--menu);
+}
+
 .flickity-page-dots .dot.is-selected {
     background:var(--highlight);
     opacity:1;
