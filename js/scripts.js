@@ -2,12 +2,14 @@ $(document).ready(function(){
     $(document).tooltip({
         track:true
     });
-    $('.main-carousel').flickity({
-        // options
+    var $f = $('.main-carousel').flickity({
         autoPlay:3000,
         wrapAround:true,
         imagesLoaded:true,
         prevNextButtons:false
+    });
+    $(window).on("resize",function(){
+        $f.flickity("resize");
     });
     $("#pubs").hover(function(){
         $("#right").fadeOut("fast");

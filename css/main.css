@@ -1184,8 +1184,7 @@ modal {
         float:none;
     }
 
-    .grid .item,
-    .main-carousel {
+    .grid .item {
         width:12rem;
     }
 
