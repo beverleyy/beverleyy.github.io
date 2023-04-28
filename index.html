@@ -13,6 +13,7 @@
 <link href="fonts/ailerons.css" rel="stylesheet">
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+<link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
 
 <link rel="stylesheet" href="css/main.css"/>
 
@@ -22,19 +23,13 @@
 <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.min.js"></script>
 <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/metafizzy/isotope-packery@master/packery-mode.pkgd.min.js"></script>
+<script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
 
 <script src="js/combofilters.js"></script>
 <script src="js/scripts.js"></script>
 
 </head>
 <body class="day">
-
-<!------ STARS ------>
-<div class="stars">
-    <div id="stars"></div> 
-    <div id="stars2"></div>
-    <div id="stars3"></div> 
-</div>
 
 <div id="top">
     <ul id="pubs">
@@ -96,6 +91,19 @@
     </nav>
 
     <section class="grid">
+        <article class="two alt item inactive small prev">
+            <div class="topper">
+                <span>me@beverleyy:~</span>
+            </div>
+            <div class="main-carousel">
+                <img src="images/slideshow/drone.jpg"/>
+                <img src="images/slideshow/dragon.jpg"/>
+                <img src="images/slideshow/stanford.jpg"/>
+                <img src="images/slideshow/bar.jpg"/>
+                <img src="images/slideshow/plane.jpg"/>
+            </div>
+        </article>
+
         <article class="one alt item big pro prev">
             <div class="topper">
                 <span>code@beverleyy:~</span>
@@ -107,11 +115,11 @@
                 <h3>CFD for Kids</h3>
             </div>
             <div class="back">
-		<h4>A*STAR/MOE Scientists-in-Schools Program</h4>
+		        <h4>A*STAR/MOE Scientists-in-Schools Program</h4>
                 <h4>Zhangde Primary School Primary 5 E2K</h4>
-		<p>Supervisor: Dr. Li Hongying</p>
+		        <p>Supervisor: Dr. Li Hongying</p>
                 <ul>
-		    <li>Designed lesson plan to introduce students to basic Python programming and running a CFD code</li>
+		            <li>Designed lesson plan to introduce students to basic Python programming and running a CFD code</li>
                     <li>Simple self-contained Jupyter notebook for 2D lid-driven cavity flow using finite-volume solver that students can fill in values and run easily</li>
                 </ul>
             </div>
@@ -128,7 +136,7 @@
                     Code
                 </span>
             </div>
-	</article>
+	    </article>
 
         <article class="one item pro prev">
             <div class="topper">
@@ -809,6 +817,7 @@
 <script src="js/charming.min.js"></script>
 <script src="js/typo.js"></script>
 
+<!--
 <script type="text/javascript">
 var sc_project=12833771; 
 var sc_invisible=1; 
@@ -823,6 +832,7 @@ class="statcounter"
 src="https://c.statcounter.com/12833771/0/450f4024/1/"
 alt="web counter"
 referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
+-->
 
 </body>
 </html>

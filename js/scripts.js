@@ -2,14 +2,13 @@ $(document).ready(function(){
     $(document).tooltip({
         track:true
     });
-    $("#proff").each(function(){
-        $(this).attr("title","");
-        $(this).tooltip({
-            content:'<img src="assets/OKH_0026.JPG"/>',
-            tooltipClass:"ptool",
-            track:true
-        });
-    })
+    $('.main-carousel').flickity({
+        // options
+        autoPlay:3000,
+        wrapAround:true,
+        imagesLoaded:true,
+        prevNextButtons:false
+    });
     $("#pubs").hover(function(){
         $("#right").fadeOut("fast");
         $("#top").addClass("active");

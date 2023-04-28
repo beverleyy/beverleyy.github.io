@@ -32,7 +32,7 @@
     --background:#ffffff;
     --accent-one:#4c4c4c;
     --accent-two:#15afaf;
-    --accent-three:#c4c4c4;
+    --accent-three:#ababab;
     --accent-text:#ffffff;
     --transparency:rgba(255,255,255,0.8);
     --shadow:rgba(25,25,25,0.1);
@@ -141,21 +141,6 @@ a:hover {
     color:var(--accent-text);
     font:1rem/1.5rem "Ailerons",sans-serif;
     letter-spacing:-0.1em;
-}
-
-.ptool img {
-    display:block;
-    max-width:360px;
-    max-height:100%;
-}
-
-.ptool .ui-tooltip-content {
-    padding:10px;
-    max-width:360px;
-}
-
-#stars, #stars2, #stars3 {
-    border-radius:100%;
 }
 
 /* selection */
@@ -520,11 +505,48 @@ header h1 span i {
     }
 }
 
+.main-carousel {
+    aspect-ratio:1;
+    margin:-1.5em;
+    width:calc(100% + 3em);
+    @supports not (aspect-ratio: auto) { 
+        padding-top:100%;
+        height:0;
+        position:relative;
+        overflow:hidden;
+    }
+}
+
+.main-carousel img {
+    width:100%;
+    aspect-ratio:1;
+    @supports not (aspect-ratio: auto) { 
+        padding-top:100%;
+        height:0;
+        position:relative;
+        overflow:hidden;
+    }
+}
+
+.flickity-page-dots {
+    bottom:1em;
+}
+
+.flickity-page-dots .dot {
+    background:var(--background);
+    opacity:0.5;
+}
+
+.flickity-page-dots .dot.is-selected {
+    background:var(--highlight);
+    opacity:1;
+}
+
 .grid .item:not(.expand):not(.inactive){
     cursor:pointer;
 }
 
-.grid .item > * {
+.grid .item > *:not(.main-carousel) {
 	width:100%;
 }
 
@@ -650,7 +672,8 @@ header h1 span i {
     display:none;
 }
 
-.item:not(.expand) .front img {
+.item:not(.expand) .front img,
+.main-carousel img {
     object-fit:cover;
     z-index:-2;
     -webkit-filter:grayscale(100%);
@@ -735,7 +758,7 @@ header h1 span i {
 }
 
 .grid .item.expand,
-.grid .item.inactive:not(.small):hover,
+.grid .item.inactive:hover,
 .popup {
     box-shadow: 5px 5px 0 var(--shadow);
 }
@@ -786,7 +809,8 @@ header h1 span i {
     opacity:1;
 }
 
-.inactive .front * {
+.inactive .front *,
+.main-carousel img {
     -webkit-transition:
         opacity 0.4s ease-in-out,
         -webkit-filter 0.4s ease-in-out;
@@ -1156,7 +1180,8 @@ modal {
         float:none;
     }
 
-    .grid .item {
+    .grid .item,
+    .main-carousel {
         width:12rem;
         margin:0.5rem;
     }
