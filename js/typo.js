@@ -4,9 +4,11 @@ class Item {
 		this.DOM = {};
 		this.DOM.el = el;
 		this.DOM.label = el.querySelector('.head');
-		charming(this.DOM.label);
-		this.DOM.labelLetters = Array.from(this.DOM.label.querySelectorAll('span'));
-		this.initEvents();
+		if(this.DOM.label){
+			charming(this.DOM.label);
+			this.DOM.labelLetters = Array.from(this.DOM.label.querySelectorAll('span'));
+			this.initEvents();
+		}
 	}
 	initEvents() {
 		this.mouseenterFn = () => this.mouseTimeout = setTimeout(() => {

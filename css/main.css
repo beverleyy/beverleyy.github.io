@@ -1069,7 +1069,7 @@ modal {
 }
 
 .terminal {
-    max-height:calc(90vh - 6rem - 25px);
+    max-height:calc(90vh - 8rem - 25px);
     overflow:auto;
     font-size:0.9em;
     margin-top:25px;
@@ -1248,6 +1248,7 @@ modal {
 
     .grid {
         margin:-5% -5% 0 0;
+	max-width:calc(100% + 15px);
     }
 
     .grid .item {
@@ -1317,7 +1318,7 @@ modal {
 	}
 	
 	.popup ul {
-		padding-left:20px;
+		padding-left:30px;
 	}
 }
 
