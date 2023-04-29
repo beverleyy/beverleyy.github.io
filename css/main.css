@@ -782,7 +782,7 @@ header h1 span i {
 	bottom:100%;
 	left:0;
 	opacity:0;
-	font:0.8em/150% "Oxygen",sans-serif;
+	font:0.8em/150% "Oxygen Mono",consolas,monospace;
 	transition:opacity 0s ease-in-out 0.1s;
     text-transform:uppercase;
     color:var(--highlight);
@@ -904,7 +904,7 @@ header h1 span i {
 	box-sizing:border-box;
 	position:absolute;
 	color:var(--accent-text);
-	font:0.8em/15px "Oxygen",sans-serif;
+	font:0.8em/15px "Oxygen Mono",consolas,monospace;
 	display:none;
 }
 
@@ -1037,7 +1037,7 @@ modal {
     justify-content:center;
 }
 
-#pubslist {
+#pubslist,#latest {
     display:none;
 }
 
@@ -1092,7 +1092,7 @@ modal {
     display:block;
 }
 
-.popup ul li::before {
+#pubslist ul li::before {
     line-height:inherit;
     width:1em;
     height:1.5em;
@@ -1104,9 +1104,18 @@ modal {
     color:var(--accent-two);
 }
 
-.popup ul li:hover::before {
+#pubslist ul li:hover::before {
     background:var(--accent-two);
     animation:blinkblink 0.4s cubic-bezier(0.5,0,1,1) infinite alternate;
+}
+
+#latest ul li::before {
+	width:30px;
+	margin-left:-30px;
+	display:inline-block;
+	color:var(--accent-two);
+	content:attr(data-month) '›';
+	font-family:'Oxygen Mono',consolas,monospace;
 }
 
 .popup .terminal em {
@@ -1361,5 +1370,9 @@ modal {
 
     .iso ul li{
         float:none;
+    }
+
+    a.popp {
+        display:none!important;
     }
 }

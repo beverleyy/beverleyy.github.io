@@ -9,14 +9,14 @@ Personal website
 * Icon font - [Phosphoricons](https://phosphoricons.com/)
 
 ### Dependencies
-* Typing link effect - [Codrops](https://tympanus.net/Development/MenuHoverEffects/tsula.html)
-* Anime.min.js - [Julian Garnier](https://github.com/juliangarnier/anime)
-* Charming.js - [Github/yuanqing](https://github.com/yuanqing/charming)
-* Isotope.js - [Metafizzy](https://isotope.metafizzy.co/)
-* Flickity.js - [Metafizzy](https://flickity.metafizzy.co/)
-* Normalize.css - [Nicolas Gallagher and Jonathan Neal](https://necolas.github.io/normalize.css/)
+* Anime - [Julian Garnier](https://github.com/juliangarnier/anime)
+* Charming - [Github/yuanqing](https://github.com/yuanqing/charming)
+* CORS-Anywhere - [Github/Rob--W](https://github.com/Rob--W/cors-anywhere)
+* Flickity - [Metafizzy](https://flickity.metafizzy.co/)
+* Isotope - [Metafizzy](https://isotope.metafizzy.co/)
+* Normalizer - [Nicolas Gallagher and Jonathan Neal](https://necolas.github.io/normalize.css/)
+* Papa Parse - [Matt Holt](https://www.papaparse.com)
 
 ## To-do
-* Add a section/popup/page to write news or blog
 * Reorganize the categories/section
 * Improve analytics

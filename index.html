@@ -9,7 +9,7 @@
 <meta name='robots' content='noindex,nofollow' />
 <link rel="icon" href="images/favicon.png" type="image/png">
 
-<link href='https://fonts.googleapis.com/css?family=Oxygen:300,400,700' rel='stylesheet'>
+<link href='https://fonts.googleapis.com/css?family=Oxygen:300,400,700|Oxygen+Mono:400' rel='stylesheet'>
 <link href="fonts/ailerons.css" rel="stylesheet">
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
@@ -37,12 +37,13 @@
         <li>07.2021 - 07.2022 | Project Officer, NTU MAE</li>
         <li>09.2020 - 04.2021 | Project Manager Intern, NTU MAE</li>
         <li>06.2020 - 08.2020 | Intern, Temasek Laboratories@NUS</li>
-        <li class="link"><a href="assets/Beverley_CV_Graduate.pdf" class="blink-right">
-            <i class="ph-download"></i>
-            <span>Download Academic CV</span> 
+        <li class="link"><a href="#latest" class="popp blink-right">
+            <i class="ph-rss-simple"></i>
+            <span>Latest News</span> 
         </a></li>
     </ul>
     <nav id="right">
+        <a href="#latest" class="popp" title="Latest News"><i class="ph-rss-simple"></i></a>
         <a href="#pubslist" class="popp" title="Publications"><i class="ph-newspaper-fill"></i></a>
         <a href="assets/Beverley_CV_Graduate.pdf" title="Download my CV (Last updated 04/2023)"><i class="ph-download-fill"></i></a>
         <a href="mailto:m210053@e.ntu.edu.sg" title="Email"><i class="ph-envelope-fill"></i></a>
@@ -811,11 +812,25 @@
 			</ul>
 		</div>
 	</div>
+</modal> 
+
+<modal id="latest">
+	<div class="popup">
+		<div class="topper">
+            <span>news@beverleyy:~</span>
+            <a href="#" class="close" title="close"></a>
+		</div>
+		<div class="terminal">Loading...</div>
+	</div>
 </modal>
  
 <script src="js/anime.min.js"></script>
 <script src="js/charming.min.js"></script>
 <script src="js/typo.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.2.0/papaparse.min.js"></script>
+
+<script src="js/buildnews.js"></script>
 
 <script type="text/javascript">
 var sc_project=12833771; 
