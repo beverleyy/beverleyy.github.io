@@ -1,4 +1,5 @@
 /* For the CORS-Anywhere server, I'm just reusing the one I made for the MOE2018TRF005 study because too lazy to make a new one... */
+//var cors_api = 'https://cors-anywhere.herokuapp.com';
 var cors_api = 'https://moe2018trf005cors.onrender.com';
 var spreadsheet = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vS9lrQ1g5CiWV7fgUbIa5SFHFAB50fu4Z8cZOsKITFb5pkFSOQTJHSSvU-4Aj3i6xbtS49f78NXNA36/pub?gid=0&single=true&output=csv';
 
