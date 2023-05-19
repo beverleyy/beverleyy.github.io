@@ -741,6 +741,10 @@ header h1 span i {
     margin:1em -1em 1em 0;
 }
 
+.back a {
+	border-bottom:1px solid var(--accent-two);
+}
+
 .grid .item:not(.expand):not(.inactive):hover,
 .grid .item:not(.expand):not(.inactive):hover > * {
 	animation:softblink 0.1s cubic-bezier(0.5,0,1,1) infinite alternate;
