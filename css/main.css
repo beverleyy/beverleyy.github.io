@@ -423,11 +423,9 @@ header h1 span i {
     padding:0;
     overflow:hidden;
     list-style-type:none;
-    font-weight:300;
-    font-family:"Oxygen",sans-serif;
     text-transform:uppercase;
     position:relative;
-    font-size:1.2em
+    font:300 1.2em/200% "Oxygen",sans-serif;
 }
 
 .iso ul li {
