@@ -1190,6 +1190,11 @@ modal {
         padding:1.5rem 2rem;
     }
 
+    .main-carousel {
+        width:calc(100% + 4rem);
+        margin:-1.5rem -2rem;
+    }
+
     .big.expand .front img {
         width:calc(100% + 4rem);
         margin:calc(25px - 2rem) -2rem 25px;
@@ -1320,17 +1325,9 @@ modal {
         line-height:100%;
     }
 
-    /* .grid .item h3 {
-        font-size:1.2rem;
-    } */
-
     .grid .item h3 span {
         font-size:0.75rem;
     }
-
-    /* .grid .item h4 {
-        font-size:0.6em;
-    } */
 
     .grid .item.expand h4 {
         font-size:0.8rem;
