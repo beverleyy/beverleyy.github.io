@@ -4,8 +4,8 @@ Personal website
 ## Credits
 
 ### Fonts, Icons
-* Ailerons - [Adilson Gonzales](https://www.behance.net/gallery/25541553/Ailerons-Typeface)
-* Oxygen - [Google Fonts](https://fonts.google.com/specimen/Oxygen)
+* Ailerons - [Alessandro Comotti](https://www.behance.net/gallery/22155251/LIQUIDO-free-font)
+* Roboto - [Google Fonts](https://fonts.google.com/specimen/Roboto)
 * Icon font - [Phosphoricons](https://phosphoricons.com/)
 
 ### Dependencies
@@ -19,4 +19,5 @@ Personal website
 
 ## To-do
 * Reorganize the categories/section
+* Think about how to make it more flexible/expandable
 * Improve analytics
