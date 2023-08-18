@@ -9,8 +9,8 @@
 <meta name='robots' content='noindex,nofollow' />
 <link rel="icon" href="images/favicon.png" type="image/png">
 
-<link href='https://fonts.googleapis.com/css?family=Oxygen:300,400,700|Oxygen+Mono:400' rel='stylesheet'>
 <link href="fonts/ailerons.css" rel="stylesheet">
+<link href="fonts/liquido.css" rel="stylesheet">
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
 <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
@@ -33,7 +33,7 @@
 
 <div id="top">
     <ul id="pubs">
-        <li>08.2022 - present | Research Engineer, A*STAR IHPC</li>
+        <li>08.2022 - 08.2023 | Research Engineer, A*STAR IHPC</li>
         <li>07.2021 - 07.2022 | Project Officer, NTU MAE</li>
         <li>09.2020 - 04.2021 | Project Manager Intern, NTU MAE</li>
         <li>06.2020 - 08.2020 | Intern, Temasek Laboratories@NUS</li>
@@ -45,7 +45,7 @@
     <nav id="right">
         <a href="#latest" class="popp" title="Latest News"><i class="ph-rss-simple"></i></a>
         <a href="#pubslist" class="popp" title="Publications"><i class="ph-newspaper-fill"></i></a>
-        <a href="assets/Beverley_CV_Graduate.pdf" title="Download my CV (Last updated 04/2023)"><i class="ph-download-fill"></i></a>
+        <a href="assets/Beverley_CV_Graduate.pdf" title="Download my CV (Last updated 09/2023)"><i class="ph-download-fill"></i></a>
         <a href="mailto:m210053@e.ntu.edu.sg" title="Email"><i class="ph-envelope-fill"></i></a>
         <a href="http://github.com/beverleyy" title="Github"><i class="ph-github-logo-fill"></i></a>
         <a href="http://linkedin.com/in/beverleyy" title="LinkedIn"><i class="ph-linkedin-logo-fill"></i></a>
@@ -57,28 +57,17 @@
     <header>
         <h1>Hi, I'm <span id="proff" data-text="Beverley">Beverley</span></h1>
         <p>
-            I am an NTU Aerospace Engineering graduate, an A*STAR National Science Scholarship (PhD) recipient, and currently a research engineer at the Institute of High Performance Computing, A*STAR, Singapore. 
-	    I will be starting a PhD in Mechanical Engineering at Stanford University in Fall 2023.
-	    I am interested in <strong>turbulence, fluid dynamics, pretty flows</strong>, and solving numerical problems through efficient computing. 
+            I am an NTU Aerospace Engineering graduate, an A*STAR National Science Scholarship (PhD) recipient, and currently a Mechanical Engineering Ph.D. student at Stanford University supervised by Prof. Matthias Ihme.
+	        I am interested in <strong>turbulence, fluid dynamics, pretty flows</strong>, and solving numerical problems through efficient computing. 
             I aspire to <em>develop computational fluid dynamics (CFD) codes</em> that can produce high-fidelity flow visualizations on consumer computers. 
         </p>
-        <p>
+        <!-- <p>
             Due to the nature of aerospace research, only personal, academic and university projects are included on this page.
-        </p>
+        </p> -->
     </header>
  
     <nav id="d" class="iso">
         <!-- Add class="exclusive" for radio filter -->
-	<!--
-        <ul class="filter option-set exclusive" data-filter-group="time">
-            <li><a href="#" data-filter-value="" class="selected">
-                <span>Work</span><i class="ph-caret-right"></i>
-            </a></li>
-            <li><a href="#" data-filter-value=".curr"><span>Current</span></a></li>
-            <li><a href="#" data-filter-value=".prev"><span>Previous</span></a></li>
-        </ul>
-        <ul class="filter option-set" data-filter-group="type">
-	-->
 	<ul class="filter option-set exclusive" data-filter-group="type">
 	    <li><a href="#" data-filter-value="" class="selected">
 	        <span>Work</span><i class="ph-caret-right"></i>
@@ -92,20 +81,53 @@
     </nav>
 
     <section class="grid">
-        <article class="one alt item inactive small prev">
+        <article class="one alt item long inactive small">
             <div class="topper">
                 <span>me@beverleyy:~</span>
             </div>
             <div class="main-carousel">
-		<img src="images/slideshow/airshow.jpg"/>
+		        <img src="images/slideshow/airshow.jpg"/>
                 <img src="images/slideshow/drone.jpg"/>
                 <img src="images/slideshow/dragon.jpg"/>
-                <img src="images/slideshow/stanford.jpg"/>
-                <img src="images/slideshow/plane.jpg"/>
+                <img src="images/slideshow/grad.jpg"/>
             </div>
         </article>
 
-        <article class="two alt item big pro prev">
+        <article class="two alt item big res">
+            <div class="topper">
+                <span>research@beverleyy:~</span>
+                <a href="#" class="close" title="close"></a>
+            </div>
+            <div class="front">
+                <img src="images/research/bscwp.gif"/>
+                <div class="overlay"></div>
+                <h3>Harmonic Balance Framework for Transonic Aeroelasticity</h3>
+            </div>
+            <div class="back">
+                <h4>Singapore Aerospace Program Cycle 16</h4>
+                <p>Supervisor: Dr. Daniel Wise, Dr. Vinh-Tan Nguyen</p>
+                <ul>
+                    <li>Developed and implemented harmonic balance-based framework for generalized aerodynamic force calculations for use in transonic flutter prediction of NASA CRM wings.</li>
+                </ul>
+            </div>
+            <div class="foot">
+                <a href="http://github.com/beverleyy/hb_aeroelastic" title="Github Repository">
+                    <i class="ph-github-logo"></i>
+                </a>
+                <span>Python</span>
+                <span>Jupyter</span>
+                <span>SU2</span>
+                <span>C++</span>
+            </div>
+            <div class="head">
+                08.2022 - 08.2023
+                <span style="float:right;">
+                    Research
+                </span>
+            </div>
+        </article>
+
+        <article class="two alt item big pro">
             <div class="topper">
                 <span>code@beverleyy:~</span>
                 <a href="#" class="close" title="close"></a>
@@ -113,7 +135,7 @@
             <div class="front">
                 <img src="images/poster/sis_zps_result.jpg"/>
                 <div class="overlay"></div>
-                <h3>CFD for Kids</h3>
+                <h3>CFD for Kids</h3> 
             </div>
             <div class="back">
 		        <h4>A*STAR/MOE Scientists-in-Schools Program</h4>
@@ -139,7 +161,7 @@
             </div>
 	    </article>
 
-        <article class="two item pro prev">
+        <article class="two item pro">
             <div class="topper">
                 <span>code@beverleyy:~</span>
                 <a href="#" class="close" title="close"></a>
@@ -171,7 +193,7 @@
             </div>
         </article>
 
-        <article class="two item edu d curr">
+        <article class="two alt item edu d">
             <div class="topper">
                 <span>education@beverleyy:~</span>
                 <a href="#" class="close" title="close"></a>
@@ -206,7 +228,7 @@
             </div>
         </article>
             
-        <article class="one alt item res big curr">
+        <article class="one alt item res big">
             <div class="topper">
                 <span>research@beverleyy:~</span>
                 <a href="#" class="close" title="close"></a>
@@ -247,7 +269,7 @@
             </div>
         </article>
 
-        <article class="two alt item pro big prev">
+        <article class="two alt item pro big">
             <div class="topper">
                 <span>code@beverleyy:~</span>
                 <a href="#" class="close" title="close"></a>
@@ -284,7 +306,7 @@
             </div>
         </article>
 
-        <article class="two item edu prev">
+        <article class="two alt item edu">
             <div class="topper">
                 <span>education@beverleyy:~</span>
                 <a href="#" class="close" title="close"></a>
@@ -308,8 +330,8 @@
                     <li>T.H. New Flow Visualization Award</li>
                 </ul>
 		<p>
-		    Looking for my NTU MAE PYP solutions? <a href="https://tinyurl.com/BevAeroPYP">Click here</a> or get them from the CNYSP OneDrive.<br>
-		    Looking for my NTU MAE cheatsheets? <a href="https://tinyurl.com/BevAeroCheatsheet">Click here</a> or get them from the CNYSP OneDrive.
+		    Looking for my NTU MAE PYP solutions? <a href="https://tinyurl.com/BevAeroPYP">Click here</a>!<br>
+		    Looking for my NTU MAE cheatsheets? <a href="https://tinyurl.com/BevAeroCheatsheet">Click here</a>!
 		</p>
             </div>
             <div class="head">
@@ -320,7 +342,7 @@
             </div>
         </article>
 
-        <article class="two alt item res big prev">
+        <article class="two alt item res big">
             <div class="topper">
                 <span>research@beverleyy:~</span>
                 <a href="#" class="close" title="close"></a>
@@ -360,7 +382,7 @@
             </div>
         </article>
 
-        <article class="two alt item eng big prev">
+        <article class="two alt item eng big">
             <div class="topper">
                 <span>engineering@beverleyy:~</span>
                 <a href="#" class="close" title="close"></a>
@@ -395,7 +417,7 @@
             </div>
         </article>
 
-        <article class="two item res prev">
+        <article class="two item res">
             <div class="topper">
                 <span>research@beverleyy:~</span>
                 <a href="#" class="close" title="close"></a>
@@ -427,7 +449,7 @@
             </div>
         </article>
 
-        <article class="two alt item pro big prev">
+        <article class="two alt item pro big">
             <div class="topper">
                 <span>code@beverleyy:~</span>
                 <a href="#" class="close" title="close"></a>
@@ -444,9 +466,9 @@
                 </p>
             </div>
             <div class="foot">
-                <a href="http://moe2018trf005check.herokuapp.com" title="Live View">
+                <!-- <a href="http://moe2018trf005check.herokuapp.com" title="Live View">
                     <i class="ph-link-simple-horizontal"></i>
-                </a>
+                </a> -->
                 <a href="http://github.com/beverleyy/moe2018trf005" title="Github Repository">
                     <i class="ph-github-logo"></i>
                 </a>
@@ -463,7 +485,7 @@
             </div>
         </article>
 
-        <article class="two item res prev">
+        <article class="two item res">
             <div class="topper">
                 <span>research@beverleyy:~</span>
                 <a href="#" class="close" title="close"></a>
@@ -494,7 +516,7 @@
             </div>
         </article>
 
-        <article class="one alt item gfx inactive big prev">
+        <article class="one alt item gfx inactive big">
             <div class="topper">
                 <span>design@beverleyy:~</span>
                 <a href="#" class="close" title="close"></a>
@@ -516,7 +538,7 @@
             </div>
         </article>
 
-        <article class="two item edu prev">
+        <article class="two item edu">
             <div class="topper">
                 <span>education@beverleyy:~</span>
                 <a href="#" class="close" title="close"></a>
@@ -547,7 +569,7 @@
             </div>
         </article>
 
-        <article class="two item eng prev">
+        <article class="two item eng">
             <div class="topper">
                 <span>engineering@beverleyy:~</span>
                 <a href="#" class="close" title="close"></a>
@@ -563,8 +585,8 @@
                 </ul>
             </div>
             <div class="foot">
-                <a href="https://engineering.purdue.edu/AAECourses/aae450/2020/Spring%202020" title="Website">
-                    <i class="ph-link-simple-horizontal"></i>
+                <a href="https://github.com/beverleyy/aae450-purdue-sp2020" title="Github Repository">
+                    <i class="ph-github-logo"></i>
                 </a>
                 <span>MATLAB</span>
                 <span>Simulink</span>
@@ -578,7 +600,7 @@
             </div>
         </article>
 
-        <article class="two alt item gfx big prev">
+        <article class="two alt item gfx big">
             <div class="topper">
                 <span>design@beverleyy:~</span>
                 <a href="#" class="close" title="close"></a>
@@ -595,7 +617,7 @@
                 </p>
             </div>
             <div class="foot">
-                <a href="https://engineering.purdue.edu/AAECourses/aae450/2020/Spring%202020" title="Live View">
+                <a href="http://web.archive.org/web/20230404122450/https://engineering.purdue.edu/AAECourses/aae450/2020/Spring%202020" title="View">
                     <i class="ph-link-simple-horizontal"></i>
                 </a>
                 <span>HTML</span>
@@ -614,7 +636,7 @@
             </div>
         </article>
 
-        <article class="one alt item pro big curr">
+        <article class="one alt item pro big">
             <div class="topper">
                 <span>code@beverleyy:~</span>
                 <a href="#" class="close" title="close"></a>
@@ -648,7 +670,7 @@
             </div>
         </article>
 
-        <article class="one alt item res prev">
+        <article class="one alt item res">
             <div class="topper">
                 <span>research@beverleyy:~</span>
                 <a href="#" class="close" title="close"></a>
@@ -691,7 +713,7 @@
             </div>
         </article>
 
-        <article class="two alt item eng big prev">
+        <article class="two alt item eng big">
             <div class="topper">
                 <span>engineering@beverleyy:~</span>
                 <a href="#" class="close" title="close"></a>
@@ -723,7 +745,7 @@
             </div>
         </article>
 
-        <article class="two item edu prev">
+        <article class="two item edu">
             <div class="topper">
                 <span>education@beverleyy:~</span>
                 <a href="#" class="close" title="close"></a>
@@ -756,7 +778,7 @@
             </div>
         </article>
 
-        <article class="one alt item gfx big curr">
+        <article class="one alt item gfx big">
             <div class="topper">
                 <span>design@beverleyy:~</span>
                 <a href="#" class="close" title="close"></a>
@@ -769,7 +791,7 @@
             </div>
             <div class="back">
                 <p>
-                    A long-standing exercise for me to pick up coding. Free blog themes and custom page templates for Tumblr, a social media blogging platform. Fun, quirky, sleek, and (mostly) bug-free. My Q&A responses need work, though :)
+                    A long-standing hobby that started as an exercise for me to pick up coding: Free blog themes and custom page templates for Tumblr, a social media blogging platform. Fun, quirky, sleek, and (mostly) bug-free. My Q&A responses need work, though :)
                 </p>
             </div>
             <div class="foot">
@@ -797,7 +819,7 @@
 
 <div class="clouds"></div>
 <footer>
-    <span>&copy; 2021-23 Beverley Yeo</span> <a href="#pubslist" class="popp">Publication List</a> | <a title="under construction">Google Scholar</a> | <a title="under construction">ResearchGate</a> | <a href="https://orcid.org/0000-0003-0600-8065">ORCID</a>
+    <span>&copy; 2021-23 Beverley Yeo</span> <a href="#pubslist" class="popp">Publication List</a> + <a title="under construction">Google Scholar</a> + <a title="under construction">ResearchGate</a> + <a href="https://orcid.org/0000-0003-0600-8065">ORCID</a>
 </footer>
 
 <modal id="pubslist">
@@ -841,7 +863,7 @@
 <script src="js/charming.min.js"></script>
 <script src="js/typo.js"></script>
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 var sc_project=12833771; 
 var sc_invisible=1; 
 var sc_security="450f4024"; 
@@ -854,7 +876,7 @@ href="https://statcounter.com/" target="_blank"><img
 class="statcounter"
 src="https://c.statcounter.com/12833771/0/450f4024/1/"
 alt="web counter"
-referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
+referrerPolicy="no-referrer-when-downgrade"></a></div></noscript> -->
 
 </body>
 </html>
