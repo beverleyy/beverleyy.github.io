@@ -4,13 +4,13 @@ Personal website
 ## Credits
 
 ### Fonts, Icons
-* Ailerons - [Alessandro Comotti](https://www.behance.net/gallery/22155251/LIQUIDO-free-font)
+* Liquido - [Alessandro Comotti](https://www.behance.net/gallery/22155251/LIQUIDO-free-font)
 * Roboto - [Google Fonts](https://fonts.google.com/specimen/Roboto)
 * Icon font - [Phosphoricons](https://phosphoricons.com/)
 
 ### Dependencies
 * Anime - [Julian Garnier](https://github.com/juliangarnier/anime)
-* Charming - [Github/yuanqing](https://github.com/yuanqing/charming)
+* Charming - [Yuan Qing Lim](https://github.com/yuanqing/charming)
 * CORS-Anywhere - [Github/Rob--W](https://github.com/Rob--W/cors-anywhere)
 * Flickity - [Metafizzy](https://flickity.metafizzy.co/)
 * Isotope - [Metafizzy](https://isotope.metafizzy.co/)
