@@ -49,7 +49,7 @@
         <a href="mailto:m210053@e.ntu.edu.sg" title="Email"><i class="ph-envelope-fill"></i></a>
         <a href="http://github.com/beverleyy" title="Github"><i class="ph-github-logo-fill"></i></a>
         <a href="http://linkedin.com/in/beverleyy" title="LinkedIn"><i class="ph-linkedin-logo-fill"></i></a>
-        <a href="#" id="switch"><i class="ph-moon-stars-fill"></i></a>
+        <a href="#" id="switch"><i class="ph-sun-fill"></i></a>
     </nav>
 </div>
 
@@ -59,13 +59,13 @@
         <p>
             I am an NTU Aerospace Engineering graduate, an A*STAR National Science Scholarship (PhD) recipient, and currently a Mechanical Engineering Ph.D. student at Stanford University supervised by Prof. Matthias Ihme.
 	        I am interested in <strong>turbulence, fluid dynamics, pretty flows</strong>, and solving numerical problems through efficient computing. 
-            I aspire to <em>develop computational fluid dynamics (CFD) codes</em> that can produce high-fidelity flow visualizations on consumer computers. 
+            I aspire to <em>develop computational fluid dynamics (CFD) codes</em> that can produce high-fidelity flow visualizations on consumer computers.
         </p>
         <!-- <p>
             Due to the nature of aerospace research, only personal, academic and university projects are included on this page.
         </p> -->
     </header>
- 
+
     <nav id="d" class="iso">
         <!-- Add class="exclusive" for radio filter -->
 	<ul class="filter option-set exclusive" data-filter-group="type">
@@ -86,10 +86,18 @@
                 <span>me@beverleyy:~</span>
             </div>
             <div class="main-carousel">
-		        <img src="images/slideshow/airshow.jpg"/>
-                <img src="images/slideshow/drone.jpg"/>
-                <img src="images/slideshow/dragon.jpg"/>
-                <img src="images/slideshow/grad.jpg"/>
+		        <div class="slide"> 
+                    <img class="full" src="images/slideshow/airshow.jpg"/>
+                </div>
+                <div class="slide">
+                    <img class="full" src="images/slideshow/drone.jpg"/>
+                </div>
+                <div class="slide">
+                    <img class="full" src="images/slideshow/dragon.jpg"/>
+                </div>
+                <div class="slide">
+                    <img class="full" src="images/slideshow/grad.jpg"/>
+                </div>
             </div>
         </article>
 
@@ -485,12 +493,14 @@
             </div>
         </article>
 
-        <article class="two item res">
+        <article class="two alt item res">
             <div class="topper">
                 <span>research@beverleyy:~</span>
                 <a href="#" class="close" title="close"></a>
             </div>
             <div class="front">
+                <img src="images/research/sysid.png"/>
+                <div class="overlay"></div>
                 <h3>System identification of novel VTOL UAV</h3>
             </div>
             <div class="back"> 
@@ -569,12 +579,14 @@
             </div>
         </article>
 
-        <article class="two item eng">
+        <article class="two alt item eng gfx big">
             <div class="topper">
                 <span>engineering@beverleyy:~</span>
                 <a href="#" class="close" title="close"></a>
             </div>
             <div class="front">
+                <div class="overlay"></div>
+                <img src="images/website/aae450.png"/>
                 <h3>Project Escalator</h3>
                 <h4>Senior Spacecraft Design</h4>
             </div>
@@ -582,56 +594,27 @@
                 <ul>
                     <li>Numerical simulation and investigation of propellantless space propulsion technologies and cycler vehicle trajectories to and from Mars using MATLAB/Simulink.</li>
                     <li>Investigate cycler vehicle dynamics and design of controller.</li>
+                    <li>As webmaster, I also designed all the promotional material for the project (website, banner, brochure).</li>
                 </ul>
             </div>
             <div class="foot">
+                <a href="http://web.archive.org/web/20230404122450/https://engineering.purdue.edu/AAECourses/aae450/2020/Spring%202020" title="Web Archive">
+                    <i class="ph-link-simple-horizontal"></i>
+                </a>
                 <a href="https://github.com/beverleyy/aae450-purdue-sp2020" title="Github Repository">
                     <i class="ph-github-logo"></i>
                 </a>
                 <span>MATLAB</span>
                 <span>Simulink</span>
                 <span>GMAT</span>
+                <span>HTML</span>
+                <span>CSS</span>
+                <span>Photoshop</span>
             </div>
             <div class="head">
                 01.2020 - 05.2020
                 <span style="float:right;">
                     Engineering
-                </span>
-            </div>
-        </article>
-
-        <article class="two alt item gfx big">
-            <div class="topper">
-                <span>design@beverleyy:~</span>
-                <a href="#" class="close" title="close"></a>
-            </div>
-            <div class="front">
-                <img src="images/website/aae450.png"/>
-                <div class="overlay"></div>
-                <h3>Project Escalator Website</h3>
-                <h4>Senior Spacecraft Design</h4>
-            </div>
-            <div class="back">
-                <p>
-                    I did all the promotional material for our senior design project - website, banners, brochure.
-                </p>
-            </div>
-            <div class="foot">
-                <a href="http://web.archive.org/web/20230404122450/https://engineering.purdue.edu/AAECourses/aae450/2020/Spring%202020" title="View">
-                    <i class="ph-link-simple-horizontal"></i>
-                </a>
-                <span>HTML</span>
-                <span>CSS</span>
-                <span>Javascript</span>
-                <span>Zope</span>
-                <span>Python</span>
-                <span>Adobe Photoshop</span>
-
-            </div>
-            <div class="head">
-                04.2020
-                <span style="float:right;">
-                    Design
                 </span>
             </div>
         </article>
@@ -804,7 +787,7 @@
                 <span>HTML</span>
                 <span>CSS</span>
                 <span>Javascript</span>
-                <span>Adobe Photoshop</span>
+                <span>Photoshop</span>
 
             </div>
             <div class="head">
@@ -863,7 +846,7 @@
 <script src="js/charming.min.js"></script>
 <script src="js/typo.js"></script>
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 var sc_project=12833771; 
 var sc_invisible=1; 
 var sc_security="450f4024"; 
@@ -876,7 +859,7 @@ href="https://statcounter.com/" target="_blank"><img
 class="statcounter"
 src="https://c.statcounter.com/12833771/0/450f4024/1/"
 alt="web counter"
-referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
+referrerPolicy="no-referrer-when-downgrade"></a></div></noscript> -->
 
 </body>
 </html>
