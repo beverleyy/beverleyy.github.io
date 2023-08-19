@@ -379,8 +379,7 @@ header h1 span {
     overflow:hidden;
     list-style-type:none;
     text-transform:uppercase;
-    position:relative;
-    font:normal 2em/2em "Liquido",sans-serif;
+    font:normal 2em/100% "Liquido",sans-serif;
 }
 
 .iso ul li {
@@ -404,7 +403,6 @@ header h1 span {
 }
 
 .iso ul li a span {
-    border-bottom:10px solid transparent;
     line-height:100%;
     position:relative;
 }
@@ -413,7 +411,6 @@ header h1 span {
     font-size:1em;
     margin-left:0.1em;
     margin-right:-0.2em;
-    border-bottom:10px solid transparent;
 }
 
 .iso ul.exclusive li a.selected {
@@ -421,18 +418,11 @@ header h1 span {
     font-weight:bold;
 }
 
-.iso ul.exclusive li a.selected span::after {
-    content:"";
-    position:absolute;
-    display:block;
-    height:10px;
-    left:0;
-    right:0;
-    margin:0 10px;
-    bottom:-10px;
+.iso ul.exclusive li a.selected span {
     border-radius:1em;
     background:var(--accent-one);
-    /* border-bottom-color:var(--accent-one); */
+    color:var(--accent-text);
+    padding:0 0.5em;
 }
 
 .iso ul:not(.exclusive) li a.selected {
