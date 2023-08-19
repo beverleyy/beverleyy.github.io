@@ -25,7 +25,7 @@
     --transparency:rgba(0,0,0,0.5);
     --shadow:rgba(240,240,240,0.1);
     --menu:#2a344f;
-    --header:#c4c4c4;
+    --header:#8b8b8b;
     --item-one:#8b8b8b;
     --item-two:#2a344f;
     --item-one-text:#ffffff;
@@ -151,7 +151,7 @@ a:hover {
     padding:0 60px;
     margin:10px 0;
     font-size:0.8em;
-    font-weight:400;
+    font-weight:300;
     text-transform:uppercase;
     letter-spacing:0.05em;
     list-style:none;
@@ -406,6 +406,7 @@ header h1 span {
 .iso ul li a span {
     border-bottom:10px solid transparent;
     line-height:100%;
+    position:relative;
 }
 
 .iso ul li a i[class*="ph"] {
@@ -420,8 +421,18 @@ header h1 span {
     font-weight:bold;
 }
 
-.iso ul.exclusive li a.selected span {
-    border-bottom-color:var(--accent-one);
+.iso ul.exclusive li a.selected span::after {
+    content:"";
+    position:absolute;
+    display:block;
+    height:10px;
+    left:0;
+    right:0;
+    margin:0 10px;
+    bottom:-10px;
+    border-radius:1em;
+    background:var(--accent-one);
+    /* border-bottom-color:var(--accent-one); */
 }
 
 .iso ul:not(.exclusive) li a.selected {
@@ -473,7 +484,8 @@ header h1 span {
     overflow:hidden;
 }
 
-.main-carousel img {
+.main-carousel .slide,
+.main-carousel img.full {
     width:100%;
     height:100%;
     object-fit:cover;
@@ -868,7 +880,7 @@ header h1 span {
 	box-sizing:border-box;
 	position:absolute;
 	color:var(--accent-text);
-	font:500 0.8em/15px "Roboto",sans-serif;
+	font:400 0.8em/15px "Roboto",sans-serif;
 	display:none;
     border-radius:0.5rem 0.5rem 0 0;
 }
@@ -916,7 +928,6 @@ footer {
     z-index:2;
     height:30px;
     font:1.2em/30px "Liquido",sans-serif;
-    letter-spacing:0em;
 }
 
 footer span {
@@ -924,6 +935,7 @@ footer span {
     color:var(--background);
     padding:0 10px;
     margin-right:0.5em;
+    border-radius:0.5em;
 }
 
 .clouds {

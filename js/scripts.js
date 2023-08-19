@@ -74,10 +74,10 @@ $(document).ready(function(){
     var now = new Date().getHours();
     if (now >= 20 || now < 8){
         $("body").addClass("night").removeClass("day");
-        $("#switch i").addClass("ph-sun-fill").removeClass("ph-moon-stars-fill");
+        $("#switch i").addClass("ph-moon-stars-fill").removeClass("ph-sun-fill");
     } else {
         $("body").addClass("day").removeClass("night");
-        $("#switch i").addClass("ph-moon-stars-fill").removeClass("ph-sun-fill");
+        $("#switch i").addClass("ph-sun-fill").removeClass("ph-moon-stars-fill");
     }
     $("#switch").on("click",function(e){
         $("body").toggleClass("day night");
