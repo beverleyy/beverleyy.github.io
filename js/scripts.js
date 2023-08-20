@@ -71,19 +71,26 @@ $(document).ready(function(){
     function shuffle(){
         $grid.isotope('layout');
     }
-    var now = new Date().getHours();
-    if (now >= 20 || now < 8){
-        $("body").addClass("night").removeClass("day");
-        $("#switch i").addClass("ph-moon-stars-fill").removeClass("ph-sun-fill");
-    } else {
-        $("body").addClass("day").removeClass("night");
-        $("#switch i").addClass("ph-sun-fill").removeClass("ph-moon-stars-fill");
+    // var now = new Date().getHours();
+    // if (now >= 20 || now < 8){
+    //     
+    // } else {
+    //     
+    // }
+    const storedTheme = localStorage.getItem("theme") || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark":"light");
+    if (storedTheme) {
+        var $toggleSwitch = $("#switch i");
+        if (storedTheme == 'dark') 
+            $toggleSwitch.addClass("ph-moon-stars-fill").removeClass("ph-sun-fill");
+        else 
+            $toggleSwitch.addClass("ph-sun-fill").removeClass("ph-moon-stars-fill");
     }
     $("#switch").on("click",function(e){
-        $("body").toggleClass("day night");
+        var targetTheme = document.documentElement.getAttribute("data-theme")==="light" ? "dark":"light";
+        localStorage.setItem("theme",targetTheme);
+        document.documentElement.setAttribute("data-theme", targetTheme);
         $(this).children("i").toggleClass("ph-sun-fill ph-moon-stars-fill");
         e.preventDefault();
-        console.log("click")
     });
     $(".popp").on("click",function(e){
         e.preventDefault();
