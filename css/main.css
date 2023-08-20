@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
 
-.day {
+html[data-theme='light'] {
     --text:#303030;
     --background:#ffffff;
     --accent-one:#cd2028;
@@ -16,7 +16,7 @@
     --item-two-text:#1b2651;
 }
 
-.night {
+html[data-theme='dark'] {
     --text:#c4c4c4;
     --background:#000000;
     --accent-one:#bb1515;
@@ -33,10 +33,10 @@
 }
 
 @supports (not (-webkit-backdrop-filter:none)) and (not (backdrop-filter:none)) {
-    .day {
+    html[data-theme='light'] {
         --transparency:rgba(255, 255, 255, 0.8);
     }
-    .night {
+    html[data-theme='dark'] {
         --transparency:rgba(25, 25, 25, 0.8);
     }
 }
