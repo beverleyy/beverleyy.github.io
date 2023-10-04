@@ -2,7 +2,7 @@ $(document).ready(function(){
     $(document).tooltip({
         track:true
     });
-    var $f = $('.main-carousel').flickity({
+    var $f = $('.carousell').flickity({
         autoPlay:3000,
         wrapAround:true,
         imagesLoaded:true,
@@ -81,15 +81,15 @@ $(document).ready(function(){
     if (storedTheme) {
         var $toggleSwitch = $("#switch i");
         if (storedTheme == 'dark') 
-            $toggleSwitch.addClass("ph-moon-stars-fill").removeClass("ph-sun-fill");
+            $toggleSwitch.addClass("ti-flame-off").removeClass("ti-flame");
         else 
-            $toggleSwitch.addClass("ph-sun-fill").removeClass("ph-moon-stars-fill");
+            $toggleSwitch.addClass("ti-flame").removeClass("ti-flame-off");
     }
     $("#switch").on("click",function(e){
         var targetTheme = document.documentElement.getAttribute("data-theme")==="light" ? "dark":"light";
         localStorage.setItem("theme",targetTheme);
         document.documentElement.setAttribute("data-theme", targetTheme);
-        $(this).children("i").toggleClass("ph-sun-fill ph-moon-stars-fill");
+        $(this).children("i").toggleClass("ti-flame ti-flame-off");
         e.preventDefault();
     });
     $(".popp").on("click",function(e){
