@@ -41,7 +41,7 @@ html[data-theme='dark'] {
     }
 }
 
-*[class^="ph-"]:before {
+*[class^="ti-"]:before {
     display:block;
 }
 
@@ -139,8 +139,8 @@ a:hover {
     background:var(--transparency);
     backdrop-filter:blur(5px);
     -webkit-backdrop-filter:blur(5px);
-    box-shadow:1em 1em 2em var(--shadow),
-                -1em -1em 2em var(--background);
+    /* box-shadow:1em 1em 2em var(--shadow),
+                -1em -1em 2em var(--background); */
     transition:0.4s ease-in-out;
     min-height:50px;
 }
@@ -166,6 +166,10 @@ a:hover {
     padding:0;
 } 
 
+#pubs li:first-of-type {
+    font-weight:700;
+}
+
 #pubs li a {
     transition-duration:0s;
     display:inline-block;
@@ -178,7 +182,7 @@ a:hover {
     vertical-align:middle;
 }
 
-#pubs li a i[class*="ph"] {
+#pubs li a i[class*="ti"] {
     font-size:18px;
 }
 
@@ -370,7 +374,7 @@ header h1 span {
 }
 
 .iso {
-    margin:3em 0;
+    margin:3em 0 1em;
 }
 
 .iso ul {
@@ -379,7 +383,10 @@ header h1 span {
     overflow:hidden;
     list-style-type:none;
     text-transform:uppercase;
-    font:normal 2em/100% "Liquido",sans-serif;
+    /* font:normal 2em/100% "Liquido",sans-serif; */
+    font-weight:300;
+    font-size:1.5em;
+    line-height:100%;
 }
 
 .iso ul li {
@@ -415,19 +422,37 @@ header h1 span {
 
 .iso ul.exclusive li a.selected {
     color:var(--header);
-    font-weight:bold;
+    font-weight:400;
 }
 
 .iso ul.exclusive li a.selected span {
-    border-radius:1em;
-    background:var(--accent-one);
-    color:var(--accent-text);
-    padding:0 0.5em;
+    color:var(--accent-one);
 }
 
 .iso ul:not(.exclusive) li a.selected {
     color:var(--accent-two);
     font-weight:bold;
+}
+
+/* subtext */
+
+.sub {
+    font-size:0.9em;
+    font-weight:300;
+    margin-top:0;
+    margin-bottom:3em;
+}
+
+.sub span {
+    margin-right:2em;
+}
+
+.sub a {
+    color:var(--accent-one);
+}
+
+.sub a:hover {
+    color:var(--accent-two);
 }
 
 /* grid */
@@ -452,9 +477,6 @@ header h1 span {
         padding 0s linear;
 	flex-wrap:wrap;
     flex-direction:column;
-    border-radius:0.5rem;
-    box-shadow:0.5rem 0.5rem 1rem var(--shadow),
-            -0.5rem -0.5rem 1rem var(--background);
 }
 
 .grid .item.long {
@@ -465,17 +487,30 @@ header h1 span {
     aspect-ratio:auto;
 }
 
+.inactive .front {
+    height:100%;
+}
+
+.carousell {
+    overflow:hidden;
+}
+
+.graphic-carousel {
+    margin:-3rem;
+    width:calc(100% + 6rem);
+    height:calc(100% + 6rem);
+    aspect-ratio:1;
+}
+
 .main-carousel {
     /* aspect-ratio:2; */
     margin:-1.5rem -3rem;
     width:calc(100% + 6rem);
     height:calc(100% + 3rem);
-    border-radius:0.5rem;
-    overflow:hidden;
 }
 
-.main-carousel .slide,
-.main-carousel img.full {
+.carousell .slide,
+.carousell img.full {
     width:100%;
     height:100%;
     object-fit:cover;
@@ -503,7 +538,7 @@ header h1 span {
     cursor:pointer;
 }
 
-.grid .item > *:not(.main-carousel) {
+.grid .item > *:not(.carousell) {
 	width:100%;
 }
 
@@ -585,7 +620,6 @@ header h1 span {
     left:0;
     right:0;
     bottom:0;
-    border-radius:0.5rem;
 }
 
 .item.one.alt:not(.expand)::before {
@@ -626,7 +660,6 @@ header h1 span {
     top:0;
     width:100%;
     height:100%; 
-    border-radius:0.5rem;
 }
 
 .expand:not(.big) .front img,
@@ -636,7 +669,7 @@ header h1 span {
 }
 
 .item:not(.expand) .front img,
-.main-carousel img {
+.carousell img {
     object-fit:cover;
     z-index:-2;
 }
@@ -661,13 +694,10 @@ header h1 span {
     object-position:top;
 }
 
-.front .overlay {
-    z-index:-1;
-}
-
 .item:not(.inactive) .front .overlay {
     -webkit-backdrop-filter:blur(2px);
     backdrop-filter:blur(2px);
+    z-index:-1;
 }
 
 .one .overlay {
@@ -770,11 +800,14 @@ header h1 span {
 }
 
 .inactive .front *,
-.main-carousel img {
+.carousell img {
+    z-index:0;
     -webkit-transition:
+    z-index 0.4s step-start,
         opacity 0.4s ease-in-out,
         -webkit-filter 0.4s ease-in-out;
     transition:
+    z-index 0.4s step-start,
         opacity 0.4s ease-in-out,
         filter 0.4s ease-in-out;
 }
@@ -783,6 +816,15 @@ header h1 span {
 .inactive:hover h3,
 .inactive:hover .overlay {
     opacity:0;
+    z-index:-1;
+    -webkit-transition:
+        z-index 0.4s step-end,
+        opacity 0.4s ease-in-out,
+        -webkit-filter 0.4s ease-in-out;
+    transition:
+        z-index 0.4s step-end,
+        opacity 0.4s ease-in-out,
+        filter 0.4s ease-in-out;
 }
 
 .inactive h4 span {
@@ -811,16 +853,6 @@ header h1 span {
     background:var(--accent-one);
     color:var(--accent-text);
     font-size:18px;
-}
-
-.foot :first-child,
-.inactive h4 span:first-child {
-    border-radius:7px 0 0 7px;
-}
-
-.foot :last-child,
-.inactive h4 span:last-child {
-    border-radius:0 7px 7px 0;
 }
 
 .item:not(.expand):hover .head {
@@ -872,7 +904,6 @@ header h1 span {
 	color:var(--accent-text);
 	font:400 0.8em/15px "Roboto",sans-serif;
 	display:none;
-    border-radius:0.5rem 0.5rem 0 0;
 }
 
 .topper,
@@ -925,7 +956,6 @@ footer span {
     color:var(--background);
     padding:0 10px;
     margin-right:0.5em;
-    border-radius:0.5em;
 }
 
 .clouds {
@@ -1013,7 +1043,6 @@ modal {
     font-size:1em;
     line-height:1.5em;
     font-family:"Roboto",sans-serif;
-    border-radius:0.5rem;
     overflow:hidden;
 }
 
@@ -1172,6 +1201,10 @@ modal {
         line-height:100%;
     }
 
+    .iso {
+        margin-top:0em;
+    }
+
     .iso ul li:first-of-type {
         float:none;
     }
@@ -1195,6 +1228,12 @@ modal {
     .main-carousel {
         width:calc(100% + 4rem);
         margin:-1.5rem -2rem;
+    }
+
+    .graphic-carousel {
+        width:calc(100% + 4rem);
+        height:calc(100% + 4rem);
+        margin:-2rem;
     }
 
     .big.expand .front img {
@@ -1261,7 +1300,7 @@ modal {
         aspect-ratio:unset;
     }
 
-    .grid .item.inactive:not(.small) .front img {
+    .grid .item.inactive:not(.small):not(.big) .front img {
         position:relative;
         margin:-2rem;
         width:calc(100% + 4rem);
@@ -1317,14 +1356,23 @@ modal {
 @media screen and (max-width:420px){
     header h1,
     header h1 span i {
-        font-size:5rem;
+        font-size:6rem;
         line-height:100%;
     }
 
     header h2,
     .iso ul {
-        font-size:1.6rem;
-        line-height:100%;
+        font-size:1.2rem;
+        line-height:120%;
+    }
+
+    .sub {
+        font-size:0.8rem;
+        line-height:150%;
+    }
+
+    .sub span {
+        display:block;
     }
 
     .grid .item h3 span {
@@ -1349,8 +1397,8 @@ modal {
 @media screen and (max-width:360px){
     header h1,
     header h1 span i {
-        font-size:3rem;
-        line-height:3rem;
+        font-size:4rem;
+        line-height:4rem;
     }
 
     .iso ul li{
