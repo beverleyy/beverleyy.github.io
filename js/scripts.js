@@ -116,5 +116,5 @@ $(document).ready(function(){
             e.preventDefault();
         }
     });
-    $("#pubslist .terminal ul li").addClass("ph-caret-right");
+    $("#pubslist .terminal ul li").addClass("ti-caret-right");
 });

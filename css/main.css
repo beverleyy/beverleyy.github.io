@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
 
-html[data-theme='light'] {
+/* html[data-theme='light'] {
     --text:#303030;
     --background:#ffffff;
     --accent-one:#cd2028;
@@ -30,6 +30,38 @@ html[data-theme='dark'] {
     --item-two:#2a344f;
     --item-one-text:#ffffff;
     --item-two-text:#c4c4c4;
+} */
+
+html[data-theme='light'] {
+    --text:#303030;
+    --background:#ffffff;
+    --accent-one:#9b2335;
+    --accent-two:#7fcdcd;
+    --accent-text:#ffffff;
+    --transparency:rgba(255,255,255,0.8);
+    --shadow:rgba(25,25,25,0.1);
+    --menu:#9b2335;
+    --header:#303030;
+    --item-one:#7fcdcd;
+    --item-two:#eaeaea;
+    --item-one-text:#ffffff;
+    --item-two-text:#303030; 
+}
+
+html[data-theme='dark'] {
+    --text:#cbcbcb;
+    --background:#000000;
+    --accent-one:#9b2335;
+    --accent-two:#7fcdcd;
+    --accent-text:#ffffff;
+    --transparency:rgba(0,0,0,0.5);
+    --shadow:rgba(240,240,240,0.1);
+    --menu:#9b2335;
+    --header:#cbcbcb;
+    --item-one:#363636;
+    --item-two:#121212;
+    --item-one-text:#eaeaea;
+    --item-two-text:#cbcbcb;
 }
 
 @supports (not (-webkit-backdrop-filter:none)) and (not (backdrop-filter:none)) {
@@ -232,7 +264,7 @@ a:hover {
 }
 
 #top.active #pubs a:hover {
-    background:var(--accent-one);
+    background:var(--accent-two);
     color:var(--accent-text);
 } 
 
@@ -251,7 +283,7 @@ a:hover {
 	height:100%;
 	opacity:0;
     margin:0px 5px;
-    background:var(--accent-one);
+    background:var(--accent-two);
 	animation:none;
 }
 
@@ -271,7 +303,7 @@ a:hover {
 main {
     width:100%;
     box-sizing:border-box;
-    margin:150px auto 30px;
+    margin:120px auto 30px;
     padding:0 60px;
 }
 
@@ -284,11 +316,11 @@ header {
 header h1 {
     font:normal normal 8rem/8rem "Liquido",sans-serif;
     margin:0 0 3rem;
-    color:var(--header);
+    color:var(--accent-two);
 }
 
 header h1 span {
-    color:var(--accent-two);
+    color:var(--header);
     font-weight:bold;
 }
 
@@ -351,7 +383,7 @@ header h1 span {
     position:absolute;
     left:-2px;
     top:0;
-    color:var(--accent-two);
+    color:var(--header);
     background:var(--background);
     overflow:hidden;
     clip:rect(0, 900px, 0, 0);
@@ -359,12 +391,12 @@ header h1 span {
 }
 
 #proff::before {
-    text-shadow:1px 0 var(--header);
+    text-shadow:1px 0 var(--accent-two);
     animation: noise-anim-2 3s infinite linear alternate-reverse;
 }
 
 #proff::after {
-    text-shadow:-1px 0 var(--header);
+    text-shadow:-1px 0 var(--accent-two);
     animation:noise-anim 2s infinite linear alternate-reverse;
 }
 
@@ -426,7 +458,7 @@ header h1 span {
 }
 
 .iso ul.exclusive li a.selected span {
-    color:var(--accent-one);
+    color:var(--accent-two);
 }
 
 .iso ul:not(.exclusive) li a.selected {
@@ -448,11 +480,11 @@ header h1 span {
 }
 
 .sub a {
-    color:var(--accent-one);
+    color:var(--accent-two);
 }
 
 .sub a:hover {
-    color:var(--accent-two);
+    color:var(--accent-one);
 }
 
 /* grid */
@@ -523,6 +555,7 @@ header h1 span {
 .flickity-page-dots .dot {
     background:var(--background);
     opacity:0.5;
+    transition:0.4s ease-in-out;
 }
 
 .flickity-page-dots .dot:hover {
@@ -563,7 +596,7 @@ header h1 span {
 	top:0.5em;
 	left:1em;
 	text-align:left;
-	font-size:0.8em;
+	font-size:0.85em;
 	letter-spacing:0.05em;
 	text-transform:uppercase;
 }
@@ -864,7 +897,7 @@ header h1 span {
 }
 
 .item .back p, .item .back ul {
-	font-size:0.9em;
+	font-size:0.95em;
 	font-weight:400;
 	list-style-type:none;
 }
@@ -1003,8 +1036,8 @@ footer span {
     top:-9vw;
     left:auto;
     opacity:0.8;
-    filter:blur(2px);
-    -webkit-filter:blur(2px);
+    /* filter:blur(2px);
+    -webkit-filter:blur(2px); */
 }
 
 /* modal */
@@ -1094,6 +1127,7 @@ modal {
     position:absolute;
     display:block;
     color:var(--accent-one);
+    font-family:"tabler-icons"!important;
 }
 
 #pubslist ul li:hover::before {
@@ -1250,7 +1284,7 @@ modal {
     }
 
     .grid .item h4 {
-	    font-size:0.7em;
+	    font-size:0.75em;
     }
 
     .head span {
