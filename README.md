@@ -19,6 +19,7 @@ Personal website
 
 ## To-do
 * Reorganize the categories/section
+* Better differentiation between personal/hobby projects and actual work
 * Think about how to make it more flexible/expandable
-* Add Google Sheets integration
 * Improve analytics
+* Remove jQuery dependence
