@@ -78,8 +78,7 @@ if (storedTheme) {
             <li><a href="#" data-filter-value=".edu"><span>Education</span></a></li>
             <li><a href="#" data-filter-value=".res"><span>Research</span></a></li>
             <li><a href="#" data-filter-value=".eng"><span>Engineering</span></a></li>
-            <li><a href="#" data-filter-value=".gfx"><span>Design</span></a></li>
-	        <li><a href="#" data-filter-value=".pro"><span>Code</span></a></li>
+	        <!-- <li><a href="#" data-filter-value=".pro"><span>Code</span></a></li> -->
         </ul> 
     </nav>
 
@@ -110,16 +109,47 @@ if (storedTheme) {
             </div>
         </article>
 
-        <article class="one item">
-            <div class="topper">
+        <article class="one item expand">
+            <div class="topper" style="display:block">
                 <span>me@beverleyy:~</span>
                 <a href="#" class="close" title="close"></a>
             </div>
             <div class="front">
                 <h3>About Me</h3>
             </div>
+            <div class="back" style="display:block">
+                <p>Hi! I'm <strong>Beverley</strong>, a first-year Mechanical Engineering Ph.D. student from Singapore. I am interested in turbulence, visually-attractive fluid flows, aerospace propulsion, and high-performance computing. I aspire to <em>develop computational fluid dynamics (CFD) codes</em> that can produce high-fidelity flow visualizations on consumer computers.</p> 
+            </div>
+        </article>
+
+        <article class="one item res">
+            <div class="topper">
+                <span>research@beverleyy:~</span>
+                <a href="#" class="close" title="close"></a>
+            </div>
+            <div class="front">
+                <h3>JAX_DG</h3>
+            </div>
             <div class="back">
-                <p>Hi! I'm <strong>Beverley</strong>, a first-year Mechanical Engineering Ph.D. student from Singapore. I am interested in turbulence, visually-attractive fluid flows, aerospace propulsion, and high-performance computing. I aspire to <em>develop computational fluid dynamics (CFD) codes</em> that can produce high-fidelity flow visualizations on consumer computers. When I'm not writing code, I enjoy playing MapleStory with friends and getting overly emotionally invested in the fortunes of Liverpool Football Club.</p> 
+                <p>
+                    Supervisor: Dr. Matthias Ihme
+                </p>
+                <h4>Development of Discontinuous Galerkin solver with Google JAX</h4>
+                <ul>
+                    <li>Writing parallel 1D DG solver from scratch using JAX to work on CPUs, GPUs and Google Cloud TPUs for combustion applications.</li>
+                    <li>Parallelize and rewrite in-house DG code using JAX for improved performance and integration with data-driven techniques.</li>
+                </ul>
+            </div>
+            <div class="foot">
+                <span>Python</span>
+                <span>JAX</span>
+                <span>Google Cloud</span>
+            </div>
+            <div class="head">
+                09.2023 - present
+                <span style="float:right;">
+                    Research
+                </span>
             </div>
         </article>
 
@@ -135,18 +165,17 @@ if (storedTheme) {
             <div class="back">
                 <p>
                     Sep 2023 - present 
-                    <!-- <br>CGPA: 4.63 / 5.00 -->
+                    <br>CGPA: 3.82 / 4.3
                 </p>
                 <!-- <h4>Thesis</h4>
                 <p>
-                    Investigating Galilean invariance in CFD
+                    
                 </p> -->
                 <h4>Coursework</h4>
-                <h4>Fall 2023</h4>
                 <ul>
-                    <li>Linear Algebra with Application to Engineering Computations</li>
-                    <li>Fluid Mechanics</li>
-                    <li>Physical Gas Dynamics</li>
+                    <li><b>Fall 2023:</b> <a title="Linear Algebra with Application to Engineering Computations">ME 300A</a>, <a title="Fluid Mechanics">ME 351A</a>, <a title="Physical Gas Dynamics">ME 362A</a></li>
+                    <li><b>Winter 2024:</b> <a title="Advanced Fluid Mechanics">ME 351B</a>, <a title="Combustion Fundamentals">ME 371</a></li> 
+                    <li><b>Spring 2024:</b> <a title="Introduction to Numerical Methods for Engineering">ME 300C</a>, <a title="Gas-Turbine Design">ME 357</a></li> 
                 </ul>
             </div>
             <div class="head">
@@ -197,9 +226,9 @@ if (storedTheme) {
                 <a href="#" class="close" title="close"></a>
             </div>
             <div class="front">
-                <img src="images/poster/sis_zps_result.jpg"/>
+                <img src="images/research/sis_zps_result.jpg"/>
                 <div class="overlay"></div>
-                <h3>CFD for Kids</h3> 
+                <h3>Kiddy CFD</h3> 
             </div>
             <div class="back">
 		        <h4>A*STAR/MOE Scientists-in-Schools Program</h4>
@@ -329,43 +358,6 @@ if (storedTheme) {
                 05.2021 - present
                 <span style="float:right;">
                     Research
-                </span>
-            </div>
-        </article>
-
-        <article class="two alt item pro big">
-            <div class="topper">
-                <span>code@beverleyy:~</span>
-                <a href="#" class="close" title="close"></a>
-            </div>
-            <div class="front">
-                <img src="images/website/bloom.jpg"/>
-                <div class="overlay"></div>
-                <h3>Bloomscroller</h3>
-                <h4>MindfulHacks 2021 - 1st (Team)</h4>
-            </div>
-            <div class="back">
-                <p>
-                    Non-intrusive browser extension for Twitter that combats doomscrolling using AI, gamification, and psychology. 
-                </p>
-            </div>
-            <div class="foot">
-                <a href="https://devpost.com/software/bloomscroller" title="Devpost">
-                    <i class="ti ti-link"></i>
-                </a>
-                <a href="https://github.com/Archeri2000/Bloomscroller" title="Github Repository">
-                    <i class="ti ti-brand-github"></i>
-                </a>
-                <span>HTML</span>
-                <span>CSS</span>
-                <span>Javascript</span>
-                <span>Python</span>
-                <span>AWS</span>
-            </div>
-            <div class="head">
-                09.2021
-                <span style="float:right;">
-		    Code
                 </span>
             </div>
         </article>
@@ -513,39 +505,6 @@ if (storedTheme) {
             </div>
         </article>
 
-        <article class="two alt item pro big">
-            <div class="topper">
-                <span>code@beverleyy:~</span>
-                <a href="#" class="close" title="close"></a>
-            </div>
-            <div class="front">
-                <img src="images/website/moe2018trf005.png"/>
-                <div class="overlay"></div>
-                <h3>Self-help attendance check</h3>
-            </div>
-            <div class="back">
-                <h4>Part of coteaching project</h4>
-                <p>
-                    This page was made to reduce emails by automating retrieval of participants' attendance records.
-                </p>
-            </div>
-            <div class="foot">
-                <a href="http://github.com/beverleyy/moe2018trf005" title="Github Repository">
-                    <i class="ti ti-brand-github"></i>
-                </a>
-                <span>NodeJS</span>
-                <span>SQL</span>
-                <span>CSS</span>
-                <span>ExpressJS</span>
-            </div>
-            <div class="head">
-                02.2021
-                <span style="float:right;">
-                    Code
-                </span>
-            </div>
-        </article>
-
         <article class="two alt item res">
             <div class="topper">
                 <span>research@beverleyy:~</span>
@@ -575,38 +534,6 @@ if (storedTheme) {
                 06.2019 - 05.2021
                 <span style="float:right;">
                     Research
-                </span>
-            </div>
-        </article>
-
-        <article class="two item gfx inactive big">
-            <div class="topper">
-                <span>design@beverleyy:~</span>
-                <a href="#" class="close" title="close"></a>
-            </div>
-            <div class="front">
-                <div class="carousell graphic-carousel">
-                    <div class="slide"> 
-                        <img class="full" src="images/poster/iso.png"/>
-                    </div>
-                    <div class="slide">
-                        <img class="full" src="images/poster/exhb.png"/>
-                    </div>
-                    <div class="slide">
-                        <img class="full" src="images/poster/beachday.jpg"/>
-                    </div>
-                </div>
-                <div class="overlay"></div>
-                <h3>Graphic Design</h3>
-                <h4>
-                    <span>Photoshop</span>
-                    <span>Illustrator</span>
-                </h4>
-            </div>
-            <div class="head">
-                08.2020
-                <span style="float:right;">
-                    Design
                 </span>
             </div>
         </article>
@@ -642,7 +569,7 @@ if (storedTheme) {
             </div>
         </article>
 
-        <article class="two alt item eng gfx big">
+        <article class="two alt item eng big">
             <div class="topper">
                 <span>engineering@beverleyy:~</span>
                 <a href="#" class="close" title="close"></a>
@@ -678,40 +605,6 @@ if (storedTheme) {
                 01.2020 - 05.2020
                 <span style="float:right;">
                     Engineering
-                </span>
-            </div>
-        </article>
-
-        <article class="two alt item pro big">
-            <div class="topper">
-                <span>code@beverleyy:~</span>
-                <a href="#" class="close" title="close"></a>
-            </div>
-            <div class="front">
-                <img src="images/website/year-in-pixels.png"/>
-                <div class="overlay"></div>
-                <h3>Year in Pixels</h3>
-            </div>
-            <div class="back">
-                <p>
-                    A simple diary-like webpage with a Javascript-generated grid. Fake backend with Google Sheets for easy data entry.
-                </p>
-            </div>
-            <div class="foot">
-                <a href="https://beverleyy.github.io/year-in-pixels" title="Live View">
-                    <i class="ti ti-link"></i>
-                </a>
-                <a href="https://github.com/beverleyy/year-in-pixels" title="Github Repository">
-                    <i class="ti ti-brand-github"></i>
-                </a>
-                <span>HTML</span>
-                <span>CSS</span>
-                <span>Javascript</span>
-            </div>
-            <div class="head">
-                01.2020
-                <span style="float:right;">
-                    Code
                 </span>
             </div>
         </article>
@@ -823,49 +716,12 @@ if (storedTheme) {
                 </span>
             </div>
         </article>
-
-        <article class="two alt item gfx big">
-            <div class="topper">
-                <span>design@beverleyy:~</span>
-                <a href="#" class="close" title="close"></a>
-            </div>
-            <div class="front">
-                <img src="images/website/main.png" class="t"/>
-                <div class="overlay"></div>
-                <h3>MagnusThemes</h3>
-                <h4>Free Tumblr Themes</h4>
-            </div>
-            <div class="back">
-                <p>
-                    A long-standing hobby that started as an exercise for me to pick up coding: Free blog themes and custom page templates for Tumblr, a social media blogging platform. Fun, quirky, sleek, and (mostly) bug-free. My Q&A responses need work, though :)
-                </p>
-            </div>
-            <div class="foot">
-                <a href="https://magnusthemes.tumblr.com" title="Live View">
-                    <i class="ti ti-link"></i>
-                </a>
-                <a href="https://github.com/orbitalnight/magnusthemes" title="Github Repository">
-                    <i class="ti ti-brand-github"></i>
-                </a>
-                <span>HTML</span>
-                <span>CSS</span>
-                <span>Javascript</span>
-                <span>Photoshop</span>
-
-            </div>
-            <div class="head">
-                01.2014 - present
-                <span style="float:right;">
-                    Design
-                </span>
-            </div>
-        </article>
     </section>
 </main>
 
 <div class="clouds"></div>
 <footer>
-    <span>&copy; 2021-23 Beverley Yeo</span> <a href="#pubslist" class="popp">Publication List</a> + <a title="under construction">Google Scholar</a> + <a title="under construction">ResearchGate</a> + <a href="https://orcid.org/0000-0003-0600-8065">ORCID</a>
+    <span>&copy; 2021-24 Beverley Yeo</span> <a href="#pubslist" class="popp">Publication List</a> + <a title="under construction">Google Scholar</a> + <a title="under construction">ResearchGate</a> + <a href="https://orcid.org/0000-0003-0600-8065">ORCID</a>
 </footer>
 
 <modal id="pubslist">
@@ -910,7 +766,7 @@ if (storedTheme) {
 <script src="js/charming.min.js"></script>
 <script src="js/typo.js"></script>
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 var sc_project=12833771; 
 var sc_invisible=1; 
 var sc_security="450f4024"; 
@@ -923,7 +779,7 @@ href="https://statcounter.com/" target="_blank"><img
 class="statcounter"
 src="https://c.statcounter.com/12833771/0/450f4024/1/"
 alt="web counter"
-referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
+referrerPolicy="no-referrer-when-downgrade"></a></div></noscript> -->
 
 </body>
 </html>
