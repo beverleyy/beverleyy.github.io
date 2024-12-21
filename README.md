@@ -5,7 +5,7 @@ Personal website
 
 * ![#28282d](https://placehold.co/16x16/28282d/28282d.png) Anthracite
 * ![#3b353c](https://placehold.co/16x16/3b353c/3b353c.png) Obsidian
-* ![#79797f](https://placehold.it/16x16/79797f/79797f.png) Night Owl
+* ![#79797f](https://placehold.co/16x16/79797f/79797f.png) Night Owl
 * ![#8ace00](https://placehold.co/16x16/8ace00/8ace00.png) Brat
 * ![#cdc6bd](https://placehold.co/16x16/cdc6bd/cdc6bd.png) Moonbeam
 * ![#f2efe7](https://placehold.co/16x16/f2efe7/f2efe7.png) Coconut Milk
