@@ -1,2 +1,2 @@
 User-agent: *
-Disallow: /beverleyy.github.io/
+Disallow: /
