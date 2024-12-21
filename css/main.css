@@ -1,75 +1,45 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
-
-/* html[data-theme='light'] {
-    --text:#303030;
-    --background:#ffffff;
-    --accent-one:#cd2028;
-    --accent-two:#166c96;
-    --accent-text:#ffffff;
-    --transparency:rgba(255,255,255,0.8);
-    --shadow:rgba(25,25,25,0.1);
-    --menu:#1b2651;
-    --header:#1b2651;
-    --item-one:#1b2651;
-    --item-two:#edeae1;
-    --item-one-text:#edeae1;
-    --item-two-text:#1b2651;
-}
-
-html[data-theme='dark'] {
-    --text:#c4c4c4;
-    --background:#000000;
-    --accent-one:#bb1515;
-    --accent-two:#e0cda7;
-    --accent-text:#ffffff;
-    --transparency:rgba(0,0,0,0.5);
-    --shadow:rgba(240,240,240,0.1);
-    --menu:#2a344f;
-    --header:#8b8b8b;
-    --item-one:#8b8b8b;
-    --item-two:#2a344f;
-    --item-one-text:#ffffff;
-    --item-two-text:#c4c4c4;
-} */
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap');
 
 html[data-theme='light'] {
-    --text:#303030;
-    --background:#ffffff;
-    --accent-one:#9b2335;
-    --accent-two:#7fcdcd;
-    --accent-text:#ffffff;
-    --transparency:rgba(255,255,255,0.8);
-    --shadow:rgba(25,25,25,0.1);
-    --menu:#9b2335;
-    --header:#303030;
-    --item-one:#7fcdcd;
-    --item-two:#eaeaea;
-    --item-one-text:#ffffff;
-    --item-two-text:#303030; 
+    --text:#3b353c;
+    --background:#f2efe7;
+    --accent-one:#8ace00;
+    --accent-two:#79797f;
+    --accent-two-text:#f2efe7;
+    --accent-one-text:#3b353c;
+    --transparency:rgba(242,239,231,0.8);
+    --shadow:rgba(205,198,189,0.3);
+    --menu:#8ace00;
+    --header:#8ace00;
+    --item-one:#8ace00;
+    --item-two:#cdc6bd;
+    --item-one-text:#3b353c;
+    --item-two-text:#3b353c; 
 }
 
 html[data-theme='dark'] {
-    --text:#cbcbcb;
-    --background:#000000;
-    --accent-one:#9b2335;
-    --accent-two:#7fcdcd;
-    --accent-text:#ffffff;
-    --transparency:rgba(0,0,0,0.5);
-    --shadow:rgba(240,240,240,0.1);
-    --menu:#9b2335;
-    --header:#cbcbcb;
-    --item-one:#363636;
-    --item-two:#121212;
-    --item-one-text:#eaeaea;
-    --item-two-text:#cbcbcb;
+    --text:#cdc6bd;
+    --background:#28282d;
+    --accent-one:#8ace00;
+    --accent-two:#79797f;
+    --accent-two-text:#f2efe7;
+    --accent-one-text:#3b353c;
+    --transparency:rgba(40,40,45,0.5);
+    --shadow:rgba(205,198,189,0.3);
+    --menu:#8ace00;
+    --header:#8ace00;
+    --item-one:#8ace00;
+    --item-two:#3b353c;
+    --item-one-text:#3b353c;
+    --item-two-text:#cdc6bd;
 }
 
 @supports (not (-webkit-backdrop-filter:none)) and (not (backdrop-filter:none)) {
     html[data-theme='light'] {
-        --transparency:rgba(255, 255, 255, 0.8);
+        --transparency:rgba(255,255,255,0.8);
     }
     html[data-theme='dark'] {
-        --transparency:rgba(25, 25, 25, 0.8);
+        --transparency:rgba(47,45,48,0.8);
     }
 }
 
@@ -99,7 +69,7 @@ body {
     color:var(--text);
     background-color:var(--background);
 	background-attachment:fixed;
-	font:400 1em/1.7em "Roboto",sans-serif;
+	font:400 1em/1.7em "Geist",sans-serif;
     margin:0;
     padding:0;
     transition:0.4s ease-in-out;
@@ -107,7 +77,7 @@ body {
     overflow-x:hidden;
 }
 
-bold,strong {
+b,bold,strong {
     font-weight:bold;
     color:var(--accent-one);
 }
@@ -136,8 +106,8 @@ a:hover {
     max-width:300px;
     padding:5px 10px;
     text-transform:uppercase;
-    background:var(--item-one);
-    color:var(--item-one-text);
+    background:var(--accent-one);
+    color:var(--accent-one-text);
     font:1rem/1.5rem "Liquido",sans-serif;
     letter-spacing:0.1em;
 }
@@ -145,18 +115,18 @@ a:hover {
 /* selection */
 
 ::selection {
-    background:var(--accent-one);
-    color:var(--accent-text);
+    background:var(--accent-two);
+    color:var(--accent-two-text);
 }
 
 ::-webkit-selection {
-    background:var(--accent-one);
-    color:var(--accent-text);
+    background:var(--accent-two);
+    color:var(--accent-two-text);
 }
 
 ::-moz-selection {
-    background:var(--accent-one);
-    color:var(--accent-text);
+    background:var(--accent-two);
+    color:var(--accent-two-text);
 }
 
 /* top */
@@ -256,16 +226,16 @@ a:hover {
 }
  
 #top.active #pubs {
-    color:var(--accent-text);
+    color:var(--accent-one-text);
 }
 
 #top.active #pubs a {
-    color:var(--accent-text);
+    color:var(--accent-one-text);
 }
 
 #top.active #pubs a:hover {
     background:var(--accent-two);
-    color:var(--accent-text);
+    color:var(--background);
 } 
 
 /* animation */
@@ -387,7 +357,7 @@ header h1 span {
     background:var(--background);
     overflow:hidden;
     clip:rect(0, 900px, 0, 0);
-    opacity:0;
+    opacity:1;
 }
 
 #proff::before {
@@ -402,7 +372,7 @@ header h1 span {
 
 #proff:hover::before,
 #proff:hover::after {
-    opacity:1;
+    opacity:0;
 }
 
 .iso {
@@ -458,11 +428,11 @@ header h1 span {
 }
 
 .iso ul.exclusive li a.selected span {
-    color:var(--accent-two);
+    color:var(--header);
 }
 
 .iso ul:not(.exclusive) li a.selected {
-    color:var(--accent-two);
+    color:var(--header);
     font-weight:bold;
 }
 
@@ -473,6 +443,7 @@ header h1 span {
     font-weight:300;
     margin-top:0;
     margin-bottom:3em;
+    color:var(--accent-two);
 }
 
 .sub span {
@@ -480,7 +451,7 @@ header h1 span {
 }
 
 .sub a {
-    color:var(--accent-two);
+    color:var(--text);
 }
 
 .sub a:hover {
@@ -488,6 +459,10 @@ header h1 span {
 }
 
 /* grid */
+
+html[data-theme='light'] .grid {
+    --header:var(--accent-two);
+}
 
 .grid {
     margin:0 -0.5rem;
@@ -512,10 +487,10 @@ header h1 span {
 }
 
 .grid .item.long {
-	width:33rem;
+    width:33rem;
     height:16rem;
-	padding:1.5rem 3rem;
-	align-content:flex-start;
+    padding:1.5rem 3rem;
+    align-content:flex-start;
     aspect-ratio:auto;
 }
 
@@ -602,7 +577,7 @@ header h1 span {
 }
 
 .grid .item h3 span {
-	font:300 0.75rem/100% "Roboto",sans-serif;
+	font:300 0.75rem/100% "Geist",sans-serif;
 	letter-spacing:0.1em;
 	text-transform:uppercase;
 	display:block;
@@ -738,7 +713,7 @@ header h1 span {
 }
 
 .one.alt:not(.expand) .overlay ~ h3 {
-    color:var(--accent-text);
+    color:var(--item-one-text);
 }
 
 .two .overlay {
@@ -801,7 +776,7 @@ header h1 span {
 	bottom:100%;
 	left:0;
 	opacity:0;
-	font:0.8em/150% 'Roboto',sans-serif;
+	font:0.8em/150% 'Geist',sans-serif;
 	transition:opacity 0s ease-in-out 0.1s;
     text-transform:uppercase;
     color:var(--accent-two);
@@ -820,7 +795,7 @@ header h1 span {
     left:0;
     display:none;
     overflow:hidden;
-	font:0.7rem "Roboto",sans-serif;
+	font:0.7rem "Geist",sans-serif;
     text-transform:uppercase;
     padding:10px;
     box-sizing:border-box;
@@ -884,7 +859,7 @@ header h1 span {
 
 .foot a {
     background:var(--accent-one);
-    color:var(--accent-text);
+    color:var(--accent-one-text);
     font-size:18px;
 }
 
@@ -934,8 +909,8 @@ header h1 span {
 	padding:5px;
 	box-sizing:border-box;
 	position:absolute;
-	color:var(--accent-text);
-	font:400 0.8em/15px "Roboto",sans-serif;
+	color:var(--accent-two-text);
+	font:400 0.8em/15px "Geist",sans-serif;
 	display:none;
 }
 
@@ -943,7 +918,7 @@ header h1 span {
 .foot span,
 .foot a:hover {
     background:var(--accent-two);
-    color:var(--background);
+    color:var(--accent-two-text);
 }
 
 .topper a.close,
@@ -985,7 +960,7 @@ footer {
 }
 
 footer span {
-    background:var(--accent-two);
+    background:var(--accent-one);
     color:var(--background);
     padding:0 10px;
     margin-right:0.5em;
@@ -1075,7 +1050,7 @@ modal {
     position:relative;
     font-size:1em;
     line-height:1.5em;
-    font-family:"Roboto",sans-serif;
+    font-family:"Geist",sans-serif;
     overflow:hidden;
 }
 
@@ -1141,22 +1116,22 @@ modal {
 	display:inline-block;
 	color:var(--accent-one);
 	content:attr(data-month) '›';
-	font-family:'Roboto',sans-serif;
+	font-family:'Geist',sans-serif;
 }
 
 .popup .terminal em {
-    border-bottom:1px solid var(--item-two);
+    border-bottom:1px solid var(--accent-two);
 }
 
 .popup .terminal a {
-    background:var(--menu);
-    color:var(--accent-text);
+    background:var(--accent-one);
+    color:var(--accent-one-text);
     padding:0 5px;
 }
 
 .popup .terminal a:hover {
     background:var(--accent-two);
-    color:var(--background);
+    color:var(--accent-two-text);
 }
 
 /* responsive */
