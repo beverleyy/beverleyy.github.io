@@ -1,13 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
 
 html[data-theme='light'] {
     --text:#3b353c;
-    --background:#f2efe7;
+    --background:#f0eee9;
     --accent-one:#8ace00;
     --accent-two:#79797f;
-    --accent-two-text:#f2efe7;
+    --accent-two-text:#f0eee9;
     --accent-one-text:#3b353c;
-    --transparency:rgba(242,239,231,0.8);
+    --transparency:rgba(240,238,233,0.8);
     --shadow:rgba(205,198,189,0.3);
     --menu:#8ace00;
     --header:#8ace00;
@@ -22,7 +22,7 @@ html[data-theme='dark'] {
     --background:#28282d;
     --accent-one:#8ace00;
     --accent-two:#79797f;
-    --accent-two-text:#f2efe7;
+    --accent-two-text:#f0eee9;
     --accent-one-text:#3b353c;
     --transparency:rgba(40,40,45,0.5);
     --shadow:rgba(205,198,189,0.3);
@@ -36,10 +36,10 @@ html[data-theme='dark'] {
 
 @supports (not (-webkit-backdrop-filter:none)) and (not (backdrop-filter:none)) {
     html[data-theme='light'] {
-        --transparency:rgba(255,255,255,0.8);
+        --transparency:rgba(240,238,233,0.8);
     }
     html[data-theme='dark'] {
-        --transparency:rgba(47,45,48,0.8);
+        --transparency:rgba(40,40,45,0.8);
     }
 }
 
@@ -69,7 +69,7 @@ body {
     color:var(--text);
     background-color:var(--background);
 	background-attachment:fixed;
-	font:400 1em/1.7em "Geist",sans-serif;
+	font:400 1em/1.7em "Inter",sans-serif;
     margin:0;
     padding:0;
     transition:0.4s ease-in-out;
@@ -577,7 +577,7 @@ html[data-theme='light'] .grid {
 }
 
 .grid .item h3 span {
-	font:300 0.75rem/100% "Geist",sans-serif;
+	font:300 0.75rem/100% "Inter",sans-serif;
 	letter-spacing:0.1em;
 	text-transform:uppercase;
 	display:block;
@@ -776,7 +776,7 @@ html[data-theme='light'] .grid {
 	bottom:100%;
 	left:0;
 	opacity:0;
-	font:0.8em/150% 'Geist',sans-serif;
+	font:0.8em/150% 'Inter',sans-serif;
 	transition:opacity 0s ease-in-out 0.1s;
     text-transform:uppercase;
     color:var(--accent-two);
@@ -795,7 +795,7 @@ html[data-theme='light'] .grid {
     left:0;
     display:none;
     overflow:hidden;
-	font:0.7rem "Geist",sans-serif;
+	font:0.7rem "Inter",sans-serif;
     text-transform:uppercase;
     padding:10px;
     box-sizing:border-box;
@@ -910,7 +910,7 @@ html[data-theme='light'] .grid {
 	box-sizing:border-box;
 	position:absolute;
 	color:var(--accent-two-text);
-	font:400 0.8em/15px "Geist",sans-serif;
+	font:400 0.8em/15px "Inter",sans-serif;
 	display:none;
 }
 
@@ -1050,7 +1050,7 @@ modal {
     position:relative;
     font-size:1em;
     line-height:1.5em;
-    font-family:"Geist",sans-serif;
+    font-family:"Inter",sans-serif;
     overflow:hidden;
 }
 
@@ -1116,7 +1116,7 @@ modal {
 	display:inline-block;
 	color:var(--accent-one);
 	content:attr(data-month) '›';
-	font-family:'Geist',sans-serif;
+	font-family:'Inter',sans-serif;
 }
 
 .popup .terminal em {
