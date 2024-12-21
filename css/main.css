@@ -1057,7 +1057,7 @@ modal {
 .popup .topper {
     display:block;
     background:var(--accent-two);
-    color:var(--background);
+    color:var(--accent-two-text);
 }
 
 .popup .topper .close {
