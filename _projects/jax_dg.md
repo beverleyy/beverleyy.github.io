@@ -9,7 +9,9 @@ footer: >
   <span>Python</span>
   <span>JAX</span>
   <span>Google Cloud</span>
+creation_date: 2024-12-30 03:04:06
 ---
+
 
 Supervisor: Dr. Matthias Ihme
 

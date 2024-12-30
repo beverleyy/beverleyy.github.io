@@ -16,6 +16,8 @@ footer: >
   <span>SolidWorks</span>
   <span>Datalogging</span>
   <span>C</span>
+creation_date: 2024-12-30 02:44:33
 ---
+
 
 Novel quadrotor VTOL concept to improve transition performance using two forward-canted rotors at the front and two outward-canted rotors at the back.

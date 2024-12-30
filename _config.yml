@@ -19,6 +19,7 @@ exclude:
   - README.md
   - CNAME
   - assets/sass
+  - add_dates.py
   - _projects/template.md
 
 # Plugin settings

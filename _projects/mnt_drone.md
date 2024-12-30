@@ -13,6 +13,8 @@ footer: >
     <span>Pixhawk</span>
     <span>SolidWorks</span>
     <span>C</span>
+creation_date: 2024-12-30 02:00:56
 ---
+
 
 Modified racing drone for autonomous package delivery.

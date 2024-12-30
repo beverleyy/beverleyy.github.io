@@ -7,7 +7,9 @@ category: education
 classes: two edu
 start: '08.2017'
 end: '06.2021'
+creation_date: 2024-12-30 02:44:17
 ---
+
 
 Jul 2017 - Jun 2021\
 CGPA: 4.37 / 5.00 (Honors with Distinction)

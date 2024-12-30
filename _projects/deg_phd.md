@@ -7,7 +7,9 @@ start: '09.2023'
 end: 'present'
 category: education
 classes: one edu d
+creation_date: 2024-12-30 02:49:56
 ---
+
 
 Sep 2023 - present\
 CGPA: 3.91 / 4.3

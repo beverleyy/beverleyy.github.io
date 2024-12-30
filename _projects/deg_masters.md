@@ -7,7 +7,9 @@ start: '08.2021'
 end: '12.2022'
 category: education
 classes: two edu d
+creation_date: 2024-12-30 02:43:52
 ---
+
 
 Aug 2021 - Feb 2023\
 CGPA: 4.63 / 5.00

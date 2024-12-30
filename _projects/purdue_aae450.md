@@ -19,7 +19,9 @@ footer: >
   <span>HTML</span>
   <span>CSS</span>
   <span>Photoshop</span>
+creation_date: 2024-12-30 02:11:37
 ---
+
 
 * Numerical simulation and investigation of propellantless space propulsion technologies and cycler vehicle trajectories to and from Mars using MATLAB/Simulink.
 * Investigate cycler vehicle dynamics and design of controller.
