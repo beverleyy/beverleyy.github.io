@@ -45,5 +45,5 @@ Isotope.js was used as the base to generate a flexible template grid that can be
 * Think about how to make it more flexible/expandable
 * Improve analytics
 * Clean up older code
+* Clean up Jekyll settings
 * Remove jQuery dependence
-* Rewrite the entire code using Jekyll and Sass

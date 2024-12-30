@@ -1,0 +1,33 @@
+# Site settings
+title: Beverley Yeo
+description: Personal site
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "http://beverleyy.github.io" # the base hostname & protocol for your site
+
+# Markdown settings
+markdown: kramdown
+
+# Sass settings
+sass:
+  add_charset: true
+  sass_dir: assets/sass
+  style: :compressed
+
+# Build settings
+exclude:
+  - package.json
+  - README.md
+  - CNAME
+  - assets/sass
+  - _projects/template.md
+
+# Plugin settings
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+
+collections:
+  projects:
+    output: false
+  about:
+    output: false

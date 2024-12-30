@@ -912,6 +912,7 @@ html[data-theme='light'] .grid {
 	color:var(--accent-two-text);
 	font:400 0.8em/15px "Inter",sans-serif;
 	display:none;
+	text-transform:lowercase;
 }
 
 .topper,
