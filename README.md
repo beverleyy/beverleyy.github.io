@@ -2,7 +2,7 @@
 
 This is my personal website and portfolio, built with [Jekyll](https://jekyllrb.com) and hosted on [GitHub Pages](https://pages.github.com). Please see the not-maintained `html_old` branch if the (deprecated) pure static HTML version of the site is of interest.
 
-![demo](https://raw.githubusercontent.com/beverleyy/beverleyy.github.io/assets/images/website/demo.jpg)
+![demo](https://raw.githubusercontent.com/beverleyy/beverleyy.github.io/master/assets/images/website/demo.jpg)
 
 ## Disclaimer
 
