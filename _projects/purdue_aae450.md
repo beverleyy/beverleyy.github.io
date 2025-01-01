@@ -2,7 +2,7 @@
 title: "Project Escalator"
 description: "Senior Spacecraft Design"
 teaser: "/assets/images/research/projectescalator.png"
-category: "engineering"
+category: engineering
 classes: "two alt eng big"
 start: "01.2020"
 end: "05.2020"

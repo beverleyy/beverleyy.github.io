@@ -370,8 +370,8 @@ header h1 span {
     animation:noise-anim 2s infinite linear alternate-reverse;
 }
 
-#proff:hover::before,
-#proff:hover::after {
+header:hover #proff::before,
+header:hover #proff::after {
     opacity:0;
 }
 
@@ -444,6 +444,10 @@ header h1 span {
     margin-top:0;
     margin-bottom:3em;
     color:var(--accent-two);
+}
+
+.sub:last-child {
+    margin-bottom:0;
 }
 
 .sub span {
@@ -558,6 +562,7 @@ html[data-theme='light'] .grid {
 	margin:0;
 	line-height:150%;
 	font-weight:normal;
+	z-index:6;
 }
 
 .grid .item h3 {
@@ -679,7 +684,7 @@ html[data-theme='light'] .grid {
 .item:not(.expand) .front img,
 .carousell img {
     object-fit:cover;
-    z-index:-2;
+    z-index:0;
 }
 
 .big.expand .front img {
@@ -705,7 +710,7 @@ html[data-theme='light'] .grid {
 .item:not(.inactive) .front .overlay {
     -webkit-backdrop-filter:blur(2px);
     backdrop-filter:blur(2px);
-    z-index:-1;
+    z-index:1;
 }
 
 .one .overlay {
@@ -809,7 +814,7 @@ html[data-theme='light'] .grid {
 
 .inactive .front *,
 .carousell img {
-    z-index:0;
+    z-index:5;
     -webkit-transition:
     z-index 0.4s step-start,
         opacity 0.4s ease-in-out,
@@ -820,8 +825,10 @@ html[data-theme='light'] .grid {
         filter 0.4s ease-in-out;
 }
 
+/*
 .inactive:hover h4,
 .inactive:hover h3,
+*/
 .inactive:hover .overlay {
     opacity:0;
     z-index:-1;
@@ -836,10 +843,32 @@ html[data-theme='light'] .grid {
 }
 
 .inactive h4 span {
-	background:var(--accent-one);
-    color:var(--background);
+    background:var(--accent-one-text);
+    color:var(--accent-one);
     font-size:0.85em;
     margin-top:7px;
+    font-weight:bold;
+    transition:0.4s ease-in-out!important;
+}
+
+.inactive h4 span.keyword {
+    background:var(--accent-one);
+    color:var(--accent-one-text);
+}
+
+.inactive h4 span strong {
+    color:inherit;
+    font-weight:900;
+}
+
+.inactive:hover h4 span {
+    background:var(--accent-one);
+    color:var(--accent-one-text);
+}
+
+.inactive:hover h4 span.keyword {
+    background:var(--accent-two);
+    color:var(--accent-two-text);
 }
 
 .inactive h4 span,
@@ -955,14 +984,14 @@ footer {
     position:fixed;
     left:60px;
     bottom:0;
-    z-index:2;
+    z-index:11;
     height:30px;
     font:1.2em/30px "Liquido",sans-serif;
 }
 
 footer span {
     background:var(--accent-one);
-    color:var(--background);
+    color:var(--accent-one-text);
     padding:0 10px;
     margin-right:0.5em;
 }
@@ -973,7 +1002,7 @@ footer span {
     left:0;
     width:100%;
     height:0;
-    z-index:1;
+    z-index:10;
     border-bottom:30px solid var(--background);
 }
 

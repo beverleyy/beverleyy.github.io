@@ -2,30 +2,16 @@
 layout: default
 ---
 
+{% include isotope.html %}
+
+<p class="sub">
+  <span><a href="https://www.a-star.edu.sg/Scholarships/for-graduate-studies/national-science-scholarship-phd">A*STAR NSS (PhD)</a></span>
+  <span><a href="https://fxlab.stanford.edu">Supervised by Prof. Matthias Ihme</a></span>
+  <span>Personal/university/academic projects</span>
+</p>
+
 <section class="grid">
-  {% for item in site.about %}
-  <article class="item {{ item.classes }}">
-    <div class="topper"{% if item.is_default %} style="display:block"{% endif %}>
-      <span>me@beverleyy:~</span>
-      {% if item.close %}
-      <a href="#" class="close" title="close"></a>
-      {% endif %}
-    </div>
-    {% if item.show_title %}
-    <div class="front">
-      <h3>{{ item.title }}</h3>
-      {% if item.description %}
-      <h4>{{ item.description }}</h4>
-      {% endif %}
-    </div>
-    <div class="back"{% if item.is_default %} style="display:block"{% endif %}>
-      {{ item.content }}
-    </div>
-    {% else %}
-    {{ item.content }}
-    {% endif %}
-  </article>
-  {% endfor %}
+  {% include carousell.html %}
 
   {% assign sorted_items = site.projects | sort: "creation_date" | reverse %}
   {% for item in sorted_items %}
