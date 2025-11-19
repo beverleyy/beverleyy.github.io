@@ -33,3 +33,10 @@ plugins:
 collections:
   projects:
     output: false
+  keebs:
+    output: false
+  websites:
+    output: true
+    permalink: /:collection/:title/
+  pcbuilds:
+    output: false

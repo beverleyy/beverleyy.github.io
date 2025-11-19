@@ -4,23 +4,16 @@
   {% include head.html %}
 
   <body>
-
-    {% include top_bar.html %}
+    {% include page_top_bar.html %}
 
     <main class="main" aria-label="Content">
-      {% include header.html %}
-
+      {% include page_header.html %}
       {{ content }}
     </main>
 
-    {% include toggler.html %}
-
-    {% include footer.html %}
-
-    {% include modals.html %}
+    <div class="clouds"></div>
 
     {% include scripts.html %}
-
   </body>
 
 </html>

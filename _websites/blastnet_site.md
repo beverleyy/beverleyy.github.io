@@ -1,8 +1,8 @@
 ---
 title: BLASTNet Website
 teaser: /assets/images/research/blastnet.jpg
-category: engineering
-classes: one alt big eng
+category: development
+classes: one alt big
 start: '11.2024'
 end: '12.2024'
 footer: >
@@ -19,6 +19,7 @@ footer: >
   <span>JavaScript</span>
   <span>Kaggle API</span>
 creation_date: 2024-12-30 03:06:15
+layout: showcase
 ---
 
 
