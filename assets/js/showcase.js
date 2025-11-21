@@ -1,24 +1,18 @@
 (function($) { "use strict";
-	function scrollBanner() {
-	  $(document).on('scroll', function(){
-      var scrollPos = $(this).scrollTop();
-        $('.parallax-fade-top').css({
-          'top' : (scrollPos/2)+'px',
-          'opacity' : 1-(scrollPos/700)
+    function parallaxScroll(){
+        var $header = $('header.full-height'),
+            fullHeight = $header.outerHeight(),
+            scrollPos = $(this).scrollTop();
+        $('header.full-height').css({
+          'margin-bottom': -(scrollPos)+'px',
+          'opacity': 1-(2*scrollPos/fullHeight)
         });
-        $('.parallax-00').css({
-          'top' : (scrollPos/-3.5)+'px'
-        });
-        $('.parallax-01').css({
-          'top' : (scrollPos/-2.8)+'px'
-        });
-        $('.parallax-top-shadow').css({
-          'top' : (scrollPos/-2)+'px'
-        });
-      });    
-	  }
-	scrollBanner();    
-    $(document).ready(function() {  			
+    }    
+    $(window).on('resize', parallaxScroll);
+    $(window).on('load', parallaxScroll);
+    $(document).on('scroll', parallaxScroll); 
+    $(document).ready(function(){  		
+        parallaxScroll();	
         $('.case-study-name').on('mouseenter', function() {
             const index = $(this).index() + 1; // nth-child is 1-based
             $('.case-study-name.active').removeClass('active');
