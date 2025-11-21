@@ -7,6 +7,12 @@
 
 {% for js_file in site.static_files %}
   {% if js_file.path contains '/assets/js/' %}
+    {% if js_file.path contains "buildnews.js" and page.layout != "default" %}
+      {% continue %}
+    {% endif %}
+    {% if js_file.path contains "showcase.js" and page.layout != "showcase" %}
+      {% continue %}
+    {% endif %}
     <script src="{{ js_file.path | relative_url }}"></script>
   {% endif %}
 {% endfor %}
