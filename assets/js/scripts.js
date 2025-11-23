@@ -8,9 +8,9 @@ $(document).ready(function(){
         imagesLoaded:true,
         prevNextButtons:false
     });
-    $(window).on("resize",function(){
-        $f.flickity("resize");
-    });
+    // $(window).on("resize",function(){
+    //     $f.flickity("resize");
+    // });
     $("#pubs").hover(function(){
         $("#right").fadeOut("fast");
         $("#top").addClass("active");

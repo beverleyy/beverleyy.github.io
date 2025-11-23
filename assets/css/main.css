@@ -749,11 +749,17 @@ html[data-theme='light'] .grid {
 
 /* expand */
 
-.grid .item.expand,
+/* .grid .item.expand, */
 .grid .item.inactive:not(.small) {
 	width:27rem;
 	padding:3rem;
 	align-content:flex-start;
+}
+
+.grid .item.expand {
+    width:33rem;
+    padding:3rem;
+    align-content:flex-start;
 }
 
 .grid .item.expand,

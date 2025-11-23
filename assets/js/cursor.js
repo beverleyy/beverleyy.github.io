@@ -1,5 +1,7 @@
 (function($) { "use strict";
-    document.body.style.cursor = 'none';
+    if (window.innerWidth > 1200)
+        document.body.style.cursor = 'none';
+    
     document.getElementsByTagName("body")[0].addEventListener("mousemove", function(n) {
         t.style.left = n.clientX + "px", 
 		t.style.top = n.clientY + "px", 
