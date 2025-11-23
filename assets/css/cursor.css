@@ -1,24 +1,24 @@
 .cursor,
 .cursor2,
 .cursor3 {
-	position: fixed;
-	border-radius: 50%;	
-	transform: translateX(-50%) translateY(-50%);
-	pointer-events: none;
-	left: -100px;
-	top: 50%
+	position:fixed;
+	border-radius:50%;	
+	transform:translateX(-50%) translateY(-50%);
+	pointer-events:none;
+	left:-100px;
+	top:50%;
 }
 
 .cursor {
-	background-color: var(--background);
-	height: 0;
-	width: 0;
-	z-index: 99999;
+	background-color:var(--background);
+	height:0;
+	width:0;
+    z-index:1000000;
 }
 
 .cursor2,.cursor3 {
-	height: 36px;
-	width: 36px;
+	height:36px;
+	width:36px;
 	z-index:99998;
 	-webkit-transition:all 0.1s ease-out;
 	transition:all 0.1s ease-out
@@ -32,14 +32,14 @@
 }
 
 .cursor2 {
-	border: 2px solid var(--accent-one);
-	box-shadow: 0 0 22px var(--shadow);
+	border:2px solid var(--accent-one);
+	box-shadow:0 0 24px var(--shadow);
 }
 
 .cursor2.hover {
 	opacity:0.6;
-	background: var(--accent-one);
-	box-shadow: 0 0 12px var(--shadow);
+	background:var(--accent-one);
+	box-shadow:0 0 12px var(--shadow);
 }
 
 @media screen and (max-width: 1200px){

@@ -20,7 +20,7 @@ permalink: /
       </div>
       <div class="front">
         {% if item.teaser %}
-        <img src="{{ item.teaser }}"/>
+        <img src="{{ item.teaser | img }}">
         <div class="overlay"></div>
         {% endif %}
         <h3>{{ item.title }}</h3>
@@ -57,7 +57,7 @@ permalink: /
         </div>
         <div class="front">
           {% if item.teaser %}
-          <img src="{{ item.teaser }}"/>
+          <img src="{{ item.teaser | img }}"/>
           <div class="overlay"></div>
           {% endif %}
           <h3>{{ item.title }}</h3>

@@ -1,7 +1,7 @@
 ---
 title: "Flow transitions of vortex-ring collisions"
 description: "CN Yang Scholars Programme Undergraduate Research"
-teaser: "/assets/images/research/vortex.png"
+teaser: "research/vortex.png"
 start: "12.2017"
 end: "06.2020"
 category: "research"

@@ -546,9 +546,9 @@ html[data-theme='light'] .grid {
     opacity:1;
 }
 
-.grid .item:not(.expand):not(.inactive){
+/* .grid .item:not(.expand):not(.inactive){
     cursor:pointer;
-}
+} */
 
 .grid .item > *:not(.carousell) {
 	width:100%;
@@ -751,7 +751,7 @@ html[data-theme='light'] .grid {
 
 .grid .item.expand,
 .grid .item.inactive:not(.small) {
-	width:33rem;
+	width:27rem;
 	padding:3rem;
 	align-content:flex-start;
 }

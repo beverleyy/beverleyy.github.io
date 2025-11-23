@@ -1,6 +1,6 @@
 ---
 title: Harmonic Balance Framework for Transonic Aeroelasticity
-teaser: /assets/images/research/bscwp.gif
+teaser: research/bscwp.gif
 category: research
 classes: two alt big res
 start: '08.2022'

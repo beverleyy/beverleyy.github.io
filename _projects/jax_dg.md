@@ -1,6 +1,6 @@
 ---
 title: JAX_DG
-teaser: /assets/images/research/jax_dg_vortex.gif
+teaser: research/jax_dg_vortex.gif
 start: '09.2023'
 end: 'present'
 category: research

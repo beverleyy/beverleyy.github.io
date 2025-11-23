@@ -10,7 +10,32 @@
       {% include page_header.html %}
       <div class="section full-height z-bigger">
         
-        {{ content }}
+        <ul class="case-study-wrapper">
+            {% for item in page.gallery %}
+            <li class="case-study-name">
+              <a href="#" class="hover-target">{{ item.name }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+          
+        <ul class="case-study-images">
+            {% for item in page.gallery %}
+            <li>
+              <div class="img-hero-background">
+                <img src="{{ item.img | img }}">
+              </div>
+          
+              <div class="hero-number-back">{{ forloop.index | prepend: '0' }}</div>
+              <div class="hero-number">{{ forloop.index | prepend: '0' }}</div>
+          
+              {% if forloop.first %}
+              <div class="hero-number-fixed">{{ page.gallery | size | prepend: '0' }}</div>
+              {% endif %}
+          
+              <div class="case-study-title">{{ item.title }}</div>
+            </li>
+            {% endfor %}
+        </ul>
 
       </div>
     </main>

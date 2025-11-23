@@ -1,7 +1,7 @@
 ---
 title: Project title
 description: [Optional] 
-teaser: [Optional] /assets/images/...
+teaser: [Optional] path/to/image/...
 classes: [one two] [alt] [eng res code edu] [big]
 category: [engineering research code education]
 start: 'MM.YYYY'
