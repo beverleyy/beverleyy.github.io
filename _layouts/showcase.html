@@ -22,7 +22,7 @@
             {% for item in page.gallery %}
             <li>
               <div class="img-hero-background">
-                <img src="{{ item.img_path }}/{{ item.img }}">
+                <img src="{{ page.img_path }}/{{ item.img }}">
               </div>
           
               <div class="hero-number-back">{{ forloop.index | prepend: '0' }}</div>
