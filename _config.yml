@@ -30,6 +30,12 @@ plugins:
   - jekyll-feed
   - jekyll-sitemap
 
+defaults:
+  - scope:
+      path: ""
+    values:
+      img_path: "/assets/images"
+
 collections:
   projects:
     output: false
