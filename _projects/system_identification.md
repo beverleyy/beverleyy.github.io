@@ -1,6 +1,6 @@
 ---
 title: "System identification of novel VTOL UAV"
-teaser: "/assets/images/research/sysid.png"
+teaser: "research/sysid.png"
 classes: "two alt res"
 category: "Research"
 start: "06.2019"

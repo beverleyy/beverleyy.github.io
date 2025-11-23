@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: page.lang | default: 'en' }}">
+
+  {% include head.html %}
+
+  <body>
+    {% include page_top_bar.html %}
+
+    <main class="main" aria-label="Content">
+      {% include page_header.html %}
+      <div class="section full-height z-bigger">
+        
+        <ul class="case-study-wrapper">
+            {% for item in page.gallery %}
+            <li class="case-study-name">
+              <a href="#" class="hover-target">{{ item.name }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+          
+        <ul class="case-study-images">
+            {% for item in page.gallery %}
+            <li>
+              <div class="img-hero-background">
+                <img src="{{ item.img | img }}">
+              </div>
+          
+              <div class="hero-number-back">{{ forloop.index | prepend: '0' }}</div>
+              <div class="hero-number">{{ forloop.index | prepend: '0' }}</div>
+          
+              {% if forloop.first %}
+              <div class="hero-number-fixed">{{ page.gallery | size | prepend: '0' }}</div>
+              {% endif %}
+          
+              <div class="case-study-title">{{ item.title }}</div>
+            </li>
+            {% endfor %}
+        </ul>
+
+      </div>
+    </main>
+
+    <div class='cursor' id="cursor"></div>
+    <div class='cursor2' id="cursor2"></div>
+    <div class='cursor3' id="cursor3"></div>
+
+    <div class="clouds"></div>
+
+    {% include scripts.html %}
+    
+    <script src="/assets/js/showcase.js"></script>
+  </body>
+
+</html>

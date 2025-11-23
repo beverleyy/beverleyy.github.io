@@ -1,7 +1,7 @@
 ---
 title: Weird Take-Off and Landing UAV
 description: UAV Senior Design
-teaser: /assets/images/research/waffles.png
+teaser: research/waffles.png
 classes: two alt eng big
 category: engineering
 start: '01.2021'

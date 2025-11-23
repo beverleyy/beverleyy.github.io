@@ -11,6 +11,12 @@
 
   <link rel="stylesheet" href="{{ "/assets/css/liquido.css" | relative_url }}">
   <link rel="stylesheet" href="{{ "/assets/css/main.css" | relative_url }}">
+  <link rel="stylesheet" href="{{ "/assets/css/cursor.css" | relative_url }}">
+
+  {% if page.layout == "showcase" %}
+    <link rel="stylesheet" href="{{ "/assets/css/showcase.css" | relative_url }}">
+  {% endif %}
+
   <link href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" rel="stylesheet">
 
   <link rel="canonical" href="{{ page.url | replace:'index.html','' | absolute_url }}">

@@ -1,0 +1,77 @@
+---
+layout: default
+permalink: /
+---
+
+{% include isotope.html %}
+
+{% include web_header.html %}
+
+<section class="grid" data-category="main">
+  {% include carousell.html %}
+
+  {% if site.projects and site.projects != empty %}
+    {% assign sorted_items = site.projects | sort: "creation_date" | reverse %}
+    {% for item in sorted_items %}
+    <article class="item {{ item.classes }}">
+      <div class="topper">
+        <span>{{ item.category }}@beverleyy:~</span>
+        <a href="#" class="close" title="close"></a>
+      </div>
+      <div class="front">
+        {% if item.teaser %}
+        <img src="{{ item.teaser | img }}">
+        <div class="overlay"></div>
+        {% endif %}
+        <h3>{{ item.title }}</h3>
+        {% if item.description %}
+        <h4>{{ item.description }}</h4>
+        {% endif %}
+      </div>
+      <div class="back">
+        {{ item.content }}
+      </div>
+      {% if item.footer %}
+      <div class="foot">
+        {{ item.footer }}
+      </div>
+      {% endif %}
+      {% assign show_header = item.header | default: true %}
+      <div class="head">
+        {{ item.start }}{% if item.end %} - {{ item.end }}{% endif %}
+        <span style="float:right">{{ item.category }}</span>
+      </div>
+    </article>
+    {% endfor %}
+  {% endif %}
+</section>
+
+<section class="grid" data-category="web">
+  {% if site.websites and site.websites != empty %}
+    {% assign sorted_items = site.websites | sort: "creation_date" | reverse %}
+    {% for item in sorted_items %}
+    <a href="{{ item.url | relative_url }}">
+      <article class="item inactive {{ item.classes }}">
+        <div class="topper">
+          <span>{{ item.category }}@beverleyy:~</span>
+        </div>
+        <div class="front">
+          {% if item.teaser %}
+          <img src="{{ item.teaser | img }}"/>
+          <div class="overlay"></div>
+          {% endif %}
+          <h3>{{ item.title }}</h3>
+          {% if item.description %}
+          <h4>{{ item.description }}</h4>
+          {% endif %}
+        </div>
+        {% assign show_header = item.header | default: true %}
+        <div class="head">
+          {{ item.start }}{% if item.end %} - {{ item.end }}{% endif %}
+          <span style="float:right">{{ item.category }}</span>
+        </div>
+      </article>
+    </a>
+    {% endfor %}
+  {% endif %}
+</section>

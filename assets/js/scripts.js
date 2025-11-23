@@ -18,7 +18,12 @@ $(document).ready(function(){
         $("#top").removeClass("active");
         $("#right").fadeIn("fast");
     });
-    var $container = $(".grid");
+    var $allgrids = $('.grid:not([data-category="main"])').isotope({
+        itemSelector:'.item',
+        layoutMode:'packery',
+        percentPosition:true
+    });
+    var $container = $('.grid[data-category="main"]');
     var filters = {}; 
     var $grid = $container.isotope({
         itemSelector: ".item",
@@ -70,6 +75,7 @@ $(document).ready(function(){
     });
     function shuffle(){
         $grid.isotope('layout');
+        $allgrids.isotope('layout');
     }
     // var now = new Date().getHours();
     // if (now >= 20 || now < 8){
@@ -117,4 +123,30 @@ $(document).ready(function(){
         }
     });
     // $("#pubslist .terminal ul li").addClass("ti-caret-right");
+
+    const $root = $(document.documentElement);
+    const $items = $(".toggler li");
+    document.documentElement.style.setProperty('--active', 0);
+    $items.each(function(index) {
+        const $item = $(this);
+        const tab = $item.children("a:first-child").attr('href').replace('#', '');
+
+        this.style.setProperty('--i', index);
+        if (index === 0){
+            $item.attr("data-active", true);
+            $('[data-category]').hide();
+            $('[data-category="'+tab+'"]').show();
+        } 
+        $item.on("click", function (e) {
+            document.documentElement.style.setProperty('--active', index);
+            $root.find("[data-active]").removeAttr("data-active");
+            $item.attr("data-active", true);
+            e.preventDefault();
+
+            // switch contents
+            $('[data-category]').hide();
+            $('[data-category="'+tab+'"]').show();
+            shuffle();
+        });
+    });
 });

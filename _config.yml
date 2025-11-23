@@ -33,3 +33,8 @@ plugins:
 collections:
   projects:
     output: false
+  websites:
+    output: true
+    permalink: /:collection/:title/
+  builds:
+    output: false

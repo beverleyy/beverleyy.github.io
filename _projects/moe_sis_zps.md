@@ -1,6 +1,6 @@
 ---
 title: Kiddy CFD
-teaser: /assets/images/research/sis_zps_result.jpg
+teaser: research/sis_zps_result.jpg
 start: '09.2022'
 end: '04.2023'
 category: code

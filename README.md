@@ -51,6 +51,7 @@ A readable modern geometric typeface is chosen for the body font and paired with
 * Isotope - [Metafizzy](https://isotope.metafizzy.co/)
 * Normalizer - [Nicolas Gallagher and Jonathan Neal](https://necolas.github.io/normalize.css/)
 * Papa Parse - [Matt Holt](https://www.papaparse.com)
+* Showcase slider - [Ivan Grozdic](https://codepen.io/ig_design/pen/GPVXVx)
 
 ## To-do
 * Better differentiation between personal/hobby projects and actual work
