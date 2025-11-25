@@ -951,7 +951,7 @@ html[data-theme='light'] .grid {
 
 .topper,
 .foot span,
-.foot a:hover {
+.foot a:not(.dead):hover {
     background:var(--accent-two);
     color:var(--accent-two-text);
 }

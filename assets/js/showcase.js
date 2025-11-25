@@ -4,8 +4,8 @@
             fullHeight = $header.outerHeight(),
             scrollPos = $(this).scrollTop();
         $('header.full-height').css({
-          'margin-bottom': -(scrollPos)+'px',
-          'opacity': 1-(2*scrollPos/fullHeight)
+          'margin-bottom': -Math.min(fullHeight,scrollPos)+'px',
+          'opacity': 1-Math.min(1,2*scrollPos/fullHeight)
         });
     }    
     $(window).on('resize', parallaxScroll);

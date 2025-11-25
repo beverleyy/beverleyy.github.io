@@ -20,7 +20,7 @@
         e.classList.remove("hover"), i.classList.remove("hover")
     }
     s();
-    for (var r = document.querySelectorAll(".hover-target, a, .item:not(.inactive)"), a = r.length - 1; a >= 0; a--) {
+    for (var r = document.querySelectorAll(".hover-target, a:not(.dead), .item:not(.inactive)"), a = r.length - 1; a >= 0; a--) {
         o(r[a])
     }
     function o(t) {
