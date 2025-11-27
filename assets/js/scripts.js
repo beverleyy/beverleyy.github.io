@@ -18,18 +18,15 @@ $(document).ready(function(){
         $("#top").removeClass("active");
         $("#right").fadeIn("fast");
     });
-    var $allgrids = $('.grid:not([data-category="main"])').isotope({
+    var isotope_options = {
         itemSelector:'.item',
         layoutMode:'packery',
         percentPosition:true
-    });
+    };
+    var $allgrids = $('.grid:not([data-category="main"])').isotope(isotope_options);
     var $container = $('.grid[data-category="main"]');
     var filters = {}; 
-    var $grid = $container.isotope({
-        itemSelector: ".item",
-        layoutMode: 'packery',
-        percentPosition: true 
-    });
+    var $grid = $container.isotope(isotope_options);
     $(".option-set a").on("click",function(e) {
         var $this = $(this); 
         var filterAttr = "data-filter-value";
@@ -147,6 +144,11 @@ $(document).ready(function(){
             $('[data-category]').hide();
             $('[data-category="'+tab+'"]').show();
             shuffle();
+
+            if (tab!='main')
+                $("#proff").parent('h1').attr('data-text',"'s playground")
+            else
+                $("#proff").parent('h1').attr('data-text',' Yeo')
         });
     });
 });

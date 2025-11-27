@@ -4,7 +4,7 @@ teaser: research/jax_dg_vortex.gif
 start: '09.2023'
 end: 'present'
 category: research
-classes: one alt res big
+classes: one res big
 footer: >
   <span>Python</span>
   <span>JAX</span>

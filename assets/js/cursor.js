@@ -1,29 +1,63 @@
-(function($) { "use strict";
-    if (window.innerWidth > 1200)
+(function($) {
+    "use strict";
+
+    // Hide default cursor
+    if (window.innerWidth > 1200) {
         document.body.style.cursor = 'none';
-    
-    document.getElementsByTagName("body")[0].addEventListener("mousemove", function(n) {
-        t.style.left = n.clientX + "px", 
-		t.style.top = n.clientY + "px", 
-		e.style.left = n.clientX + "px", 
-		e.style.top = n.clientY + "px", 
-		i.style.left = n.clientX + "px", 
-		i.style.top = n.clientY + "px"
+    }
+
+    // Init cursor
+    const cursor = document.querySelector(".cursor");
+
+    let mouseX = 0, mouseY = 0;
+    let currentX = 0, currentY = 0;
+
+    document.documentElement.addEventListener("mousemove", (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
     });
-    var t = document.getElementById("cursor"),
-        e = document.getElementById("cursor2"),
-        i = document.getElementById("cursor3");
-    function n(t) {
-        e.classList.add("hover"), i.classList.add("hover")
+
+    function animate() {
+        currentX += (mouseX - currentX);
+        currentY += (mouseY - currentY);
+
+        cursor.style.left = currentX + "px";
+        cursor.style.top = currentY + "px";
+
+        requestAnimationFrame(animate);
     }
-    function s(t) {
-        e.classList.remove("hover"), i.classList.remove("hover")
+    animate();
+
+    // Helper to toggle classes
+    function toggleClass(className, add = true) {
+        cursor.classList[add ? "add" : "remove"](className);
     }
-    s();
-    for (var r = document.querySelectorAll(".hover-target, a:not(.dead), .item:not(.inactive)"), a = r.length - 1; a >= 0; a--) {
-        o(r[a])
+
+    // Handlers
+    const handlers = {
+        hover:       { in: () => toggleClass("hover", true),       out: () => toggleClass("hover", false) },
+        activeLink:  { in: () => toggleClass("active_link", true), out: () => toggleClass("active_link", false) },
+        activeMenu:  { in: () => toggleClass("active_menu", true), out: () => toggleClass("active_menu", false) }
+    };
+    Object.values(handlers).forEach(h => h.out());
+
+    // Hovers changes the cursor
+    function attachHoverListeners(elements, type) {
+        elements.forEach(el => {
+            el.addEventListener("mouseover", handlers[type].in);
+            el.addEventListener("mouseout", handlers[type].out);
+        });
     }
-    function o(t) {
-        t.addEventListener("mouseover", n), t.addEventListener("mouseout", s)
-    }               
-})(jQuery); 
+
+    attachHoverListeners(document.querySelectorAll(".hover-target, a:not(.dead), .item:not(.inactive)"), "hover");
+    attachHoverListeners(document.querySelectorAll('a:not([href^="#"])'), "activeLink");
+
+    // #top active menu only when it has .active
+    document.querySelectorAll('#top').forEach(el => {
+        el.addEventListener("mouseover", () => {
+            if (el.classList.contains("active")) handlers.activeMenu.in();
+        });
+        el.addEventListener("mouseout", handlers.activeMenu.out);
+    });
+
+})(jQuery);

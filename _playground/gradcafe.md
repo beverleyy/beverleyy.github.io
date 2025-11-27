@@ -1,8 +1,8 @@
 ---
 title: Gradcafe Data Analysis
 start: '01.2023'
-category: code
-classes: two pro
+category: development
+classes: two
 footer: >
   <a href="https://github.com/beverleyy/gradcafe_analysis" title="Github Repository">
     <i class="ti ti-brand-github"></i>
@@ -11,8 +11,8 @@ footer: >
   <span>Pandas</span>
   <span>Jupyter</span>
 creation_date: 2024-12-30 02:44:33
+published: false
 ---
-
 
 #### Anxiety relief project while waiting for graduate school admissions results
 

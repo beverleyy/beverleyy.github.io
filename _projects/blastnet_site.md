@@ -2,8 +2,8 @@
 title: BLASTNet Website
 teaser: research/blastnet.png
 layout: showcase
-category: development
-classes: one alt big
+category: engineering
+classes: one eng alt big
 start: '11.2024'
 end: '12.2024'
 footer: >
@@ -40,6 +40,7 @@ gallery:
   - name: mobile
     img: website/blastnet/blastnet_devices.png
     title: works on all devices
+published: true
 ---
 
 **BLASTNet (Bearable Large Accessible Scientific Training Network-of-Datasets)** is a repository of high-fidelity reacting- and non-reacting fluid flow simulation data maintained by the [FX Lab](https://fxlab.stanford.edu).

@@ -1,11 +1,17 @@
 <ul id="pubs">
-  <li>09.2023 - present | PhD Student, Stanford Mech. Engin.</li>
-  <li>08.2022 - 08.2023 | Research Engineer, A*STAR IHPC</li>
-  <li>07.2021 - 07.2022 | Project Officer, NTU MAE</li>
-  <li>09.2020 - 04.2021 | Project Manager Intern, NTU MAE</li>
-  <li>06.2020 - 08.2020 | Intern, Temasek Laboratories@NUS</li>
-  <li class="link"><a href="#latest" class="popp blink-right">
-    <i class="ti ti-rss"></i>
-      <span>Latest News</span>
-  </a></li>
+  {% if page.layout == "showcase" %}
+    <li>Beverley Yeo | {{ page.collection }}</li>
+    <li class="link"><a href="/" class="blink-right">
+      <i class="ti ti-arrow-left"></i>
+        <span>Return home</span>
+    </a></li>
+  {% else %}
+    {% for item in site.data.timeline %}
+      <li>{{ item.start }} - {{ item.end }} | {{ item.text }}</li>
+    {% endfor %}
+    <li class="link"><a href="#latest" class="popp blink-right">
+      <i class="ti ti-rss"></i>
+        <span>Latest News</span>
+    </a></li>
+  {% endif %}
 </ul>

@@ -3,7 +3,7 @@ title: CuPyQuail
 teaser: research/cupyquail.png
 start: '05.2025'
 category: research
-classes: two alt res big
+classes: two res big
 footer: >
   <a href="http://github.com/beverleyy/quail_cupy" title="Github Repository">
     <i class="ti ti-brand-github"></i>

@@ -3,7 +3,7 @@ title: "Project Escalator"
 description: "Senior Spacecraft Design"
 teaser: "research/projectescalator.png"
 category: engineering
-classes: "two alt eng big"
+classes: "two eng big"
 start: "01.2020"
 end: "05.2020"
 footer: >

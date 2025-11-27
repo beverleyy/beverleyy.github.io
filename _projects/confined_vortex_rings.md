@@ -3,7 +3,7 @@ title: Flow behavior of confined vortex-rings
 description: Final Year Project
 teaser: research/cvr.png
 category: research
-classes: two alt res big
+classes: two res big
 start: '12.2020'
 end: '06.2021'
 footer: >

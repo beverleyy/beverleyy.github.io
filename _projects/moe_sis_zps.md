@@ -1,10 +1,10 @@
 ---
-title: Kiddy CFD
+title: Scientists in Schools 
 teaser: research/sis_zps_result.jpg
 start: '09.2022'
 end: '04.2023'
-category: code
-classes: two alt big pro
+category: education
+classes: two big
 footer: >
   <a href="http://github.com/beverleyy/SIS_ZPS" title="Github Repository">
     <i class="ti ti-brand-github"></i>
@@ -13,7 +13,6 @@ footer: >
   <span>Jupyter</span>
 creation_date: 2024-12-30 02:44:26
 ---
-
 
 #### A*STAR/MOE Scientists-in-Schools Program
 

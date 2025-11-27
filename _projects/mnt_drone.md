@@ -1,7 +1,7 @@
 ---
 title: "Mini Delivery Quadcopter"
 description: "Making & Tinkering - Drone Inc."
-classes: "two alt eng big"
+classes: "two eng big"
 category: "engineering"
 start: "06.2018"
 end: "08.2018"

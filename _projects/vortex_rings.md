@@ -5,7 +5,7 @@ teaser: "research/vortex.png"
 start: "12.2017"
 end: "06.2020"
 category: "research"
-classes: "two alt res"
+classes: "two res"
 footer: >
   <a href="https://doi.org/10.1007/s12650-020-00666-7" title="Journal paper">
     <i class="ti ti-link"></i>

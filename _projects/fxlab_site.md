@@ -2,8 +2,8 @@
 layout: showcase
 title: FXLab Website
 teaser: website/fxlab/fxlab.png
-category: development
-classes: one alt big
+category: engineering
+classes: one alt big eng
 start: '11.2024'
 end: '01.2025'
 footer: >
@@ -40,6 +40,7 @@ gallery:
     title: works on all devices
     
 creation_date: 2024-12-30 03:06:15
+published: true
 ---
 
 As part of the [FX Lab](https://fxlab.stanford.edu), I worked with my labmate James to redesign the lab website. I added the Stanford brand bar and footer to the al-folio Jekyll theme, redesigned many of the content pages, and wrote a new template for the research page.

@@ -2,7 +2,7 @@
 title: Investigating Galilean invariance in CFD
 description: Masters Thesis
 teaser: research/jfm_graphicalAbstract.jpg
-classes: two alt res big
+classes: two res big
 category: research
 start: '05.2021'
 end: '12.2022'

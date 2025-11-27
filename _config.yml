@@ -3,6 +3,7 @@ title: Beverley Yeo
 description: Personal site
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "http://beverleyy.github.io" # the base hostname & protocol for your site
+unpublished: true
 
 # Markdown settings
 markdown: kramdown
@@ -35,12 +36,23 @@ defaults:
       path: ""
     values:
       img_path: "/assets/images"
+  - scope:
+      type: projects
+      path: ""
+    values:
+      page_generated: false
+      published: false
+  - scope:
+      type: playground
+      path: ""
+    values:
+      page_generated: true
+      published: true
 
 collections:
   projects:
-    output: false
-  websites:
     output: true
     permalink: /:collection/:title/
-  builds:
-    output: false
+  playground:
+    output: true
+    permalink: /:collection/:title/
