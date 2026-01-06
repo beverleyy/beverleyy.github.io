@@ -60,7 +60,7 @@ html[data-theme='dark'] {
 
 @keyframes softblink {
 	from {
-		opacity: 0.95;
+		opacity: 0.9;
 	}
 	to {
 		opacity: 1;
@@ -506,9 +506,9 @@ html[data-theme='light'] .grid {
     aspect-ratio:auto;
 }
 
-.inactive .front {
+/* .inactive .front {
     height:100%;
-}
+} */
 
 .carousell {
     overflow:hidden;

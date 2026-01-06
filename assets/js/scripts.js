@@ -6,7 +6,8 @@ $(document).ready(function(){
         autoPlay:3000,
         wrapAround:true,
         imagesLoaded:true,
-        prevNextButtons:false
+        prevNextButtons:false,
+	adaptiveHeight:false
     });
     // $(window).on("resize",function(){
     //     $f.flickity("resize");

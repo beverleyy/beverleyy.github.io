@@ -23,6 +23,7 @@ CGPA: 3.90 / 4.3
 * <b>Fall 2024:</b> <a title="Swimming: Beginner">PHYSWELL 50</a>
 * <b>Winter 2025:</b> <a title="Numerical Methods for Compressible Flows">AA 214</a>, <a title="Finite Element Analysis">ME 335A</a>, <a title="Swimming: Advanced Beginner">PHYSWELL 51</a>
 * <b>Spring 2025:</b> <a title="Introduction to Parallel Computing">ME 339</a>, <a title="Swimming: Intermediate">PHYSWELL 52</a>
+* <b>Winter 2026:</b> <a title="Asymptotic Methods for Computational Engineering">ME 405</a>
 
 #### Teaching Assistantship
 * <b>Fall 2025:</b> <a title="Gas-Turbine Design Analysis">ME 257/357</a>
