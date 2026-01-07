@@ -506,9 +506,10 @@ html[data-theme='light'] .grid {
     aspect-ratio:auto;
 }
 
-/* .inactive .front {
+.inactive .front {
     height:100%;
-} */
+    min-height:100%;
+}
 
 .carousell {
     overflow:hidden;
@@ -537,6 +538,10 @@ html[data-theme='light'] .grid {
 
 .flickity-page-dots {
     bottom:1em;
+}
+
+.flickity-viewport {
+    min-height:100%;
 }
 
 .flickity-page-dots .dot {
@@ -1366,7 +1371,7 @@ modal {
     }
 
     .grid .item.long {
-        width:25rem;
+        width:26rem;
         height:12rem;
         padding:1rem 2rem;
     }

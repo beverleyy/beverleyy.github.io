@@ -7,11 +7,8 @@ $(document).ready(function(){
         wrapAround:true,
         imagesLoaded:true,
         prevNextButtons:false,
-	adaptiveHeight:false
+        adaptiveHeight:true
     });
-    // $(window).on("resize",function(){
-    //     $f.flickity("resize");
-    // });
     $("#pubs").hover(function(){
         $("#right").fadeOut("fast");
         $("#top").addClass("active");
@@ -146,10 +143,11 @@ $(document).ready(function(){
             $('[data-category="'+tab+'"]').show();
             shuffle();
 
-            if (tab!='main')
+            if (tab!='main'){
                 $("#proff").parent('h1').attr('data-text',"'s playground")
-            else
+            } else {
                 $("#proff").parent('h1').attr('data-text',' Yeo')
+            }
         });
     });
 });
