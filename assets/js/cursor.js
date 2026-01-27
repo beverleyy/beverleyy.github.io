@@ -60,4 +60,15 @@
         el.addEventListener("mouseout", handlers.activeMenu.out);
     });
 
+    // Mousedown event listeners
+    document.addEventListener("mousedown", () => {
+        cursor.classList.add("held");
+    });
+    document.addEventListener("mouseup", () => {
+        cursor.classList.remove("held");
+    });
+    document.addEventListener("mouseleave", () => {
+        cursor.classList.remove("held");
+    });
+
 })(jQuery);

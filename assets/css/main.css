@@ -1,39 +1,39 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
 
 html[data-theme='light'] {
-    --text:#3b353c;
-    --background:#f0eee9;
-    --accent-one:#8ace00;
-    --accent-two:#79797f;
-    --accent-two-text:#f0eee9;
-    --accent-one-text:#3b353c;
-    --transparency:rgba(240,238,233,0.8);
-    --shadow:rgba(205,198,189,0.3);
-    --menu:#8ace00;
-    --menu-text:#28282d;
-    --header:#8ace00;
-    --item-one:#8ace00;
-    --item-two:#cdc6bd;
-    --item-one-text:#3b353c;
-    --item-two-text:#3b353c; 
+    --text:#202020;
+    --background:#ffffff;
+    --accent-one:#004c90;
+    --accent-two:#ee202d;
+    --accent-two-text:#fffce9;
+    --accent-one-text:#fffce9;
+    --transparency:rgba(255,255,255,0.8);
+    --shadow:rgba(89,89,89,0.5);
+    --menu:#7a0015;
+    --menu-text:#fffce9;
+    --header:#004c90;
+    --item-one:#f2f2f2;
+    --item-two:#f2f2f2;
+    --item-one-text:#7a0015;
+    --item-two-text:#004c90; 
 }
 
 html[data-theme='dark'] {
-    --text:#cdc6bd;
-    --background:#28282d;
-    --accent-one:#8ace00;
-    --accent-two:#79797f;
-    --accent-two-text:#f0eee9;
-    --accent-one-text:#3b353c;
-    --transparency:rgba(40,40,45,0.5);
-    --shadow:rgba(205,198,189,0.3);
-    --menu:#8ace00;
-    --menu-text:#28282d;
-    --header:#8ace00;
-    --item-one:#8ace00;
-    --item-two:#3b353c;
-    --item-one-text:#3b353c;
-    --item-two-text:#cdc6bd;
+    --text:#f2f2f2;
+    --background:#202020;
+    --accent-two:#004c90;
+    --accent-one:#ee202d;
+    --accent-two-text:#fffce9;
+    --accent-one-text:#fffce9;
+    --transparency:rgba(32,32,32,0.5);
+    --shadow:rgba(89,89,89,0.3);
+    --menu:#7a0015;
+    --menu-text:#fffce9;
+    --header:#ee202d;
+    --item-one:#7a0015;
+    --item-two:#2d2c2f;
+    --item-one-text:#fffce9;
+    --item-two-text:#fffce9; 
 }
 
 @supports (not (-webkit-backdrop-filter:none)) and (not (backdrop-filter:none)) {
@@ -110,8 +110,9 @@ a:hover {
     text-transform:uppercase;
     background:var(--accent-one);
     color:var(--accent-one-text);
-    font:1rem/1.5rem "Liquido",sans-serif;
-    letter-spacing:0.1em;
+    font:1rem/1.5rem "Ailerons",sans-serif;
+    letter-spacing:-0.2em;
+    /* letter-spacing:0.1em; */
 }
 
 /* selection */
@@ -151,7 +152,7 @@ a:hover {
 
 #pubs {
     overflow:hidden;
-    max-height:30px;
+    max-height:45px;
     padding:0 60px;
     margin:10px 0;
     font-size:0.8em;
@@ -161,6 +162,21 @@ a:hover {
     list-style:none;
     transition:0.4s ease-in-out;
     color:var(--text);
+    position:relative;
+    display:block;
+}
+
+#pubs::before {
+    content:"";
+    display:block;
+    background:var(--accent-one);
+    width:calc(100% - 240px);
+    position:absolute;
+    border-top:3px solid var(--accent-one);
+    border-bottom:3px solid var(--accent-two);
+    bottom:0;
+    height:2px;
+    background:var(--background);
 }
 
 #pubs li {
@@ -192,7 +208,7 @@ a:hover {
 
 #pubs:hover {
     max-height:200px;
-    padding-bottom:10px;
+    padding-bottom:1em;
     margin-bottom:0;
 }
 
@@ -208,10 +224,10 @@ a:hover {
 #right a {
     display:inline-block;
     vertical-align:middle;
-    height:32px;
-    padding:4px 5px;
-    line-height:32px;
-    font-size:32px;
+    height:30px;
+    padding:2px 5px 8px;
+    line-height:30px;
+    font-size:30px;
 } 
 
 #right a:hover {
@@ -288,9 +304,10 @@ header {
 }
 
 header h1 {
-    font:normal normal 8rem/8rem "Liquido",sans-serif;
-    margin:0 0 3rem;
+    font:normal normal 9rem/9rem "Ailerons",sans-serif;
+    margin:0 -1.5rem 3rem;
     color:var(--accent-two);
+    letter-spacing:-3rem;
 }
 
 header h1::after {
@@ -393,7 +410,6 @@ header:hover #proff::after {
     overflow:hidden;
     list-style-type:none;
     text-transform:uppercase;
-    /* font:normal 2em/100% "Liquido",sans-serif; */
     font-weight:300;
     font-size:1.5em;
     line-height:100%;
@@ -570,8 +586,8 @@ html[data-theme='light'] .grid {
 .grid .item h3,
 .grid .item h4 {
 	position:absolute;
-	right:0.5em;
-	left:0.5em;
+	right:1em;
+	left:1em;
 	margin:0;
 	line-height:150%;
 	font-weight:normal;
@@ -579,10 +595,13 @@ html[data-theme='light'] .grid {
 }
 
 .grid .item h3 {
-	bottom:0.5em;
-    font:2em/100% "Liquido",sans-serif;
-    text-transform:capitalize;
+	bottom:1em;
 	text-align:right;
+    /* font:2em/100% "Ailerons",sans-serif;
+    text-transform:capitalize;
+    letter-spacing:-0.575rem; */
+    font:700 1.4em/100% "Inter",sans-serif;
+    text-transform:capitalize;
 }
 
 .grid .item h4 {
@@ -1020,7 +1039,8 @@ footer {
     bottom:0;
     z-index:11;
     height:30px;
-    font:1.2em/30px "Liquido",sans-serif;
+    font:1.4em/30px "Ailerons",sans-serif;
+    letter-spacing:-0.4rem;
 }
 
 footer span {

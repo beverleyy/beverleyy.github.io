@@ -1,9 +1,6 @@
 <nav id="right">
   {% if page.layout == "showcase" %}
     <a href="/" class="home" title="back"><i class="ti ti-arrow-left"></i></a>
-  {% else %}
-    <a href="#latest" class="popp" title="Latest News"><i class="ti ti-rss"></i></a>
-    <a href="#pubslist" class="popp" title="Publications"><i class="ti ti-news"></i></a>
   {% endif %}
 
   {% for link in site.data.links %}

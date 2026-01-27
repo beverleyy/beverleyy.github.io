@@ -13,6 +13,10 @@
   	background:transparent;
 }
 
+.cursor.held {
+	border-color:var(--accent-two);
+}
+
 .cursor.hover {
   	transform: scale(2) translate(-25%, -25%);
   	opacity:0.6;

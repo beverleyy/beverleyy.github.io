@@ -6,6 +6,9 @@ end: 'present'
 category: research
 classes: one res big
 footer: >
+  <a href="http://github.com/beverleyy/1DJaxDG" title="Github Repository">
+    <i class="ti ti-brand-github"></i>
+  </a>
   <span>Python</span>
   <span>JAX</span>
   <span>Google Cloud</span>

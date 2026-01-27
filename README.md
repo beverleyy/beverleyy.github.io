@@ -13,20 +13,19 @@ This is my personal website and portfolio, built with [Jekyll](https://jekyllrb.
 
 ### Colors
 
-The base palette consists of warm neutral Pantone colors. A splash of brat green is added to give some Personality and Character to the website.
+In an effort to create and maintain a more ~professional~ image, the brat green scheme has been replaced by sharp blues and reds from the [USPS x Pantone color palette](https://www.pantone.com/usps250).
 
-| Color        | Hex code                                                           |
-| ------------ | ------------------------------------------------------------------ |
-| Anthracite   | ![#28282d](https://placehold.co/16x16/28282d/28282d.png) `#28282d` |
-| Obsidian     | ![#3b353c](https://placehold.co/16x16/3b353c/3b353c.png) `#3b353c` |
-| Night Owl    | ![#79797f](https://placehold.co/16x16/79797f/79797f.png) `#79797f` |
-| Moonbeam     | ![#cdc6bd](https://placehold.co/16x16/cdc6bd/cdc6bd.png) `#cdc6bd` |
-| Cloud Dancer | ![#f0eee9](https://placehold.co/16x16/f0eee9/f0eee9.png) `#f0eee9` |
-| Brat Green   | ![#8ace00](https://placehold.co/16x16/8ace00/8ace00.png) `#8ace00` |
+| Color           | Hex code                                                           |
+| --------------- | ------------------------------------------------------------------ |
+| Jet Black       | ![#2d2c2f](https://placehold.co/16x16/2d2c2f/2d2c2f.png) `#2d2c2f` |
+| USPS Blue       | ![#004c90](https://placehold.co/16x16/004c90/004c90.png) `#004c90` |
+| Carrier Red     | ![#7a0015](https://placehold.co/16x16/7a0015/7a0015.png) `#7a0015` |
+| Airmail Red     | ![#ee202d](https://placehold.co/16x16/ee202d/ee202d.png) `#ee202d` |
+| Parchment White | ![#fffdea](https://placehold.co/16x16/fffdea/fffdea.png) `#fffdea` |
 
 ### Typography
 
-A readable modern geometric typeface is chosen for the body font and paired with a splash of funky fluid accents. 
+A readable modern geometric typeface is chosen for the body font and paired with a splash of retro aviation.
 
 ### Layout and features
 
@@ -39,7 +38,7 @@ A readable modern geometric typeface is chosen for the body font and paired with
 ## Credits
 
 ### Fonts, Icons
-* Liquido - [Alessandro Comotti](https://www.behance.net/gallery/22155251/LIQUIDO-free-font)
+* Ailerons - [Adilson Gonzales](https://www.behance.net/gallery/25541553/Ailerons-Typeface)
 * Inter - [Google Fonts](https://fonts.google.com/specimen/Inter)
 * Icon font - [Tabler icons](https://tabler-icons.io/)
 
