@@ -40,7 +40,7 @@ main {
 	z-index:200;
 }
 
-.section-title-wrap{
+.section-title-wrap {
 	position: absolute;
     top: 50%;
     left: 0;
@@ -54,10 +54,15 @@ main {
     position:static;
     bottom:auto;
     left:auto;
-    font-size:1.6em;
-    font-family:"Liquido","Inter",sans-serif;
-    letter-spacing:1px;
+    font-size:1.5em;
+    font-family:"Ailerons",sans-serif;
+    letter-spacing:-0.4rem;
     padding-left:0;
+}
+
+.section-title-wrap .foot span,
+.section-title-wrap .foot a {
+	padding-right:12px;
 }
 
 .section-title-wrap a.home {
@@ -79,7 +84,10 @@ main {
 	margin: 0;
 	padding: 0;
     color:var(--accent-one);
-    font-weight:900;
+	margin:0 -2rem 3rem;
+	font-size:9rem;
+	line-height:9rem;
+	letter-spacing:-3rem;
 }
 
 .padding-top-bottom {
@@ -266,8 +274,10 @@ html[data-theme='dark']  .case-study-images {
 	opacity: 0;
 	font-size: 100px;
 	font-weight: 900;
-    font-family:"Liquido","Inter",sans-serif;
+    font-family:"Ailerons",sans-serif;
 	line-height: 1;
+	letter-spacing:-2rem;
+	padding-right:2rem;
     color:var(--transparency);
 	z-index: 1000;
 	-webkit-transition: all 300ms linear;

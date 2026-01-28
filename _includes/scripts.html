@@ -3,13 +3,9 @@
 <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/metafizzy/isotope-packery@master/packery-mode.pkgd.min.js"></script>
 <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.2.0/papaparse.min.js"></script>
 
 {% for js_file in site.static_files %}
   {% if js_file.path contains '/assets/js/' %}
-    {% if js_file.path contains "webnews.js" and page.layout != "default" %}
-      {% continue %}
-    {% endif %}
     {% if js_file.path contains "showcase.js" and page.layout != "showcase" %}
       {% continue %}
     {% endif %}

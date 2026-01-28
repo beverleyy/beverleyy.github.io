@@ -1,17 +1,9 @@
 <ul id="pubs">
   {% if page.layout == "showcase" %}
     <li>Beverley Yeo | {{ page.collection }}</li>
-    <li class="link"><a href="/" class="blink-right">
-      <i class="ti ti-arrow-left"></i>
-        <span>Return home</span>
-    </a></li>
   {% else %}
-    {% for item in site.data.timeline %}
-      <li>{{ item.start }} - {{ item.end }} | {{ item.text }}</li>
-    {% endfor %}
-    <li class="link"><a href="#latest" class="popp blink-right">
-      <i class="ti ti-rss"></i>
-        <span>Latest News</span>
-    </a></li>
+    <li id="title">
+      <h1 data-text=" Yeo"><span id="proff" data-text="Beverley">Beverley</span></h1>
+    </li>
   {% endif %}
 </ul>

@@ -5,6 +5,9 @@ end: 'present'
 category: research
 classes: one res
 footer: >
+  <a href="https://arc.aiaa.org/doi/10.2514/6.2026-0376" title="Journal paper">
+    <i class="ti ti-link"></i>
+  </a>
   <span>Python</span>
   <span>JAX</span>
 creation_date: 2025-10-30 03:04:06

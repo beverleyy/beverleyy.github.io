@@ -9,12 +9,21 @@ $(document).ready(function(){
         prevNextButtons:false,
         adaptiveHeight:true
     });
-    $("#pubs").hover(function(){
-        $("#right").fadeOut("fast");
-        $("#top").addClass("active");
-    },function(){
-        $("#top").removeClass("active");
-        $("#right").fadeIn("fast");
+    // $("#pubs").hover(function(){
+    //     $("#right").fadeOut("fast");
+    //     $("#top").addClass("active");
+    // },function(){
+    //     $("#top").removeClass("active");
+    //     $("#right").fadeIn("fast");
+    // });
+    $(window).on('scroll',function(){
+        var scroll = $(window).scrollTop(),
+            nav = $("#d").offset().top;
+        if(scroll>nav){
+            $("#title").fadeIn();
+        } else {
+            $("#title").fadeOut();
+        }
     });
     var isotope_options = {
         itemSelector:'.item',
@@ -93,31 +102,6 @@ $(document).ready(function(){
         $(this).children("i").toggleClass("ti-flame ti-flame-off");
         e.preventDefault();
     });
-    $(".popp").on("click",function(e){
-        e.preventDefault();
-        var id=$(this).attr("href");
-        $('body').addClass('noscroll');
-        $('modal'+id).fadeIn(function(){
-            $('modal'+id).css("display","flex");
-        });
-    });
-    $(".popup .topper .close").on("click",function(e){
-        $('body').removeClass('noscroll');
-        $(this).parents("modal").fadeOut();
-        e.preventDefault();
-    });
-    $("modal").on("click",function(e){
-        if($(e.target).is($(this).find('*'))){
-            e.preventDefault();
-            return;
-        }
-        else {
-            $('body').removeClass('noscroll');
-            $(this).fadeOut();
-            e.preventDefault();
-        }
-    });
-    // $("#pubslist .terminal ul li").addClass("ti-caret-right");
 
     const $root = $(document.documentElement);
     const $items = $(".toggler li");

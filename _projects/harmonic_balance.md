@@ -1,5 +1,5 @@
 ---
-title: Harmonic Balance Framework for Transonic Aeroelasticity
+title: Transonic Aeroelasticity with Harmonic Balance
 teaser: research/bscwp.gif
 category: research
 classes: two big res
