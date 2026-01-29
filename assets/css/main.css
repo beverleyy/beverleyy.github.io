@@ -213,7 +213,7 @@ li#title {
 #title h1 {
     font:normal normal 2rem/2rem "Ailerons",sans-serif;
     letter-spacing:-0.6rem;
-    margin:0 -0.4rem 0;
+    margin:0 -0.3rem 0;
     color:var(--accent-two);
 }
 
@@ -730,7 +730,7 @@ html[data-theme='light'] .grid {
     margin:calc(25px - 3rem) -3rem calc(25px - 1em);
     max-height:12rem;
     object-fit:cover;
-    border-bottom:1px solid;
+    border-bottom:3px solid;
 }
 
 .one.big.expand .front img {
@@ -792,7 +792,7 @@ html[data-theme='light'] .grid {
 }
 
 .back a {
-	border-bottom:1px solid var(--accent-one);
+	border-bottom:3px solid var(--accent-one);
 }
 
 .grid .item:not(.expand):not(.inactive):hover,
@@ -980,7 +980,7 @@ html[data-theme='light'] .grid {
 	content:"";
 	width:3px;
 	height:3px;
-	border:1px solid var(--accent-one);
+	border:2px solid var(--accent-one);
 	display:inline-block;
 	vertical-align:middle;
 	box-sizing:border-box;
@@ -1252,7 +1252,8 @@ footer span {
         max-width:100%;
     }
 
-    header h1 {
+    header h1,
+    .section-title-wrap h1 {
         font-size:6rem;
         line-height:100%;
         letter-spacing:-2rem;
@@ -1300,7 +1301,8 @@ footer span {
     }
 
     .grid .item h3 {
-	    font-size:1.6em;
+	    font-size:1.2em;
+        word-break:break-word;
     }
 
     .grid .item.expand.big h3 {
@@ -1390,12 +1392,6 @@ footer span {
 }
 
 @media screen and (max-width:420px){
-    header h1,
-    header h1 span i {
-        font-size:6rem;
-        line-height:100%;
-    }
-
     header h2,
     .iso ul {
         font-size:1.2rem;
@@ -1411,8 +1407,16 @@ footer span {
         display:block;
     }
 
+    .grid .item h3 {
+        font-size:1em;
+    }
+
     .grid .item h3 span {
         font-size:0.75rem;
+    }
+
+    .grid .item:not(.long) .front h4 {
+        font-size:0.6rem;
     }
 
     .grid .item.expand h4 {
@@ -1422,12 +1426,18 @@ footer span {
 
 @media screen and (max-width:360px){
     header h1,
-    header h1 span i {
+    .section-title-wrap h1 {
         font-size:4rem;
         line-height:4rem;
+        letter-spacing:-1rem;
+        margin:0 -0.75rem 3rem;
     }
 
     .iso ul li{
         float:none;
+    }
+
+    #pubs {
+        display:none;
     }
 }

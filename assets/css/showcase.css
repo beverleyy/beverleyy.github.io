@@ -383,3 +383,37 @@ html[data-theme='dark']  .case-study-images {
 		font-size: 100px;
 	} 
 }
+
+@media screen and (max-height:720px){
+	.section-title-wrap {
+		position:relative;
+		top:auto;
+		left:auto;
+		transform:none;
+		margin:100px 0;
+	}
+}
+
+@media screen and (max-width:600px){
+    .section-title-wrap h1 {
+        font-size:6rem;
+        line-height:100%;
+        letter-spacing:-2rem;
+        margin:0 -1rem 3rem;
+    }
+}
+
+@media screen and (max-width:360px){
+    .section-title-wrap h1 {
+        font-size:4rem;
+        line-height:4rem;
+        letter-spacing:-1rem;
+        margin:0 -0.75rem 3rem;
+    }
+}
+
+@media screen and (max-width:420px){
+	.case-study-wrapper {
+		bottom:100%;
+	}
+}
