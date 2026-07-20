@@ -1,0 +1,59 @@
+---
+import Icon from './Icon.astro';
+
+interface Props {
+  sections: { id: string; label: string; alt: string }[];
+}
+
+const { sections } = Astro.props;
+---
+<header class="site-header">
+
+  <div class="header-row">
+    <a class="mark mono" href="#top" aria-label="Beverley Yeo — home">
+      <Icon name="mark" class="mark-icon" />
+      N1998BY
+    </a>
+
+    <div class="header-icons">
+      <button
+        type="button"
+        class="theme-toggle"
+        id="themeToggle"
+        aria-label="Switch between night and day panel lighting"
+        aria-pressed="false"
+      >
+        <Icon name="moon" class="theme-toggle-icon theme-toggle-icon--moon" />
+        <span class="theme-toggle-track" aria-hidden="true">
+          <span class="theme-toggle-thumb"></span>
+        </span>
+        <Icon name="sun" class="theme-toggle-icon theme-toggle-icon--sun" />
+      </button>
+
+      <a href="https://github.com/beverleyy" target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="GitHub">
+        <Icon name="github" />
+      </a>
+      <a href="https://www.linkedin.com/in/beverleyy" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn">
+        <Icon name="linkedin" />
+      </a>
+      <a href="https://scholar.google.com/citations?user=wDYVyhYAAAAJ" target="_blank" rel="noopener noreferrer" aria-label="Google Scholar" title="Google Scholar">
+        <Icon name="scholar" />
+      </a>
+      <a href="https://orcid.org/0000-0003-0600-8065" target="_blank" rel="noopener noreferrer" aria-label="ORCID" title="ORCID">
+        <Icon name="orcid" />
+      </a>
+      <a href="mailto:yeokwb@stanford.edu" aria-label="Email" title="Email">
+        <Icon name="email" />
+      </a>
+    </div>
+  </div>
+
+  <nav class="header-nav">
+    <ul>
+      {sections.slice(1).map((s) => (
+        <li><a href={`#${s.id}`} data-id={s.id}>{s.label}</a></li>
+      ))}
+    </ul>
+  </nav>
+
+</header>

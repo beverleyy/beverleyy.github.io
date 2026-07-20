@@ -1,0 +1,118 @@
+---
+// Single source of truth for every icon used on the site. Each entry is the
+// *inner* markup of an <svg> (paths/circles/etc.) plus its native viewBox —
+// add a new icon here once, then reference it anywhere with <Icon name="..." />
+// instead of re-pasting path data at every use site.
+const ICONS = {
+  mark: {
+    viewBox: "0 0 32 32",
+    inner: `
+      <circle class="mark-dial" cx="16" cy="16" r="14.5" fill="none" stroke="currentColor" stroke-width="1" opacity="0.45"/>
+      <g stroke="currentColor" stroke-width="1" opacity="0.55">
+        <line x1="16" y1="1.5" x2="16" y2="4.5"/>
+        <line x1="16" y1="27.5" x2="16" y2="30.5"/>
+        <line x1="1.5" y1="16" x2="4.5" y2="16"/>
+        <line x1="27.5" y1="16" x2="30.5" y2="16"/>
+        <line x1="6.4" y1="6.4" x2="8.2" y2="8.2"/>
+        <line x1="23.8" y1="23.8" x2="25.6" y2="25.6"/>
+        <line x1="6.4" y1="25.6" x2="8.2" y2="23.8"/>
+        <line x1="23.8" y1="8.2" x2="25.6" y2="6.4"/>
+      </g>
+      <g transform="translate(7.6,7.6) scale(0.7)">
+        <path d="M21 16v-2l-8-5V3.5C13 2.67 12.33 2 11.5 2S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2.5 1.5V22l4-1 4 1v-1.5L13 19v-5.5l8 2.5Z" fill="currentColor"/>
+      </g>
+    `,
+  },
+  moon: {
+    viewBox: "0 0 16 16",
+    inner: `<path d="M13.5 9.5A6 6 0 1 1 6.5 2.5a4.6 4.6 0 1 0 7 7Z" fill="currentColor"/>`,
+  },
+  sun: {
+    viewBox: "0 0 16 16",
+    inner: `
+      <circle cx="8" cy="8" r="3.4" fill="currentColor"/>
+      <g stroke="currentColor" stroke-width="1.2" stroke-linecap="round">
+        <line x1="8" y1="0.5" x2="8" y2="2.3"/>
+        <line x1="8" y1="13.7" x2="8" y2="15.5"/>
+        <line x1="0.5" y1="8" x2="2.3" y2="8"/>
+        <line x1="13.7" y1="8" x2="15.5" y2="8"/>
+        <line x1="2.6" y1="2.6" x2="3.9" y2="3.9"/>
+        <line x1="12.1" y1="12.1" x2="13.4" y2="13.4"/>
+        <line x1="2.6" y1="13.4" x2="3.9" y2="12.1"/>
+        <line x1="12.1" y1="3.9" x2="13.4" y2="2.6"/>
+      </g>
+    `,
+  },
+  github: {
+    viewBox: "0 0 24 24",
+    inner: `<path d="M12 2.5c-5.25 0-9.5 4.02-9.5 8.98 0 3.97 2.75 7.34 6.56 8.53.48.09.66-.2.66-.44 0-.22-.01-.94-.01-1.71-2.67.49-3.36-.62-3.58-1.19-.12-.29-.63-1.19-1.08-1.43-.37-.19-.9-.67-.01-.68.84-.01 1.44.75 1.64 1.06.96 1.56 2.49 1.12 3.1.86.1-.68.38-1.12.68-1.38-2.38-.26-4.88-1.15-4.88-5.09 0-1.12.41-2.05 1.08-2.77-.11-.26-.47-1.31.1-2.73 0 0 .88-.27 2.88 1.05a10.2 10.2 0 0 1 5.25 0c2-1.32 2.88-1.05 2.88-1.05.57 1.42.21 2.47.1 2.73.68.72 1.08 1.64 1.08 2.77 0 3.95-2.51 4.82-4.9 5.08.39.32.73.96.73 1.94 0 1.4-.01 2.53-.01 2.87 0 .24.17.54.67.44 3.8-1.2 6.55-4.56 6.55-8.53 0-4.96-4.25-8.98-9.5-8.98Z" fill="currentColor"/>`,
+  },
+  linkedin: {
+    viewBox: "0 0 24 24",
+    inner: `
+      <rect x="2.5" y="2.5" width="19" height="19" rx="3.5" fill="none" stroke="currentColor" stroke-width="1.6"/>
+      <circle cx="7.6" cy="8" r="1.2" fill="currentColor"/>
+      <rect x="6.6" y="10.6" width="2" height="7" fill="currentColor"/>
+      <path d="M11.2 10.6h2v1.15c.48-.78 1.38-1.35 2.5-1.35 2.1 0 2.9 1.38 2.9 3.62v4.58h-2v-4.15c0-1.05-.38-1.83-1.4-1.83-.85 0-1.42.58-1.65 1.15-.09.2-.1.48-.1.77v4.06h-2Z" fill="currentColor"/>
+    `,
+  },
+  scholar: {
+    viewBox: "0 0 24 24",
+    inner: `
+      <path d="M12 3 1.5 9l3.3 1.87V16l7.2 4 7.2-4v-5.13L21 9.9V16h1.5V9L12 3Z" fill="currentColor"/>
+      <path d="M6 12.1V16c0 1.93 2.69 3.5 6 3.5s6-1.57 6-3.5v-3.9l-6 3.33-6-3.33Z" fill="currentColor" opacity="0.82"/>
+    `,
+  },
+  orcid: {
+    viewBox: "0 0 24 24",
+    inner: `
+      <circle cx="12" cy="12" r="9.25" fill="none" stroke="currentColor" stroke-width="1.6"/>
+      <circle cx="8.35" cy="7.9" r="1.05" fill="currentColor"/>
+      <rect x="7.55" y="10.3" width="1.6" height="6.9" fill="currentColor"/>
+      <path d="M11.2 10.3h2.55c2.5 0 4.05 1.55 4.05 3.45s-1.55 3.45-4.05 3.45H11.2Zm1.6 1.4v4.1h.95c1.65 0 2.5-.98 2.5-2.05s-.85-2.05-2.5-2.05Z" fill="currentColor"/>
+    `,
+  },
+  email: {
+    viewBox: "0 0 24 24",
+    inner: `
+      <rect x="2.5" y="4.5" width="19" height="15" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.6"/>
+      <path d="M3.5 6.2 12 13 20.5 6.2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    `,
+  },
+  pdf: {
+    viewBox: "0 0 24 24",
+    inner: `
+      <path d="M6 2.5h8.5L19 7v13.5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1v-17a1 1 0 0 1 1-1Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+      <path d="M14 2.5V7h5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+      <path d="M8 12h8M8 15h8M8 18h5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+    `,
+  },
+  link: {
+    viewBox: "0 0 24 24",
+    inner: `
+      <path d="M13 5H6.5A1.5 1.5 0 0 0 5 6.5v11A1.5 1.5 0 0 0 6.5 19h11a1.5 1.5 0 0 0 1.5-1.5V11" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M9 5h9v9M18 5 7 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    `,
+  },
+  arrow: {
+    viewBox: "0 0 24 24",
+    inner: `<path d="M4 12h15M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>`,
+  },
+  chevron: {
+    viewBox: "0 0 24 24",
+    inner: `<path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>`,
+  },
+};
+
+interface Props {
+  name: keyof typeof ICONS;
+  class?: string;
+}
+
+const { name, class: className = "icon" } = Astro.props;
+const icon = ICONS[name];
+if (!icon) {
+  throw new Error(`Icon: unknown icon name "${name}"`);
+}
+---
+<svg class={className} viewBox={icon.viewBox} aria-hidden="true" set:html={icon.inner} />

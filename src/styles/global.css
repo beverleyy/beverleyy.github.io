@@ -1,0 +1,233 @@
+@import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+:root {
+  /* Color tokens — United Airlines livery: deep Rhapsody Blue fuselage
+     stripe, gold globe on the tailfin, white, with a small dose of
+     warning-light red for anything actively "live." Committing to the
+     gold and red here (rather than flattening them toward blue/silver)
+     is what keeps this from reading as another blue-on-navy SaaS theme. */
+  /* NIGHT (default) — night-flight cockpit panel */
+  --ink: #00101f;          /* background — night-flight cockpit navy */
+  --panel: #051a33;        /* raised surface — instrument bezel */
+  --panel-line: rgba(150, 178, 216, 0.16);
+  --fg: #eef2fa;           /* primary text */
+  --muted: #92a6c6;        /* secondary text */
+  --faint: #4c6088;        /* tertiary / captions */
+  --flow-cold: #2955d6;    /* suction / low-pressure — Rhapsody Blue, brightened for dark bg */
+  --flow-hot: #6fa3f5;     /* pressure / high-speed — lighter livery blue */
+  --united-blue: #0033a0;  /* official United "Rhapsody Blue" */
+  --united-navy: #002244;  /* official United dark navy */
+  --amber: #d6b95a;        /* instrument highlight — gold, off the tailfin globe */
+  --red: #dc4b3f;          /* warning-light red — used sparingly, for anything "live" */
+  --rivet: rgba(238, 242, 250, 0.5);
+  --scrim: rgba(0, 16, 31, 0.92);
+
+  --serif: 'Newsreader', 'Iowan Old Style', Georgia, serif;
+  --sans: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --measure: 40rem;
+  --edge: 6vw;
+}
+
+/* The altimeter tape is fixed-width (not viewport-scaled) and only shows
+   above the 900px breakpoint where the header nav collapses into it. A
+   pure vw-based edge shrinks below the tape's footprint on laptop-width
+   screens, letting it cover right-aligned text — so floor the edge at a
+   fixed rem value in that range, sized to clear the tape with a bit of
+   breathing room. Below 900px the tape is hidden, so the edge stays
+   purely vw-based and mobile layouts don't lose extra width for nothing. */
+@media (min-width: 901px) {
+  :root {
+    --edge: max(6vw, 9.5rem);
+  }
+}
+
+/* DAY — same instrument panel, lit from daylight rather than backlit at
+   night. Structure, spacing, and accents are identical; only the tokens
+   change, so every gauge, bezel, and readout repaints automatically. */
+html[data-theme='light'] {
+  --ink: #f3ede0;
+  --panel: #fffcf5;
+  --panel-line: rgba(59, 42, 8, 0.14);
+  --fg: #241c0f;
+  --muted: #5b5340;
+  --faint: #837a62;
+  --flow-cold: #0033a0;
+  --flow-hot: #3f6fe0;
+  --amber: #a8790a;
+  --red: #b3352b;
+  --rivet: rgba(36, 28, 15, 0.24);
+  --scrim: rgba(243, 237, 224, 0.92);
+}
+
+* { box-sizing: border-box; }
+
+html {
+  background: var(--ink);
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+}
+
+body {
+  margin: 0;
+  background: var(--ink);
+  color: var(--fg);
+  font-family: var(--sans);
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+
+h1, h2, h3 {
+  font-family: var(--serif);
+  font-weight: 500;
+  line-height: 1.15;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+p { margin: 0 0 1em; color: var(--muted); }
+p:last-child { margin-bottom: 0; }
+
+a {
+  color: var(--fg);
+  text-decoration: none;
+}
+
+.mono {
+  font-family: var(--mono);
+  letter-spacing: 0.02em;
+}
+
+.eyebrow {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--faint);
+  display: flex;
+  align-items: center;
+  gap: 0.6em;
+}
+
+.eyebrow::before {
+  content: '';
+  width: 1.6em;
+  height: 1px;
+  background: var(--amber);
+  opacity: 0.55;
+  display: inline-block;
+}
+
+.readout {
+  font-family: var(--mono);
+  font-size: 0.74rem;
+  letter-spacing: 0.05em;
+  color: var(--amber);
+  border: 1px solid rgba(150, 178, 216, 0.35);
+  border-radius: 2px;
+  padding: 0.3em 0.65em 0.3em 0.55em;
+  background: rgba(63, 111, 224, 0.08);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05), inset 0 0 0 1px rgba(0, 0, 0, 0.2);
+}
+
+.readout::before {
+  content: '';
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--flow-cold);
+  box-shadow: 0 0 4px 1px rgba(63, 111, 224, 0.85);
+  flex: none;
+}
+
+/* Instrument-panel bezel: brushed-metal corner rivets, used on any
+   surface meant to read as a physical gauge or console panel rather
+   than a flat web card. Corner keywords keep the rivets fixed to the
+   edges regardless of the element's own width/height. */
+.instrument-panel {
+  position: relative;
+  background-image:
+    radial-gradient(circle, var(--rivet) 0%, var(--rivet) 45%, transparent 48%),
+    radial-gradient(circle, var(--rivet) 0%, var(--rivet) 45%, transparent 48%),
+    radial-gradient(circle, var(--rivet) 0%, var(--rivet) 45%, transparent 48%),
+    radial-gradient(circle, var(--rivet) 0%, var(--rivet) 45%, transparent 48%);
+  background-repeat: no-repeat;
+  background-size: 5px 5px;
+  background-position:
+    9px 9px,
+    calc(100% - 9px) 9px,
+    9px calc(100% - 9px),
+    calc(100% - 9px) calc(100% - 9px);
+}
+
+.tick-rule {
+  border: none;
+  border-top: 1px solid var(--panel-line);
+  position: relative;
+  margin: 0;
+}
+
+/* Viewfinder/HUD corner brackets: four open L-marks instead of a boxed
+   border, so a panel reads as something framed in a targeting reticle
+   rather than a rounded SaaS card. Rendered on a ::after overlay (not
+   the element's own background) so the brackets always paint on top
+   of any opaque children — a thumbnail image, for instance — instead
+   of being hidden behind them. --bracket-color can be overridden per
+   element (e.g. on :hover) to brighten the brackets without touching
+   anything else. */
+.bracket-frame {
+  --bracket-color: var(--amber);
+  position: relative;
+}
+
+.bracket-frame::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(color-mix(in srgb, var(--bracket-color) 75%, transparent), color-mix(in srgb, var(--bracket-color) 75%, transparent)),
+    linear-gradient(color-mix(in srgb, var(--bracket-color) 75%, transparent), color-mix(in srgb, var(--bracket-color) 75%, transparent)),
+    linear-gradient(color-mix(in srgb, var(--bracket-color) 75%, transparent), color-mix(in srgb, var(--bracket-color) 75%, transparent)),
+    linear-gradient(color-mix(in srgb, var(--bracket-color) 75%, transparent), color-mix(in srgb, var(--bracket-color) 75%, transparent)),
+    linear-gradient(color-mix(in srgb, var(--bracket-color) 75%, transparent), color-mix(in srgb, var(--bracket-color) 75%, transparent)),
+    linear-gradient(color-mix(in srgb, var(--bracket-color) 75%, transparent), color-mix(in srgb, var(--bracket-color) 75%, transparent)),
+    linear-gradient(color-mix(in srgb, var(--bracket-color) 75%, transparent), color-mix(in srgb, var(--bracket-color) 75%, transparent)),
+    linear-gradient(color-mix(in srgb, var(--bracket-color) 75%, transparent), color-mix(in srgb, var(--bracket-color) 75%, transparent));
+  background-repeat: no-repeat;
+  background-size:
+    16px 1.5px, 1.5px 16px,
+    16px 1.5px, 1.5px 16px,
+    16px 1.5px, 1.5px 16px,
+    16px 1.5px, 1.5px 16px;
+  background-position:
+    left 7px top 7px, left 7px top 7px,
+    right 7px top 7px, right 7px top 7px,
+    left 7px bottom 7px, left 7px bottom 7px,
+    right 7px bottom 7px, right 7px bottom 7px;
+  transition: background-image 0.2s ease;
+}
+
+::selection {
+  background: var(--flow-cold);
+  color: var(--ink);
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--flow-cold);
+  outline-offset: 3px;
+  border-radius: 2px;
+}

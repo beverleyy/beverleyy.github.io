@@ -1,0 +1,31 @@
+---
+interface Job {
+  year: string;
+  title: string;
+  department?: string;
+  org: string;
+}
+
+interface Props {
+  employment: Job[];
+}
+
+const { employment } = Astro.props;
+---
+<section id="employment" class="employment" data-tape-section data-tape-label="Flight Hours">
+  <p class="eyebrow section-eyebrow">Flight Hours</p>
+
+  <ul class="employment-list">
+    {employment.map((job) => (
+      <li>
+        <span class="employment-year mono">{job.year}</span>
+        <span class="employment-body">
+          <span class="employment-title">{job.title}</span>
+          <span class="employment-org">
+            {job.department && <>{job.department} · </>}{job.org}
+          </span>
+        </span>
+      </li>
+    ))}
+  </ul>
+</section>

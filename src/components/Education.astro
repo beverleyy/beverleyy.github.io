@@ -1,0 +1,77 @@
+---
+import Icon from './Icon.astro';
+
+interface Degree {
+  level: string;
+  degree: string;
+  school: string;
+  years: string;
+  focus: string;
+  supervisors?: string[];
+  courses?: string[];
+  teaching?: string[];
+  honors?: string[];
+}
+
+interface Props {
+  education: Degree[];
+}
+
+const { education } = Astro.props;
+---
+<section id="education" class="education" data-tape-section data-tape-label="Ground School">
+  <p class="eyebrow section-eyebrow">Ground School</p>
+
+  <ul class="edu-list">
+    {education.map((edu) => (
+      <li class="edu-item bracket-frame">
+        <details>
+          <summary class="edu-summary">
+            <span class="edu-level mono">{edu.level}</span>
+            <span class="edu-heading">
+              <span class="edu-degree">{edu.degree}</span>
+              <span class="edu-school mono">{edu.school}</span>
+            </span>
+            <span class="edu-years mono">{edu.years}</span>
+            <Icon name="chevron" class="edu-chevron" />
+          </summary>
+
+          <div class="edu-details">
+            {edu.focus && <p class="edu-focus">{edu.focus}</p>}
+
+            {edu.supervisors && edu.supervisors.length > 0 && (
+              <p class="edu-supervisors mono">Advised by {edu.supervisors.join(', ')}</p>
+            )}
+
+            {edu.courses && edu.courses.length > 0 && (
+              <div class="edu-group">
+                <span class="edu-group-label mono">Coursework</span>
+                <ul class="edu-group-list">
+                  {edu.courses.map((c) => <li>{c}</li>)}
+                </ul>
+              </div>
+            )}
+
+            {edu.teaching && edu.teaching.length > 0 && (
+              <div class="edu-group">
+                <span class="edu-group-label mono">Teaching</span>
+                <ul class="edu-group-list">
+                  {edu.teaching.map((t) => <li>{t}</li>)}
+                </ul>
+              </div>
+            )}
+
+            {edu.honors && edu.honors.length > 0 && (
+              <div class="edu-group">
+                <span class="edu-group-label mono">Honors</span>
+                <ul class="edu-group-list">
+                  {edu.honors.map((h) => <li>{h}</li>)}
+                </ul>
+              </div>
+            )}
+          </div>
+        </details>
+      </li>
+    ))}
+  </ul>
+</section>

@@ -1,0 +1,45 @@
+---
+import Icon from './Icon.astro';
+
+interface Build {
+  title: string;
+  blurb: string;
+  image: string;
+  link?: { label: string; href: string };
+}
+
+interface Props {
+  builds: Build[];
+}
+
+const { builds } = Astro.props;
+---
+<section id="fun" class="fun" data-tape-section data-tape-label="Off Duty">
+  <p class="eyebrow section-eyebrow">Off Duty</p>
+
+  <ul class="build-grid">
+    {builds.map((build) => (
+      <li class="build-tile bracket-frame">
+        <div class="build-photo">
+          <span class="build-photo-fallback mono" aria-hidden="true">ADD<br />PHOTO</span>
+          <img
+            src={build.image}
+            alt={build.title}
+            loading="lazy"
+            onerror="this.style.display='none'"
+          />
+        </div>
+        <div class="build-body">
+          <h3>{build.title}</h3>
+          <p>{build.blurb}</p>
+          {build.link && (
+            <a class="build-link" href={build.link.href} target="_blank" rel="noopener noreferrer" aria-label={`${build.title} — ${build.link.label}`}>
+              <Icon name="link" />
+              <span>{build.link.label}</span>
+            </a>
+          )}
+        </div>
+      </li>
+    ))}
+  </ul>
+</section>

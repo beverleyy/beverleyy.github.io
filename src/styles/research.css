@@ -1,0 +1,192 @@
+    .strip-list {
+        list-style:none;
+        margin:0;
+        padding:0;
+        display:flex;
+        flex-direction:column;
+        gap:1rem;
+    }
+
+    .strip {
+        display:flex;
+        align-items:stretch;
+        gap:1.1rem;
+        border-left:3px solid var(--faint);
+        background-color:var(--panel);
+        overflow:hidden;
+        transition:transform 0.2s ease;
+    }
+
+    .strip--current {
+        --bracket-color:var(--red);
+        border-left-color:var(--red);
+    }
+
+    .strip--landed {
+        opacity:0.8;
+    }
+
+    .strip--landed:hover {
+        opacity:1;
+    }
+
+    .strip:hover {
+        --bracket-color:var(--flow-cold);
+        transform:translateX(3px);
+    }
+
+    .strip-thumb {
+        position:relative;
+        flex:none;
+        width:168px;
+        background:var(--ink);
+        border-right:1px solid var(--panel-line);
+        overflow:hidden;
+    }
+
+    /* real photos vary in size, so let them crop to fill the thumb rather
+       than assuming a fixed source size - same fallback pattern as the
+       hero portrait and the off-duty gallery */
+    .strip-thumb img {
+        position:absolute;
+        inset:0;
+        width:100%;
+        height:100%;
+        object-fit:cover;
+        display:block;
+    }
+
+    .strip-thumb-fallback {
+        position:absolute;
+        inset:0;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        text-align:center;
+        font-size:0.6rem;
+        line-height:1.4;
+        letter-spacing:0.06em;
+        color:var(--faint);
+    }
+
+    .strip-supervisors {
+        margin:-0.2rem 0 0;
+        font-size:0.72rem;
+        color:var(--faint);
+    }
+
+    .strip-main {
+        display:flex;
+        flex-direction:column;
+        gap:0.5rem;
+        padding:0.9rem 1.1rem 0.9rem 0;
+        flex:1;
+        min-width:0;
+    }
+
+    .strip--no-thumb .strip-main {
+        padding-left:1.3rem;
+    }
+
+    .strip-top {
+        display:flex;
+        align-items:baseline;
+        flex-wrap:wrap;
+        gap:0.7rem;
+    }
+
+    .strip-callsign {
+        font-size:0.7rem;
+        color:var(--flow-cold);
+        letter-spacing:0.05em;
+    }
+
+    .strip-top h3 {
+        flex:1;
+        min-width:10rem;
+        margin:0;
+        font-size:1.02rem;
+        color:var(--fg);
+    }
+
+    .strip-status {
+        font-size:0.62rem;
+        text-transform:uppercase;
+        letter-spacing:0.08em;
+        padding:0.15rem 0.55rem;
+        border-radius:999px;
+        color:var(--muted);
+        background:color-mix(in srgb, var(--muted) 12%, transparent);
+    }
+
+    .strip--current .strip-status {
+        color:var(--red);
+        background:color-mix(in srgb, var(--red) 16%, transparent);
+    }
+
+    .strip-alt {
+        margin-left:auto;
+        font-size:0.68rem;
+        color:var(--faint);
+    }
+
+    .strip-blurb {
+        margin:0;
+        font-size:0.86rem;
+        color:var(--fg);
+        opacity:0.82;
+    }
+
+    .strip-tags {
+        display:flex;
+        flex-wrap:wrap;
+        align-items:center;
+        gap:0.5rem;
+        margin-top:0.1rem;
+    }
+
+    .strip-link {
+        display:inline-flex;
+        align-items:center;
+        gap:0.32rem;
+        font-family:var(--mono);
+        font-size:0.68rem;
+        color:var(--muted);
+        border-radius:999px;
+        background:color-mix(in srgb, var(--muted) 10%, transparent);
+        padding:0.22rem 0.6rem 0.22rem 0.5rem;
+        transition:color 0.2s ease, background-color 0.2s ease;
+    }
+
+    .strip-link:hover {
+        color:var(--flow-cold);
+        background:color-mix(in srgb, var(--flow-cold) 16%, transparent);
+    }
+
+    .strip-link .icon {
+        width:0.8rem;
+        height:0.8rem;
+    }
+
+
+
+    @media (max-width: 720px) {
+        .strip {
+            flex-direction:column;
+        }
+
+        .strip-thumb {
+            width:100%;
+            height:128px;
+            border-right:none;
+            border-bottom:1px solid var(--panel-line);
+        }
+
+        .strip-main {
+            padding:0.8rem 1rem 0.9rem;
+        }
+
+        .strip-alt {
+            margin-left:0;
+        }
+    }

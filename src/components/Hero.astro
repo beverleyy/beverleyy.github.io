@@ -1,0 +1,120 @@
+---
+import Icon from './Icon.astro';
+---
+<section class="hero">
+
+  <div class="hero-field" aria-hidden="true">
+    <svg class="hero-field-desktop" viewBox="0 0 1200 640" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <linearGradient id="flow" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="#2955d6" />
+          <stop offset="100%" stop-color="#e8c17a" />
+        </linearGradient>
+        <clipPath id="heroPortraitClip">
+          <circle cx="818" cy="316" r="47" />
+        </clipPath>
+      </defs>
+
+      <!-- streamlines for flow past a cylinder -->
+      <g class="streamlines" fill="none" stroke-linecap="round" stroke-width="2">
+        <path d="M -49.9 238.2 L 52.6 238.2 L 155.2 238.1 L 278.3 237.8 L 380.8 237.5 L 483.4 236.8 L 606.5 234.5 L 627.0 233.7 L 672.0 231.1 L 679.0 230.5 L 686.1 229.8 L 693.1 229.1 L 700.1 228.3 L 707.1 227.5 L 713.2 226.7 L 720.2 225.8 L 727.2 224.7 L 734.2 223.7 L 741.2 222.5 L 748.3 221.4 L 754.3 220.4 L 761.3 219.3 L 768.3 218.2 L 775.4 217.2 L 782.4 216.3 L 789.4 215.5 L 796.4 214.9 L 802.4 214.4 L 809.5 214.1 L 816.5 214.0 L 823.5 214.0 L 830.5 214.3 L 837.6 214.7 L 843.6 215.2 L 850.6 215.9 L 857.6 216.8 L 864.7 217.7 L 871.7 218.8 L 878.7 219.9 L 885.7 221.0 L 891.7 222.0 L 898.8 223.2 L 905.8 224.3 L 912.8 225.3 L 919.8 226.3 L 926.9 227.3 L 932.9 228.0 L 939.9 228.8 L 946.9 229.5 L 954.0 230.2 L 961.0 230.8 L 968.0 231.4 L 1025.4 234.4 L 1033.6 234.7 L 1066.5 235.6 L 1107.5 236.3 L 1140.3 236.7 L 1181.3 237.1 L 1214.2 237.3 L 1255.2 237.5" stroke="#95a8cc" opacity="0.35" />
+        <path d="M -49.9 285.9 L 52.6 285.9 L 155.2 285.8 L 278.3 285.7 L 380.8 285.6 L 483.4 285.3 L 606.5 284.3 L 627.0 283.9 L 672.0 282.2 L 679.0 281.8 L 686.1 281.3 L 693.1 280.8 L 700.1 280.1 L 707.1 279.3 L 713.2 278.4 L 720.2 277.3 L 727.2 275.8 L 734.2 274.1 L 741.2 271.9 L 748.3 269.4 L 754.3 267.0 L 761.3 264.0 L 768.3 261.0 L 775.4 258.0 L 782.4 255.4 L 789.4 253.1 L 796.4 251.2 L 802.4 250.1 L 809.5 249.2 L 816.5 248.8 L 823.5 249.0 L 830.5 249.6 L 837.6 250.8 L 843.6 252.2 L 850.6 254.3 L 857.6 256.8 L 864.7 259.7 L 871.7 262.7 L 878.7 265.8 L 885.7 268.7 L 891.7 270.9 L 898.8 273.2 L 905.8 275.1 L 912.8 276.7 L 919.8 278.0 L 926.9 279.0 L 932.9 279.8 L 939.9 280.5 L 946.9 281.1 L 954.0 281.6 L 961.0 282.1 L 968.0 282.4 L 1025.4 284.2 L 1033.6 284.3 L 1066.5 284.8 L 1107.5 285.1 L 1140.3 285.3 L 1181.3 285.4 L 1214.2 285.5 L 1255.2 285.6" stroke="url(#flow)" opacity="0.9" />
+        <path d="M -49.9 346.1 L 52.6 346.1 L 155.2 346.2 L 278.3 346.3 L 380.8 346.4 L 483.4 346.7 L 606.5 347.7 L 627.0 348.1 L 672.0 349.8 L 679.0 350.2 L 686.1 350.7 L 693.1 351.2 L 700.1 351.9 L 707.1 352.7 L 713.2 353.6 L 720.2 354.7 L 727.2 356.2 L 734.2 357.9 L 741.2 360.1 L 748.3 362.6 L 754.3 365.0 L 761.3 368.0 L 768.3 371.0 L 775.4 374.0 L 782.4 376.6 L 789.4 378.9 L 796.4 380.8 L 802.4 381.9 L 809.5 382.8 L 816.5 383.2 L 823.5 383.0 L 830.5 382.4 L 837.6 381.2 L 843.6 379.8 L 850.6 377.7 L 857.6 375.2 L 864.7 372.3 L 871.7 369.3 L 878.7 366.2 L 885.7 363.3 L 891.7 361.1 L 898.8 358.8 L 905.8 356.9 L 912.8 355.3 L 919.8 354.0 L 926.9 353.0 L 932.9 352.2 L 939.9 351.5 L 946.9 350.9 L 954.0 350.4 L 961.0 349.9 L 968.0 349.6 L 1025.4 347.8 L 1033.6 347.7 L 1066.5 347.2 L 1107.5 346.9 L 1140.3 346.7 L 1181.3 346.6 L 1214.2 346.5 L 1255.2 346.4" stroke="url(#flow)" opacity="0.9" />
+        <path d="M -49.9 393.8 L 52.6 393.8 L 155.2 393.9 L 278.3 394.2 L 380.8 394.5 L 483.4 395.2 L 606.5 397.5 L 627.0 398.3 L 672.0 400.9 L 679.0 401.5 L 686.1 402.2 L 693.1 402.9 L 700.1 403.7 L 707.1 404.5 L 713.2 405.3 L 720.2 406.2 L 727.2 407.3 L 734.2 408.3 L 741.2 409.5 L 748.3 410.6 L 754.3 411.6 L 761.3 412.7 L 768.3 413.8 L 775.4 414.8 L 782.4 415.7 L 789.4 416.5 L 796.4 417.1 L 802.4 417.6 L 809.5 417.9 L 816.5 418.0 L 823.5 418.0 L 830.5 417.7 L 837.6 417.3 L 843.6 416.8 L 850.6 416.1 L 857.6 415.2 L 864.7 414.3 L 871.7 413.2 L 878.7 412.1 L 885.7 411.0 L 891.7 410.0 L 898.8 408.8 L 905.8 407.7 L 912.8 406.7 L 919.8 405.7 L 926.9 404.7 L 932.9 404.0 L 939.9 403.2 L 946.9 402.5 L 954.0 401.8 L 961.0 401.2 L 968.0 400.6 L 1025.4 397.6 L 1033.6 397.3 L 1066.5 396.4 L 1107.5 395.7 L 1140.3 395.3 L 1181.3 394.9 L 1214.2 394.7 L 1255.2 394.5" stroke="#95a8cc" opacity="0.35" />
+      </g>
+
+      <!-- cylinder portrait with attitude indicator overlay -->
+      <circle cx="818" cy="316" r="47" fill="var(--panel)" />
+      <text class="hero-portrait-fallback mono" x="818" y="312" text-anchor="middle" aria-hidden="true">ADD</text>
+      <text class="hero-portrait-fallback mono" x="818" y="326" text-anchor="middle" aria-hidden="true">PHOTO</text>
+      <image
+        href="/portrait.jpg"
+        x="771" y="269" width="94" height="94"
+        clip-path="url(#heroPortraitClip)"
+        preserveAspectRatio="xMidYMid slice"
+        aria-label="Portrait of Beverley Yeo"
+        onerror="this.setAttribute('opacity', '0')"
+      />
+      <g transform="translate(818,316) scale(0.6667)" stroke="var(--amber)">
+        <circle cx="0" cy="0" r="75" fill="none" stroke-width="2" opacity="0.85" />
+        <g stroke-width="1.2" opacity="0.65">
+          <line x1="0" y1="-72" x2="0" y2="-64" />
+          <line x1="0" y1="64" x2="0" y2="72" />
+          <line x1="-72" y1="0" x2="-64" y2="0" />
+          <line x1="64" y1="0" x2="72" y2="0" />
+          <line x1="-49.4" y1="-49.4" x2="-43.8" y2="-43.8" />
+          <line x1="43.8" y1="43.8" x2="49.4" y2="49.4" />
+          <line x1="-49.4" y1="49.4" x2="-43.8" y2="43.8" />
+          <line x1="43.8" y1="-43.8" x2="49.4" y2="-49.4" />
+        </g>
+        <path d="M 0 -78 l -7 13 h 14 Z" fill="var(--amber)" opacity="0.9" />
+        <line x1="-75" y1="0" x2="75" y2="0" stroke-width="1" stroke-dasharray="3 4" opacity="0.45" />
+      </g>
+    </svg>
+
+    <!-- mobile portrait -->
+    <svg class="hero-field-mobile" viewBox="708 196 220 240" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <clipPath id="heroPortraitClipMobile">
+          <circle cx="818" cy="316" r="47" />
+        </clipPath>
+      </defs>
+      <circle cx="818" cy="316" r="47" fill="var(--panel)" />
+      <text class="hero-portrait-fallback mono" x="818" y="312" text-anchor="middle" aria-hidden="true">ADD</text>
+      <text class="hero-portrait-fallback mono" x="818" y="326" text-anchor="middle" aria-hidden="true">PHOTO</text>
+      <image
+        href="/portrait.jpg"
+        x="771" y="269" width="94" height="94"
+        clip-path="url(#heroPortraitClipMobile)"
+        preserveAspectRatio="xMidYMid slice"
+        aria-label="Portrait of Beverley Yeo"
+        onerror="this.setAttribute('opacity', '0')"
+      />
+      <g transform="translate(818,316) scale(0.6667)" stroke="var(--amber)">
+        <circle cx="0" cy="0" r="75" fill="none" stroke-width="2" opacity="0.85" />
+        <g stroke-width="1.2" opacity="0.65">
+          <line x1="0" y1="-72" x2="0" y2="-64" />
+          <line x1="0" y1="64" x2="0" y2="72" />
+          <line x1="-72" y1="0" x2="-64" y2="0" />
+          <line x1="64" y1="0" x2="72" y2="0" />
+          <line x1="-49.4" y1="-49.4" x2="-43.8" y2="-43.8" />
+          <line x1="43.8" y1="43.8" x2="49.4" y2="49.4" />
+          <line x1="-49.4" y1="49.4" x2="-43.8" y2="43.8" />
+          <line x1="43.8" y1="-43.8" x2="49.4" y2="-49.4" />
+        </g>
+        <path d="M 0 -78 l -7 13 h 14 Z" fill="var(--amber)" opacity="0.9" />
+        <line x1="-75" y1="0" x2="75" y2="0" stroke-width="1" stroke-dasharray="3 4" opacity="0.45" />
+      </g>
+    </svg>
+
+    <!-- mobile clouds -->
+    <div class="hero-cloud-mobile" aria-hidden="true"></div>
+  </div>
+
+  <div class="hero-scrim" aria-hidden="true"></div>
+
+  <div class="hero-content">
+    <div class="hero-text">
+      <p class="eyebrow">Aeronautical Engineer</p>
+      <div class="hero-heading">
+        <h1>Beverley YEO</h1>
+      </div>
+      <p class="hero-sub">
+        <a href="https://me.stanford.edu">Stanford Mechanical Engineering PhD Candidate</a> / <a href="https://www.a-star.edu.sg/Scholarships/for-graduate-studies/national-science-scholarship-phd">A*STAR NSS (PhD) Scholar</a> / <a href="https://adl.stanford.edu">Supervised by Prof. Juan Alonso</a>
+      </p>
+      <div class="hero-actions">
+        <a class="hero-action mono" href="/cv.pdf">
+          <Icon name="pdf" />
+          <span>Download my CV</span>
+        </a>
+        <a class="hero-action mono" href="mailto:yeokwb@stanford.edu">
+          <Icon name="email" />
+          <span>Email me</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<div class="hero-cloud-divider" aria-hidden="true"></div>

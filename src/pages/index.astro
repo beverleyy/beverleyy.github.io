@@ -1,0 +1,240 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import AltitudeTape from '../components/AltitudeTape.astro';
+import Hero from '../components/Hero.astro';
+import Research from '../components/Research.astro';
+import Employment from '../components/Employment.astro';
+import Education from '../components/Education.astro';
+import OffDuty from '../components/OffDuty.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+
+const sections = [
+  { id: 'top', label: 'Flight Deck', alt: 'FL350' },
+  { id: 'research', label: 'Flight Log', alt: 'FL240' },
+  { id: 'employment', label: 'Flight Hours', alt: 'FL140' },
+  { id: 'education', label: 'Ground School', alt: 'FL060' },
+  { id: 'fun', label: 'Off Duty', alt: 'GND' },
+];
+
+/* research */
+
+const research = [
+  {
+    callsign: 'LANL·CAI2',
+    status: 'current',
+    alt: 'FL260',
+    title: 'Kokkos Kernels for Quinoa',
+    blurb: 'Adding GPU capability to the DG code Quinoa using Kokkos',
+    supervisors: ['Dr. Aditya Pandare', 'Dr. Facundo Airaudo'],
+    tools: ['Kokkos', 'Charm++', 'C++', 'CUDA', 'Make', 'Bash'],
+    links: [
+      { label: 'Code', href: 'https://github.com/quinoacomputing/quinoa/tree/kokkos_july2026', icon: 'github' }
+    ],
+  },
+  {
+    callsign: 'STANFORD·AA',
+    status: 'ongoing',
+    alt: 'FL260',
+    title: 'Interval arithmetic for floating-point error quantification',
+    blurb: 'Developing methodology to bound floating-point error for a discontinuous Galerkin kernel',
+    supervisors: ['Prof. Juan Alonso'],
+    tools: ['Python'],
+    links: []
+  },
+  {
+    callsign: 'STANFORD·ME',
+    status: 'landed',
+    alt: 'FL250',
+    title: 'Mixed precision for discontinuous Galerkin codes',
+    blurb: 'Benchmarking DG operations in single- and double-precision on various devices',
+    supervisors: ['Prof. Matthias Ihme'],
+    tools: ['Python', 'JAX'],
+    links: [
+      { label: 'Paper', href: 'https://arc.aiaa.org/doi/10.2514/6.2026-0376', icon: 'pdf' }
+    ],
+  },
+  {
+    callsign: 'STANFORD·ME',
+    status: 'landed',
+    alt: 'FL250',
+    title: 'CuPyQuail',
+    blurb: 'GPU-compatible version of in-house discontinous Galerkin code, Quail',
+    supervisors: ['Prof. Matthias Ihme'],
+    tools: ['Python', 'CUDA'],
+    links: [
+      { label: 'Code', href: 'http://github.com/beverleyy/quail_cupy', icon: 'github' },
+    ],
+    image: '/research/cupyquail.png',
+  },
+  {
+    callsign: 'STANFORD·ME',
+    status: 'landed',
+    alt: 'FL240',
+    title: 'Automatic differentiation for shock capturing',
+    blurb: 'JAX automatic gradient to optimize artificial viscosity parameter',
+    supervisors: ['Prof. Matthias Ihme'],
+    tools: ['Python', 'JAX'],
+    links: [],
+  },
+  {
+    callsign: 'STANFORD·ME',
+    status: 'landed',
+    alt: 'FL240',
+    title: 'JAX_DG',
+    blurb: 'Development of hardware-independent discontinous Galerkin solver using Google JAX',
+    supervisors: ['Prof. Matthias Ihme'],
+    tools: ['Python', 'JAX', 'Google Cloud'],
+    links: [
+      {label: 'Code', href: 'http://github.com/beverleyy/1DJaxDG', icon: 'github'},
+    ],
+    image: '/research/jax-dg-vortex.gif'
+  },
+  {
+    callsign: 'IHPC·ASTAR',
+    status: 'landed',
+    alt: 'FL230',
+    title: 'Transonic aeroelasticity with harmonic balance',
+    blurb: 'Harmonic balance-based aerodynamic force calculations for use in transonic flutter prediction of NASA CRM wings\n (Singapore Aerospace Programme Cycle 16)',
+    supervisors: ['Dr. Daniel Wise','Dr. Vinh-Tan Nguyen'],
+    tools: ['C++', 'Python','SU2'],
+    links: [
+      {label: 'Code', href: 'http://github.com/beverleyy/hb_aeroelastic', icon: 'github'},
+    ],
+    image: '/research/bscwp.gif'
+  },
+  {
+    callsign: 'IHPC·ASTAR',
+    status: 'landed',
+    alt: 'FL225',
+    title: 'A*STAR/MOE Scientists-in-Schools Program',
+    blurb: 'Self-contained Jupyter notebook for 2D lid-driven cavity flow using finite-volume solver (Zhangde Primary School Primary 5 E2K)',
+    supervisors: ['Dr. Hongying Li'],
+    tools: ['Python'],
+    links: [
+      {label: 'Code', href: 'http://github.com/beverleyy/SIS_ZPS', icon: 'github'},
+    ],
+    image: '/research/sis_zps_result.jpg'
+  },
+  {
+    callsign: 'NTU·MENG',
+    status: 'landed',
+    alt: 'FL220',
+    title: 'Investigating Galilean Invariance in CFD',
+    blurb: 'Comparison between flow properties and wakes calculated from CFD simulations (LES, DNS) of moving body in stationary flow vs stationary body in moving flow.',
+    supervisors: ['Prof. Wai Lee Chan', 'Prof. Basman Elhadidi'],
+    tools: ['Fluent','OpenFOAM','Pointwise','Tecplot','C++','Python','MATLAB'],
+    links: [
+      {label: 'Thesis', href: 'https://dr.ntu.edu.sg/handle/10356/164694', icon: 'pdf'},
+    ],
+    image: '/research/jfm_graphicalAbstract.jpg'
+  },
+];
+
+/* employment */
+
+const employment = [
+  {
+    year: '2026.06 – Present',
+    title: 'Graduate Research Intern',
+    department: 'Computing & Artificial Intelligence 2 (CAI-2)',
+    org: 'Los Alamos National Laboratory, NM, USA',
+  },
+  {
+    year: '2022.08 – 2023.08',
+    title: 'Research Engineer',
+    department: 'Fluid Dynamics (FD), Institute of High Performance Computing',
+    org: 'Agency for Science, Technology And Research, Singapore',
+  },
+  {
+    year: '2020.06 - 2020.09',
+    title: 'Research Intern',
+    department: 'Center for Aerodynamics & Propulsion',
+    org: 'Temasek Laboratories@NUS, Singapore',
+  },
+];
+
+/* education */
+
+const education = [
+  {
+    level: 'Ph.D.',
+    degree: 'Mechanical Engineering',
+    school: 'Stanford University, CA, USA',
+    years: '2023.09 – Present',
+    focus: 'GPU-accelerated discontinuous Galerkin methods for compressible flows',
+    teaching: ['Teaching Assistant — Gas-Turbine Design Analysis, Fall 2025 (Prof. M. Ihme)'],
+    supervisors: ['Prof. J. Alonso', 'Prof. G. Iaccarino'],
+  },
+  {
+    level: 'M.Eng.',
+    degree: 'Mechanical & Aerospace Engineering',
+    school: 'Nanyang Technological University, Singapore',
+    years: '2021.07 - 2022.07',
+    focus: 'Thesis: Investigating Galilean invariance in CFD',
+    supervisors: ['Prof. W.L. Chan', 'Prof. B. Elhadidi'],
+  },
+  {
+    level: 'B.Eng.',
+    degree: 'Aerospace Engineering (Honours with Distinction)',
+    school: 'Nanyang Technological University, Singapore',
+    years: '2017.07 - 2021.06',
+    focus: 'Thesis: On the flow behavior of confined vortex-rings',
+    supervisors: ['Prof. T.H. New'],
+    honors: ['CN Yang Scholars Program', 'CNYSP Research Award (Gold)', 'Deans List AY19/20', 'Nanyang Scholarship'],
+  },
+  {
+    level: 'Exchange',
+    degree: 'Aeronautics & Astronautics',
+    school: 'Purdue University, IN, USA',
+    years: '2020.01 - 2020.05',
+    honors: ['Deans List Spring 2020', 'Semester Honors Spring 2020'],
+  }
+];
+
+/* other stuffs */
+
+const builds = [
+  {
+    title: 'Personal sites',
+    blurb: 'This one included — Astro, hand-drawn SVGs, way too many CSS variables.',
+    image: '/off-duty-site.jpg',
+  },
+  {
+    title: 'Foam-board glider',
+    blurb: "Built to see whether the CFD agrees with what it does in the yard. It doesn't, yet.",
+    image: '/off-duty-glider.jpg',
+  },
+  {
+    title: 'Cessna cross-countries',
+    blurb: 'Private pilot, weekends permitting — the actual reason for the attitude indicator.',
+    image: '/off-duty-cessna.jpg',
+  },
+  {
+    title: 'Mechanical keyboards',
+    blurb: 'A small, ever-growing fleet of home-built boards.',
+    image: '/off-duty-keyboards.jpg',
+    link: { label: 'View the gallery', href: '#' },
+  },
+];
+---
+<Layout
+  title="Beverley Yeo"
+  description=""
+>
+  <SiteHeader sections={sections} />
+  <AltitudeTape sections={sections} />
+
+  <main id="top" data-tape-section data-tape-label="Flight Deck">
+    <Hero />
+  </main>
+
+  <Research research={research} />
+  <Employment employment={employment} />
+  <Education education={education} />
+  <OffDuty builds={builds} />
+
+  <SiteFooter />
+
+  <script src="../scripts/site.js"></script>
+</Layout>

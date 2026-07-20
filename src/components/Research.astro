@@ -1,0 +1,65 @@
+---
+import Icon from './Icon.astro';
+
+interface Link {
+  label: string;
+  href: string;
+  icon: string;
+}
+
+interface ResearchItem {
+  callsign: string;
+  status: string;
+  alt: string;
+  title: string;
+  blurb: string;
+  supervisors?: string[];
+  tools: string[];
+  links: Link[];
+  image: string | null;
+}
+
+interface Props {
+  research: ResearchItem[];
+}
+
+const { research } = Astro.props;
+---
+<section id="research" class="research" data-tape-section data-tape-label="Flight Log">
+  <p class="eyebrow section-eyebrow">Flight Log</p>
+
+  <ul class="strip-list">
+    {research.map((item) => (
+      <li class={`strip bracket-frame strip--${item.status}${item.image ? '' : ' strip--no-thumb'}`}>
+        {item.image && (
+          <div class="strip-thumb" aria-hidden="true">
+            <span class="strip-thumb-fallback mono">ADD<br />PHOTO</span>
+            <img src={item.image} alt="" loading="lazy" onerror="this.style.display='none'" />
+          </div>
+        )}
+
+        <div class="strip-main">
+          <div class="strip-top">
+            <span class="strip-callsign mono">{item.callsign}</span>
+            <h3>{item.title}</h3>
+            <span class="strip-status mono">{item.status}</span>
+            <span class="strip-alt mono">{item.alt}</span>
+          </div>
+          <p class="strip-blurb">{item.blurb}</p>
+          {item.supervisors && item.supervisors.length > 0 && (
+            <p class="strip-supervisors mono">Supervised by {item.supervisors.join(', ')}</p>
+          )}
+          <div class="strip-tags">
+            {item.tools.map((tool) => <span class="mono readout">{tool}</span>)}
+            {item.links.map((link) => (
+              <a class="strip-link" href={link.href} target="_blank" rel="noopener noreferrer" aria-label={`${item.title} — ${link.label}`}>
+                <Icon name={link.icon} />
+                <span>{link.label}</span>
+              </a>
+            ))}
+          </div>
+        </div>
+      </li>
+    ))}
+  </ul>
+</section>

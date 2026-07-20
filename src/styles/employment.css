@@ -1,0 +1,49 @@
+    .employment-list {
+        list-style:none;
+        margin:0;
+        padding:0;
+    }
+
+    .employment-list li {
+        display:grid;
+        grid-template-columns:8rem 1fr;
+        gap:1.5rem;
+        padding:1.1rem 0;
+        border-top:1px solid var(--panel-line);
+    }
+
+    .employment-list li:last-child {
+        border-bottom:1px solid var(--panel-line);
+    }
+
+    .employment-year {
+        color:var(--flow-hot);
+        font-size:0.82rem;
+        padding-top:0.15em;
+    }
+
+    .employment-body {
+        display:flex;
+        flex-direction:column;
+        gap:0.3rem;
+    }
+
+    .employment-title {
+        color:var(--fg);
+        font-size:0.98rem;
+    }
+
+    .employment-org {
+        color:var(--faint);
+        font-size:0.82rem;
+        font-style:italic;
+    }
+
+
+
+    @media (max-width: 720px) {
+        .employment-list li {
+            grid-template-columns:1fr;
+            gap:0.4rem;
+        }
+    }

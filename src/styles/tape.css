@@ -1,0 +1,153 @@
+    .tape {
+        position:fixed;
+        right:2.1rem;
+        top:50%;
+        transform:translateY(-50%);
+        height:46vh;
+        display:flex;
+        flex-direction:column;
+        align-items:flex-end;
+        gap:0.9rem;
+        z-index:20;
+    }
+
+    .tape-backdrop {
+        position:absolute;
+        top:-0.9rem;
+        bottom:-0.9rem;
+        right:-1.1rem;
+        left:-1.1rem;
+        width:100%;
+        border-radius:2px;
+        background:color-mix(in srgb, var(--panel) 30%, transparent);
+        box-shadow:
+            inset 0 1px 0 rgba(255, 255, 255, 0.06),
+            inset 0 -1px 0 rgba(0, 0, 0, 0.35),
+            inset 1px 0 0 rgba(255, 255, 255, 0.03),
+            inset -1px 0 0 rgba(0, 0, 0, 0.25),
+            0 10px 28px rgba(0, 6, 14, 0.4);
+        backdrop-filter:blur(7px);
+        -webkit-backdrop-filter:blur(7px);
+        pointer-events:none;
+        box-sizing:content-box;
+        padding:0.9rem 1.1rem;
+    }
+
+    .tape-readout {
+        display:flex;
+        flex-direction:column;
+        align-items:flex-end;
+        gap:0.15rem;
+        padding:0.45rem 0.7rem;
+        border-radius:1px;
+        background:var(--panel);
+        box-shadow:
+            inset 0 1px 0 rgba(255, 255, 255, 0.05),
+            inset 0 -1px 0 rgba(0, 0, 0, 0.4);
+        position:relative;
+    }
+
+    .tape-readout-label {
+        font-size:0.66rem;
+        letter-spacing:0.08em;
+        text-transform:uppercase;
+        color:var(--muted);
+    }
+
+    .tape-readout-alt {
+        font-size:0.92rem;
+        letter-spacing:0.04em;
+        color:var(--flow-cold);
+    }
+
+    .tape-line {
+        position:relative;
+        width:1px;
+        height:100%;
+        margin-right:0.35rem;
+        background-color:var(--panel-line);
+        background-image:repeating-linear-gradient(
+            to bottom,
+            var(--faint) 0,
+            var(--faint) 1px,
+            transparent 1px,
+            transparent 8.3%
+        );
+        opacity:0.9;
+    }
+
+    .tape-marker {
+        position:absolute;
+        right:-1px;
+        width:0;
+        height:0;
+        border-top:5px solid transparent;
+        border-bottom:5px solid transparent;
+        border-right:7px solid var(--flow-cold);
+        transform:translateY(-50%);
+        transition:top 0.05s linear;
+        filter:drop-shadow(0 0 4px color-mix(in srgb, var(--flow-cold) 75%, transparent));
+    }
+
+    .tape-tick {
+        position:absolute;
+        right:-10px;
+        top:0;
+        display:flex;
+        align-items:center;
+        justify-content:flex-end;
+        gap:0.5em;
+        width:4.4rem;
+        height:2rem;
+        padding:0 0.6rem 0 0;
+        transform:translateY(-50%);
+        cursor:pointer;
+    }
+
+    .tape-tick-alt {
+        font-size:0.68rem;
+        letter-spacing:0.03em;
+        color:var(--faint);
+        opacity:0;
+        transform:translateX(4px);
+        transition:opacity 0.2s ease, transform 0.2s ease, color 0.2s ease;
+        white-space:nowrap;
+    }
+
+    .tape-tick-line {
+        display:block;
+        width:15px;
+        height:2px;
+        border-radius:1px;
+        background:var(--faint);
+        opacity:0.7;
+        transition:background 0.2s ease, opacity 0.2s ease, width 0.2s ease;
+    }
+
+    .tape-tick:hover .tape-tick-alt,
+    .tape-tick.active .tape-tick-alt {
+        opacity:1;
+        transform:translateX(0);
+        color:var(--fg);
+    }
+
+    .tape-tick:hover .tape-tick-line,
+    .tape-tick.active .tape-tick-line {
+        background:var(--flow-cold);
+        opacity:1;
+        width:20px;
+    }
+
+    .tape-tick:focus-visible {
+        outline:2px solid var(--flow-cold);
+        outline-offset:2px;
+        border-radius:3px;
+    }
+
+
+
+    @media (max-width: 900px) {
+        .tape {
+            display:none;
+        }
+    }
