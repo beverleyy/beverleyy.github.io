@@ -170,8 +170,30 @@ html[data-theme='light'] .theme-toggle-thumb {
 }
 
 @media (max-width: 720px) {
+    .header-row {
+        justify-content:flex-end;
+    }
+
+    .mark {
+        display:none;
+    }
+
+    .header-nav {
+        overflow-x:auto;
+        -webkit-overflow-scrolling:touch;
+        scrollbar-width:none;
+    }
+
+    .header-nav::-webkit-scrollbar {
+        display:none;
+    }
+
     .site-header nav ul {
+        flex-wrap:nowrap;
         gap:1.2rem;
-        flex-wrap:wrap;
+    }
+
+    .site-header nav a {
+        white-space:nowrap;
     }
 }

@@ -52,7 +52,7 @@ const { sections } = Astro.props;
   <nav class="header-nav">
     <ul>
       {sections.slice(1).filter((s) => !s.navHidden).map((s) => (
-        <li><a href={`#${s.id}`} data-id={s.id}>{s.label}</a></li>
+        <li><a href={`#${s.id}`} data-id={s.id} aria-label={s.label}>{s.alt}</a></li>
       ))}
     </ul>
   </nav>
