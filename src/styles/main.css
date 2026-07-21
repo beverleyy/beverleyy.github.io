@@ -246,3 +246,54 @@ button:focus-visible {
     outline-offset:3px;
     border-radius:2px;
 }
+
+.has-tooltip {
+    position:relative;
+}
+
+.has-tooltip::before,
+.has-tooltip::after {
+    position:absolute;
+    left:50%;
+    opacity:0;
+    pointer-events:none;
+    transform:translate(-50%, -4px);
+    transition:opacity 0.15s ease, transform 0.15s ease;
+}
+
+.has-tooltip::before {
+    content:attr(data-tooltip);
+    top:calc(100% + 0.65rem);
+    font-family:var(--mono);
+    font-size:0.7rem;
+    letter-spacing:0.02em;
+    white-space:nowrap;
+    color:var(--fg);
+    /* background:var(--panel); */
+    border:1px solid var(--panel-line);
+    border-radius:2px;
+    padding:0.4rem 0.65rem;
+    z-index:30;
+    background:color-mix(in srgb, var(--ink) 70%, transparent);
+    backdrop-filter:blur(7px);
+    -webkit-backdrop-filter:blur(7px);
+}
+
+.has-tooltip::after {
+    content:'';
+    top:calc(100% + 0.3rem);
+    width:0;
+    height:0;
+    border-left:0.35rem solid transparent;
+    border-right:0.35rem solid transparent;
+    border-bottom:0.35rem solid var(--panel-line);
+    z-index:31;
+}
+
+.has-tooltip:hover::before,
+.has-tooltip:hover::after,
+.has-tooltip:focus-visible::before,
+.has-tooltip:focus-visible::after {
+    opacity:1;
+    transform:translate(-50%, 0);
+}

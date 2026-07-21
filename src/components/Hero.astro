@@ -1,5 +1,6 @@
 ---
 import Icon from './Icon.astro';
+const cvUpdated = '07/2026';
 ---
 <section class="hero">
 
@@ -113,7 +114,7 @@ import Icon from './Icon.astro';
         <li><a href="https://adl.stanford.edu">Supervised by Prof. Juan Alonso</a></li>
       </ul>
       <div class="hero-actions">
-        <a class="hero-action mono" href="/Beverley_CV_PhD.pdf">
+        <a class="hero-action mono has-tooltip" href="/cv.pdf" data-tooltip={`Last updated ${cvUpdated}`}>
           <Icon name="pdf" />
           <span>Download my CV</span>
         </a>

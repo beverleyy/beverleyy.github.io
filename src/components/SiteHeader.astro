@@ -18,7 +18,8 @@ const { sections } = Astro.props;
     <div class="header-icons">
       <button
         type="button"
-        class="theme-toggle"
+        class="theme-toggle has-tooltip"
+        data-tooltip="Toggle lighting"
         id="themeToggle"
         aria-label="Switch between night and day panel lighting"
         aria-pressed="false"
@@ -30,19 +31,19 @@ const { sections } = Astro.props;
         <Icon name="sun" class="theme-toggle-icon theme-toggle-icon--sun" />
       </button>
 
-      <a href="https://github.com/beverleyy" target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="GitHub">
+      <a class="has-tooltip" href="https://github.com/beverleyy" target="_blank" rel="noopener noreferrer" aria-label="GitHub" data-tooltip="GitHub">
         <Icon name="github" />
       </a>
-      <a href="https://www.linkedin.com/in/beverleyy" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn">
+      <a class="has-tooltip" href="https://www.linkedin.com/in/beverleyy" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" data-tooltip="LinkedIn">
         <Icon name="linkedin" />
       </a>
-      <a href="https://scholar.google.com/citations?user=wDYVyhYAAAAJ" target="_blank" rel="noopener noreferrer" aria-label="Google Scholar" title="Google Scholar">
+      <a class="has-tooltip" href="https://scholar.google.com/citations?user=wDYVyhYAAAAJ" target="_blank" rel="noopener noreferrer" aria-label="Google Scholar" data-tooltip="Google Scholar">
         <Icon name="scholar" />
       </a>
-      <a href="https://orcid.org/0000-0003-0600-8065" target="_blank" rel="noopener noreferrer" aria-label="ORCID" title="ORCID">
+      <a class="has-tooltip" href="https://orcid.org/0000-0003-0600-8065" target="_blank" rel="noopener noreferrer" aria-label="ORCID" data-tooltip="ORCID">
         <Icon name="orcid" />
       </a>
-      <a href="mailto:yeokwb@stanford.edu" aria-label="Email" title="Email">
+      <a class="has-tooltip" href="mailto:yeokwb@stanford.edu" aria-label="Email" data-tooltip="Email">
         <Icon name="email" />
       </a>
     </div>
