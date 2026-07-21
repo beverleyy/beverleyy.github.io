@@ -8,9 +8,11 @@ interface Link {
 }
 
 interface ResearchItem {
-  callsign?: string;
+  callsign: string;
   status: string;
   heading: string;
+  edu: string;
+  types: string[];
   title: string;
   blurb: string;
   supervisors?: string[];
@@ -24,48 +26,138 @@ interface Props {
 }
 
 const { research } = Astro.props;
+
+const eduLabels: Record<string, string> = { phd: 'PhD', meng: 'M.Eng', beng: 'B.Eng', pro: 'Industry' };
+const eduOrder = ['phd', 'meng', 'beng', 'pro'];
+
+const typeLabels: Record<string, string> = {
+  code: 'Code',
+  math: 'Math',
+  flows: 'Flows',
+  other: 'Others',
+};
+const typeOrder = ['code', 'math', 'flows', 'other'];
+
+const statusLabels: Record<string, string> = { current: 'Current', ongoing: 'Ongoing', landed: 'Landed' };
 ---
 <section id="research" class="research" data-tape-section data-tape-label="Research">
   <p class="eyebrow section-eyebrow">Research</p>
 
-  <ul class="strip-list">
-    {research.map((item) => (
-      <li class={`strip bracket-frame strip--${item.status}${item.image ? '' : ' strip--no-thumb'}`}>
-        {item.image && (
-          <div class="strip-thumb">
-            <span class="strip-thumb-fallback mono" aria-hidden="true">ADD<br />PHOTO</span>
-            <img src={item.image} alt="" loading="lazy" onerror="this.style.display='none'" />
-            <div class="strip-thumb-hud mono" aria-hidden="true">
-              <span class="strip-callsign">{item.callsign}</span>
-              <span class="strip-heading-value">{item.heading}</span>
-            </div>
-          </div>
-        )}
+  <div class="filter-bar instrument-panel" role="group" aria-label="Filter research projects">
+    <div class="filter-group" data-filter-group="edu">
+      <span class="filter-group-label">Level</span>
+      <button type="button" class="filter-btn is-active" data-filter-value="*">
+        <span class="filter-btn-led" aria-hidden="true"></span>All
+      </button>
+      {eduOrder.map((key) => (
+        <button type="button" class="filter-btn" data-filter-value={key}>
+          <span class="filter-btn-led" aria-hidden="true"></span>{eduLabels[key]}
+        </button>
+      ))}
+    </div>
+    <div class="filter-group" data-filter-group="type">
+      <span class="filter-group-label">Type</span>
+      <button type="button" class="filter-btn is-active" data-filter-value="*">
+        <span class="filter-btn-led" aria-hidden="true"></span>All
+      </button>
+      {typeOrder.map((key) => (
+        <button type="button" class="filter-btn" data-filter-value={key}>
+          <span class="filter-btn-led" aria-hidden="true"></span>{typeLabels[key]}
+        </button>
+      ))}
+    </div>
+    <button type="button" class="filter-btn filter-toggle" id="activeToggle" aria-pressed="false">
+      <span class="filter-btn-led" aria-hidden="true"></span>Active only
+    </button>
+  </div>
 
-        <div class="strip-main">
-          <div class="strip-top">
-            {(!item.image && item.callsign) && (
-              <span class="strip-callsign mono">{item.callsign}</span>
-            )}
-            <h3>{item.title}</h3>
-            <span class="strip-status mono">{item.status}</span>
-            {!item.image && <span class="strip-heading-value mono">{item.heading}</span>}
+  <ul class="strip-rack">
+    {research.map((item) => (
+      <li
+        class={`strip strip--${item.status}`}
+        data-edu={item.edu}
+        data-types={item.types.join(',')}
+        data-status={item.status}
+      >
+        <div class="strip-row">
+          <div class="strip-cell strip-cell--id mono">
+            <span class="strip-callsign">{item.callsign}</span>
+            <span class={`strip-status strip-status--${item.status}`}>{statusLabels[item.status]}</span>
           </div>
-          <p class="strip-blurb">{item.blurb}</p>
-          {item.supervisors && item.supervisors.length > 0 && (
-            <p class="strip-supervisors mono">Supervised by {item.supervisors.join(', ')}</p>
+
+          <div class="strip-cell strip-cell--heading mono">
+            <span class="strip-cell-label">HDG</span>
+            <span class="strip-heading-value">{item.heading}</span>
+          </div>
+
+          {item.image && (
+            <div class="strip-cell strip-cell--thumb">
+              <span class="strip-thumb-fallback mono" aria-hidden="true">ADD<br />PHOTO</span>
+              <img src={item.image} alt="" loading="lazy" onerror="this.style.display='none'" />
+            </div>
           )}
-          <div class="strip-tags">
-            {item.tools.map((tool) => <span class="mono readout">{tool}</span>)}
-            {item.links.map((link) => (
-              <a class="strip-link" href={link.href} target="_blank" rel="noopener noreferrer" aria-label={`${item.title} — ${link.label}`}>
-                <Icon name={link.icon} />
-                <span>{link.label}</span>
-              </a>
-            ))}
+
+          <div class="strip-cell strip-cell--route">
+            <h3>{item.title}</h3>
+            <p class="strip-blurb">{item.blurb}</p>
+            {item.supervisors && item.supervisors.length > 0 && (
+              <p class="strip-supervisors mono">Supervised by {item.supervisors.join(', ')}</p>
+            )}
           </div>
+        </div>
+
+        <div class="strip-remarks">
+          {item.tools.map((tool) => <span class="mono readout">{tool}</span>)}
+          {item.links.map((link) => (
+            <a class="strip-link" href={link.href} target="_blank" rel="noopener noreferrer" aria-label={`${item.title} — ${link.label}`}>
+              <Icon name={link.icon} />
+              <span>{link.label}</span>
+            </a>
+          ))}
         </div>
       </li>
     ))}
   </ul>
 </section>
+
+<script>
+  const active: Record<string, string> = { edu: '*', type: '*' };
+  let activeOnly = false;
+
+  const items = document.querySelectorAll<HTMLElement>('.strip-rack .strip');
+
+  function applyFilter() {
+    items.forEach((item) => {
+      const eduOk = active.edu === '*' || item.dataset.edu === active.edu;
+      const types = (item.dataset.types || '').split(',');
+      const typeOk = active.type === '*' || types.includes(active.type);
+      const statusOk =
+        !activeOnly || item.dataset.status === 'current' || item.dataset.status === 'ongoing';
+      item.hidden = !(eduOk && typeOk && statusOk);
+    });
+  }
+
+  document.querySelectorAll<HTMLElement>('.filter-group').forEach((group) => {
+    const key = group.dataset.filterGroup;
+    if (!key) return;
+
+    group.querySelectorAll<HTMLButtonElement>('.filter-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        group.querySelectorAll('.filter-btn').forEach((b) => b.classList.remove('is-active'));
+        btn.classList.add('is-active');
+        active[key] = btn.dataset.filterValue || '*';
+        applyFilter();
+      });
+    });
+  });
+
+  const activeToggle = document.querySelector<HTMLButtonElement>('#activeToggle');
+  if (activeToggle) {
+    activeToggle.addEventListener('click', () => {
+      activeOnly = !activeOnly;
+      activeToggle.classList.toggle('is-active', activeOnly);
+      activeToggle.setAttribute('aria-pressed', String(activeOnly));
+      applyFilter();
+    });
+  }
+</script>

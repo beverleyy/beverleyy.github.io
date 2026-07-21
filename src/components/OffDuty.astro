@@ -13,15 +13,19 @@ interface Props {
 }
 
 const { builds } = Astro.props;
+
+function tagCode(title: string) {
+  return title.replace(/[^A-Za-z]/g, '').slice(0, 3).toUpperCase();
+}
 ---
 <section id="fun" class="fun" data-tape-section data-tape-label="Miscellany">
   <p class="eyebrow section-eyebrow">Miscellany</p>
 
-  <ul class="build-grid">
+  <ul class="ticket-grid">
     {builds.map((build) => (
-      <li class="build-tile bracket-frame">
-        <div class="build-photo">
-          <span class="build-photo-fallback mono" aria-hidden="true">ADD<br />PHOTO</span>
+      <li class="ticket">
+        <div class="ticket-photo">
+          <span class="ticket-photo-fallback mono" aria-hidden="true">ADD<br />PHOTO</span>
           <img
             src={build.image}
             alt={build.title}
@@ -29,14 +33,19 @@ const { builds } = Astro.props;
             onerror="this.style.display='none'"
           />
         </div>
-        <div class="build-body">
+        <div class="ticket-body">
           <h3>{build.title}</h3>
           <p>{build.blurb}</p>
-          {build.link && (
-            <a class="build-link" href={build.link.href} target="_blank" rel="noopener noreferrer" aria-label={`${build.title} — ${build.link.label}`}>
+        </div>
+        <div class="ticket-stub mono">
+          <span class="ticket-code">{tagCode(build.title)}</span>
+          {build.link ? (
+            <a class="ticket-link" href={build.link.href} target="_blank" rel="noopener noreferrer" aria-label={`${build.title} — ${build.link.label}`}>
               <Icon name="link" />
               <span>{build.link.label}</span>
             </a>
+          ) : (
+            <span class="ticket-code ticket-code--muted">N/A</span>
           )}
         </div>
       </li>
