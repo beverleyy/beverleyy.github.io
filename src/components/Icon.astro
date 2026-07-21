@@ -1,8 +1,4 @@
 ---
-// Single source of truth for every icon used on the site. Each entry is the
-// *inner* markup of an <svg> (paths/circles/etc.) plus its native viewBox —
-// add a new icon here once, then reference it anywhere with <Icon name="..." />
-// instead of re-pasting path data at every use site.
 const ICONS = {
   mark: {
     viewBox: "0 0 32 32",
@@ -91,7 +87,8 @@ const ICONS = {
     viewBox: "0 0 24 24",
     inner: `
       <path d="M13 5H6.5A1.5 1.5 0 0 0 5 6.5v11A1.5 1.5 0 0 0 6.5 19h11a1.5 1.5 0 0 0 1.5-1.5V11" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M9 5h9v9M18 5 7 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M13 5h6v6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M19 5 9 15" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
     `,
   },
   arrow: {

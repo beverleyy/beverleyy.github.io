@@ -116,10 +116,6 @@ html[data-theme='light'] .hero-field {
     max-width:54rem;
 }
 
-/* eyebrow rotator - all phrases stacked in the same grid cell so the
-    row sizes itself to the widest one (no layout shift as it cycles),
-    crossfading between them like a status readout flipping to its
-    next line rather than a typewriter/marquee effect */
 .hero-eyebrow-rotator {
     display:grid;
 }

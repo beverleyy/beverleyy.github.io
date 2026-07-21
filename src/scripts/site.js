@@ -98,9 +98,7 @@ function onScroll() {
     requestAnimationFrame(update);
 }
 
-// Nav links all use href="#id" so they still work with js disabled, but a
-// plain anchor jump drops "#id" into the address bar - intercept and scroll
-// ourselves instead
+// Nav links
 document.addEventListener("click", (event) => {
     const link = event.target.closest('a[href^="#"]');
     if (!link) return;
