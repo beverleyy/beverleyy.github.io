@@ -1,5 +1,51 @@
-    .footer-sep {
-        opacity:0.5;
-        margin:0 0.15em;
-    }
+.footer-sep {
+    opacity:0.5;
+    margin:0 0.15em;
+}
 
+.footer-cta {
+    margin-bottom:2rem;
+}
+
+.footer-heading {
+    font-family:var(--serif);
+    font-weight:normal;
+    letter-spacing:0.01em;
+    font-size:clamp(1.7rem, 3.4vw, 2.3rem);
+    color:var(--fg);
+    margin:0 0 1rem;
+}
+
+.footer-actions {
+    display:flex;
+    flex-wrap:wrap;
+    gap:0.7rem;
+}
+
+.footer-action {
+    display:inline-flex;
+    align-items:center;
+    gap:0.5rem;
+    padding:0.55rem 0.9rem;
+    background:color-mix(in srgb, var(--panel) 55%, transparent);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.07),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.35);
+    color:var(--fg);
+    font-size:0.76rem;
+    letter-spacing:0.02em;
+    transition:box-shadow 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+}
+
+.footer-action:hover {
+    color:var(--flow-cold);
+    background-color:color-mix(in srgb, var(--flow-cold) 14%, transparent);
+    box-shadow:
+        inset 0 1px 0 color-mix(in srgb, var(--flow-cold) 45%, transparent),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.45);
+}
+
+.footer-action .icon {
+    width:0.85rem;
+    height:0.85rem;
+}

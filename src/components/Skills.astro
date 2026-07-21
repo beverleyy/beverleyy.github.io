@@ -1,0 +1,26 @@
+---
+interface SkillGroup {
+  label: string;
+  skills: string[];
+}
+
+interface Props {
+  skillGroups: SkillGroup[];
+}
+
+const { skillGroups } = Astro.props;
+---
+<section id="skills" class="skills" data-tape-section data-tape-label="Skills">
+  <p class="eyebrow section-eyebrow">Skills</p>
+
+  <ul class="skill-groups">
+    {skillGroups.map((group) => (
+      <li class="skill-group bracket-frame">
+        <span class="skill-group-label mono">{group.label}</span>
+        <div class="skill-tags">
+          {group.skills.map((skill) => <span class="mono readout">{skill}</span>)}
+        </div>
+      </li>
+    ))}
+  </ul>
+</section>

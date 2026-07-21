@@ -12,16 +12,16 @@ interface Props {
 
 const { employment } = Astro.props;
 ---
-<section id="employment" class="employment" data-tape-section data-tape-label="Flight Hours">
-  <p class="eyebrow section-eyebrow">Flight Hours</p>
+<section id="employment" class="employment" data-tape-section data-tape-label="Experience">
+  <p class="eyebrow section-eyebrow">Experience</p>
 
   <ul class="employment-list">
     {employment.map((job) => (
-      <li>
+      <li class="employment-item bracket-frame">
         <span class="employment-year mono">{job.year}</span>
         <span class="employment-body">
           <span class="employment-title">{job.title}</span>
-          <span class="employment-org">
+          <span class="employment-org mono">
             {job.department && <>{job.department} · </>}{job.org}
           </span>
         </span>

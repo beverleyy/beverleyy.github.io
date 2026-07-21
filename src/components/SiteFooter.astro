@@ -1,5 +1,19 @@
 ---
+import Icon from './Icon.astro';
 ---
-<footer>
-  <p class="mono footer-tail">&copy; 2026 Beverley Yeo <span class="footer-sep">&middot;</span> Built with Astro</p>
+<footer id="footer" data-tape-section data-tape-label="Landed">
+  <div class="footer-cta">
+    <p class="footer-heading">Soar with me!</p>
+    <div class="footer-actions">
+      <a class="footer-action mono" href="mailto:yeokwb@stanford.edu">
+        <Icon name="email" />
+        <span>yeokwb@stanford.edu</span>
+      </a>
+      <a class="footer-action mono" href="https://www.linkedin.com/in/beverleyy" target="_blank" rel="noopener noreferrer">
+        <Icon name="linkedin" />
+        <span>linkedin.com/in/beverleyy</span>
+      </a>
+    </div>
+  </div>
+  <p class="mono footer-tail">&copy; 2026 Beverley Yeo <span class="footer-sep">&middot;</span> Built with <a href="https://astro.build/">Astro</a></p>
 </footer>

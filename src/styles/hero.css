@@ -1,86 +1,307 @@
+.hero {
+    position:relative;
+    min-height:78vh;
+    display:flex;
+    align-items:center;
+    overflow:hidden;
+    padding:0;
+}
+
+.hero-field {
+    position:absolute;
+    inset:0;
+    z-index:0;
+    background-image:url('/hero-sky-dark.jpg');
+    background-size:cover;
+    background-position:center 32%;
+}
+
+html[data-theme='light'] .hero-field {
+    background-image:url('/hero-sky.jpg');
+    background-position:center 38%;
+}
+
+.hero-scrim {
+    position:absolute;
+    inset:0;
+    z-index:0;
+    background:linear-gradient(
+        100deg,
+        color-mix(in srgb, var(--ink) 78%, transparent) 0%,
+        color-mix(in srgb, var(--ink) 45%, transparent) 38%,
+        color-mix(in srgb, var(--ink) 10%, transparent) 62%,
+        transparent 85%
+    );
+}
+
+.hero-field svg {
+    width:100%;
+    height:100%;
+}
+
+.hero-field-mobile {
+    display:none;
+}
+
+.streamlines path {
+    stroke-dasharray:6 10;
+    animation:flow 14s linear infinite;
+}
+
+.streamlines path:nth-child(2) { animation-duration:17s; }
+.streamlines path:nth-child(3) { animation-duration:11s; animation-direction:reverse; }
+.streamlines path:nth-child(4) { animation-duration:19s; }
+.streamlines path:nth-child(5) { animation-duration:22s; animation-direction:reverse; }
+
+@keyframes flow {
+    to { stroke-dashoffset:-320; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .streamlines path { animation:none; }
+}
+
+/* cloud bank - circles stamped via box-shadow, flat band on the border-bottom */
+.hero-cloud-divider {
+    position:relative;
+    z-index:0;
+    width:100%;
+    height:0;
+    border-bottom:30px solid var(--ink);
+}
+
+.hero-cloud-divider::before,
+.hero-cloud-divider::after {
+    content:"";
+    display:block;
+    position:absolute;
+    width:20vw;
+    height:20vw;
+    left:-5rem;
+    border-radius:50%;
+    background:var(--ink);
+    box-shadow:10vw 6.25vw 0 var(--ink),
+        21vw 5.4vw 0 var(--ink),
+        29vw 3.5vw 0 var(--ink),
+        40vw 3vw 0 var(--ink),
+        49vw 6vw 0 var(--ink),
+        59.5vw 3.25vw 0 var(--ink),
+        71vw 4.9vw 0 var(--ink),
+        80.5vw 2.75vw 0 var(--ink),
+        90vw 3.6vw 0 var(--ink),
+        99vw 5.4vw 0 var(--ink);
+}
+
+.hero-cloud-divider::before {
+    top:-8vw;
+    left:-5rem;
+}
+
+.hero-cloud-divider::after {
+    transform:scaleX(-1);
+    right:-5rem;
+    left:auto;
+    top:-9vw;
+    opacity:0.8;
+}
+
+.hero-cloud-mobile {
+    display:none;
+}
+
+.hero-content {
+    position:relative;
+    z-index:1;
+    padding:0 var(--edge);
+    max-width:54rem;
+}
+
+/* eyebrow rotator - all phrases stacked in the same grid cell so the
+    row sizes itself to the widest one (no layout shift as it cycles),
+    crossfading between them like a status readout flipping to its
+    next line rather than a typewriter/marquee effect */
+.hero-eyebrow-rotator {
+    display:grid;
+}
+
+.hero-eyebrow-rotator span {
+    grid-area:1 / 1;
+    opacity:0;
+    animation:eyebrow-cycle 12s infinite;
+}
+
+.hero-eyebrow-rotator span:nth-child(1) { animation-delay:0s; }
+.hero-eyebrow-rotator span:nth-child(2) { animation-delay:3s; }
+.hero-eyebrow-rotator span:nth-child(3) { animation-delay:6s; }
+.hero-eyebrow-rotator span:nth-child(4) { animation-delay:9s; }
+
+@keyframes eyebrow-cycle {
+    0%, 100% { opacity:0; }
+    3%, 22% { opacity:1; }
+    25% { opacity:0; }
+}
+
+.hero-heading {
+    display:flex;
+    align-items:center;
+    gap:1.3rem;
+}
+
+.hero h1 {
+    font-family:var(--serif);
+    font-weight:normal;
+    letter-spacing:0.01em;
+    font-size:clamp(2.6rem, 6vw, 4.4rem);
+    margin:0.3em 0 0.35em;
+}
+
+.hero-route {
+    list-style:none;
+    margin:0.9rem 0 0;
+    padding:0;
+    display:flex;
+    flex-direction:column;
+    gap:0.45rem;
+    max-width:34rem;
+}
+
+.hero-route li {
+    display:flex;
+    align-items:baseline;
+    gap:0.6rem;
+    font-size:0.9rem;
+}
+
+.hero-route li::before {
+    content:'▸';
+    flex:none;
+    font-size:0.7em;
+    line-height:1.6;
+    color:var(--amber);
+}
+
+.hero-route a {
+    color:var(--fg);
+    opacity:0.82;
+    border-bottom:1px solid transparent;
+    transition:color 0.2s ease, opacity 0.2s ease, border-color 0.2s ease;
+}
+
+.hero-route a:hover {
+    color:var(--flow-cold);
+    opacity:1;
+    border-color:var(--flow-cold);
+}
+
+.hero-actions {
+    display:flex;
+    flex-wrap:wrap;
+    gap:0.7rem;
+    margin-top:1.2rem;
+}
+
+.hero-description {
+    max-width:30rem;
+    font-size:0.95rem;
+    color:var(--fg);
+    opacity:0.82;
+}
+
+.hero-action {
+    display:inline-flex;
+    align-items:center;
+    gap:0.5rem;
+    padding:0.55rem 0.9rem;
+    background:color-mix(in srgb, var(--panel) 55%, transparent);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.07),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.35);
+    color:var(--fg);
+    font-size:0.9rem;
+    letter-spacing:0.02em;
+    transition:box-shadow 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+}
+
+.hero-action:hover {
+    color:var(--flow-cold);
+    background-color:color-mix(in srgb, var(--flow-cold) 14%, transparent);
+    box-shadow:
+        inset 0 1px 0 color-mix(in srgb, var(--flow-cold) 45%, transparent),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.45);
+}
+
+.hero-action .icon {
+    width:0.85rem;
+    height:0.85rem;
+}
+
+.hero-portrait-fallback {
+    font-size:9px;
+    letter-spacing:0.06em;
+    fill:var(--faint);
+    opacity:0.85;
+}
+
+
+
+@media (max-width: 720px) {
     .hero {
-        position:relative;
-        min-height:78vh;
-        display:flex;
-        align-items:center;
-        overflow:hidden;
-        padding:0;
+        flex-direction:column;
+        align-items:stretch;
+        min-height:0;
     }
 
     .hero-field {
-        position:absolute;
-        inset:0;
-        z-index:0;
-        background-image:url('/hero-sky-dark.jpg');
-        background-size:cover;
-        background-position:center 32%;
-    }
-
-    html[data-theme='light'] .hero-field {
-        background-image:url('/hero-sky.jpg');
-        background-position:center 38%;
-    }
-
-    .hero-scrim {
-        position:absolute;
-        inset:0;
-        z-index:0;
-        background:linear-gradient(
-            100deg,
-            color-mix(in srgb, var(--ink) 78%, transparent) 0%,
-            color-mix(in srgb, var(--ink) 45%, transparent) 38%,
-            color-mix(in srgb, var(--ink) 10%, transparent) 62%,
-            transparent 85%
-        );
-    }
-
-    .hero-field svg {
+        position:relative;
+        inset:auto;
         width:100%;
-        height:100%;
+        aspect-ratio:11 / 12;
     }
 
-    .hero-field-mobile {
+    .hero-field-desktop {
         display:none;
     }
 
-    .streamlines path {
-        stroke-dasharray:6 10;
-        animation:flow 14s linear infinite;
+    .hero-field-mobile {
+        display:block;
     }
 
-    .streamlines path:nth-child(2) { animation-duration:17s; }
-    .streamlines path:nth-child(3) { animation-duration:11s; animation-direction:reverse; }
-    .streamlines path:nth-child(4) { animation-duration:19s; }
-    .streamlines path:nth-child(5) { animation-duration:22s; animation-direction:reverse; }
-
-    @keyframes flow {
-        to { stroke-dashoffset:-320; }
+    .hero-scrim {
+        display:none;
     }
 
-    @media (prefers-reduced-motion: reduce) {
-        .streamlines path { animation:none; }
+    .hero-content {
+        padding:1.6rem var(--edge) 2.2rem;
     }
 
-    /* cloud bank - circles stamped via box-shadow, flat band on the border-bottom */
+    /* hero is a bounded image on mobile, not a full-bleed bg - swap dividers */
     .hero-cloud-divider {
-        position:relative;
-        z-index:0;
+        display:none;
+    }
+
+    .hero-cloud-mobile {
+        display:block;
+        position:absolute;
+        z-index:1;
+        bottom:0;
+        left:0;
         width:100%;
         height:0;
-        border-bottom:30px solid var(--ink);
+        border-bottom:18px solid var(--ink);
     }
 
-    .hero-cloud-divider::before,
-    .hero-cloud-divider::after {
+    .hero-cloud-mobile::before,
+    .hero-cloud-mobile::after {
         content:"";
         display:block;
         position:absolute;
         width:20vw;
         height:20vw;
-        left:-5rem;
+        left:-2rem;
         border-radius:50%;
         background:var(--ink);
-        box-shadow:10vw 6.25vw 0 var(--ink),
+        box-shadow:
+            10vw 6.25vw 0 var(--ink),
             21vw 5.4vw 0 var(--ink),
             29vw 3.5vw 0 var(--ink),
             40vw 3vw 0 var(--ink),
@@ -92,174 +313,16 @@
             99vw 5.4vw 0 var(--ink);
     }
 
-    .hero-cloud-divider::before {
+    .hero-cloud-mobile::before {
         top:-8vw;
-        left:-5rem;
+        left:-2rem;
     }
 
-    .hero-cloud-divider::after {
+    .hero-cloud-mobile::after {
         transform:scaleX(-1);
-        right:-5rem;
+        right:-2rem;
         left:auto;
         top:-9vw;
         opacity:0.8;
     }
-
-    .hero-cloud-mobile {
-        display:none;
-    }
-
-    .hero-content {
-        position:relative;
-        z-index:1;
-        padding:0 var(--edge);
-        max-width:46rem;
-    }
-
-    .hero-heading {
-        display:flex;
-        align-items:center;
-        gap:1.3rem;
-    }
-
-    .hero h1 {
-        font-family:var(--serif);
-        font-weight:normal;
-        letter-spacing:0.01em;
-        font-size:clamp(2.6rem, 6vw, 4.4rem);
-        margin:0.3em 0 0.35em;
-    }
-
-    .hero-sub {
-        font-size:1.05rem;
-        max-width:34rem;
-        color:var(--fg);
-        opacity:0.82;
-    }
-
-    .hero-actions {
-        display:flex;
-        flex-wrap:wrap;
-        gap:0.7rem;
-        margin-top:1.2rem;
-    }
-
-    .hero-action {
-        display:inline-flex;
-        align-items:center;
-        gap:0.5rem;
-        padding:0.55rem 0.9rem;
-        background:color-mix(in srgb, var(--panel) 55%, transparent);
-        box-shadow:
-            inset 0 1px 0 rgba(255, 255, 255, 0.07),
-            inset 0 -1px 0 rgba(0, 0, 0, 0.35);
-        color:var(--fg);
-        font-size:0.76rem;
-        letter-spacing:0.02em;
-        transition:box-shadow 0.2s ease, background-color 0.2s ease, color 0.2s ease;
-    }
-
-    .hero-action:hover {
-        color:var(--flow-cold);
-        background-color:color-mix(in srgb, var(--flow-cold) 14%, transparent);
-        box-shadow:
-            inset 0 1px 0 color-mix(in srgb, var(--flow-cold) 45%, transparent),
-            inset 0 -1px 0 rgba(0, 0, 0, 0.45);
-    }
-
-    .hero-action .icon {
-        width:0.85rem;
-        height:0.85rem;
-    }
-
-    .hero-portrait-fallback {
-        font-size:9px;
-        letter-spacing:0.06em;
-        fill:var(--faint);
-        opacity:0.85;
-    }
-
-
-
-    @media (max-width: 720px) {
-        .hero {
-            flex-direction:column;
-            align-items:stretch;
-            min-height:0;
-        }
-
-        .hero-field {
-            position:relative;
-            inset:auto;
-            width:100%;
-            aspect-ratio:11 / 12;
-        }
-
-        .hero-field-desktop {
-            display:none;
-        }
-
-        .hero-field-mobile {
-            display:block;
-        }
-
-        .hero-scrim {
-            display:none;
-        }
-
-        .hero-content {
-            padding:1.6rem var(--edge) 2.2rem;
-        }
-
-        /* hero is a bounded image on mobile, not a full-bleed bg - swap dividers */
-        .hero-cloud-divider {
-            display:none;
-        }
-
-        .hero-cloud-mobile {
-            display:block;
-            position:absolute;
-            z-index:1;
-            bottom:0;
-            left:0;
-            width:100%;
-            height:0;
-            border-bottom:18px solid var(--ink);
-        }
-
-        .hero-cloud-mobile::before,
-        .hero-cloud-mobile::after {
-            content:"";
-            display:block;
-            position:absolute;
-            width:20vw;
-            height:20vw;
-            left:-2rem;
-            border-radius:50%;
-            background:var(--ink);
-            box-shadow:
-                10vw 6.25vw 0 var(--ink),
-                21vw 5.4vw 0 var(--ink),
-                29vw 3.5vw 0 var(--ink),
-                40vw 3vw 0 var(--ink),
-                49vw 6vw 0 var(--ink),
-                59.5vw 3.25vw 0 var(--ink),
-                71vw 4.9vw 0 var(--ink),
-                80.5vw 2.75vw 0 var(--ink),
-                90vw 3.6vw 0 var(--ink),
-                99vw 5.4vw 0 var(--ink);
-        }
-
-        .hero-cloud-mobile::before {
-            top:-8vw;
-            left:-2rem;
-        }
-
-        .hero-cloud-mobile::after {
-            transform:scaleX(-1);
-            right:-2rem;
-            left:auto;
-            top:-9vw;
-            opacity:0.8;
-        }
-    }
+}

@@ -1,160 +1,167 @@
-    /* accordions - native <details>/<summary>, no js needed */
+/* accordions - native <details>/<summary>, no js needed */
 
-    .edu-list {
-        list-style:none;
-        margin:0;
-        padding:0;
-        display:flex;
-        flex-direction:column;
-        gap:1rem;
-    }
+.edu-list {
+    list-style:none;
+    margin:0;
+    padding:0;
+    display:flex;
+    flex-direction:column;
+    gap:1rem;
+}
 
-    .edu-item {
-        background-color:var(--panel);
-    }
+.edu-item {
+    background-color:var(--panel);
+    border-left:3px solid var(--faint);
+    transition:transform 0.2s ease;
+}
 
+.edu-item:hover {
+    --bracket-color:var(--flow-cold);
+    transform:translateX(3px);
+}
+
+.edu-summary {
+    display:flex;
+    align-items:baseline;
+    flex-wrap:wrap;
+    gap:1rem;
+    padding:1rem 1.2rem;
+    cursor:pointer;
+    list-style:none;
+}
+
+.edu-summary::-webkit-details-marker {
+    display:none;
+}
+
+.edu-summary::marker {
+    content:'';
+}
+
+.edu-level {
+    flex:none;
+    font-size:0.8rem;
+    color:var(--flow-hot);
+    letter-spacing:0.04em;
+    min-width:2.6rem;
+}
+
+.edu-heading {
+    display:flex;
+    flex-direction:column;
+    gap:0.2rem;
+    flex:1;
+    min-width:12rem;
+}
+
+.edu-degree {
+    font-size:1rem;
+    color:var(--fg);
+}
+
+.edu-school {
+    font-size:0.8rem;
+    color:var(--faint);
+}
+
+.edu-years {
+    font-size:0.8rem;
+    color:var(--faint);
+}
+
+.edu-chevron {
+    flex:none;
+    width:0.85rem;
+    height:0.85rem;
+    color:var(--muted);
+    transition:transform 0.2s ease;
+}
+
+.edu-item details[open] .edu-chevron {
+    transform:rotate(90deg);
+}
+
+.edu-details {
+    padding:0 1.2rem 1.3rem;
+    display:flex;
+    flex-direction:column;
+    gap:1rem;
+}
+
+.edu-focus {
+    margin:0;
+    font-size:0.88rem;
+    color:var(--fg);
+    opacity:0.85;
+}
+
+.edu-supervisors {
+    margin:0;
+    font-size:0.8rem;
+    color:var(--faint);
+}
+
+.edu-group {
+    display:flex;
+    flex-direction:column;
+    gap:0.4rem;
+}
+
+.edu-group-label {
+    font-size:0.66rem;
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    color:var(--amber);
+}
+
+.edu-group-list {
+    list-style:none;
+    margin:0;
+    padding:0;
+    display:flex;
+    flex-direction:column;
+    gap:0.35rem;
+}
+
+.edu-group-list li {
+    font-size:0.84rem;
+    color:var(--fg);
+    opacity:0.82;
+    padding-left:1rem;
+    position:relative;
+}
+
+.edu-group-list li::before {
+    content:'';
+    position:absolute;
+    left:0;
+    top:0.7em;
+    width:5px;
+    height:1px;
+    background:var(--faint);
+}
+
+
+
+@media (max-width: 720px) {
     .edu-summary {
-        display:flex;
-        align-items:baseline;
-        flex-wrap:wrap;
-        gap:1rem;
-        padding:1rem 1.2rem;
-        cursor:pointer;
-        list-style:none;
-    }
-
-    .edu-summary::-webkit-details-marker {
-        display:none;
-    }
-
-    .edu-summary::marker {
-        content:'';
-    }
-
-    .edu-level {
-        flex:none;
-        font-size:0.8rem;
-        color:var(--flow-cold);
-        letter-spacing:0.04em;
-        min-width:2.6rem;
-    }
-
-    .edu-heading {
-        display:flex;
         flex-direction:column;
-        gap:0.2rem;
-        flex:1;
-        min-width:12rem;
-    }
-
-    .edu-degree {
-        font-size:1rem;
-        color:var(--fg);
-    }
-
-    .edu-school {
-        font-size:0.8rem;
-        color:var(--faint);
-    }
-
-    .edu-years {
-        font-size:0.8rem;
-        color:var(--faint);
+        align-items:flex-start;
+        gap:0.5rem;
+        padding:0.9rem 1rem;
     }
 
     .edu-chevron {
-        flex:none;
-        width:0.85rem;
-        height:0.85rem;
-        color:var(--muted);
-        transition:transform 0.2s ease;
+        position:absolute;
+        top:1rem;
+        right:1rem;
     }
 
-    .edu-item details[open] .edu-chevron {
-        transform:rotate(90deg);
-    }
-
-    .edu-details {
-        padding:0 1.2rem 1.3rem;
-        display:flex;
-        flex-direction:column;
-        gap:1rem;
-    }
-
-    .edu-focus {
-        margin:0;
-        font-size:0.88rem;
-        color:var(--fg);
-        opacity:0.85;
-    }
-
-    .edu-supervisors {
-        margin:0;
-        font-size:0.8rem;
-        color:var(--faint);
-    }
-
-    .edu-group {
-        display:flex;
-        flex-direction:column;
-        gap:0.4rem;
-    }
-
-    .edu-group-label {
-        font-size:0.66rem;
-        text-transform:uppercase;
-        letter-spacing:0.08em;
-        color:var(--amber);
-    }
-
-    .edu-group-list {
-        list-style:none;
-        margin:0;
-        padding:0;
-        display:flex;
-        flex-direction:column;
-        gap:0.35rem;
-    }
-
-    .edu-group-list li {
-        font-size:0.84rem;
-        color:var(--fg);
-        opacity:0.82;
-        padding-left:1rem;
+    .edu-item {
         position:relative;
     }
 
-    .edu-group-list li::before {
-        content:'';
-        position:absolute;
-        left:0;
-        top:0.7em;
-        width:5px;
-        height:1px;
-        background:var(--faint);
+    .edu-details {
+        padding:0 1rem 1.1rem;
     }
-
-
-
-    @media (max-width: 720px) {
-        .edu-summary {
-            flex-direction:column;
-            align-items:flex-start;
-            gap:0.5rem;
-            padding:0.9rem 1rem;
-        }
-
-        .edu-chevron {
-            position:absolute;
-            top:1rem;
-            right:1rem;
-        }
-
-        .edu-item {
-            position:relative;
-        }
-
-        .edu-details {
-            padding:0 1rem 1.1rem;
-        }
-    }
+}

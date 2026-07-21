@@ -28,7 +28,7 @@ import Icon from './Icon.astro';
       <text class="hero-portrait-fallback mono" x="818" y="312" text-anchor="middle" aria-hidden="true">ADD</text>
       <text class="hero-portrait-fallback mono" x="818" y="326" text-anchor="middle" aria-hidden="true">PHOTO</text>
       <image
-        href="/portrait.jpg"
+        href="/airshow.jpg"
         x="771" y="269" width="94" height="94"
         clip-path="url(#heroPortraitClip)"
         preserveAspectRatio="xMidYMid slice"
@@ -63,7 +63,7 @@ import Icon from './Icon.astro';
       <text class="hero-portrait-fallback mono" x="818" y="312" text-anchor="middle" aria-hidden="true">ADD</text>
       <text class="hero-portrait-fallback mono" x="818" y="326" text-anchor="middle" aria-hidden="true">PHOTO</text>
       <image
-        href="/portrait.jpg"
+        href="/airshow.jpg"
         x="771" y="269" width="94" height="94"
         clip-path="url(#heroPortraitClipMobile)"
         preserveAspectRatio="xMidYMid slice"
@@ -95,21 +95,27 @@ import Icon from './Icon.astro';
 
   <div class="hero-content">
     <div class="hero-text">
-      <p class="eyebrow">Aeronautical Engineer</p>
+      <p class="eyebrow">
+        <span class="hero-eyebrow-rotator" aria-label="Aeronautical Engineer">
+          <span aria-hidden="true">Aeronautical Engineer</span>
+          <span aria-hidden="true">GPU Enthusiast</span>
+          <span aria-hidden="true">Singaporean AVGeek</span>
+          <span aria-hidden="true">Liverpool FC fan</span>
+        </span>
+      </p>
       <div class="hero-heading">
         <h1>Beverley YEO</h1>
       </div>
-      <p class="hero-sub">
-        <a href="https://me.stanford.edu">Stanford Mechanical Engineering PhD Candidate</a> / <a href="https://www.a-star.edu.sg/Scholarships/for-graduate-studies/national-science-scholarship-phd">A*STAR NSS (PhD) Scholar</a> / <a href="https://adl.stanford.edu">Supervised by Prof. Juan Alonso</a>
-      </p>
+      <p class="hero-description">I like GPUs and airplanes, and I work on using GPUs to help airplane designers run faster simulations.</p>
+      <ul class="hero-route">
+        <li><a href="https://me.stanford.edu">Stanford Mechanical Engineering PhD Candidate</a></li>
+        <li><a href="https://www.a-star.edu.sg/Scholarships/for-graduate-studies/national-science-scholarship-phd">A*STAR NSS (PhD) Scholar</a></li>
+        <li><a href="https://adl.stanford.edu">Supervised by Prof. Juan Alonso</a></li>
+      </ul>
       <div class="hero-actions">
-        <a class="hero-action mono" href="/cv.pdf">
+        <a class="hero-action mono" href="/Beverley_CV_PhD.pdf">
           <Icon name="pdf" />
           <span>Download my CV</span>
-        </a>
-        <a class="hero-action mono" href="mailto:yeokwb@stanford.edu">
-          <Icon name="email" />
-          <span>Email me</span>
         </a>
       </div>
     </div>

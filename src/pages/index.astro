@@ -6,24 +6,27 @@ import Hero from '../components/Hero.astro';
 import Research from '../components/Research.astro';
 import Employment from '../components/Employment.astro';
 import Education from '../components/Education.astro';
+import Skills from '../components/Skills.astro';
 import OffDuty from '../components/OffDuty.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 
 const sections = [
   { id: 'top', label: 'Flight Deck', alt: 'FL350' },
-  { id: 'research', label: 'Flight Log', alt: 'FL240' },
-  { id: 'employment', label: 'Flight Hours', alt: 'FL140' },
-  { id: 'education', label: 'Ground School', alt: 'FL060' },
-  { id: 'fun', label: 'Off Duty', alt: 'GND' },
+  { id: 'employment', label: 'Experience', alt: 'FL320' },
+  { id: 'education', label: 'Education', alt: 'FL280' },
+  { id: 'skills', label: 'Skills', alt: 'FL220' },
+  { id: 'research', label: 'Research', alt: 'FL160' },
+  { id: 'fun', label: 'Miscellany', alt: 'FL040' },
+  { id: 'footer', label: 'Landed', alt: 'GND', navHidden: true },
 ];
 
 /* research */
 
 const research = [
   {
-    callsign: 'LANL·CAI2',
+    callsign: '',
     status: 'current',
-    alt: 'FL260',
+    heading: '260°',
     title: 'Kokkos Kernels for Quinoa',
     blurb: 'Adding GPU capability to the DG code Quinoa using Kokkos',
     supervisors: ['Dr. Aditya Pandare', 'Dr. Facundo Airaudo'],
@@ -33,9 +36,9 @@ const research = [
     ],
   },
   {
-    callsign: 'STANFORD·AA',
+    callsign: '',
     status: 'ongoing',
-    alt: 'FL260',
+    heading: '260°',
     title: 'Interval arithmetic for floating-point error quantification',
     blurb: 'Developing methodology to bound floating-point error for a discontinuous Galerkin kernel',
     supervisors: ['Prof. Juan Alonso'],
@@ -43,9 +46,9 @@ const research = [
     links: []
   },
   {
-    callsign: 'STANFORD·ME',
+    callsign: '',
     status: 'landed',
-    alt: 'FL250',
+    heading: '250°',
     title: 'Mixed precision for discontinuous Galerkin codes',
     blurb: 'Benchmarking DG operations in single- and double-precision on various devices',
     supervisors: ['Prof. Matthias Ihme'],
@@ -55,9 +58,23 @@ const research = [
     ],
   },
   {
-    callsign: 'STANFORD·ME',
+    callsign: '',
     status: 'landed',
-    alt: 'FL250',
+    heading: '250°',
+    title: 'BLASTNet',
+    blurb: 'Redesigned interface with Isotope filtering and analytics synced from Kaggle API, built using a JSON cache with cron and the GitHub API along with Jekyll templating.',
+    supervisors: ['Prof. Matthias Ihme'],
+    tools: ['Jekyll', 'SASS', 'CSS', 'HTML', 'Javascript', 'Kaggle API', 'Python','Firebase'],
+    links: [
+      { label: 'Code', href: 'http://github.com/blastnet/blastnet.github.io', icon: 'github' },
+      { label: 'Live', href: 'https://blastnet.github.io', icon: 'link' }
+    ],
+    image: 'research/blastnet.png',
+  },
+  {
+    callsign: '',
+    status: 'landed',
+    heading: '250°',
     title: 'CuPyQuail',
     blurb: 'GPU-compatible version of in-house discontinous Galerkin code, Quail',
     supervisors: ['Prof. Matthias Ihme'],
@@ -65,12 +82,12 @@ const research = [
     links: [
       { label: 'Code', href: 'http://github.com/beverleyy/quail_cupy', icon: 'github' },
     ],
-    image: '/research/cupyquail.png',
+    image: 'research/cupyquail.png',
   },
   {
-    callsign: 'STANFORD·ME',
+    callsign: '',
     status: 'landed',
-    alt: 'FL240',
+    heading: '240°',
     title: 'Automatic differentiation for shock capturing',
     blurb: 'JAX automatic gradient to optimize artificial viscosity parameter',
     supervisors: ['Prof. Matthias Ihme'],
@@ -78,9 +95,9 @@ const research = [
     links: [],
   },
   {
-    callsign: 'STANFORD·ME',
+    callsign: '',
     status: 'landed',
-    alt: 'FL240',
+    heading: '240°',
     title: 'JAX_DG',
     blurb: 'Development of hardware-independent discontinous Galerkin solver using Google JAX',
     supervisors: ['Prof. Matthias Ihme'],
@@ -88,25 +105,25 @@ const research = [
     links: [
       {label: 'Code', href: 'http://github.com/beverleyy/1DJaxDG', icon: 'github'},
     ],
-    image: '/research/jax-dg-vortex.gif'
+    image: 'research/jax_dg_vortex.gif'
   },
   {
-    callsign: 'IHPC·ASTAR',
+    callsign: 'SAP16',
     status: 'landed',
-    alt: 'FL230',
+    heading: '230°',
     title: 'Transonic aeroelasticity with harmonic balance',
-    blurb: 'Harmonic balance-based aerodynamic force calculations for use in transonic flutter prediction of NASA CRM wings\n (Singapore Aerospace Programme Cycle 16)',
+    blurb: 'Harmonic balance-based aerodynamic force calculations for use in transonic flutter prediction of NASA CRM wings',
     supervisors: ['Dr. Daniel Wise','Dr. Vinh-Tan Nguyen'],
     tools: ['C++', 'Python','SU2'],
     links: [
       {label: 'Code', href: 'http://github.com/beverleyy/hb_aeroelastic', icon: 'github'},
     ],
-    image: '/research/bscwp.gif'
+    image: 'research/bscwp.gif'
   },
   {
-    callsign: 'IHPC·ASTAR',
+    callsign: '',
     status: 'landed',
-    alt: 'FL225',
+    heading: '225°',
     title: 'A*STAR/MOE Scientists-in-Schools Program',
     blurb: 'Self-contained Jupyter notebook for 2D lid-driven cavity flow using finite-volume solver (Zhangde Primary School Primary 5 E2K)',
     supervisors: ['Dr. Hongying Li'],
@@ -114,21 +131,66 @@ const research = [
     links: [
       {label: 'Code', href: 'http://github.com/beverleyy/SIS_ZPS', icon: 'github'},
     ],
-    image: '/research/sis_zps_result.jpg'
+    image: 'research/sis_zps_result.jpg'
   },
   {
-    callsign: 'NTU·MENG',
+    callsign: 'M.Eng. Thesis',
     status: 'landed',
-    alt: 'FL220',
-    title: 'Investigating Galilean Invariance in CFD',
+    heading: '220°',
+    title: 'Investigating Galilean invariance in CFD',
     blurb: 'Comparison between flow properties and wakes calculated from CFD simulations (LES, DNS) of moving body in stationary flow vs stationary body in moving flow.',
     supervisors: ['Prof. Wai Lee Chan', 'Prof. Basman Elhadidi'],
     tools: ['Fluent','OpenFOAM','Pointwise','Tecplot','C++','Python','MATLAB'],
     links: [
       {label: 'Thesis', href: 'https://dr.ntu.edu.sg/handle/10356/164694', icon: 'pdf'},
     ],
-    image: '/research/jfm_graphicalAbstract.jpg'
+    image: 'research/jfm_graphicalAbstract.jpg'
   },
+  {
+    callsign: 'B.Eng. FYP',
+    status: 'landed',
+    heading: '210°',
+    title: 'Flow behavior of confined vortex-rings',
+    blurb: 'Computational investigations of vortex-ring-induced wall shear stress and pressure on confined geometry, with experimental validation using dye flow visualization',
+    supervisors: ['Prof. Daniel New'],
+    tools: ['Fluent', 'Flow visualization', 'Pointwise', 'Tecplot', 'MATLAB'],
+    links: [
+      {label: 'Thesis', href: 'https://dr.ntu.edu.sg/handle/10356/149350', icon: 'pdf'},
+    ],
+    image: 'research/cvr.png',
+  },
+  {
+    status: 'landed',
+    heading: '200°',
+    title: 'Fusing communication skills with engineering knowledge',
+    blurb: 'Co-teaching program to improve engineering students\' communication skills',
+    supervisors: ['Prof. Wai Lee Chan', 'Prof. Jean Lee'],
+    tools: ['MATLAB', 'Python', 'Excel'],
+    links: [],
+  },
+  {
+    status: 'landed',
+    heading: '190°',
+    title: 'System identification of novel VTOL UAV',
+    blurb: 'Determining stability and aerodynamic coefficients from dynamic system response using least-square regression models',
+    supervisors: ['Prof. Basman Elhadidi'],
+    tools: ['MATLAB', 'Datalogging', 'Arduino'],
+    links: [],
+    image: 'research/sysid.png'
+  },
+  {
+    callsign: 'CNYSP Research',
+    heading: '180°',
+    title: 'Flow transitions of vortex-ring collisions with density interfaces',
+    blurb: 'Planar laser-induced fluorescence and time-resolved particle-image velocimetry flow visualizations of vortex-rings colliding with free surfaces and oil interface. Featured on the cover of NTU College of Engineering Annual Magazine 2026!',
+    supervisors: ['Prof. Daniel New'],
+    tools: ['Flow visualization', 'MATLAB', 'Tecplot'],
+    links: [
+      {label: 'JOV paper', href: 'https://doi.org/10.1007/s12650-020-00666-7', icon: 'pdf'},
+      {label: 'POF paper', href: 'https://doi.org/10.1063/5.0176897', icon: 'pdf'}
+    ],
+    image: 'research/vortex.png'
+  }
 ];
 
 /* employment */
@@ -182,6 +244,7 @@ const education = [
     focus: 'Thesis: On the flow behavior of confined vortex-rings',
     supervisors: ['Prof. T.H. New'],
     honors: ['CN Yang Scholars Program', 'CNYSP Research Award (Gold)', 'Deans List AY19/20', 'Nanyang Scholarship'],
+    teaching: ['Peer Tutor - Computational Fluid Dynamics, Fall 2020 (Prof. B. Elhadidi)'],
   },
   {
     level: 'Exchange',
@@ -192,29 +255,63 @@ const education = [
   }
 ];
 
+/* skills */
+ 
+const skillGroups = [
+  {
+    label: 'Programming',
+    skills: ['Python', 'C', 'C++', 'CUDA', 'MATLAB', 'Make', 'Bash', 'Git'],
+  },
+  {
+    label: 'HPC & GPU',
+    skills: ['Kokkos', 'Charm++', 'CUDA', 'JAX', 'Google Cloud','Firebase'],
+  },
+  {
+    label: 'CFD',
+    skills: ['Quinoa', 'SU2', 'OpenFOAM', 'Fluent', 'Pointwise', 'Tecplot'],
+  },
+  {
+    label: 'Web',
+    skills: ['Astro', 'Jekyll', 'CSS', 'SASS', 'HTML', 'JavaScript', 'Photoshop'],
+  },
+  {
+    label: 'Languages',
+    skills: ['English', 'Mandarin', 'Korean (elementary)']
+  }
+];
+
 /* other stuffs */
 
 const builds = [
   {
-    title: 'Personal sites',
-    blurb: 'This one included — Astro, hand-drawn SVGs, way too many CSS variables.',
-    image: '/off-duty-site.jpg',
+    title: 'Waffles the WTOL',
+    blurb: "Novel quadrotor 'Weird Takeoff and Landing' concept to improve transition performance using two forward-canted rotors at the front and two outward-canted rotors at the back.",
+    image: 'etc/waffles.png',
+    link: { label: 'UAV senior design', href: 'https://youtu.be/I5h49ASUCJA' }
   },
   {
-    title: 'Foam-board glider',
-    blurb: "Built to see whether the CFD agrees with what it does in the yard. It doesn't, yet.",
-    image: '/off-duty-glider.jpg',
+    title: 'Mini delivery quadcopter',
+    blurb: 'Modified racing drone for autonomous package delivery.',
+    image: 'etc/charmcube.jpg',
+    link: { label: 'Making and Tinkering 2018', href: 'https://blogs.ntu.edu.sg/ps9888-2018-droneinc'}
   },
   {
-    title: 'Cessna cross-countries',
-    blurb: 'Private pilot, weekends permitting — the actual reason for the attitude indicator.',
-    image: '/off-duty-cessna.jpg',
+    title: 'Tumblr themes',
+    blurb: '"Your daughter is still running her blog from middle school" but also this is my web design playground and where I learned how to write code.',
+    link: { label: 'MagnusThemes@Tumblr', href: 'https://magnusthemes.tumblr.com'},
+    image: 'etc/tumblr.png',
+  },
+  {
+    title: 'BloomScroller',
+    blurb: 'Browser extension for Twitter desktop that combats doomscrolling using artificial intelligence, gamification, and positive psychology.',
+    link: { label: 'MindfulHacks 2021 winner', href: 'https://devpost.com/software/bloomscroller' },
+    image: 'etc/bloom.jpg',
   },
   {
     title: 'Mechanical keyboards',
-    blurb: 'A small, ever-growing fleet of home-built boards.',
-    image: '/off-duty-keyboards.jpg',
-    link: { label: 'View the gallery', href: '#' },
+    blurb: 'A small, ever-growing fleet that continues to threaten the contents of my bank account.',
+    image: 'etc/keeb.jpg',
+    link: { label: 'View gallery', href: 'https://beverleyy.notion.site/Keyboard-Collection-30c75a1e8b8e810da7f6c9b19b8c99d5' },
   },
 ];
 ---
@@ -229,9 +326,10 @@ const builds = [
     <Hero />
   </main>
 
-  <Research research={research} />
   <Employment employment={employment} />
   <Education education={education} />
+  <Skills skillGroups={skillGroups} />
+  <Research research={research} />
   <OffDuty builds={builds} />
 
   <SiteFooter />

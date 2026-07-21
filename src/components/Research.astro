@@ -8,9 +8,9 @@ interface Link {
 }
 
 interface ResearchItem {
-  callsign: string;
+  callsign?: string;
   status: string;
-  alt: string;
+  heading: string;
   title: string;
   blurb: string;
   supervisors?: string[];
@@ -25,25 +25,31 @@ interface Props {
 
 const { research } = Astro.props;
 ---
-<section id="research" class="research" data-tape-section data-tape-label="Flight Log">
-  <p class="eyebrow section-eyebrow">Flight Log</p>
+<section id="research" class="research" data-tape-section data-tape-label="Research">
+  <p class="eyebrow section-eyebrow">Research</p>
 
   <ul class="strip-list">
     {research.map((item) => (
       <li class={`strip bracket-frame strip--${item.status}${item.image ? '' : ' strip--no-thumb'}`}>
         {item.image && (
-          <div class="strip-thumb" aria-hidden="true">
-            <span class="strip-thumb-fallback mono">ADD<br />PHOTO</span>
+          <div class="strip-thumb">
+            <span class="strip-thumb-fallback mono" aria-hidden="true">ADD<br />PHOTO</span>
             <img src={item.image} alt="" loading="lazy" onerror="this.style.display='none'" />
+            <div class="strip-thumb-hud mono" aria-hidden="true">
+              <span class="strip-callsign">{item.callsign}</span>
+              <span class="strip-heading-value">{item.heading}</span>
+            </div>
           </div>
         )}
 
         <div class="strip-main">
           <div class="strip-top">
-            <span class="strip-callsign mono">{item.callsign}</span>
+            {(!item.image && item.callsign) && (
+              <span class="strip-callsign mono">{item.callsign}</span>
+            )}
             <h3>{item.title}</h3>
             <span class="strip-status mono">{item.status}</span>
-            <span class="strip-alt mono">{item.alt}</span>
+            {!item.image && <span class="strip-heading-value mono">{item.heading}</span>}
           </div>
           <p class="strip-blurb">{item.blurb}</p>
           {item.supervisors && item.supervisors.length > 0 && (

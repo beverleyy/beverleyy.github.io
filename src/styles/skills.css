@@ -1,0 +1,35 @@
+.skill-groups {
+    list-style:none;
+    margin:0;
+    padding:0;
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(16rem, 1fr));
+    gap:1.5rem;
+}
+
+.skill-group {
+    background-color:var(--panel);
+    padding:1.2rem 1.3rem 1.4rem;
+    display:flex;
+    flex-direction:column;
+    gap:0.7rem;
+    transition:transform 0.2s ease;
+}
+
+.skill-group:hover {
+    --bracket-color:var(--flow-cold);
+    transform:translateY(-2px);
+}
+
+.skill-group-label {
+    font-size:0.66rem;
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    color:var(--amber);
+}
+
+.skill-tags {
+    display:flex;
+    flex-wrap:wrap;
+    gap:0.5rem;
+}

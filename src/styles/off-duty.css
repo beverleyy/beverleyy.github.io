@@ -1,108 +1,108 @@
-    .fun {
-        border-bottom:none;
-    }
+.fun {
+    border-bottom:none;
+}
 
-    .build-grid {
-        list-style:none;
-        margin:0;
-        padding:0;
-        display:grid;
-        grid-template-columns:repeat(auto-fill, minmax(15rem, 1fr));
-        gap:1.5rem;
-    }
+.build-grid {
+    list-style:none;
+    margin:0;
+    padding:0;
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(15rem, 1fr));
+    gap:1.5rem;
+}
 
-    .build-tile {
-        display:flex;
-        flex-direction:column;
-        background-color:var(--panel);
-        overflow:hidden;
-        transition:transform 0.2s ease;
-    }
+.build-tile {
+    display:flex;
+    flex-direction:column;
+    background-color:var(--panel);
+    overflow:hidden;
+    transition:transform 0.2s ease;
+}
 
-    .build-tile:hover {
-        --bracket-color:var(--flow-cold);
-        transform:translateY(-2px);
-    }
+.build-tile:hover {
+    --bracket-color:var(--flow-cold);
+    transform:translateY(-2px);
+}
 
-    .build-photo {
-        position:relative;
-        aspect-ratio:4 / 3;
-        background:var(--ink);
-        border-bottom:1px solid var(--panel-line);
-        overflow:hidden;
-    }
+.build-photo {
+    position:relative;
+    aspect-ratio:4 / 3;
+    background:var(--ink);
+    border-bottom:1px solid var(--panel-line);
+    overflow:hidden;
+}
 
-    .build-photo img {
-        position:absolute;
-        inset:0;
-        width:100%;
-        height:100%;
-        object-fit:cover;
-        display:block;
-    }
+.build-photo img {
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+}
 
-    .build-photo-fallback {
-        position:absolute;
-        inset:0;
-        display:flex;
-        align-items:center;
-        justify-content:center;
-        text-align:center;
-        font-size:0.62rem;
-        line-height:1.4;
-        letter-spacing:0.06em;
-        color:var(--faint);
-    }
+.build-photo-fallback {
+    position:absolute;
+    inset:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    font-size:0.62rem;
+    line-height:1.4;
+    letter-spacing:0.06em;
+    color:var(--faint);
+}
 
-    .build-body {
-        display:flex;
-        flex-direction:column;
-        gap:0.4rem;
-        padding:1.1rem 1.2rem 1.3rem;
-        flex:1;
-    }
+.build-body {
+    display:flex;
+    flex-direction:column;
+    gap:0.4rem;
+    padding:1.1rem 1.2rem 1.3rem;
+    flex:1;
+}
 
-    .build-body h3 {
-        font-size:1rem;
-        margin:0;
-        color:var(--fg);
-    }
+.build-body h3 {
+    font-size:1rem;
+    margin:0;
+    color:var(--fg);
+}
 
-    .build-body p {
-        margin:0;
-        font-size:0.86rem;
-        color:var(--fg);
-        opacity:0.82;
-    }
+.build-body p {
+    margin:0;
+    font-size:0.86rem;
+    color:var(--fg);
+    opacity:0.82;
+}
 
-    .build-link {
-        display:inline-flex;
-        align-items:center;
-        gap:0.35rem;
-        margin-top:0.3rem;
-        font-family:var(--mono);
-        font-size:0.7rem;
-        color:var(--flow-cold);
-        border-bottom:1px solid transparent;
-        align-self:flex-start;
-        transition:border-color 0.2s ease;
-    }
+.build-link {
+    display:inline-flex;
+    align-items:center;
+    gap:0.35rem;
+    margin-top:0.3rem;
+    font-family:var(--mono);
+    font-size:0.8rem;
+    color:var(--flow-hot);
+    border-bottom:1px solid transparent;
+    align-self:flex-start;
+    transition:border-color 0.2s ease;
+}
 
-    .build-link:hover {
-        border-color:var(--flow-cold);
-    }
+.build-link:hover {
+    border-color:var(--flow-cold);
+}
 
-    .build-link .icon {
-        width:0.78rem;
-        height:0.78rem;
-    }
+.build-link .icon {
+    width:0.78rem;
+    height:0.78rem;
+}
 
-    footer {
-        padding:2rem var(--edge) 3rem;
-    }
+footer {
+    padding:2rem var(--edge) 3rem;
+}
 
-    footer p {
-        color:var(--faint);
-        font-size:0.75rem;
-    }
+footer p {
+    color:var(--faint);
+    font-size:0.75rem;
+}
 

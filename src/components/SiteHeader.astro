@@ -2,7 +2,7 @@
 import Icon from './Icon.astro';
 
 interface Props {
-  sections: { id: string; label: string; alt: string }[];
+  sections: { id: string; label: string; alt: string; navHidden?: boolean }[];
 }
 
 const { sections } = Astro.props;
@@ -12,7 +12,7 @@ const { sections } = Astro.props;
   <div class="header-row">
     <a class="mark mono" href="#top" aria-label="Beverley Yeo — home">
       <Icon name="mark" class="mark-icon" />
-      N1998BY
+      9Y-KWB
     </a>
 
     <div class="header-icons">
@@ -50,7 +50,7 @@ const { sections } = Astro.props;
 
   <nav class="header-nav">
     <ul>
-      {sections.slice(1).map((s) => (
+      {sections.slice(1).filter((s) => !s.navHidden).map((s) => (
         <li><a href={`#${s.id}`} data-id={s.id}>{s.label}</a></li>
       ))}
     </ul>
