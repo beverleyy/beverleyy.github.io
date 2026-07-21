@@ -7,7 +7,7 @@ This is my (new) personal website and portfolio, built with [Astro](https://astr
 * **Note that this site was not intended to be a template.** Therefore, fork at your own risk!.
 * **If you are interested in using this code for your site, please include attribution and remove all the images from your directory.**
 
-* ## Design
+## Design
 
 ### Colors
 
@@ -30,6 +30,9 @@ A readable modern geometric typeface is chosen for the body font and paired with
 * Ailerons - [Adilson Gonzales](https://www.behance.net/gallery/25541553/Ailerons-Typeface)
 * Barlow - [Google Fonts](https://fonts.google.com/specimen/Barlow)
 * Datatype - [Google Fonts](https://fonts.google.com/specimen/Datatype)
+
+### Header image
+* Aldnoah.Zero anime (both light and dark headers!)
 
 ## To-do
 * Improve analytics

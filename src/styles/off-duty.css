@@ -132,6 +132,51 @@
     height:0.75rem;
 }
 
+@media (max-width: 900px) {
+    .ticket-grid {
+        grid-template-columns:1fr;
+        gap:0.9rem;
+    }
+
+    .ticket {
+        display:flex;
+        flex-direction:row;
+        flex-wrap:wrap;
+        align-items:stretch;
+    }
+
+    .ticket-photo {
+        order:1;
+        flex:0 0 auto;
+        width:6rem;
+        height:auto;
+        align-self:stretch;
+        aspect-ratio:auto;
+    }
+
+    .ticket-body {
+        order:2;
+        flex:1 1 0;
+        min-width:0;
+        padding:0.55rem 0.75rem;
+        gap:0.2rem;
+        justify-content:center;
+    }
+
+    .ticket-body h3 {
+        font-size:0.86rem;
+    }
+
+    .ticket-body p {
+        font-size:0.76rem;
+    }
+
+    .ticket-stub {
+        order:3;
+        flex:1 1 100%;
+    }
+}
+
 footer {
     padding:2rem var(--edge) 3rem;
 }
