@@ -13,10 +13,10 @@
 
 .tape-backdrop {
     position:absolute;
-    top:-0.9rem;
-    bottom:-0.9rem;
-    right:-1.1rem;
-    left:-1.1rem;
+    top:-0.5rem;
+    bottom:-0.5rem;
+    right:-0.7rem;
+    left:-0.7rem;
     width:100%;
     border-radius:2px;
     background:color-mix(in srgb, var(--ink) 1%, transparent);
@@ -24,7 +24,7 @@
     -webkit-backdrop-filter:blur(7px);
     pointer-events:none;
     box-sizing:content-box;
-    padding:0.9rem 1.1rem;
+    padding:0.5rem 0.7rem;
 }
 
 .tape-readout {

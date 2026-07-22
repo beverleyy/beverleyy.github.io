@@ -1,3 +1,15 @@
+import Lenis from "lenis";
+
+// Psst
+console.log("Tower, this is Ghost Rider requesting a flyby.");
+console.log("Negative, Ghost Rider, the pattern is full!");
+console.log("No Bev, this is not a good idea!");
+
+// Smooth scroll - skipped entirely for people who've asked their OS for
+// less motion, so scrolling stays instant/native for them
+const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const lenis = prefersReducedMotion ? null : new Lenis({ autoRaf: true });
+
 // Theme toggle
 const themeToggle = document.getElementById("themeToggle");
 const htmlEl = document.documentElement;
@@ -26,7 +38,7 @@ if (themeToggle) {
 // Altitude tape + scroll spy
 const sections = Array.from(document.querySelectorAll("[data-tape-section]"));
 const ticks = Array.from(document.querySelectorAll(".tape-tick"));
-const headerLinks = Array.from(document.querySelectorAll(".header-nav a[data-id]"));
+const bottomTicks = Array.from(document.querySelectorAll(".bottom-tape-tick[data-id]"));
 const marker = document.getElementById("tapeMarker");
 const label = document.getElementById("tapeLabel");
 const altReadout = document.getElementById("tapeAlt");
@@ -87,7 +99,7 @@ function update() {
     if (altReadout && tickAlt && altReadout.textContent !== tickAlt) altReadout.textContent = tickAlt;
 
     ticks.forEach((t, i) => t.classList.toggle("active", i === activeIndex));
-    headerLinks.forEach((a) => a.classList.toggle("active", a.dataset.id === id));
+    bottomTicks.forEach((a) => a.classList.toggle("active", a.dataset.id === id));
 
     ticking = false;
 }
@@ -106,7 +118,12 @@ document.addEventListener("click", (event) => {
     const target = document.getElementById(targetId);
     if (!target) return;
     event.preventDefault();
-    window.scrollTo({ top: scrollTargetFor(target), behavior: "smooth" });
+    const top = scrollTargetFor(target);
+    if (lenis) {
+        lenis.scrollTo(top);
+    } else {
+        window.scrollTo({ top, behavior: prefersReducedMotion ? "auto" : "smooth" });
+    }
 });
 
 window.addEventListener("scroll", onScroll, { passive: true });

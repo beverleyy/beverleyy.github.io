@@ -116,27 +116,6 @@ html[data-theme='light'] .hero-field {
     max-width:54rem;
 }
 
-.hero-eyebrow-rotator {
-    display:grid;
-}
-
-.hero-eyebrow-rotator span {
-    grid-area:1 / 1;
-    opacity:0;
-    animation:eyebrow-cycle 12s infinite;
-}
-
-.hero-eyebrow-rotator span:nth-child(1) { animation-delay:0s; }
-.hero-eyebrow-rotator span:nth-child(2) { animation-delay:3s; }
-.hero-eyebrow-rotator span:nth-child(3) { animation-delay:6s; }
-.hero-eyebrow-rotator span:nth-child(4) { animation-delay:9s; }
-
-@keyframes eyebrow-cycle {
-    0%, 100% { opacity:0; }
-    3%, 22% { opacity:1; }
-    25% { opacity:0; }
-}
-
 .hero-heading {
     display:flex;
     align-items:center;

@@ -1,0 +1,93 @@
+.bottom-tape {
+    display:none;
+    position:fixed;
+    left:0;
+    right:0;
+    bottom:0;
+    z-index:25;
+    padding:0.5rem max(4vw, 1rem);
+    padding-bottom:calc(0.5rem + env(safe-area-inset-bottom, 0px));
+    background:color-mix(in srgb, var(--ink) 88%, transparent);
+    backdrop-filter:blur(8px);
+    -webkit-backdrop-filter:blur(8px);
+    border-top:1px solid var(--panel-line);
+}
+
+.bottom-tape-track {
+    display:flex;
+    align-items:stretch;
+    gap:0.15rem;
+    overflow-x:auto;
+    scrollbar-width:none;
+    -webkit-overflow-scrolling:touch;
+}
+
+.bottom-tape-track::-webkit-scrollbar {
+    display:none;
+}
+
+.bottom-tape-tick {
+    flex:1 0 auto;
+    min-width:4.4rem;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:0.4rem;
+    padding:0.3rem 0.5rem;
+    text-align:center;
+}
+
+.bottom-tape-tick-label {
+    font-size:0.62rem;
+    letter-spacing:0.03em;
+    text-transform:uppercase;
+    color:var(--faint);
+    white-space:nowrap;
+    transition:color 0.2s ease;
+}
+
+.bottom-tape-tick-mark {
+    display:block;
+    width:14px;
+    height:2px;
+    border-radius:1px;
+    background:var(--faint);
+    opacity:0.7;
+    transition:background 0.2s ease, opacity 0.2s ease, width 0.2s ease;
+}
+
+.bottom-tape-tick:hover .bottom-tape-tick-label,
+.bottom-tape-tick.active .bottom-tape-tick-label {
+    color:var(--flow-cold);
+}
+
+.bottom-tape-tick:hover .bottom-tape-tick-mark,
+.bottom-tape-tick.active .bottom-tape-tick-mark {
+    background:var(--flow-cold);
+    opacity:1;
+    width:20px;
+    box-shadow:0 0 6px color-mix(in srgb, var(--flow-cold) 65%, transparent);
+}
+
+.bottom-tape-tick:focus-visible {
+    outline:2px solid var(--flow-cold);
+    outline-offset:2px;
+    border-radius:3px;
+}
+
+@media (max-width: 900px) {
+    .bottom-tape {
+        display:block;
+    }
+
+    body {
+        padding-bottom:3.75rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .bottom-tape-tick-label {
+        font-size:0.58rem;
+    }
+}

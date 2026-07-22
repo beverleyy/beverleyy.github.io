@@ -1,0 +1,17 @@
+---
+interface Props {
+  sections: { id: string; label: string; alt: string; navHidden?: boolean }[];
+}
+
+const { sections } = Astro.props;
+---
+<nav class="bottom-tape instrument-panel mono" aria-label="Section position">
+  <div class="bottom-tape-track">
+    {sections.filter((s) => !s.navHidden).map((s) => (
+      <a href={`#${s.id}`} class="bottom-tape-tick" data-id={s.id} aria-label={s.label}>
+        <span class="bottom-tape-tick-label">{s.label}</span>
+        <span class="bottom-tape-tick-mark" aria-hidden="true"></span>
+      </a>
+    ))}
+  </div>
+</nav>

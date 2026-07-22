@@ -1,13 +1,14 @@
 ---
 import '../styles/main.css';
+import 'lenis/dist/lenis.css';
 import '../styles/header.css';
 import '../styles/tape.css';
+import '../styles/bottom-tape.css';
 import '../styles/hero.css';
-import '../styles/research.css';
+import '../styles/projects.css';
 import '../styles/employment.css';
 import '../styles/education.css';
 import '../styles/skills.css';
-import '../styles/off-duty.css';
 import '../styles/footer.css';
 
 interface Props {
@@ -25,6 +26,7 @@ const { title, description } = Astro.props;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <meta name="robots" content="noindex, nofollow" />
     <script is:inline>
       (function () {
         try {

@@ -7,64 +7,83 @@ interface Link {
   icon: string;
 }
 
-interface ResearchItem {
+interface ProjectItem {
   callsign: string;
   status: string;
-  heading: string;
+  squawk: string;
   edu: string;
+  category: string;
   types: string[];
   title: string;
   blurb: string;
   supervisors?: string[];
+  team?: string[];
   tools: string[];
   links: Link[];
   image: string | null;
 }
 
 interface Props {
-  research: ResearchItem[];
+  projects: ProjectItem[];
 }
 
-const { research } = Astro.props;
+const { projects } = Astro.props;
 
 const eduLabels: Record<string, string> = { phd: 'PhD', meng: 'M.Eng', beng: 'B.Eng', pro: 'Industry' };
 const eduOrder = ['phd', 'meng', 'beng', 'pro'];
+
+const categoryLabels: Record<string, string> = { research: 'Research', engineering: 'Engineering' };
+const categoryOrder = ['research', 'engineering'];
 
 const typeLabels: Record<string, string> = {
   code: 'Code',
   math: 'Math',
   flows: 'Flows',
+  builds: 'Builds',
   other: 'Others',
 };
-const typeOrder = ['code', 'math', 'flows', 'other'];
+const typeOrder = ['code', 'math', 'flows', 'builds', 'other'];
 
 const statusLabels: Record<string, string> = { current: 'Current', ongoing: 'Ongoing', landed: 'Landed' };
 ---
-<section id="research" class="research" data-tape-section data-tape-label="Research">
-  <p class="eyebrow section-eyebrow">Research</p>
+<section id="projects" class="projects" data-tape-section data-tape-label="Projects">
+  <p class="eyebrow section-eyebrow">Projects</p>
 
-  <div class="filter-bar instrument-panel" role="group" aria-label="Filter research projects">
-    <div class="filter-group" data-filter-group="edu">
-      <span class="filter-group-label">Level</span>
-      <button type="button" class="filter-btn is-active" data-filter-value="*">
-        <span class="filter-btn-led" aria-hidden="true"></span>All
-      </button>
-      {eduOrder.map((key) => (
-        <button type="button" class="filter-btn" data-filter-value={key}>
-          <span class="filter-btn-led" aria-hidden="true"></span>{eduLabels[key]}
+  <div class="filter-bar instrument-panel" role="group" aria-label="Filter projects">
+    <div class="filter-groups">
+      <div class="filter-group" data-filter-group="category">
+        <span class="filter-group-label">Category</span>
+        <button type="button" class="filter-btn is-active" data-filter-value="*">
+          <span class="filter-btn-led" aria-hidden="true"></span>All<span class="filter-btn-all-suffix"> Categories</span>
         </button>
-      ))}
-    </div>
-    <div class="filter-group" data-filter-group="type">
-      <span class="filter-group-label">Type</span>
-      <button type="button" class="filter-btn is-active" data-filter-value="*">
-        <span class="filter-btn-led" aria-hidden="true"></span>All
-      </button>
-      {typeOrder.map((key) => (
-        <button type="button" class="filter-btn" data-filter-value={key}>
-          <span class="filter-btn-led" aria-hidden="true"></span>{typeLabels[key]}
+        {categoryOrder.map((key) => (
+          <button type="button" class="filter-btn" data-filter-value={key}>
+            <span class="filter-btn-led" aria-hidden="true"></span>{categoryLabels[key]}
+          </button>
+        ))}
+      </div>
+      <div class="filter-group" data-filter-group="edu">
+        <span class="filter-group-label">Level</span>
+        <button type="button" class="filter-btn is-active" data-filter-value="*">
+          <span class="filter-btn-led" aria-hidden="true"></span>All<span class="filter-btn-all-suffix"> Levels</span>
         </button>
-      ))}
+        {eduOrder.map((key) => (
+          <button type="button" class="filter-btn" data-filter-value={key}>
+            <span class="filter-btn-led" aria-hidden="true"></span>{eduLabels[key]}
+          </button>
+        ))}
+      </div>
+      <div class="filter-group" data-filter-group="type">
+        <span class="filter-group-label">Type</span>
+        <button type="button" class="filter-btn is-active" data-filter-value="*">
+          <span class="filter-btn-led" aria-hidden="true"></span>All<span class="filter-btn-all-suffix"> Types</span>
+        </button>
+        {typeOrder.map((key) => (
+          <button type="button" class="filter-btn" data-filter-value={key}>
+            <span class="filter-btn-led" aria-hidden="true"></span>{typeLabels[key]}
+          </button>
+        ))}
+      </div>
     </div>
     <button type="button" class="filter-btn filter-toggle" id="activeToggle" aria-pressed="false">
       <span class="filter-btn-led" aria-hidden="true"></span>Active only
@@ -72,10 +91,11 @@ const statusLabels: Record<string, string> = { current: 'Current', ongoing: 'Ong
   </div>
 
   <ul class="strip-rack">
-    {research.map((item) => (
+    {projects.map((item) => (
       <li
         class={`strip strip--${item.status}`}
         data-edu={item.edu}
+        data-category={item.category}
         data-types={item.types.join(',')}
         data-status={item.status}
       >
@@ -85,9 +105,9 @@ const statusLabels: Record<string, string> = { current: 'Current', ongoing: 'Ong
             <span class={`strip-status strip-status--${item.status}`}>{statusLabels[item.status]}</span>
           </div>
 
-          <div class="strip-cell strip-cell--heading mono">
-            <span class="strip-cell-label">HDG</span>
-            <span class="strip-heading-value">{item.heading}</span>
+          <div class="strip-cell strip-cell--squawk mono">
+            <span class="strip-cell-label">SQK</span>
+            <span class="strip-squawk-value">{item.squawk}</span>
           </div>
 
           {item.image && (
@@ -102,6 +122,9 @@ const statusLabels: Record<string, string> = { current: 'Current', ongoing: 'Ong
             <p class="strip-blurb">{item.blurb}</p>
             {item.supervisors && item.supervisors.length > 0 && (
               <p class="strip-supervisors mono">Supervised by {item.supervisors.join(', ')}</p>
+            )}
+            {item.team && item.team.length > 0 && (
+              <p class="strip-supervisors mono">Team: {item.team.join(', ')}</p>
             )}
           </div>
         </div>
@@ -121,7 +144,7 @@ const statusLabels: Record<string, string> = { current: 'Current', ongoing: 'Ong
 </section>
 
 <script>
-  const active: Record<string, string> = { edu: '*', type: '*' };
+  const active: Record<string, string> = { edu: '*', type: '*', category: '*' };
   let activeOnly = false;
 
   const items = document.querySelectorAll<HTMLElement>('.strip-rack .strip');
@@ -129,11 +152,12 @@ const statusLabels: Record<string, string> = { current: 'Current', ongoing: 'Ong
   function applyFilter() {
     items.forEach((item) => {
       const eduOk = active.edu === '*' || item.dataset.edu === active.edu;
+      const categoryOk = active.category === '*' || item.dataset.category === active.category;
       const types = (item.dataset.types || '').split(',');
       const typeOk = active.type === '*' || types.includes(active.type);
       const statusOk =
         !activeOnly || item.dataset.status === 'current' || item.dataset.status === 'ongoing';
-      item.hidden = !(eduOk && typeOk && statusOk);
+      item.hidden = !(eduOk && categoryOk && typeOk && statusOk);
     });
   }
 

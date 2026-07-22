@@ -2,32 +2,32 @@
 import Layout from '../layouts/Layout.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import AltitudeTape from '../components/AltitudeTape.astro';
+import BottomTape from '../components/BottomTape.astro';
 import Hero from '../components/Hero.astro';
-import Research from '../components/Research.astro';
+import Projects from '../components/Projects.astro';
 import Employment from '../components/Employment.astro';
 import Education from '../components/Education.astro';
 import Skills from '../components/Skills.astro';
-import OffDuty from '../components/OffDuty.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 
 const sections = [
-  { id: 'top', label: 'Flight Deck', alt: 'FL350' },
+  { id: 'top', label: 'Flight Deck', alt: 'FL350', navHidden: true },
   { id: 'employment', label: 'Experience', alt: 'FL320' },
   { id: 'education', label: 'Education', alt: 'FL280' },
   { id: 'skills', label: 'Skills', alt: 'FL240' },
-  { id: 'research', label: 'Research', alt: 'FL220' },
-  { id: 'fun', label: 'Miscellany', alt: 'FL040' },
+  { id: 'projects', label: 'Projects', alt: 'FL220' },
   { id: 'footer', label: 'Landed', alt: 'GND', navHidden: true },
 ];
 
-/* research */
+/* projects */
 
-const research = [
+const projects = [
   {
     callsign: '',
     status: 'current',
-    heading: '260°',
+    squawk: '2026',
     edu: 'pro',
+    category: 'engineering',
     types: ['code'],
     title: 'Kokkos Kernels for Quinoa',
     blurb: 'Adding GPU capability to the DG code Quinoa using Kokkos',
@@ -40,8 +40,9 @@ const research = [
   {
     callsign: '',
     status: 'ongoing',
-    heading: '260°',
+    squawk: '2026',
     edu: 'phd',
+    category: 'research',
     types: ['code','math'],
     title: 'Interval arithmetic for floating-point error quantification',
     blurb: 'Developing methodology to bound floating-point error for a discontinuous Galerkin kernel',
@@ -52,8 +53,9 @@ const research = [
   {
     callsign: '',
     status: 'landed',
-    heading: '250°',
+    squawk: '2025',
     edu: 'phd',
+    category: 'research',
     types: ['code','math'],
     title: 'Mixed precision for discontinuous Galerkin codes',
     blurb: 'Benchmarking DG operations in single- and double-precision on various devices',
@@ -66,9 +68,10 @@ const research = [
   {
     callsign: '',
     status: 'landed',
-    heading: '250°',
+    squawk: '2025',
     title: 'BLASTNet',
     edu: 'phd',
+    category: 'engineering',
     types: ['code'],
     blurb: 'Redesigned interface with Isotope filtering and analytics synced from Kaggle API, built using a JSON cache with cron and the GitHub API along with Jekyll templating.',
     supervisors: ['Prof. Matthias Ihme'],
@@ -82,8 +85,9 @@ const research = [
   {
     callsign: '',
     status: 'landed',
-    heading: '250°',
+    squawk: '2025',
     edu: 'phd',
+    category: 'engineering',
     types: ['code'],
     title: 'CuPyQuail',
     blurb: 'GPU-compatible version of in-house discontinous Galerkin code, Quail',
@@ -97,8 +101,9 @@ const research = [
   {
     callsign: '',
     status: 'landed',
-    heading: '240°',
+    squawk: '2024',
     edu: 'phd',
+    category: 'research',
     types: ['code','math'],
     title: 'Automatic differentiation for shock capturing',
     blurb: 'JAX automatic gradient to optimize artificial viscosity parameter',
@@ -109,9 +114,10 @@ const research = [
   {
     callsign: '',
     status: 'landed',
-    heading: '240°',
+    squawk: '2024',
     title: 'JAX_DG',
     edu: 'phd',
+    category: 'engineering',
     types: ['code','math'],
     blurb: 'Development of hardware-independent discontinous Galerkin solver using Google JAX',
     supervisors: ['Prof. Matthias Ihme'],
@@ -124,12 +130,14 @@ const research = [
   {
     callsign: 'SAP16',
     status: 'landed',
-    heading: '230°',
+    squawk: '2023',
     edu: 'pro',
+    category: 'research',
     types: ['code','math','flows'],
     title: 'Transonic aeroelasticity with harmonic balance',
     blurb: 'Harmonic balance-based aerodynamic force calculations for use in transonic flutter prediction of NASA CRM wings',
     supervisors: ['Dr. Daniel Wise','Dr. Vinh-Tan Nguyen'],
+    team: ['Kendrick Tan'],
     tools: ['C++', 'Python','SU2'],
     links: [
       {label: 'Code', href: 'http://github.com/beverleyy/hb_aeroelastic', icon: 'github'},
@@ -139,12 +147,13 @@ const research = [
   {
     callsign: 'M.Eng. Thesis',
     status: 'landed',
-    heading: '220°',
+    squawk: '2022',
     edu: 'meng',
+    category: 'research',
     types: ['flows'],
     title: 'Investigating Galilean invariance in CFD',
     blurb: 'Comparison between flow properties and wakes calculated from CFD simulations (LES, DNS) of moving body in stationary flow vs stationary body in moving flow.',
-    supervisors: ['Prof. Wai Lee Chan', 'Prof. Basman Elhadidi'],
+    supervisors: ['Prof. Wai Lee Chan', 'Dr. Basman Elhadidi'],
     tools: ['Fluent','OpenFOAM','Pointwise','Tecplot','C++','Python','MATLAB'],
     links: [
       {label: 'Thesis', href: 'https://dr.ntu.edu.sg/handle/10356/164694', icon: 'pdf'},
@@ -154,8 +163,9 @@ const research = [
   {
     callsign: 'B.Eng. FYP',
     status: 'landed',
-    heading: '210°',
+    squawk: '2021',
     edu: 'beng',
+    category: 'research',
     types: ['flows'],
     title: 'Flow behavior of confined vortex-rings',
     blurb: 'Computational investigations of vortex-ring-induced wall shear stress and pressure on confined geometry, with experimental validation using dye flow visualization',
@@ -167,9 +177,27 @@ const research = [
     image: 'research/cvr.png',
   },
   {
+    callsign: 'UAV Senior Design',
     status: 'landed',
-    heading: '200°',
+    squawk: '2021',
     edu: 'beng',
+    category:'engineering',
+    types: ['builds'],
+    title: 'Waffles - Weird Take-Off and Landing (WTOL) UAV',
+    blurb: "Novel quadrotor VTOL concept to improve transition performance using two forward-canted rotors at the front and two outward-canted rotors at the back",
+    team: ['Zi Liang Wong', 'Yong Chun Chua', 'Benjamin Lim', 'Jiacheng Shi', 'Vicki Woo'],
+    supervisors: ['Dr. Basman Elhadidi'],
+    tools: ['MATLAB','Simulink','Arduino','SolidWorks','Datalogging','C'],
+    links: [
+      {label: 'Video', href: 'https://youtu.be/I5h49ASUCJA', icon: 'video'},
+    ],
+    image: 'etc/waffles.png'
+  },
+  {
+    status: 'landed',
+    squawk: '2020',
+    edu: 'beng',
+    category: 'research',
     types: ['other'],
     title: 'Fusing communication skills with engineering knowledge',
     blurb: 'Co-teaching program to improve engineering students\' communication skills',
@@ -179,12 +207,13 @@ const research = [
   },
   {
     status: 'landed',
-    heading: '190°',
+    squawk: '2019',
     edu: 'beng',
+    category: 'engineering',
     types: ['other'],
     title: 'System identification of novel VTOL UAV',
     blurb: 'Determining stability and aerodynamic coefficients from dynamic system response using least-square regression models',
-    supervisors: ['Prof. Basman Elhadidi'],
+    supervisors: ['Dr. Basman Elhadidi'],
     tools: ['MATLAB', 'Datalogging', 'Arduino'],
     links: [],
     image: 'research/sysid.png'
@@ -192,18 +221,37 @@ const research = [
   {
     status: 'landed',
     callsign: 'CNYSP Research',
-    heading: '180°',
+    squawk: '2018',
     edu: 'beng',
+    category: 'research',
     types: ['flows'],
     title: 'Flow transitions of vortex-ring collisions with density interfaces',
     blurb: 'Planar laser-induced fluorescence and time-resolved particle-image velocimetry flow visualizations of vortex-rings colliding with free surfaces and oil interface. Featured on the cover of NTU College of Engineering Annual Magazine 2026!',
     supervisors: ['Prof. Daniel New'],
+    team: ['Dr. Jiao Long', 'Jing Yu Koh'],
     tools: ['Flow visualization', 'MATLAB', 'Tecplot'],
     links: [
       {label: 'JOV paper', href: 'https://doi.org/10.1007/s12650-020-00666-7', icon: 'pdf'},
       {label: 'POF paper', href: 'https://doi.org/10.1063/5.0176897', icon: 'pdf'}
     ],
     image: 'research/vortex.png'
+  },
+  {
+    status: 'landed',
+    callsign: 'M&T',
+    squawk: '2018',
+    edu: 'beng',
+    category: 'engineering',
+    types: ['builds'],
+    title: 'Mini Delivery Quadcopter',
+    blurb: 'Modified racing drone for autonomous package delivery',
+    supervisors: ['Mr. Tony Gan', 'Mr. B Kanesh'],
+    team: ['Charmaine Ong', 'Joseph Ang','Kai Hong Ong'],
+    tools: ['Pixhawk','SolidWorks','C'],
+    links: [
+      {label: 'Website', href: 'https://blogs.ntu.edu.sg/ps9888-2018-droneinc', icon:'link'}
+    ],
+    image: 'etc/charmcube.jpg'
   }
 ];
 
@@ -241,6 +289,11 @@ const education = [
     focus: 'GPU-accelerated discontinuous Galerkin methods for compressible flows',
     teaching: ['Teaching Assistant — Gas-Turbine Design Analysis, Fall 2025 (Prof. M. Ihme)'],
     supervisors: ['Prof. J. Alonso', 'Prof. G. Iaccarino'],
+    courses: [
+      'Linear Algebra','Physical Gas Dynamics','Fluid Mechanics (A/B)','Intro Numerical Methods','Combustion Fundamentals','Gas-Turbine Design Analysis','Intro to HPC','Turbulence',
+      'Finite Element Analysis','Numerical Methods for Compressible Flows','Intro Parallel Programming with CUDA, MPI, OpenMP',
+      'Asymptotic Methods','Programming Abstractions','Engineering Functional Analysis',
+    ]
   },
   {
     level: 'M.Eng.',
@@ -248,7 +301,10 @@ const education = [
     school: 'Nanyang Technological University, Singapore',
     years: '2021.07 - 2022.07',
     focus: 'Thesis: Investigating Galilean invariance in CFD',
-    supervisors: ['Prof. W.L. Chan', 'Prof. B. Elhadidi'],
+    supervisors: ['Prof. W.L. Chan', 'Dr. B. Elhadidi'],
+    courses: [
+      'Finite Element Methods','Advanced Thermal Engineering','Advanced Engineering Maths','Computational Methods','Design of Experiments'
+    ]
   },
   {
     level: 'B.Eng.',
@@ -258,7 +314,11 @@ const education = [
     focus: 'Thesis: On the flow behavior of confined vortex-rings',
     supervisors: ['Prof. T.H. New'],
     honors: ['CN Yang Scholars Program', 'CNYSP Research Award (Gold)', 'Deans List AY19/20', 'Nanyang Scholarship'],
-    teaching: ['Peer Tutor - Computational Fluid Dynamics, Fall 2020 (Prof. B. Elhadidi)'],
+    teaching: ['Peer Tutor - Computational Fluid Dynamics, Fall 2020 (Dr. B. Elhadidi)'],
+    courses: [
+      { label: 'NTU MAE PYP solutions', href: 'https://tinyurl.com/BevAeroPYP' },
+      { label: 'NTU MAE Cheatsheets', href: 'https://tinyurl.com/BevAeroCheatsheet' }
+    ]
   },
   {
     level: 'Exchange',
@@ -266,6 +326,9 @@ const education = [
     school: 'Purdue University, IN, USA',
     years: '2020.01 - 2020.05',
     honors: ['Deans List Spring 2020', 'Semester Honors Spring 2020'],
+    courses: [
+      'Aerospace Structural Analysis','Computational Aerodynamics','Experimental Aerodynamics','Spacecraft Design','Thermal Sciences'
+    ]
   }
 ];
 
@@ -294,47 +357,14 @@ const skillGroups = [
   }
 ];
 
-/* other stuffs */
-
-const builds = [
-  {
-    title: 'Waffles the WTOL',
-    blurb: "Novel quadrotor 'Weird Takeoff and Landing' concept to improve transition performance using two forward-canted rotors at the front and two outward-canted rotors at the back.",
-    image: 'etc/waffles.png',
-    link: { label: 'UAV senior design', href: 'https://youtu.be/I5h49ASUCJA' }
-  },
-  {
-    title: 'Mini delivery quadcopter',
-    blurb: 'Modified racing drone for autonomous package delivery.',
-    image: 'etc/charmcube.jpg',
-    link: { label: 'Making and Tinkering 2018', href: 'https://blogs.ntu.edu.sg/ps9888-2018-droneinc'}
-  },
-  {
-    title: 'Tumblr themes',
-    blurb: '"Your daughter is still running her blog from middle school" but also this is my web design playground and where I learned how to write code.',
-    link: { label: 'MagnusThemes@Tumblr', href: 'https://magnusthemes.tumblr.com'},
-    image: 'etc/tumblr.png',
-  },
-  {
-    title: 'BloomScroller',
-    blurb: 'Browser extension for Twitter desktop that combats doomscrolling using artificial intelligence, gamification, and positive psychology.',
-    link: { label: 'MindfulHacks 2021 winner', href: 'https://devpost.com/software/bloomscroller' },
-    image: 'etc/bloom.jpg',
-  },
-  {
-    title: 'Mechanical keyboards',
-    blurb: 'A small, ever-growing fleet that continues to threaten the contents of my bank account.',
-    image: 'etc/keeb.jpg',
-    link: { label: 'View gallery', href: 'https://beverleyy.notion.site/Keyboard-Collection-30c75a1e8b8e810da7f6c9b19b8c99d5' },
-  },
-];
 ---
 <Layout
   title="Beverley Yeo"
   description=""
 >
-  <SiteHeader sections={sections} />
+  <SiteHeader />
   <AltitudeTape sections={sections} />
+  <BottomTape sections={sections} />
 
   <main id="top" data-tape-section data-tape-label="Flight Deck">
     <Hero />
@@ -343,8 +373,7 @@ const builds = [
   <Employment employment={employment} />
   <Education education={education} />
   <Skills skillGroups={skillGroups} />
-  <Research research={research} />
-  <OffDuty builds={builds} />
+  <Projects projects={projects} />
 
   <SiteFooter />
 

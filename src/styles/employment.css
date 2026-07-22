@@ -44,6 +44,14 @@
     font-size:0.8rem;
 }
 
+.employment-desc {
+    margin-top:0.25rem;
+    color:var(--fg);
+    opacity:0.8;
+    font-size:0.85rem;
+    line-height:1.5;
+}
+
 
 
 @media (max-width: 720px) {

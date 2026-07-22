@@ -4,6 +4,7 @@ interface Job {
   title: string;
   department?: string;
   org: string;
+  description?: string;
 }
 
 interface Props {
@@ -24,6 +25,7 @@ const { employment } = Astro.props;
           <span class="employment-org mono">
             {job.department && <>{job.department} · </>}{job.org}
           </span>
+          {job.description && <span class="employment-desc">{job.description}</span>}
         </span>
       </li>
     ))}

@@ -1,11 +1,5 @@
 ---
 import Icon from './Icon.astro';
-
-interface Props {
-  sections: { id: string; label: string; alt: string; navHidden?: boolean }[];
-}
-
-const { sections } = Astro.props;
 ---
 <header class="site-header">
 
@@ -48,13 +42,5 @@ const { sections } = Astro.props;
       </a>
     </div>
   </div>
-
-  <nav class="header-nav">
-    <ul>
-      {sections.slice(1).filter((s) => !s.navHidden).map((s) => (
-        <li><a href={`#${s.id}`} data-id={s.id} aria-label={s.label}>{s.alt}</a></li>
-      ))}
-    </ul>
-  </nav>
 
 </header>

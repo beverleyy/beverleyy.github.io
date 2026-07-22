@@ -1,6 +1,28 @@
+footer {
+    padding:2rem var(--edge) 3rem;
+}
+
+footer p {
+    color:var(--faint);
+    font-size:0.75rem;
+}
+
 .footer-sep {
     opacity:0.5;
     margin:0 0.15em;
+}
+
+.footer-egg {
+    color:var(--faint);
+    opacity:0.35;
+    text-decoration:none;
+    transition:opacity 0.2s ease, color 0.2s ease;
+}
+
+.footer-egg:hover,
+.footer-egg:focus-visible {
+    opacity:1;
+    color:var(--amber);
 }
 
 .footer-cta {
@@ -13,7 +35,28 @@
     letter-spacing:0.01em;
     font-size:clamp(1.7rem, 3.4vw, 2.3rem);
     color:var(--fg);
-    margin:0 0 1rem;
+    margin:0 0 0.6rem;
+}
+
+.footer-invite {
+    max-width:25rem;
+    font-size:0.9rem;
+    color:var(--fg);
+    margin:0 0 1.4rem;
+}
+
+.footer-invite a {
+    color:var(--flow-cold);
+    text-decoration:underline;
+    text-decoration-color:color-mix(in srgb, var(--flow-cold) 45%, transparent);
+    text-underline-offset:2px;
+    transition:color 0.2s ease, text-decoration-color 0.2s ease;
+}
+ 
+.footer-invite a:hover,
+.footer-invite a:focus-visible {
+    color:var(--fg);
+    text-decoration-color:currentColor;
 }
 
 .footer-actions {
