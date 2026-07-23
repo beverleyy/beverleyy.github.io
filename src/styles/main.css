@@ -15,11 +15,16 @@
     --panel-line:rgba(150, 178, 216, 0.16);
     --fg:#eef2fa;
     --muted:#92a6c6;
-    --faint:#4c6088;
+    --faint:#6a86be;
     --flow-cold:#2955d6;
     --flow-hot:#6fa3f5;
     --united-blue:#0033a0;
     --united-navy:#002244;
+    /* 'Battleship Grey' livery (1993-2004): cool gray fuselage, dark navy
+       belly & tail, with the red/blue tulip on the tail */
+    --bs-gray:#d8dbe1;
+    --bs-navy:#16233d;
+    --bs-red:#c0202f;
     --amber:#d6b95a;
     --red:#dc4b3f;
     --rivet:rgba(238, 242, 250, 0.5);
@@ -40,18 +45,58 @@
 }
 
 html[data-theme='light'] {
-    --ink:#ffffff;
-    --panel:#f1f2f5;
-    --panel-line:rgba(20, 33, 61, 0.14);
-    --fg:#241c0f;
-    --muted:#5b5340;
-    --faint:#837a62;
-    --flow-cold:#0033a0;
-    --flow-hot:#3f6fe0;
-    --amber:#a8790a;
-    --red:#b3352b;
-    --rivet:rgba(20, 33, 61, 0.22);
-    --scrim:rgba(255, 255, 255, 0.92);
+    /* 'Battleship': cool gray fuselage as the body, near-white raised panels,
+       dark navy ink from the belly/tail, tulip red as the single warm accent */
+    --ink:#d8dbe1;
+    --panel:#eef0f3;
+    --panel-line:rgba(22, 35, 61, 0.18);
+    --fg:var(--bs-navy);
+    --muted:#3c4a63;
+    --faint:#66738c;
+    --flow-cold:#2b3f63;
+    --flow-hot:var(--bs-red);
+    --amber:#5a6a86;
+    --red:var(--bs-red);
+    --rivet:rgba(22, 35, 61, 0.22);
+    --scrim:rgba(216, 219, 225, 0.92);
+}
+
+/* The gold-on-navy chips/brackets go muddy on a pale surface, so in light mode
+   the working accent is the steel navy; no gold in the Battleship palette. */
+html[data-theme='light'] .readout {
+    color:var(--flow-cold);
+}
+
+html[data-theme='light'] .bracket-frame {
+    --bracket-color:var(--flow-cold);
+}
+
+html[data-theme='light'] .eyebrow::before {
+    background:var(--flow-cold);
+}
+
+/* Signature: the dark navy tail/belly. The fixed header becomes the aircraft's
+   navy band sitting above the gray fuselage body, so its contents flip light. */
+html[data-theme='light'] .site-header {
+    background:color-mix(in srgb, var(--bs-navy) 90%, transparent);
+    box-shadow:0 1px 0 rgba(22, 35, 61, 0.25);
+}
+
+html[data-theme='light'] .site-header .mark,
+html[data-theme='light'] .site-header .theme-toggle,
+html[data-theme='light'] .site-header .header-icons a {
+    color:rgba(233, 237, 243, 0.82);
+}
+
+html[data-theme='light'] .site-header .mark-icon {
+    color:#e9edf3;
+    opacity:1;
+}
+
+html[data-theme='light'] .site-header .header-icons a:hover,
+html[data-theme='light'] .site-header .header-icons a:focus-visible,
+html[data-theme='light'] .site-header .theme-toggle:hover {
+    color:#ffffff;
 }
 
 * {
@@ -111,22 +156,43 @@ a {
 
 .eyebrow {
     font-family:var(--mono);
-    font-size:0.72rem;
-    letter-spacing:0.14em;
+    font-weight:500;
+    font-size:0.74rem;
+    line-height:1;
+    letter-spacing:0.16em;
     text-transform:uppercase;
-    color:var(--faint);
+    color:var(--muted);
     display:flex;
     align-items:center;
-    gap:0.6em;
+    gap:0.7em;
 }
 
+/* Leading marker is an RNAV waypoint 'fix' star, the symbol used on nav
+   displays and enroute charts: each section is a fix along the flight. */
 .eyebrow::before {
     content:'';
-    width:1.6em;
-    height:1px;
+    width:0.85em;
+    height:0.85em;
+    flex:none;
     background:var(--amber);
-    opacity:0.55;
-    display:inline-block;
+    clip-path:polygon(50% 0, 61% 39%, 100% 50%, 61% 61%, 50% 100%, 39% 61%, 0 50%, 39% 39%);
+}
+
+/* Trailing dashed airway: the route leg departing this fix, fading out
+   toward the next waypoint rather than stopping dead. */
+.eyebrow::after {
+    content:'';
+    flex:none;
+    width:clamp(3rem, 14vw, 9rem);
+    height:1px;
+    align-self:center;
+    background:repeating-linear-gradient(
+        to right,
+        var(--faint) 0 5px,
+        transparent 5px 10px);
+    -webkit-mask-image:linear-gradient(to right, #000, transparent);
+    mask-image:linear-gradient(to right, #000, transparent);
+    opacity:0.8;
 }
 
 .readout {

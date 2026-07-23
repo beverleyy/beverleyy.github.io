@@ -38,7 +38,7 @@ const GROUPS: { key: 'courses' | 'teaching' | 'honors'; label: string }[] = [
 ];
 ---
 <section id="education" class="education" data-tape-section data-tape-label="Education">
-  <p class="eyebrow section-eyebrow">Education</p>
+  <h2 class="eyebrow section-eyebrow">Education</h2>
 
   <ul class="edu-list">
     {education.map((edu) => (
@@ -47,7 +47,7 @@ const GROUPS: { key: 'courses' | 'teaching' | 'honors'; label: string }[] = [
           <summary class="edu-summary">
             <span class="edu-level mono">{edu.level}</span>
             <span class="edu-heading">
-              <span class="edu-degree">{edu.degree}</span>
+              <h3 class="edu-degree">{edu.degree}</h3>
               <span class="edu-school mono">{edu.school}</span>
             </span>
             <span class="edu-years mono">{edu.years}</span>
