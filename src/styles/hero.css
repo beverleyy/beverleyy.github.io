@@ -49,9 +49,9 @@ html[data-theme='light'] .hero-field {
 }
 
 .streamlines path:nth-child(2) { animation-duration:17s; }
-.streamlines path:nth-child(3) { animation-duration:11s; animation-direction:reverse; }
+.streamlines path:nth-child(3) { animation-duration:11s; }
 .streamlines path:nth-child(4) { animation-duration:19s; }
-.streamlines path:nth-child(5) { animation-duration:22s; animation-direction:reverse; }
+.streamlines path:nth-child(5) { animation-duration:22s; }
 
 @keyframes flow {
     to { stroke-dashoffset:-320; }
@@ -61,13 +61,14 @@ html[data-theme='light'] .hero-field {
     .streamlines path { animation:none; }
 }
 
-/* cloud bank - circles stamped via box-shadow, flat band on the border-bottom */
+/* cloud bank */
 .hero-cloud-divider {
     position:relative;
     z-index:0;
     width:100%;
     height:0;
     border-bottom:30px solid var(--ink);
+    transition:border-color 0.25s ease;
 }
 
 .hero-cloud-divider::before,
@@ -80,6 +81,7 @@ html[data-theme='light'] .hero-field {
     left:-5rem;
     border-radius:50%;
     background:var(--ink);
+    transition:background-color 0.25s ease, box-shadow 0.25s ease;
     box-shadow:10vw 6.25vw 0 var(--ink),
         21vw 5.4vw 0 var(--ink),
         29vw 3.5vw 0 var(--ink),
@@ -148,23 +150,23 @@ html[data-theme='light'] .hero-field {
 }
 
 .hero-route li::before {
-    content:'▸';
+    content:'';
     flex:none;
-    font-size:0.7em;
-    line-height:1.6;
-    color:var(--amber);
+    width:0;
+    height:0;
+    border-top:0.32em solid transparent;
+    border-bottom:0.32em solid transparent;
+    border-left:0.46em solid var(--amber);
 }
 
 .hero-route a {
     color:var(--fg);
-    opacity:0.82;
     border-bottom:1px solid transparent;
-    transition:color 0.2s ease, opacity 0.2s ease, border-color 0.2s ease;
+    transition:color 0.2s ease, border-color 0.2s ease;
 }
 
 .hero-route a:hover {
     color:var(--flow-cold);
-    opacity:1;
     border-color:var(--flow-cold);
 }
 
@@ -178,8 +180,7 @@ html[data-theme='light'] .hero-field {
 .hero-description {
     max-width:30rem;
     font-size:0.95rem;
-    color:var(--fg);
-    opacity:0.82;
+    color:var(--muted);
 }
 
 .hero-action {
@@ -217,8 +218,6 @@ html[data-theme='light'] .hero-field {
     opacity:0.85;
 }
 
-
-
 @media (max-width: 720px) {
     .hero {
         flex-direction:column;
@@ -249,7 +248,6 @@ html[data-theme='light'] .hero-field {
         padding:1.6rem var(--edge) 2.2rem;
     }
 
-    /* hero is a bounded image on mobile, not a full-bleed bg - swap dividers */
     .hero-cloud-divider {
         display:none;
     }
@@ -263,6 +261,7 @@ html[data-theme='light'] .hero-field {
         width:100%;
         height:0;
         border-bottom:18px solid var(--ink);
+        transition:border-color 0.25s ease;
     }
 
     .hero-cloud-mobile::before,
@@ -275,6 +274,7 @@ html[data-theme='light'] .hero-field {
         left:-2rem;
         border-radius:50%;
         background:var(--ink);
+        transition:background-color 0.25s ease, box-shadow 0.25s ease;
         box-shadow:
             10vw 6.25vw 0 var(--ink),
             21vw 5.4vw 0 var(--ink),

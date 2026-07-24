@@ -61,11 +61,14 @@
     letter-spacing:0.04em;
     color:var(--muted);
     background:color-mix(in srgb, var(--ink) 35%, transparent);
-    border:1px solid var(--panel-line);
+    border:none;
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.06),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.25);
     border-radius:2px;
     padding:0.32rem 0.65rem;
     cursor:pointer;
-    transition:color 0.2s ease, border-color 0.2s ease;
+    transition:color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
 }
 
 .filter-btn-led {
@@ -79,11 +82,17 @@
 
 .filter-btn:hover {
     color:var(--fg);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.1),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.3);
 }
 
 .filter-btn.is-active {
     color:var(--flow-cold);
-    border-color:var(--flow-cold);
+    background:color-mix(in srgb, var(--flow-cold) 14%, transparent);
+    box-shadow:
+        inset 0 1px 0 color-mix(in srgb, var(--flow-cold) 45%, transparent),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.35);
 }
 
 .filter-btn.is-active .filter-btn-led {
@@ -98,7 +107,10 @@
 
 .filter-toggle.is-active {
     color:var(--red);
-    border-color:var(--red);
+    background:color-mix(in srgb, var(--red) 14%, transparent);
+    box-shadow:
+        inset 0 1px 0 color-mix(in srgb, var(--red) 45%, transparent),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.35);
 }
 
 .filter-toggle.is-active .filter-btn-led {
@@ -154,6 +166,7 @@
     font-weight:600;
     color:var(--fg);
     letter-spacing:0.06em;
+    overflow-wrap:anywhere;
 }
 
 .strip-status {
@@ -256,16 +269,21 @@
     gap:0.32rem;
     font-family:var(--mono);
     font-size:0.68rem;
-    color:var(--muted);
+    color:var(--flow-cold);
     border-radius:2px;
-    background:color-mix(in srgb, var(--muted) 10%, transparent);
+    background:color-mix(in srgb, var(--flow-cold) 10%, transparent);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.08),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.3);
     padding:0.22rem 0.6rem 0.22rem 0.5rem;
-    transition:color 0.2s ease, background-color 0.2s ease;
+    transition:color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .strip-link:hover {
-    color:var(--flow-cold);
-    background:color-mix(in srgb, var(--flow-cold) 16%, transparent);
+    background:color-mix(in srgb, var(--flow-cold) 18%, transparent);
+    box-shadow:
+        inset 0 1px 0 color-mix(in srgb, var(--flow-cold) 45%, transparent),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.35);
 }
 
 .strip-link .icon {
@@ -305,6 +323,11 @@
     .strip-cell--id,
     .strip-cell--squawk {
         flex:0 0 auto;
+    }
+
+    .strip-cell--id {
+        flex:1 1 0;
+        min-width:0;
     }
 
     .strip-cell--thumb {

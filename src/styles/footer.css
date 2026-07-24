@@ -1,5 +1,6 @@
 footer {
-    padding:2rem var(--edge) 3rem;
+    padding:5rem var(--edge);
+    position:relative;
 }
 
 footer p {

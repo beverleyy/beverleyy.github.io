@@ -72,12 +72,17 @@
 }
 
 html[data-theme='light'] .theme-toggle-icon--sun {
-    opacity:0.9;
-    color:var(--flow-cold);
+    opacity:1;
+    color:#ffcf7a;
 }
 
 html[data-theme='light'] .theme-toggle-icon--moon {
-    opacity:0.4;
+    opacity:0.5;
+    color:rgba(233, 237, 243, 0.85);
+}
+
+html[data-theme='light'] .theme-toggle:hover .theme-toggle-icon {
+    color:#ffffff;
 }
 
 .theme-toggle-track {

@@ -18,8 +18,6 @@
     transform:translateX(3px);
 }
 
-/* Grid keeps the level / degree / years columns aligned across every row,
-   regardless of how long a given level label ("Exchange" vs "Ph.D.") is. */
 .edu-summary {
     display:grid;
     grid-template-columns:minmax(4.4rem, auto) minmax(12rem, 1fr) auto auto;
@@ -113,8 +111,6 @@
     color:var(--amber);
 }
 
-/* Chip list: items flow left-to-right and wrap, so several short entries
-   (courses, honors) share a line instead of each forcing its own row. */
 .edu-chip-list {
     list-style:none;
     margin:0;
@@ -135,26 +131,30 @@
     font-family:var(--mono);
     font-size:0.76rem;
     line-height:1.3;
-    color:var(--fg);
-    opacity:0.82;
-    background:color-mix(in srgb, var(--faint) 14%, transparent);
-    border-radius:3px;
+    color:var(--muted);
+    background:color-mix(in srgb, var(--faint) 12%, transparent);
+    border-radius:2px;
     padding:0.32rem 0.7rem;
+    box-shadow:
+        inset 0 1px 2px rgba(0, 0, 0, 0.25),
+        inset 0 -1px 0 rgba(255, 255, 255, 0.04);
 }
 
-/* Linked items (e.g. a course page or award writeup) get the same treatment
-   as the external links in Research, so a chip reads as clickable at a glance. */
 .edu-chip--link {
-    opacity:1;
-    color:var(--muted);
+    color:var(--flow-cold);
     background:color-mix(in srgb, var(--flow-cold) 10%, transparent);
-    transition:color 0.2s ease, background-color 0.2s ease;
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.08),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.3);
+    transition:color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .edu-chip--link:hover,
 .edu-chip--link:focus-visible {
-    color:var(--flow-cold);
     background:color-mix(in srgb, var(--flow-cold) 18%, transparent);
+    box-shadow:
+        inset 0 1px 0 color-mix(in srgb, var(--flow-cold) 45%, transparent),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.35);
 }
 
 .edu-chip-icon {

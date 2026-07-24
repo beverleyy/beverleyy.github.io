@@ -20,8 +20,6 @@
     --flow-hot:#6fa3f5;
     --united-blue:#0033a0;
     --united-navy:#002244;
-    /* 'Battleship Grey' livery (1993-2004): cool gray fuselage, dark navy
-       belly & tail, with the red/blue tulip on the tail */
     --bs-gray:#d8dbe1;
     --bs-navy:#16233d;
     --bs-red:#c0202f;
@@ -45,8 +43,6 @@
 }
 
 html[data-theme='light'] {
-    /* 'Battleship': cool gray fuselage as the body, near-white raised panels,
-       dark navy ink from the belly/tail, tulip red as the single warm accent */
     --ink:#d8dbe1;
     --panel:#eef0f3;
     --panel-line:rgba(22, 35, 61, 0.18);
@@ -61,8 +57,6 @@ html[data-theme='light'] {
     --scrim:rgba(216, 219, 225, 0.92);
 }
 
-/* The gold-on-navy chips/brackets go muddy on a pale surface, so in light mode
-   the working accent is the steel navy; no gold in the Battleship palette. */
 html[data-theme='light'] .readout {
     color:var(--flow-cold);
 }
@@ -75,8 +69,6 @@ html[data-theme='light'] .eyebrow::before {
     background:var(--flow-cold);
 }
 
-/* Signature: the dark navy tail/belly. The fixed header becomes the aircraft's
-   navy band sitting above the gray fuselage body, so its contents flip light. */
 html[data-theme='light'] .site-header {
     background:color-mix(in srgb, var(--bs-navy) 90%, transparent);
     box-shadow:0 1px 0 rgba(22, 35, 61, 0.25);
@@ -167,8 +159,6 @@ a {
     gap:0.7em;
 }
 
-/* Leading marker is an RNAV waypoint 'fix' star, the symbol used on nav
-   displays and enroute charts: each section is a fix along the flight. */
 .eyebrow::before {
     content:'';
     width:0.85em;
@@ -178,8 +168,6 @@ a {
     clip-path:polygon(50% 0, 61% 39%, 100% 50%, 61% 61%, 50% 100%, 39% 61%, 0 50%, 39% 39%);
 }
 
-/* Trailing dashed airway: the route leg departing this fix, fading out
-   toward the next waypoint rather than stopping dead. */
 .eyebrow::after {
     content:'';
     flex:none;
@@ -206,7 +194,7 @@ a {
     display:inline-flex;
     align-items:center;
     gap:0.5em;
-    box-shadow:inset 0 1px 0 rgba(255, 255, 255, 0.06), inset 0 -1px 0 rgba(0, 0, 0, 0.25);
+    box-shadow:inset 0 1px 2px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(255, 255, 255, 0.04);
 }
 
 .readout::before {
@@ -280,7 +268,8 @@ section {
     position:relative;
 }
 
-section::before {
+section::before,
+footer::before {
     content:'';
     position:absolute;
     top:-1px;
@@ -299,6 +288,12 @@ section::before {
 
 .section-eyebrow {
     margin-bottom:2.5rem;
+}
+
+@media (max-width: 720px) {
+    main + section {
+        margin-top:2.5rem;
+    }
 }
 
 ::selection {
@@ -335,7 +330,6 @@ button:focus-visible {
     letter-spacing:0.02em;
     white-space:nowrap;
     color:var(--fg);
-    /* background:var(--panel); */
     border:1px solid var(--panel-line);
     border-radius:2px;
     padding:0.4rem 0.65rem;

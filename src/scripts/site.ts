@@ -1,16 +1,14 @@
 import Lenis from "lenis";
 
-// Psst
 console.log("Tower, this is Ghost Rider requesting a flyby.");
 console.log("Negative, Ghost Rider, the pattern is full!");
 console.log("No Bev, this is not a good idea!");
 
 type Theme = "light" | "dark";
 
-// Smooth scroll - skipped entirely for people who've asked their OS for
-// less motion, so scrolling stays instant/native for them
+// Smooth scroll
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-const lenis = prefersReducedMotion ? null : new Lenis({ autoRaf: true });
+const lenis = prefersReducedMotion ? null : new Lenis({ autoRaf: true, lerp: 0.12 });
 
 // Theme toggle
 const themeToggle = document.getElementById("themeToggle");
@@ -28,7 +26,6 @@ function applyTheme(theme: Theme): void {
     } catch (e) {}
 }
 
-// Sync with whatever the inline head script already applied, no flash on load
 applyTheme(currentTheme());
 
 if (themeToggle) {
@@ -47,15 +44,10 @@ const altReadout = document.getElementById("tapeAlt");
 const header = document.querySelector<HTMLElement>(".site-header");
 const root = document.documentElement;
 
-// Header is fixed, so keep its real height in a css var - changes at the
-// 900px breakpoint when the nav row wraps in
 function setHeaderHeight(): void {
     if (header) root.style.setProperty("--header-h", `${header.offsetHeight}px`);
 }
 
-// Where a section actually lands once scrolled to - its offset minus the
-// header height and a small gap. Tick placement uses this same number so
-// the marker lands exactly on the tick you clicked, not short by a header
 function scrollTargetFor(el: HTMLElement): number {
     const headerH = header ? header.offsetHeight : 0;
     return Math.max(el.getBoundingClientRect().top + window.scrollY - headerH - 12, 0);
@@ -84,8 +76,6 @@ function update(): void {
     const frac = Math.min(Math.max(scrollY / total, 0), 1);
     if (marker) marker.style.top = `${frac * 100}%`;
 
-    // active section = last one whose top has been reached, read a little
-    // above true viewport-top so the highlighted tick matches what's on screen
     const readPoint = scrollY + window.innerHeight * 0.35;
     let activeIndex = 0;
     for (let i = 0; i < sectionTops.length; i++) {
@@ -134,7 +124,6 @@ document.addEventListener("click", (event) => {
 window.addEventListener("scroll", onScroll, { passive: true });
 window.addEventListener("resize", layout);
 
-// Covers late font swaps and image loads too, not just resizes
 if (typeof ResizeObserver !== "undefined") {
     new ResizeObserver(layout).observe(document.body);
     if (header) new ResizeObserver(setHeaderHeight).observe(header);

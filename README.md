@@ -1,6 +1,6 @@
 # beverleyy.github.io, version 2
 
-This is my (new) personal website and portfolio, built with [Astro](https://astro.build/) and hosted on [GitHub Pages](https://pages.github.com). Full disclaimer, Claude Sonnet 5 taught me how to write Astro and now I'm addicted (to Astro, not Claude lol). Astro really is for everyone!
+This is my (new) personal website and portfolio, built with [Astro](https://astro.build/) and hosted on [GitHub Pages](https://pages.github.com). Full disclaimer, Claude Sonnet 5 taught me how to write Astro and now I'm addicted (to Astro, not Claude lol). Astro really is for everyone! Claude Opus 4.8 also helped me clean up.
 
 ## Disclaimer
 
@@ -11,7 +11,7 @@ This is my (new) personal website and portfolio, built with [Astro](https://astr
 
 ### Colors
 
-In an effort to create and maintain a more professional image, my favorite brat green color scheme was not used; instead, I had Claude come up with a color scheme based on United Airlines brand colors ![#0033a0](https://placehold.co/16x16/0033a0/0033a0.png) `#0033a0` and ![#002244](https://placehold.co/16x16/002244/002244.png) `#002244`.
+In an effort to create and maintain a more professional image, my preferred brat green color scheme was not used; instead, I had Claude come up with a color scheme based on United Airlines brand colors ![#0033a0](https://placehold.co/16x16/0033a0/0033a0.png) `#0033a0` and ![#002244](https://placehold.co/16x16/002244/002244.png) `#002244`. The light theme was inspired by the Battleship Gray livery from the 00s.
 
 ### Typography
 
@@ -23,6 +23,13 @@ A readable modern geometric typeface is chosen for the body font and paired with
 * Significantly more intuitive than the previous one
 * Light and dark modes
 * Fully responsive
+
+## Dependencies
+
+* [Astro](https://astro.build/)
+* [Lenis](https://github.com/darkroomengineering/lenis)
+* [TypeScript](https://www.typescriptlang.org/)
+* [Node.js](https://nodejs.org/) + npm
 
 ## Credits
 
@@ -36,4 +43,4 @@ A readable modern geometric typeface is chosen for the body font and paired with
 
 ## To-do
 * Improve analytics
-* Clean up AI slop from code
+* Proper documentation because 2027 me is not going to remember what 2026 me was cooking

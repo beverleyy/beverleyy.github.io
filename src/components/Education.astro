@@ -6,7 +6,6 @@ interface EduLink {
   href: string;
 }
 
-// A group item can be plain text, or a link (e.g. a course page, a syllabus, an award writeup).
 type EduItem = string | EduLink;
 
 interface Degree {
@@ -29,8 +28,6 @@ const { education } = Astro.props;
 
 const isLink = (item: EduItem): item is EduLink => typeof item === 'object';
 
-// Groups are rendered generically so any of them can hold plain tags or links,
-// and so a new group (e.g. "Certifications") only needs an entry here.
 const GROUPS: { key: 'courses' | 'teaching' | 'honors'; label: string }[] = [
   { key: 'courses', label: 'Coursework' },
   { key: 'teaching', label: 'Teaching' },
