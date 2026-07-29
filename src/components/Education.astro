@@ -1,95 +1,43 @@
 ---
-import Icon from './Icon.astro';
-
-interface EduLink {
-  label: string;
-  href: string;
-}
-
-type EduItem = string | EduLink;
-
-interface Degree {
-  level: string;
-  degree: string;
-  school: string;
-  years: string;
-  focus?: string;
-  supervisors?: string[];
-  courses?: EduItem[];
-  teaching?: EduItem[];
-  honors?: EduItem[];
-}
+import type { EducationEntry } from '../data/content';
 
 interface Props {
-  education: Degree[];
+  education: EducationEntry[];
 }
 
 const { education } = Astro.props;
-
-const isLink = (item: EduItem): item is EduLink => typeof item === 'object';
-
-const GROUPS: { key: 'courses' | 'teaching' | 'honors'; label: string }[] = [
-  { key: 'courses', label: 'Coursework' },
-  { key: 'teaching', label: 'Teaching' },
-  { key: 'honors', label: 'Honors' },
-];
 ---
-<section id="education" class="education" data-tape-section data-tape-label="Education">
-  <h2 class="eyebrow section-eyebrow">Education</h2>
+<section id="education" data-tape-section data-tape-label="Education" style="background-color:var(--panel-bg);" class="py-14 px-6 transition-colors">
+  <div class="max-w-7xl mx-auto space-y-8">
+    <div class="tick-rule"></div>
+    <div class="border-l-2 border-delta-red pl-4">
+      <h2 class="text-3xl font-bold text-delta-navy dark:text-white uppercase tracking-wider">Education</h2>
+    </div>
 
-  <ul class="edu-list">
-    {education.map((edu) => (
-      <li class="edu-item bracket-frame">
-        <details>
-          <summary class="edu-summary">
-            <span class="edu-level mono">{edu.level}</span>
-            <span class="edu-heading">
-              <h3 class="edu-degree">{edu.degree}</h3>
-              <span class="edu-school mono">{edu.school}</span>
+    <div class="space-y-3">
+      {education.map((entry, index) => (
+        <details class="boarding-pass">
+          <summary class="boarding-pass-summary">
+            <span class="boarding-pass-stub">
+              <span class="boarding-pass-stub-seq">{String(index + 1).padStart(2, '0')}/{String(education.length).padStart(2, '0')}</span>
+              <span class="boarding-pass-chevron" aria-hidden="true">&#9662;</span>
             </span>
-            <span class="edu-years mono">{edu.years}</span>
-            <Icon name="chevron" class="edu-chevron" />
+            <span class="boarding-pass-head">
+              <span class="boarding-pass-field-label">{entry.years}</span>
+              <h3 class="boarding-pass-title">{entry.programme}</h3>
+              <span class="boarding-pass-inst" set:html={entry.institution} />
+            </span>
           </summary>
-
-          <div class="edu-details">
-            {edu.focus && <p class="edu-focus">{edu.focus}</p>}
-
-            {edu.supervisors && edu.supervisors.length > 0 && (
-              <p class="edu-supervisors mono">Advised by {edu.supervisors.join(', ')}</p>
-            )}
-
-            {GROUPS.map(({ key, label }) => {
-              const items = edu[key];
-              if (!items || items.length === 0) return null;
-
-              return (
-                <div class="edu-group">
-                  <span class="edu-group-label mono">{label}</span>
-                  <ul class="edu-chip-list">
-                    {items.map((item) => (
-                      <li>
-                        {isLink(item) ? (
-                          <a
-                            class="edu-chip edu-chip--link"
-                            href={item.href}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            <span>{item.label}</span>
-                            <Icon name="link" class="edu-chip-icon" />
-                          </a>
-                        ) : (
-                          <span class="edu-chip">{item}</span>
-                        )}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              );
-            })}
-          </div>
+          <dl class="boarding-pass-meta">
+            {entry.meta.map((row) => (
+              <>
+                <dt>{row.label}</dt>
+                <dd>{row.value}</dd>
+              </>
+            ))}
+          </dl>
         </details>
-      </li>
-    ))}
-  </ul>
+      ))}
+    </div>
+  </div>
 </section>

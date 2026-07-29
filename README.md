@@ -1,46 +1,44 @@
-# beverleyy.github.io, version 2
+# beverleyy.github.io, version 2.1
 
-This is my (new) personal website and portfolio, built with [Astro](https://astro.build/) and hosted on [GitHub Pages](https://pages.github.com). Full disclaimer, Claude Sonnet 5 taught me how to write Astro and now I'm addicted (to Astro, not Claude lol). Astro really is for everyone! Claude Opus 4.8 also helped me clean up.
+This is my personal website and portfolio, built with [Astro](https://astro.build/), [Tailwind CSS](https://tailwindcss.com/), and hosted on [GitHub Pages](https://pages.github.com). Full disclaimer, Claude Sonnet 5 taught me how to write Astro and now I'm addicted (to Astro, not Claude lol). Astro really is for everyone!
 
 ## Disclaimer
 
-* **Note that this site was not intended to be a template.** Therefore, fork at your own risk!.
-* **If you are interested in using this code for your site, please include attribution and remove all the images from your directory.**
+* **Note that this site was not intended to be a template.** Therefore, fork at your own risk!
+* **If you are interested in using this code for your site, please include attribution and remove all the images (and my CV) from your directory.**
 
 ## Design
 
 ### Colors
 
-In an effort to create and maintain a more professional image, my preferred brat green color scheme was not used; instead, I had Claude come up with a color scheme based on United Airlines brand colors ![#0033a0](https://placehold.co/16x16/0033a0/0033a0.png) `#0033a0` and ![#002244](https://placehold.co/16x16/002244/002244.png) `#002244`. The light theme was inspired by the Battleship Gray livery from the 00s.
+I refrained from using brat green and decided to use airline colors to create and maintain a more professional image. However, I couldn't commit to just one airline, so now the whole site is a livery switcher instead of a fixed color scheme. Two toggles in the masthead — LIGHTS and GAIN — flip between four themes: Delta, United, American, and Southwest. 
 
 ### Typography
 
-A readable modern geometric typeface is chosen for the body font and paired with a splash of modern aviation. The Barlow font is inspired by California road signs, paying tribute to my years driving around the Bay, and the Datatype font was chosen as the monospace accent font due to its fun ability to generate line plots, bar graphs, pie charts... which I didn't end up using LOL. 
+B612 and B612 Mono are the very readable airplane-inspired body typefaces and I used Ailerons for the headings for some pop.
 
 ### Layout and features
 
 * Inspired by aeronautical engineering and modern aviation
 * Significantly more intuitive than the previous one
-* Light and dark modes
+* Four airline liveries instead of just light and dark
 * Fully responsive
 
 ## Dependencies
 
 * [Astro](https://astro.build/)
+* [Tailwind CSS](https://tailwindcss.com/)
 * [Lenis](https://github.com/darkroomengineering/lenis)
 * [TypeScript](https://www.typescriptlang.org/)
 * [Node.js](https://nodejs.org/) + npm
 
 ## Credits
 
-### Fonts, Icons
+### Fonts
 * Ailerons - [Adilson Gonzales](https://www.behance.net/gallery/25541553/Ailerons-Typeface)
-* Barlow - [Google Fonts](https://fonts.google.com/specimen/Barlow)
-* Datatype - [Google Fonts](https://fonts.google.com/specimen/Datatype)
-
-### Header image
-* Aldnoah.Zero anime (both light and dark headers!)
+* B612 & B612 Mono - [Google Fonts](https://fonts.google.com/specimen/B612)
 
 ## To-do
 * Improve analytics
+* Find and/or make better hero background images
 * Proper documentation because 2027 me is not going to remember what 2026 me was cooking

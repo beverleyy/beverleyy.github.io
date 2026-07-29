@@ -1,5 +1,6 @@
-import { defineConfig } from 'astro/config'
+import { defineConfig } from 'astro/config';
+import tailwind from '@astrojs/tailwind';
 
 export default defineConfig({
-  site: 'https://beverleyy.github.io',
-})
+  integrations: [tailwind({ applyBaseStyles: false })],
+});

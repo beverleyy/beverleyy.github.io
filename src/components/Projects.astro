@@ -1,41 +1,27 @@
 ---
-import Icon from './Icon.astro';
-
-interface Link {
-  label: string;
-  href: string;
-  icon: string;
-}
-
-interface ProjectItem {
-  callsign: string;
-  status: string;
-  squawk: string;
-  edu: string;
-  category: string;
-  types: string[];
-  title: string;
-  blurb: string;
-  supervisors?: string[];
-  team?: string[];
-  tools: string[];
-  links: Link[];
-  image: string | null;
-}
+import type { ProjectEntry } from '../data/content';
 
 interface Props {
-  projects: ProjectItem[];
+  projects: ProjectEntry[];
 }
 
 const { projects } = Astro.props;
 
-const eduLabels: Record<string, string> = { phd: 'PhD', meng: 'M.Eng', beng: 'B.Eng', pro: 'Industry' };
-const eduOrder = ['phd', 'meng', 'beng', 'pro'];
+const statusLabel: Record<ProjectEntry['status'], string> = {
+  current: 'Current',
+  ongoing: 'Ongoing',
+  landed: 'Landed',
+};
 
-const categoryLabels: Record<string, string> = { research: 'Research', engineering: 'Engineering' };
-const categoryOrder = ['research', 'engineering'];
+const eduLabel: Record<ProjectEntry['edu'], string> = {
+  phd: 'PhD',
+  meng: 'M.Eng',
+  beng: 'B.Eng',
+  pro: 'Industry',
+};
+const eduOrder: ProjectEntry['edu'][] = ['phd', 'meng', 'beng', 'pro'];
 
-const typeLabels: Record<string, string> = {
+const typeLabel: Record<string, string> = {
   code: 'Code',
   math: 'Math',
   flows: 'Flows',
@@ -43,145 +29,79 @@ const typeLabels: Record<string, string> = {
   other: 'Others',
 };
 const typeOrder = ['code', 'math', 'flows', 'builds', 'other'];
-
-const statusLabels: Record<string, string> = { current: 'Current', ongoing: 'Ongoing', landed: 'Landed' };
 ---
-<section id="projects" class="projects" data-tape-section data-tape-label="Projects">
-  <h2 class="eyebrow section-eyebrow">Projects</h2>
-
-  <div class="filter-bar instrument-panel" role="group" aria-label="Filter projects">
-    <div class="filter-groups">
-      <div class="filter-group" data-filter-group="category">
-        <span class="filter-group-label">Category</span>
-        <button type="button" class="filter-btn is-active" data-filter-value="*">
-          <span class="filter-btn-led" aria-hidden="true"></span>All<span class="filter-btn-all-suffix"> Categories</span>
-        </button>
-        {categoryOrder.map((key) => (
-          <button type="button" class="filter-btn" data-filter-value={key}>
-            <span class="filter-btn-led" aria-hidden="true"></span>{categoryLabels[key]}
-          </button>
-        ))}
-      </div>
-      <div class="filter-group" data-filter-group="edu">
-        <span class="filter-group-label">Level</span>
-        <button type="button" class="filter-btn is-active" data-filter-value="*">
-          <span class="filter-btn-led" aria-hidden="true"></span>All<span class="filter-btn-all-suffix"> Levels</span>
-        </button>
-        {eduOrder.map((key) => (
-          <button type="button" class="filter-btn" data-filter-value={key}>
-            <span class="filter-btn-led" aria-hidden="true"></span>{eduLabels[key]}
-          </button>
-        ))}
-      </div>
-      <div class="filter-group" data-filter-group="type">
-        <span class="filter-group-label">Type</span>
-        <button type="button" class="filter-btn is-active" data-filter-value="*">
-          <span class="filter-btn-led" aria-hidden="true"></span>All<span class="filter-btn-all-suffix"> Types</span>
-        </button>
-        {typeOrder.map((key) => (
-          <button type="button" class="filter-btn" data-filter-value={key}>
-            <span class="filter-btn-led" aria-hidden="true"></span>{typeLabels[key]}
-          </button>
-        ))}
-      </div>
+<section id="research" data-tape-section data-tape-label="Research" style="background-color:var(--panel-bg);" class="py-14 px-6 transition-colors">
+  <div class="max-w-7xl mx-auto space-y-8">
+    <div class="tick-rule"></div>
+    <div class="border-l-2 border-delta-red pl-4">
+      <h2 class="text-3xl font-bold text-delta-navy dark:text-white uppercase tracking-wider">Research Projects</h2>
     </div>
-    <button type="button" class="filter-btn filter-toggle" id="activeToggle" aria-pressed="false">
-      <span class="filter-btn-led" aria-hidden="true"></span>Active only
-    </button>
-  </div>
 
-  <ul class="strip-rack">
-    {projects.map((item) => (
-      <li
-        class={`strip strip--${item.status}`}
-        data-edu={item.edu}
-        data-category={item.category}
-        data-types={item.types.join(',')}
-        data-status={item.status}
-      >
-        <div class="strip-row">
-          <div class="strip-cell strip-cell--id mono">
-            <span class="strip-callsign">{item.callsign}</span>
-            <span class={`strip-status strip-status--${item.status}`}>{statusLabels[item.status]}</span>
-          </div>
-
-          <div class="strip-cell strip-cell--squawk mono">
-            <span class="strip-cell-label">SQK</span>
-            <span class="strip-squawk-value">{item.squawk}</span>
-          </div>
-
-          {item.image && (
-            <div class="strip-cell strip-cell--thumb">
-              <span class="strip-thumb-fallback mono" aria-hidden="true">ADD<br />PHOTO</span>
-              <img src={item.image} alt="" loading="lazy" onerror="this.style.display='none'" />
-            </div>
-          )}
-
-          <div class="strip-cell strip-cell--route">
-            <h3>{item.title}</h3>
-            <p class="strip-blurb">{item.blurb}</p>
-            {item.supervisors && item.supervisors.length > 0 && (
-              <p class="strip-supervisors mono">Supervised by {item.supervisors.join(', ')}</p>
-            )}
-            {item.team && item.team.length > 0 && (
-              <p class="strip-supervisors mono">Team: {item.team.join(', ')}</p>
-            )}
-          </div>
+    <div class="filter-bar" role="group" aria-label="Filter projects">
+      <div class="filter-groups">
+        <div class="filter-group" data-filter-group="category">
+          <span class="filter-group-label">Category</span>
+          <button type="button" class="filter-btn is-active" data-filter-value="*"><span class="filter-btn-led"></span>All</button>
+          <button type="button" class="filter-btn" data-filter-value="research"><span class="filter-btn-led"></span>Research</button>
+          <button type="button" class="filter-btn" data-filter-value="engineering"><span class="filter-btn-led"></span>Engineering</button>
         </div>
-
-        <div class="strip-remarks">
-          {item.tools.map((tool) => <span class="mono readout">{tool}</span>)}
-          {item.links.map((link) => (
-            <a class="strip-link" href={link.href} target="_blank" rel="noopener noreferrer" aria-label={`${item.title} — ${link.label}`}>
-              <Icon name={link.icon} />
-              <span>{link.label}</span>
-            </a>
+        <div class="filter-group" data-filter-group="edu">
+          <span class="filter-group-label">Level</span>
+          <button type="button" class="filter-btn is-active" data-filter-value="*"><span class="filter-btn-led"></span>All</button>
+          {eduOrder.map((key) => (
+            <button type="button" class="filter-btn" data-filter-value={key}><span class="filter-btn-led"></span>{eduLabel[key]}</button>
           ))}
         </div>
-      </li>
-    ))}
-  </ul>
+        <div class="filter-group" data-filter-group="type">
+          <span class="filter-group-label">Type</span>
+          <button type="button" class="filter-btn is-active" data-filter-value="*"><span class="filter-btn-led"></span>All</button>
+          {typeOrder.map((key) => (
+            <button type="button" class="filter-btn" data-filter-value={key}><span class="filter-btn-led"></span>{typeLabel[key]}</button>
+          ))}
+        </div>
+      </div>
+      <button type="button" class="filter-btn filter-toggle" id="activeToggle" aria-pressed="false">
+        <span class="filter-btn-led"></span>Active only
+      </button>
+    </div>
+
+    <ul class="strip-rack">
+      {projects.map((item) => (
+        <li class="strip" data-category={item.category} data-edu={item.edu} data-types={item.types.join(',')} data-status={item.status}>
+          <div class="strip-row">
+            <div class="strip-cell strip-cell--id">
+              <span class="strip-callsign">{item.callsign}</span>
+              <span class={`strip-status strip-status--${item.status}`}>{statusLabel[item.status]}</span>
+            </div>
+            <div class="strip-cell strip-cell--squawk">
+              <span class="strip-cell-label">SQK</span>
+              <span class="strip-squawk-value">{item.squawk}</span>
+            </div>
+            <div class="strip-cell strip-cell--route">
+              <h3>{item.title}</h3>
+              <p class="strip-blurb">{item.blurb}</p>
+              {item.supervisors && item.supervisors.length > 0 && (
+                <p class="strip-supervisors">Supervised by {item.supervisors.join(', ')}</p>
+              )}
+              {item.team && item.team.length > 0 && (
+                <p class="strip-supervisors">Team: {item.team.join(', ')}</p>
+              )}
+            </div>
+            {item.image && (
+              <div class="strip-cell strip-cell--thumb">
+                <span class="strip-thumb-fallback">ADD<br />PHOTO</span>
+                <img src={item.image} alt="" loading="lazy" onerror="this.style.display='none'" />
+              </div>
+            )}
+          </div>
+          <div class="strip-remarks">
+            {item.tools.map((tool) => <span class="strip-tool">{tool}</span>)}
+            {item.links.map((link) => (
+              <a href={link.href} class="strip-link">{link.label}</a>
+            ))}
+          </div>
+        </li>
+      ))}
+    </ul>
+  </div>
 </section>
-
-<script>
-  const active: Record<string, string> = { edu: '*', type: '*', category: '*' };
-  let activeOnly = false;
-
-  const items = document.querySelectorAll<HTMLElement>('.strip-rack .strip');
-
-  function applyFilter() {
-    items.forEach((item) => {
-      const eduOk = active.edu === '*' || item.dataset.edu === active.edu;
-      const categoryOk = active.category === '*' || item.dataset.category === active.category;
-      const types = (item.dataset.types || '').split(',');
-      const typeOk = active.type === '*' || types.includes(active.type);
-      const statusOk =
-        !activeOnly || item.dataset.status === 'current' || item.dataset.status === 'ongoing';
-      item.hidden = !(eduOk && categoryOk && typeOk && statusOk);
-    });
-  }
-
-  document.querySelectorAll<HTMLElement>('.filter-group').forEach((group) => {
-    const key = group.dataset.filterGroup;
-    if (!key) return;
-
-    group.querySelectorAll<HTMLButtonElement>('.filter-btn').forEach((btn) => {
-      btn.addEventListener('click', () => {
-        group.querySelectorAll('.filter-btn').forEach((b) => b.classList.remove('is-active'));
-        btn.classList.add('is-active');
-        active[key] = btn.dataset.filterValue || '*';
-        applyFilter();
-      });
-    });
-  });
-
-  const activeToggle = document.querySelector<HTMLButtonElement>('#activeToggle');
-  if (activeToggle) {
-    activeToggle.addEventListener('click', () => {
-      activeOnly = !activeOnly;
-      activeToggle.classList.toggle('is-active', activeOnly);
-      activeToggle.setAttribute('aria-pressed', String(activeOnly));
-      applyFilter();
-    });
-  }
-</script>

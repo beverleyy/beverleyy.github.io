@@ -1,196 +1,101 @@
-.edu-list {
-    list-style:none;
-    margin:0;
-    padding:0;
+/* boarding pass */
+.boarding-pass {
+    display:block;
+    border:2px solid var(--panel-border);
+    background:var(--panel-bg);
+}
+.boarding-pass-summary {
     display:flex;
-    flex-direction:column;
-    gap:1rem;
-}
-
-.edu-item {
-    background-color:var(--panel);
-    border-left:3px solid var(--faint);
-    transition:transform 0.2s ease;
-}
-
-.edu-item:hover {
-    --bracket-color:var(--flow-cold);
-    transform:translateX(3px);
-}
-
-.edu-summary {
-    display:grid;
-    grid-template-columns:minmax(4.4rem, auto) minmax(12rem, 1fr) auto auto;
-    align-items:center;
-    column-gap:1rem;
-    row-gap:0.3rem;
-    padding:1rem 1.2rem;
+    align-items:stretch;
     cursor:pointer;
     list-style:none;
 }
-
-.edu-summary::-webkit-details-marker {
-    display:none;
-}
-
-.edu-summary::marker {
-    content:'';
-}
-
-.edu-level {
-    font-size:0.8rem;
-    color:var(--flow-hot);
-    letter-spacing:0.04em;
-}
-
-.edu-heading {
+.boarding-pass-summary::-webkit-details-marker { display:none; }
+.boarding-pass-summary::marker { content:''; }
+.boarding-pass-stub {
+    flex:none;
+    width:5.5rem;
     display:flex;
     flex-direction:column;
-    gap:0.2rem;
-    min-width:0;
-}
-
-.edu-degree {
-    font-size:1rem;
-    color:var(--fg);
-}
-
-.edu-school {
-    font-size:0.8rem;
-    color:var(--faint);
-}
-
-.edu-years {
-    font-size:0.8rem;
-    color:var(--faint);
-    white-space:nowrap;
-}
-
-.edu-chevron {
-    width:0.85rem;
-    height:0.85rem;
-    color:var(--muted);
-    transition:transform 0.2s ease;
-    justify-self:end;
-}
-
-.edu-item details[open] .edu-chevron {
-    transform:rotate(90deg);
-}
-
-.edu-details {
-    padding:0 1.2rem 1.3rem;
-    display:flex;
-    flex-direction:column;
-    gap:1rem;
-}
-
-.edu-focus {
-    margin:0;
-    font-size:0.88rem;
-    color:var(--fg);
-    opacity:0.85;
-}
-
-.edu-supervisors {
-    margin:0;
-    font-size:0.8rem;
-    color:var(--faint);
-}
-
-.edu-group {
-    display:flex;
-    flex-direction:column;
-    gap:0.5rem;
-}
-
-.edu-group-label {
-    font-size:0.66rem;
-    text-transform:uppercase;
-    letter-spacing:0.08em;
-    color:var(--amber);
-}
-
-.edu-chip-list {
-    list-style:none;
-    margin:0;
-    padding:0;
-    display:flex;
-    flex-wrap:wrap;
-    gap:0.5rem;
-}
-
-.edu-chip-list li {
-    display:contents;
-}
-
-.edu-chip {
-    display:inline-flex;
     align-items:center;
-    gap:0.35rem;
-    font-family:var(--mono);
-    font-size:0.76rem;
-    line-height:1.3;
-    color:var(--muted);
-    background:color-mix(in srgb, var(--faint) 12%, transparent);
-    border-radius:2px;
-    padding:0.32rem 0.7rem;
-    box-shadow:
-        inset 0 1px 2px rgba(0, 0, 0, 0.25),
-        inset 0 -1px 0 rgba(255, 255, 255, 0.04);
+    justify-content:center;
+    gap:0.4rem;
+    padding:0.85rem 0.5rem;
+    text-align:center;
+    border-right:2px dashed var(--panel-border);
+    background:
+        repeating-linear-gradient(
+            to bottom,
+            color-mix(in srgb, var(--c-accent) 6%, transparent) 0,
+            color-mix(in srgb, var(--c-accent) 6%, transparent) 8px,
+            transparent 8px,
+            transparent 16px
+        );
 }
-
-.edu-chip--link {
-    color:var(--flow-cold);
-    background:color-mix(in srgb, var(--flow-cold) 10%, transparent);
-    box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.08),
-        inset 0 -1px 0 rgba(0, 0, 0, 0.3);
-    transition:color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+.boarding-pass-stub-seq {
+    font-size:0.58rem;
+    letter-spacing:0.08em;
+    color:var(--panel-muted);
 }
-
-.edu-chip--link:hover,
-.edu-chip--link:focus-visible {
-    background:color-mix(in srgb, var(--flow-cold) 18%, transparent);
-    box-shadow:
-        inset 0 1px 0 color-mix(in srgb, var(--flow-cold) 45%, transparent),
-        inset 0 -1px 0 rgba(0, 0, 0, 0.35);
+.boarding-pass-chevron {
+    font-size:0.8rem;
+    color:var(--c-accent);
+    transition:transform 0.2s ease;
 }
-
-.edu-chip-icon {
-    width:0.68rem;
-    height:0.68rem;
-    opacity:0.7;
+.boarding-pass[open] .boarding-pass-chevron { transform:rotate(180deg); }
+.boarding-pass-head {
+    flex:1 1 auto;
+    padding:0.85rem 1.1rem;
+    min-width:0;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
 }
-
-@media (max-width: 720px) {
-    .edu-summary {
-        grid-template-columns:1fr auto;
-        grid-template-areas:
-            "level chevron"
-            "heading heading"
-            "years years";
-        row-gap:0.35rem;
-        padding:0.9rem 1rem;
-    }
-
-    .edu-level {
-        grid-area:level;
-    }
-
-    .edu-heading {
-        grid-area:heading;
-    }
-
-    .edu-years {
-        grid-area:years;
-    }
-
-    .edu-chevron {
-        grid-area:chevron;
-    }
-
-    .edu-details {
-        padding:0 1rem 1.1rem;
-    }
+.boarding-pass-field-label {
+    display:block;
+    font-size:0.64rem;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--panel-muted);
+    margin-bottom:0.15rem;
+}
+.boarding-pass-title {
+    margin:0;
+    font-size:0.92rem;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:0.02em;
+    color:var(--panel-fg);
+}
+.boarding-pass-inst {
+    display:block;
+    font-size:0.72rem;
+    color:var(--panel-muted);
+    margin-top:0.15rem;
+}
+.boarding-pass-meta {
+    display:grid;
+    grid-template-columns:5.5rem 1fr;
+    gap:0.3rem 1rem;
+    margin:0;
+    padding:0.7rem 1.1rem 0.9rem;
+    border-top:1px dashed var(--panel-border);
+    font-size:0.7rem;
+}
+.boarding-pass-meta dt {
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:0.1em;
+    font-size:0.58rem;
+    color:var(--c-accent);
+    align-self:center;
+}
+.boarding-pass-meta dd {
+    margin:0;
+    color:var(--panel-fg);
+}
+@media (max-width: 560px) {
+    .boarding-pass-stub { width:4rem; }
+    .boarding-pass-meta { grid-template-columns:1fr; gap:0.1rem 0; padding-left:1rem; padding-right:1rem; }
+    .boarding-pass-meta dd { margin-bottom:0.5rem; }
 }

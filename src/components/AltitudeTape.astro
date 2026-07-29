@@ -1,27 +1,24 @@
 ---
+import type { TapeSection } from '../data/content';
+
 interface Props {
-  sections: { id: string; label: string; alt: string; navHidden?: boolean }[];
+  sections: TapeSection[];
 }
 
 const { sections } = Astro.props;
 ---
 <nav class="tape" aria-label="Section position">
-
-  <div class="tape-backdrop instrument-panel" aria-hidden="true"></div>
-
-  <div class="tape-readout instrument-panel mono">
+  <div class="tape-readout">
     <span class="tape-readout-label" id="tapeLabel">{sections[0].label}</span>
-    <span class="tape-readout-alt" id="tapeAlt">{sections[0].alt}</span>
+    <span class="tape-readout-alt" id="tapeAlt">FL400</span>
   </div>
-
   <div class="tape-line">
     <div class="tape-marker" id="tapeMarker" aria-hidden="true"></div>
     {sections.map((s) => (
-      <a href={`#${s.id}`} class="tape-tick" data-id={s.id} data-alt={s.alt} aria-label={s.label}>
-        <span class="tape-tick-alt mono" aria-hidden="true">{s.alt}</span>
-        <span class="tape-tick-line" aria-hidden="true"></span>
+      <a href={`#${s.id}`} class="tape-tick" data-id={s.id} aria-label={s.label}>
+        <span class="tape-tick-alt"></span>
+        <span class="tape-tick-line"></span>
       </a>
     ))}
   </div>
-
 </nav>

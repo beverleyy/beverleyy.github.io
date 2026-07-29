@@ -1,0 +1,105 @@
+/* southwest accents */
+html[data-airline='southwest'] .aircraft-ref { background-color:var(--c-primary) !important; }
+html[data-airline='southwest'] .hsi-marker { fill:var(--c-primary) !important; }
+html[data-airline='southwest'] .hud-corner.tl,
+html[data-airline='southwest'] .hud-corner.tr,
+html[data-airline='southwest'] .hud-corner.bl,
+html[data-airline='southwest'] .hud-corner.br { border-color:var(--c-primary) !important; }
+html[data-airline='southwest'] .tick-rule { color:var(--c-primary) !important; }
+html[data-airline='southwest'] .tape-readout-alt { color:var(--c-primary) !important; }
+html[data-airline='southwest'] .tape-marker {
+    border-right-color:var(--c-primary) !important;
+    filter:drop-shadow(0 0 4px color-mix(in srgb, var(--c-primary) 75%, transparent)) !important;
+}
+html[data-airline='southwest'] .tape-tick:hover .tape-tick-line,
+html[data-airline='southwest'] .tape-tick.active .tape-tick-line {
+    background:var(--c-primary) !important;
+    box-shadow:0 0 6px color-mix(in srgb, var(--c-primary) 65%, transparent) !important;
+}
+html[data-airline='southwest'] .bottom-tape-tick.active .bottom-tape-tick-label { color:var(--c-primary) !important; }
+html[data-airline='southwest'] .bottom-tape-tick:hover .bottom-tape-tick-mark,
+html[data-airline='southwest'] .bottom-tape-tick.active .bottom-tape-tick-mark {
+    background:var(--c-primary) !important;
+    box-shadow:0 0 6px color-mix(in srgb, var(--c-primary) 65%, transparent) !important;
+}
+html[data-airline='southwest'] .job-title { color:var(--c-accent) !important; }
+
+/* united accents */
+html[data-airline='united'] .hud-corner.tl,
+html[data-airline='united'] .hud-corner.tr,
+html[data-airline='united'] .hud-corner.bl,
+html[data-airline='united'] .hud-corner.br { border-color:var(--c-sky) !important; }
+html[data-airline='united'] .tick-rule { color:var(--c-sky) !important; }
+html[data-airline='united'] .tape-readout-alt { color:var(--c-sky) !important; }
+html[data-airline='united'] .tape-marker {
+    border-right-color:var(--c-sky) !important;
+    filter:drop-shadow(0 0 4px color-mix(in srgb, var(--c-sky) 75%, transparent)) !important;
+}
+html[data-airline='united'] .tape-tick:hover .tape-tick-line,
+html[data-airline='united'] .tape-tick.active .tape-tick-line {
+    background:var(--c-sky) !important;
+    box-shadow:0 0 6px color-mix(in srgb, var(--c-sky) 65%, transparent) !important;
+}
+
+html[data-airline='southwest'] .border-delta-red { border-color:var(--c-primary) !important; }
+html[data-airline='southwest'] .filter-btn.is-active {
+    color:var(--c-primary) !important;
+    border-color:var(--c-primary) !important;
+}
+html[data-airline='southwest'] .filter-btn.is-active .filter-btn-led {
+    background:var(--c-primary) !important;
+    box-shadow:0 0 4px 1px color-mix(in srgb, var(--c-primary) 65%, transparent) !important;
+}
+html[data-airline='southwest'] .strip[data-status='current'],
+html[data-airline='southwest'] .strip[data-status='ongoing'] { border-left-color:var(--c-primary) !important; }
+html[data-airline='southwest'] .strip-status--current,
+html[data-airline='southwest'] .strip-status--ongoing { color:var(--c-primary) !important; }
+
+/* route slate palette through panel vars */
+html[data-airline] {
+    --panel-alt:color-mix(in srgb, var(--panel-fg) 6%, var(--panel-bg));
+}
+html[data-airline] .bg-white { background-color:var(--panel-bg) !important; }
+html[data-airline] .bg-slate-50,
+html[data-airline] .bg-slate-100 { background-color:var(--panel-alt) !important; }
+html[data-airline].dark .dark\:bg-slate-950 { background-color:var(--panel-bg) !important; }
+html[data-airline].dark .dark\:bg-slate-900 { background-color:var(--panel-alt) !important; }
+html[data-airline] .hover\:bg-slate-50:hover { background-color:var(--panel-alt) !important; }
+html[data-airline].dark .dark\:hover\:bg-slate-900\/30:hover { background-color:color-mix(in srgb, var(--panel-alt) 30%, transparent) !important; }
+html[data-airline] .border-slate-200,
+html[data-airline] .border-slate-300,
+html[data-airline] .border-slate-400 { border-color:var(--panel-border) !important; }
+html[data-airline].dark .dark\:border-slate-700,
+html[data-airline].dark .dark\:border-slate-800,
+html[data-airline].dark .dark\:border-slate-900 { border-color:var(--panel-border) !important; }
+html[data-airline].dark .dark\:divide-slate-800 > * + * { border-color:var(--panel-border) !important; }
+html[data-airline].dark .dark\:hover\:border-slate-500:hover { border-color:var(--c-accent) !important; }
+html[data-airline] .text-slate-300,
+html[data-airline] .text-slate-400,
+html[data-airline] .text-slate-500,
+html[data-airline] .text-slate-600,
+html[data-airline] .text-slate-700,
+html[data-airline] .text-slate-800 { color:var(--panel-muted) !important; }
+html[data-airline].dark .dark\:text-slate-100,
+html[data-airline].dark .dark\:text-slate-200,
+html[data-airline].dark .dark\:text-white { color:var(--panel-fg) !important; }
+html[data-airline].dark .dark\:text-slate-300,
+html[data-airline].dark .dark\:text-slate-400,
+html[data-airline].dark .dark\:text-slate-500,
+html[data-airline].dark .dark\:text-slate-600 { color:var(--panel-muted) !important; }
+
+/* hover overrides, must outrank the above */
+html[data-airline].dark .dark\:hover\:text-delta-sky:hover { color:var(--c-sky) !important; }
+html[data-airline].dark .dark\:hover\:border-delta-sky:hover { border-color:var(--c-sky) !important; }
+html[data-airline] .hover\:text-delta-navy:hover { color:var(--c-primary) !important; }
+html[data-airline] .hover\:border-delta-navy:hover { border-color:var(--c-primary) !important; }
+
+/* hero name accent */
+html[data-airline='delta'] #hero-name { color:var(--c-accent) !important; }
+html[data-airline='southwest'] #hero-name {
+    background:linear-gradient(90deg, var(--c-accent), var(--c-primary));
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent !important;
+    -webkit-text-fill-color:transparent;
+}

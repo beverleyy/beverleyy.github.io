@@ -1,0 +1,17 @@
+---
+import type { SocialLink } from '../data/content';
+
+interface Props {
+  links: SocialLink[];
+}
+
+const { links } = Astro.props;
+---
+<!-- no data-tape-section, needs id for cloud-divider z-index rule -->
+<section id="highlights" style="background-color:var(--panel-bg);" class="py-14 px-6 transition-colors">
+  <div class="max-w-7xl mx-auto flex flex-wrap gap-2">
+    {links.map((link) => (
+      <a href={link.href} class="keyword-chip">{link.label}</a>
+    ))}
+  </div>
+</section>

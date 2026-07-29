@@ -1,46 +1,43 @@
 ---
 import Icon from './Icon.astro';
----
-<header class="site-header">
+import { socialLinks } from '../data/content';
 
-  <div class="header-row">
-    <a class="mark mono" href="#top" aria-label="Beverley Yeo — home">
-      <Icon name="mark" class="mark-icon" />
-      9Y-KWB
+const linkClass = 'h-7 inline-flex items-center justify-center text-[10px] font-bold uppercase tracking-wider px-2 border-2 border-slate-300 dark:border-slate-700 text-slate-500 dark:text-slate-400 hover:border-delta-navy hover:text-delta-navy dark:hover:border-delta-sky dark:hover:text-delta-sky transition';
+const toggleClass = 'h-7 flex items-center gap-2 px-2.5 leading-none border-2 border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 font-bold hover:border-delta-navy hover:text-delta-navy dark:hover:border-slate-500 dark:hover:text-delta-sky transition text-[10px] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-delta-red';
+---
+<nav id="site-nav" class="fixed top-0 left-0 w-full bg-white dark:bg-slate-950 z-50 border-b-2 border-slate-300 dark:border-slate-800 px-6 transition-colors">
+  <div class="max-w-7xl mx-auto min-h-16 sm:h-16 flex flex-wrap items-center justify-between gap-3 py-2 sm:py-0">
+    <a href="#" class="hidden sm:flex text-xs font-bold tracking-widest text-delta-navy dark:text-white items-center gap-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-delta-red" aria-label="Home">
+      <Icon name="mark" class="brand-mark w-5 h-5 text-delta-red" />
+      <span id="brand-registration" class="text-delta-navy dark:text-white">9Y-KWB</span>
     </a>
 
-    <div class="header-icons">
-      <button
-        type="button"
-        class="theme-toggle has-tooltip"
-        data-tooltip="Toggle lighting"
-        id="themeToggle"
-        aria-label="Switch between night and day panel lighting"
-        aria-pressed="false"
-      >
-        <Icon name="moon" class="theme-toggle-icon theme-toggle-icon--moon" />
-        <span class="theme-toggle-track" aria-hidden="true">
-          <span class="theme-toggle-thumb"></span>
-        </span>
-        <Icon name="sun" class="theme-toggle-icon theme-toggle-icon--sun" />
-      </button>
+    <div class="flex flex-wrap items-center gap-3 text-xs tracking-wider text-slate-600 dark:text-slate-400">
+      <div class="flex items-center gap-1.5">
+        {socialLinks.map((link) => (
+          <a
+            href={link.href}
+            target={link.href.startsWith('mailto:') ? undefined : '_blank'}
+            rel={link.href.startsWith('mailto:') ? undefined : 'noopener'}
+            aria-label={link.label}
+            class={linkClass}
+          >
+            {link.label}
+          </a>
+        ))}
+      </div>
 
-      <a class="has-tooltip" href="https://github.com/beverleyy" target="_blank" rel="noopener noreferrer" aria-label="GitHub" data-tooltip="GitHub">
-        <Icon name="github" />
-      </a>
-      <a class="has-tooltip" href="https://www.linkedin.com/in/beverleyy" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" data-tooltip="LinkedIn">
-        <Icon name="linkedin" />
-      </a>
-      <a class="has-tooltip" href="https://scholar.google.com/citations?user=wDYVyhYAAAAJ" target="_blank" rel="noopener noreferrer" aria-label="Google Scholar" data-tooltip="Google Scholar">
-        <Icon name="scholar" />
-      </a>
-      <a class="has-tooltip" href="https://orcid.org/0000-0003-0600-8065" target="_blank" rel="noopener noreferrer" aria-label="ORCID" data-tooltip="ORCID">
-        <Icon name="orcid" />
-      </a>
-      <a class="has-tooltip" href="mailto:yeokwb@stanford.edu" aria-label="Email" data-tooltip="Email">
-        <Icon name="email" />
-      </a>
+      <div class="flex items-center gap-1.5">
+        <button type="button" id="lights-toggle" aria-label="Toggle panel lights (dark/light mode)" class={`masthead-toggle ${toggleClass}`}>
+          <span id="lights-led" class="masthead-led"></span>
+          LIGHTS
+        </button>
+
+        <button type="button" id="contrast-toggle" aria-label="Toggle display gain (contrast)" class={`masthead-toggle ${toggleClass}`}>
+          <span id="contrast-led" class="masthead-led"></span>
+          GAIN
+        </button>
+      </div>
     </div>
   </div>
-
-</header>
+</nav>

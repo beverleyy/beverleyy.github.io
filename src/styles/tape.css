@@ -1,147 +1,123 @@
+/* altimeter tape */
 .tape {
     position:fixed;
-    right:2.1rem;
+    right:1.75rem;
     top:50%;
     transform:translateY(-50%);
     height:46vh;
-    display:flex;
-    flex-direction:column;
-    align-items:flex-end;
-    gap:0.9rem;
+    width:5.5rem;
     z-index:20;
 }
+@media (max-width: 1024px) { .tape { display:none; } }
 
-.tape-backdrop {
-    position:absolute;
-    top:-0.5rem;
-    bottom:-0.5rem;
-    right:-0.7rem;
-    left:-0.7rem;
-    width:100%;
-    border-radius:2px;
-    background:color-mix(in srgb, var(--ink) 1%, transparent);
-    backdrop-filter:blur(7px);
-    -webkit-backdrop-filter:blur(7px);
-    pointer-events:none;
-    box-sizing:content-box;
-    padding:0.5rem 0.7rem;
+@media (min-width: 1025px) {
+    #site-nav, section[id], footer {
+        padding-left:9rem !important;
+        padding-right:9rem !important;
+    }
 }
 
 .tape-readout {
+    position:absolute;
+    top:0;
+    right:0;
     display:flex;
     flex-direction:column;
     align-items:flex-end;
-    gap:0.15rem;
-    padding:0.45rem 0.7rem;
-    border-radius:1px;
-    background:var(--panel);
-    box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.05),
-        inset 0 -1px 0 rgba(0, 0, 0, 0.4);
-    position:relative;
+    gap:0.1rem;
+    padding:0.4rem 0.65rem;
+    background:var(--panel-bg);
+    border:2px solid var(--panel-border);
 }
-
 .tape-readout-label {
-    font-size:0.66rem;
+    font-size:0.6rem;
     letter-spacing:0.08em;
     text-transform:uppercase;
-    color:var(--muted);
+    color:var(--panel-muted);
+    white-space:nowrap;
 }
-
 .tape-readout-alt {
-    font-size:0.92rem;
-    letter-spacing:0.04em;
-    color:var(--flow-cold);
+    font-size:0.85rem;
+    font-weight:700;
+    letter-spacing:0.03em;
+    color:var(--c-accent);
+    white-space:nowrap;
 }
 
 .tape-line {
-    position:relative;
+    position:absolute;
+    top:calc(4.6rem - 6px);
+    bottom:-6px;
+    right:0;
     width:1px;
-    height:100%;
-    margin-right:0.35rem;
-    background-color:var(--panel-line);
-    background-image:repeating-linear-gradient(
-        to bottom,
-        var(--faint) 0,
-        var(--faint) 1px,
-        transparent 1px,
-        transparent 8.3%
-    );
-    opacity:0.9;
+    border-right:1px solid var(--panel-muted);
+    background-image:repeating-linear-gradient(to bottom, var(--panel-muted) 0, var(--panel-muted) 1px, transparent 1px, transparent 12.5%);
+    background-repeat:no-repeat;
+    opacity:0.7;
 }
-
+/* subticks */
+.tape-line::before {
+    content:'';
+    position:absolute;
+    top:0;
+    bottom:0;
+    right:0;
+    width:6px;
+    background-image:repeating-linear-gradient(to bottom, var(--panel-muted) 0, var(--panel-muted) 1px, transparent 1px, transparent 6.25%);
+    background-repeat:no-repeat;
+    opacity:0.35;
+    pointer-events:none;
+}
 .tape-marker {
     position:absolute;
-    right:-1px;
+    left:-6px;
     width:0;
     height:0;
     border-top:5px solid transparent;
     border-bottom:5px solid transparent;
-    border-right:7px solid var(--flow-cold);
+    border-right:8px solid var(--c-accent);
     transform:translateY(-50%);
     transition:top 0.05s linear;
-    filter:drop-shadow(0 0 4px color-mix(in srgb, var(--flow-cold) 75%, transparent));
+    z-index:2;
+    filter:drop-shadow(0 0 4px color-mix(in srgb, var(--c-accent) 75%, transparent));
 }
-
 .tape-tick {
     position:absolute;
-    right:-10px;
+    right:0;
     top:0;
     display:flex;
     align-items:center;
     justify-content:flex-end;
-    gap:0.5em;
-    width:4.4rem;
-    height:2rem;
-    padding:0 0.6rem 0 0;
+    gap:0.4em;
     transform:translateY(-50%);
-    cursor:pointer;
+    text-decoration:none;
 }
-
 .tape-tick-alt {
-    font-size:0.68rem;
-    letter-spacing:0.03em;
-    color:var(--faint);
+    font-size:0.62rem;
+    letter-spacing:0.02em;
+    color:var(--panel-muted);
     opacity:0;
     transform:translateX(4px);
-    transition:opacity 0.2s ease, transform 0.2s ease, color 0.2s ease;
+    transition:opacity 0.15s ease, transform 0.15s ease, color 0.15s ease;
     white-space:nowrap;
 }
-
 .tape-tick-line {
-    display:block;
-    width:15px;
+    width:13px;
     height:2px;
-    border-radius:1px;
-    background:var(--faint);
+    background:var(--panel-muted);
     opacity:0.7;
-    transition:background 0.2s ease, opacity 0.2s ease, width 0.2s ease;
+    transition:background 0.15s ease, width 0.15s ease;
 }
-
 .tape-tick:hover .tape-tick-alt,
 .tape-tick.active .tape-tick-alt {
     opacity:1;
     transform:translateX(0);
-    color:var(--fg);
+    color:var(--panel-fg);
 }
-
 .tape-tick:hover .tape-tick-line,
 .tape-tick.active .tape-tick-line {
-    background:var(--flow-cold);
+    background:var(--c-accent);
     opacity:1;
-    width:20px;
-}
-
-.tape-tick:focus-visible {
-    outline:2px solid var(--flow-cold);
-    outline-offset:2px;
-    border-radius:3px;
-}
-
-
-
-@media (max-width: 900px) {
-    .tape {
-        display:none;
-    }
+    width:18px;
+    box-shadow:0 0 6px color-mix(in srgb, var(--c-accent) 65%, transparent);
 }
