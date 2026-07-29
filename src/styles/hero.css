@@ -18,3 +18,51 @@
     transform-origin:50% 50%;
     transition:transform 0.08s cubic-bezier(0.1, 0.8, 0.2, 1);
 }
+
+/* throttle quadrant — height matches .gauge's own breakpoint values directly,
+   since --gauge-size is scoped to .gauge elements and isn't inherited by this sibling */
+.throttle-track {
+    width:22px;
+    height:88px;
+}
+@media (max-width: 639px) {
+    .throttle-track { width:18px; height:62px; }
+}
+.throttle-tick {
+    position:absolute;
+    left:0;
+    right:0;
+    height:1px;
+    background:currentColor;
+    color:inherit;
+    opacity:0.35;
+}
+.throttle-lever {
+    position:absolute;
+    left:50%;
+    bottom:50%;
+    transform:translate(-50%, 50%);
+    width:16px;
+    height:9px;
+    border-radius:1px;
+    transition:bottom 0.08s cubic-bezier(0.1, 0.8, 0.2, 1);
+}
+@media (prefers-reduced-motion: reduce) {
+    .throttle-lever { transition-duration:0.01ms; }
+}
+
+/* scroll cue */
+.scroll-cue {
+    animation:scroll-cue-pulse 2.2s ease-in-out infinite;
+    transition:opacity 0.3s ease;
+}
+.scroll-cue-wrap.is-hidden .scroll-cue {
+    opacity:0;
+}
+@keyframes scroll-cue-pulse {
+    0%, 100% { opacity:0.25; }
+    50% { opacity:0.85; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .scroll-cue { animation:none; opacity:0.5; }
+}

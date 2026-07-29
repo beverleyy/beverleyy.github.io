@@ -1,0 +1,19 @@
+.contact-grid {
+    display:grid;
+    grid-template-columns:1fr 7.3rem;
+    grid-template-areas:
+        "heading badge"
+        "desc desc"
+        "buttons buttons";
+    gap:0.9rem 1rem;
+}
+@media (min-width: 640px) {
+    .contact-grid {
+        grid-template-columns:1fr auto;
+        grid-template-areas:
+            "heading badge"
+            "desc badge"
+            "buttons badge";
+        gap:1.5rem 2.5rem;
+    }
+}

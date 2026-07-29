@@ -14,7 +14,13 @@
 }
 
 html { scroll-behavior:smooth; }
+/* overflow-x:hidden would force overflow-y to `auto`, making these scroll
+   containers and breaking position:sticky (the projects filter bar). `clip`
+   contains the overflow without creating a scroll container. */
 html, body { overflow-x:hidden; max-width:100%; }
+@supports (overflow-x: clip) {
+    html, body { overflow-x:clip; }
+}
 section[id], #showcase { scroll-margin-top:4.5rem; }
 
 html.dark body { background-color:var(--panel-bg, #020617); }
@@ -104,7 +110,10 @@ html.dark .flow-field {
     opacity:0.55;
 }
 
-#hero-viewport { padding-bottom:7rem; }
+#hero-viewport { padding-bottom:2.5rem; }
+@media (min-width: 640px) {
+    #hero-viewport { padding-bottom:7rem; }
+}
 
 /* HUD corners */
 .hud-corner {

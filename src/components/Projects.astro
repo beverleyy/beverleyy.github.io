@@ -12,52 +12,20 @@ const statusLabel: Record<ProjectEntry['status'], string> = {
   ongoing: 'Ongoing',
   landed: 'Landed',
 };
-
-const eduLabel: Record<ProjectEntry['edu'], string> = {
-  phd: 'PhD',
-  meng: 'M.Eng',
-  beng: 'B.Eng',
-  pro: 'Industry',
-};
-const eduOrder: ProjectEntry['edu'][] = ['phd', 'meng', 'beng', 'pro'];
-
-const typeLabel: Record<string, string> = {
-  code: 'Code',
-  math: 'Math',
-  flows: 'Flows',
-  builds: 'Builds',
-  other: 'Others',
-};
-const typeOrder = ['code', 'math', 'flows', 'builds', 'other'];
 ---
-<section id="research" data-tape-section data-tape-label="Research" style="background-color:var(--panel-bg);" class="py-14 px-6 transition-colors">
+<section id="research" data-tape-section data-tape-label="Projects" style="background-color:var(--panel-bg);" class="py-14 px-6 transition-colors">
   <div class="max-w-7xl mx-auto space-y-8">
     <div class="tick-rule"></div>
     <div class="border-l-2 border-delta-red pl-4">
-      <h2 class="text-3xl font-bold text-delta-navy dark:text-white uppercase tracking-wider">Research Projects</h2>
+      <h2 class="text-3xl font-bold text-delta-navy dark:text-white uppercase tracking-wider">Projects</h2>
     </div>
 
     <div class="filter-bar" role="group" aria-label="Filter projects">
       <div class="filter-groups">
-        <div class="filter-group" data-filter-group="category">
-          <span class="filter-group-label">Category</span>
-          <button type="button" class="filter-btn is-active" data-filter-value="*"><span class="filter-btn-led"></span>All</button>
-          <button type="button" class="filter-btn" data-filter-value="research"><span class="filter-btn-led"></span>Research</button>
-          <button type="button" class="filter-btn" data-filter-value="engineering"><span class="filter-btn-led"></span>Engineering</button>
-        </div>
-        <div class="filter-group" data-filter-group="edu">
-          <span class="filter-group-label">Level</span>
-          <button type="button" class="filter-btn is-active" data-filter-value="*"><span class="filter-btn-led"></span>All</button>
-          {eduOrder.map((key) => (
-            <button type="button" class="filter-btn" data-filter-value={key}><span class="filter-btn-led"></span>{eduLabel[key]}</button>
-          ))}
-        </div>
-        <div class="filter-group" data-filter-group="type">
-          <span class="filter-group-label">Type</span>
-          <button type="button" class="filter-btn is-active" data-filter-value="*"><span class="filter-btn-led"></span>All</button>
-          {typeOrder.map((key) => (
-            <button type="button" class="filter-btn" data-filter-value={key}><span class="filter-btn-led"></span>{typeLabel[key]}</button>
-          ))}
+        <div class="filter-group" data-filter-group="scope">
+          <span class="filter-group-label">Show</span>
+          <button type="button" class="filter-btn is-active" data-filter-value="featured"><span class="filter-btn-led"></span>Featured</button>
+          <button type="button" class="filter-btn" data-filter-value="*"><span class="filter-btn-led"></span>Show all</button>
         </div>
       </div>
       <button type="button" class="filter-btn filter-toggle" id="activeToggle" aria-pressed="false">
@@ -67,7 +35,7 @@ const typeOrder = ['code', 'math', 'flows', 'builds', 'other'];
 
     <ul class="strip-rack">
       {projects.map((item) => (
-        <li class="strip" data-category={item.category} data-edu={item.edu} data-types={item.types.join(',')} data-status={item.status}>
+        <li class="strip" data-status={item.status} data-featured={item.featured ? 'true' : 'false'}>
           <div class="strip-row">
             <div class="strip-cell strip-cell--id">
               <span class="strip-callsign">{item.callsign}</span>

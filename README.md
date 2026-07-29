@@ -1,6 +1,6 @@
 # beverleyy.github.io, version 2.1
 
-This is my personal website and portfolio, built with [Astro](https://astro.build/), [Tailwind CSS](https://tailwindcss.com/), and hosted on [GitHub Pages](https://pages.github.com). Full disclaimer, Claude Sonnet 5 taught me how to write Astro and now I'm addicted (to Astro, not Claude lol). Astro really is for everyone!
+This is my (new) personal website and portfolio, built with [Astro](https://astro.build/), [Tailwind CSS](https://tailwindcss.com/), and hosted on [GitHub Pages](https://pages.github.com). Full disclaimer, Claude Sonnet 5 taught me how to write Astro and now I'm addicted (to Astro, not Claude lol). Astro really is for everyone! Also, I learned Tailwind.css from Claude Opus 5.
 
 ## Disclaimer
 
@@ -11,7 +11,7 @@ This is my personal website and portfolio, built with [Astro](https://astro.buil
 
 ### Colors
 
-I refrained from using brat green and decided to use airline colors to create and maintain a more professional image. However, I couldn't commit to just one airline, so now the whole site is a livery switcher instead of a fixed color scheme. Two toggles in the masthead — LIGHTS and GAIN — flip between four themes: Delta, United, American, and Southwest. 
+I refrained from using brat green and decided to use airline colors to create and maintain a more professional image. However, I couldn't commit to just one airline, so now the whole site is a livery switcher instead of a fixed color scheme. Two toggles in the masthead — LIGHTS and GAIN — flip between four themes: Delta, United, American, and Southwest. The GAIN button uses a theme with more/less contrast, and the LIGHTS button toggles light/dark mode.
 
 ### Typography
 
