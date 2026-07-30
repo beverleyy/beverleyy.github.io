@@ -6,13 +6,13 @@ const linkClass = 'h-7 inline-flex items-center justify-center text-[10px] font-
 const toggleClass = 'h-7 flex items-center gap-2 px-2.5 leading-none border-2 border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 font-bold hover:border-delta-navy hover:text-delta-navy dark:hover:border-slate-500 dark:hover:text-delta-sky transition text-[10px] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-delta-red';
 ---
 <nav id="site-nav" class="fixed top-0 left-0 w-full bg-white dark:bg-slate-950 z-50 border-b-2 border-slate-300 dark:border-slate-800 px-6 transition-colors">
-  <div class="max-w-7xl mx-auto min-h-16 sm:h-16 flex flex-wrap items-center justify-between gap-3 py-2 sm:py-0">
+  <div class="max-w-7xl mx-auto min-h-16 sm:h-16 flex flex-wrap items-center justify-center sm:justify-between gap-3 py-2 sm:py-0">
     <a href="#" class="hidden sm:flex text-xs font-bold tracking-widest text-delta-navy dark:text-white items-center gap-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-delta-red" aria-label="Home">
       <Icon name="mark" class="brand-mark w-5 h-5 text-delta-red" />
       <span id="brand-registration" class="text-delta-navy dark:text-white">9Y-KWB</span>
     </a>
 
-    <div class="flex flex-wrap items-center gap-3 text-xs tracking-wider text-slate-600 dark:text-slate-400">
+    <div class="flex flex-wrap items-center justify-center sm:justify-end gap-3 text-xs tracking-wider text-slate-600 dark:text-slate-400">
       <div class="flex items-center gap-1.5">
         {socialLinks.map((link) => (
           <a
