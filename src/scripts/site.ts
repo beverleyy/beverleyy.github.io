@@ -67,90 +67,97 @@ const hdgDigitalTop = document.getElementById("hdg-digital");
 const hdgDigitalBox = document.getElementById("hdg-display-box");
 const pitchDisplay = document.getElementById("pitch-display");
 const rollDisplay = document.getElementById("roll-display");
-const throttleLever = document.getElementById("throttle-lever");
-const throttleDisplay = document.getElementById("throttle-display");
-const hdgGauge = document.getElementById("hdg-gauge");
 
 if (machNeedle && compassGroup && horizonCard) {
     const MACH_MIN = 0.2;
     const MACH_MAX = 0.95;
     const SWEEP_DEG = 240;
 
-    // shared apply step: both live pointer input and the idle drift below
-    // funnel through this, so the two behave identically once handed off.
-    // yFrac drives pitch/horizon-shift/throttle; xFrac drives roll/mach;
-    // headingDeg is a separate angle-from-center calc, not a single axis.
-    const applyInstruments = (yFrac: number, xFrac: number, headingDeg: number): void => {
+    /* Targets set by pointer input (or the idle drift); the frame loop below
+       eases the dial toward them. */
+    let targetY = 0.5;
+    let targetX = 0.5;
+    let targetHeading = 0;
+
+    /* Continuous, unwrapped dial rotation. Kept outside 0-360 on purpose so a
+       359 -> 0 crossing is a small step rather than a full reverse spin. */
+    let hdgRotation = 0;
+
+    /* Heading is the angle from the viewport centre to the cursor. atan2 is
+       ill-conditioned at its origin: passing through the reference point is a
+       genuine 180deg flip, and a few px of travel there would snap the needle
+       round. So the dial is eased toward the target with a per-frame cap,
+       which turns that flip into a fast-but-smooth swing and doubles as
+       instrument damping everywhere else. */
+    const HDG_EASE = 0.25;
+    const HDG_MAX_STEP = 9; // deg per frame
+
+    const render = (yFrac: number, xFrac: number, rotation: number): void => {
         const machFrac = xFrac;
         const mach = MACH_MIN + machFrac * (MACH_MAX - MACH_MIN);
-        const machRotation = -(SWEEP_DEG / 2) + machFrac * SWEEP_DEG;
-        machNeedle.setAttribute("transform", `rotate(${machRotation} 50 50)`);
+        machNeedle.setAttribute("transform", `rotate(${-(SWEEP_DEG / 2) + machFrac * SWEEP_DEG} 50 50)`);
         const machText = mach.toFixed(2);
         if (machDigitalTop) machDigitalTop.textContent = machText;
         if (machDigitalBox) machDigitalBox.textContent = machText;
 
-        const targetedHeading = Math.round(headingDeg) % 360;
-        compassGroup.setAttribute("transform", `rotate(${-targetedHeading} 50 50)`);
-        const paddedHeading = String(targetedHeading).padStart(3, "0");
-        if (hdgDigitalTop) hdgDigitalTop.textContent = paddedHeading;
-        if (hdgDigitalBox) hdgDigitalBox.textContent = paddedHeading;
+        compassGroup.setAttribute("transform", `rotate(${-rotation} 50 50)`);
+        const shown = String(((Math.round(rotation) % 360) + 360) % 360).padStart(3, "0");
+        if (hdgDigitalTop) hdgDigitalTop.textContent = shown;
+        if (hdgDigitalBox) hdgDigitalBox.textContent = shown;
 
         const rollDeg = (xFrac - 0.5) * 40;
         const pitchDeg = (yFrac - 0.5) * -15;
         horizonCard.style.transform = `translateY(${(yFrac - 0.5) * -30}px) rotate(${rollDeg}deg)`;
         if (pitchDisplay) pitchDisplay.textContent = (pitchDeg >= 0 ? "+" : "") + Math.round(pitchDeg);
         if (rollDisplay) rollDisplay.textContent = (rollDeg >= 0 ? "+" : "") + Math.round(rollDeg);
-
-        // throttle now tracks y independently — no longer a mach mirror
-        const throttleFrac = yFrac;
-        if (throttleLever) throttleLever.style.bottom = `${8 + throttleFrac * 76}%`;
-        if (throttleDisplay) throttleDisplay.textContent = String(Math.round(throttleFrac * 100));
     };
 
-    // idle drift: keeps the instruments visibly alive before any input,
-    // which matters most on touch devices where there's no hover to discover
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     let idleActive = true;
-    let idleFrameId = 0;
+    let frameId = 0;
 
-    const idleTick = (time: number): void => {
-        if (!idleActive) return;
-        const t = time / 1000;
-        const yDrift = 0.5 + Math.sin(t * 0.35) * 0.28;
-        const xDrift = 0.5 + Math.sin(t * 0.22 + 1.4) * 0.32;
-        const headingDrift = 180 + Math.sin(t * 0.18 + 0.6) * 150;
-        applyInstruments(yDrift, xDrift, headingDrift);
-        idleFrameId = requestAnimationFrame(idleTick);
+    const frame = (time: number): void => {
+        if (idleActive) {
+            // keeps the panel visibly alive before any input, which matters
+            // most on touch devices where there's no hover to discover
+            const t = time / 1000;
+            targetY = 0.5 + Math.sin(t * 0.35) * 0.28;
+            targetX = 0.5 + Math.sin(t * 0.22 + 1.4) * 0.32;
+            targetHeading = 180 + Math.sin(t * 0.18 + 0.6) * 150;
+        }
+
+        // shortest signed path to the target, then eased and rate-capped
+        let delta = targetHeading - (((hdgRotation % 360) + 360) % 360);
+        delta = ((delta + 540) % 360) - 180;
+        let step = delta * HDG_EASE;
+        if (step > HDG_MAX_STEP) step = HDG_MAX_STEP;
+        if (step < -HDG_MAX_STEP) step = -HDG_MAX_STEP;
+        hdgRotation += step;
+
+        render(targetY, targetX, hdgRotation);
+        frameId = requestAnimationFrame(frame);
     };
 
     if (prefersReducedMotion) {
-        applyInstruments(0.5, 0.5, 0);
         idleActive = false;
+        render(0.5, 0.5, 0);
     } else {
-        idleFrameId = requestAnimationFrame(idleTick);
+        frameId = requestAnimationFrame(frame);
     }
 
-    const stopIdle = (): void => {
-        if (!idleActive) return;
-        idleActive = false;
-        cancelAnimationFrame(idleFrameId);
-    };
-
     const updateInstruments = (clientX: number, clientY: number): void => {
-        stopIdle();
-        const mouseXRatio = clientX / window.innerWidth;
-        const mouseYRatio = clientY / window.innerHeight;
+        idleActive = false;
+        targetY = clientY / window.innerHeight;
+        targetX = clientX / window.innerWidth;
 
-        // heading tracks the angle from the gauge's own center to the
-        // pointer — falls back to viewport center if the gauge isn't found
-        const gaugeRect = hdgGauge?.getBoundingClientRect();
-        const centerX = gaugeRect ? gaugeRect.left + gaugeRect.width / 2 : window.innerWidth / 2;
-        const centerY = gaugeRect ? gaugeRect.top + gaugeRect.height / 2 : window.innerHeight / 2;
-        const dx = clientX - centerX;
-        const dy = clientY - centerY;
-        const headingDeg = (Math.atan2(dx, -dy) * (180 / Math.PI) + 360) % 360;
+        const dx = clientX - window.innerWidth / 2;
+        const dy = clientY - window.innerHeight / 2;
+        targetHeading = (Math.atan2(dx, -dy) * (180 / Math.PI) + 360) % 360;
 
-        applyInstruments(mouseYRatio, mouseXRatio, headingDeg);
+        if (prefersReducedMotion) {
+            hdgRotation = targetHeading;
+            render(targetY, targetX, hdgRotation);
+        }
     };
 
     window.addEventListener("mousemove", (e) => updateInstruments(e.clientX, e.clientY));
@@ -161,6 +168,7 @@ if (machNeedle && compassGroup && horizonCard) {
         },
         { passive: true }
     );
+    window.addEventListener("pagehide", () => cancelAnimationFrame(frameId));
 }
 
 // hero scroll cue — fades once the person has actually started scrolling
@@ -278,8 +286,9 @@ document.addEventListener("click", (e) => {
 // project strip filters
 let scope = "featured"; // "featured" shows only featured; "*" shows all
 let activeOnly = false;
-const strips = Array.from(document.querySelectorAll<HTMLElement>(".strip-rack .strip"));
-const scopeGroup = document.querySelector<HTMLElement>('.filter-group[data-filter-group="scope"]');
+// hook on .strip / the data attribute, not on styling classes (those moved to Tailwind)
+const strips = Array.from(document.querySelectorAll<HTMLElement>("#research .strip"));
+const scopeGroup = document.querySelector<HTMLElement>('[data-filter-group="scope"]');
 
 function applyStripFilter(): void {
     strips.forEach((item) => {

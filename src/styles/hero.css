@@ -1,54 +1,22 @@
-/* instrument gauges */
+/* instrument gauges — sized as a share of their (square) card so the dials
+   scale with the panel instead of staying a fixed size when it grows */
 .gauge {
-    --gauge-size:88px;
     flex:none;
     display:block;
-    width:var(--gauge-size);
-    height:var(--gauge-size);
-}
-@media (max-width: 639px) {
-    .gauge { --gauge-size:62px; }
+    width:70%;
+    height:auto;
+    aspect-ratio:1 / 1;
 }
 
 /* rotation set via SVG transform attr in JS, not here — don't set .style.transform, it overrides the attribute */
-.mach-needle, .hdg-dial {
+/* .hdg-dial is intentionally excluded: its rotation is eased per frame in JS,
+   and a CSS transition on top would double-smooth and reintroduce lag. */
+.mach-needle {
     transition:transform 0.08s cubic-bezier(0.1, 0.8, 0.2, 1);
 }
 .horizon-card {
     transform-origin:50% 50%;
     transition:transform 0.08s cubic-bezier(0.1, 0.8, 0.2, 1);
-}
-
-/* throttle quadrant — height matches .gauge's own breakpoint values directly,
-   since --gauge-size is scoped to .gauge elements and isn't inherited by this sibling */
-.throttle-track {
-    width:22px;
-    height:88px;
-}
-@media (max-width: 639px) {
-    .throttle-track { width:18px; height:62px; }
-}
-.throttle-tick {
-    position:absolute;
-    left:0;
-    right:0;
-    height:1px;
-    background:currentColor;
-    color:inherit;
-    opacity:0.35;
-}
-.throttle-lever {
-    position:absolute;
-    left:50%;
-    bottom:50%;
-    transform:translate(-50%, 50%);
-    width:16px;
-    height:9px;
-    border-radius:1px;
-    transition:bottom 0.08s cubic-bezier(0.1, 0.8, 0.2, 1);
-}
-@media (prefers-reduced-motion: reduce) {
-    .throttle-lever { transition-duration:0.01ms; }
 }
 
 /* scroll cue */

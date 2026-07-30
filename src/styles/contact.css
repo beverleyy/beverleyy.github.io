@@ -1,9 +1,11 @@
+/* contact section layout: heading + description sit beside the crew badge,
+   with the contact buttons on their own full-width row below on mobile */
 .contact-grid {
     display:grid;
     grid-template-columns:1fr 7.3rem;
     grid-template-areas:
         "heading badge"
-        "desc desc"
+        "desc badge"
         "buttons buttons";
     gap:0.9rem 1rem;
 }

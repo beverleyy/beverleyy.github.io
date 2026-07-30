@@ -1,50 +1,4 @@
-/* filter bar */
-.filter-bar {
-    display:flex;
-    flex-wrap:wrap;
-    align-items:center;
-    justify-content:flex-start;
-    gap:1rem;
-    padding:0.9rem 1.1rem;
-    border:2px solid var(--panel-border);
-    background:var(--panel-bg);
-    margin-bottom:1.5rem;
-    position:sticky;
-    top:calc(var(--header-h, 4rem));
-    z-index:15;
-}
-@media (max-width: 1024px) {
-    .filter-bar { position:static; top:auto; }
-}
-.filter-groups {
-    display:flex;
-    flex-wrap:wrap;
-    align-items:center;
-    gap:1rem;
-}
-.filter-group {
-    display:flex;
-    flex-wrap:wrap;
-    align-items:center;
-    gap:0.4rem;
-    padding-right:1rem;
-}
-.filter-group:last-of-type { padding-right:0; }
-@media (max-width: 640px) {
-    .filter-group {
-        width:100%;
-        padding-right:0;
-        margin-bottom:0.6rem;
-    }
-    .filter-group:last-of-type { margin-bottom:0; }
-}
-.filter-group-label {
-    font-size:0.62rem;
-    text-transform:uppercase;
-    letter-spacing:0.08em;
-    color:var(--c-accent);
-    margin-right:0.2rem;
-}
+/* --- filter buttons: JS toggles .is-active, so these states stay in CSS --- */
 .filter-btn {
     display:inline-flex;
     align-items:center;
@@ -60,6 +14,11 @@
     cursor:pointer;
     transition:color 0.15s ease, border-color 0.15s ease;
 }
+.filter-btn:hover { color:var(--panel-fg); border-color:var(--panel-fg); }
+.filter-btn.is-active {
+    color:var(--c-accent);
+    border-color:var(--c-accent);
+}
 .filter-btn-led {
     width:5px;
     height:5px;
@@ -67,11 +26,6 @@
     flex-shrink:0;
     margin-bottom:3px;
     background:var(--panel-muted);
-}
-.filter-btn:hover { color:var(--panel-fg); border-color:var(--panel-fg); }
-.filter-btn.is-active {
-    color:var(--c-accent);
-    border-color:var(--c-accent);
 }
 .filter-btn.is-active .filter-btn-led {
     background:var(--c-accent);
@@ -86,33 +40,43 @@
     background:var(--c-primary);
     box-shadow:0 0 4px 1px color-mix(in srgb, var(--c-primary) 70%, transparent);
 }
+/* --c-primary is a light-panel colour (delta's is #003366), so on dark themes it
+   renders near-invisible against the panel; --c-sky is its dark-mode counterpart,
+   matching the `text-delta-navy dark:text-delta-sky` pairing used elsewhere. */
+html.dark .filter-toggle.is-active {
+    color:var(--c-sky);
+    border-color:var(--c-sky);
+}
+html.dark .filter-toggle.is-active .filter-btn-led {
+    background:var(--c-sky);
+    box-shadow:0 0 4px 1px color-mix(in srgb, var(--c-sky) 70%, transparent);
+}
 
-/* flight strips */
-.strip-rack { list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:0.75rem; }
+/* --- flight strips --- */
+/* status colours stay in CSS: they're state-driven and airlines.css overrides
+   these exact selectors per theme */
+/* the whole border stays here: airlines.css maps .border-slate-300 to
+   `border-color` with !important, which would clobber a per-side override */
 .strip {
-    background:var(--panel-bg);
     border:2px solid var(--panel-border);
     border-left:5px solid var(--panel-muted);
 }
 .strip[data-status='current'],
 .strip[data-status='ongoing'] { border-left-color:var(--c-accent); }
-.strip-row { display:flex; align-items:stretch; flex-wrap:wrap; }
-.strip-cell {
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    gap:0.25rem;
-    padding:0.8rem 1rem;
-    border-right:1px solid var(--panel-border);
-}
+.strip-status { color:var(--panel-muted); }
+.strip-status--current, .strip-status--ongoing { color:var(--c-accent); }
+
+/* fixed cell widths; kept here so the ≤720px reflow below can override them */
+.strip-cell--id { flex:0 0 8rem; }
+.strip-cell--squawk { flex:0 0 5.5rem; }
+.strip-cell--route { flex:1 1 16rem; }
+.strip-cell--route:last-child { border-right:none; }
+
 .strip-cell--thumb {
     flex:0 0 8rem;
-    position:relative;
     padding:0;
     aspect-ratio:16 / 9;
-    background:var(--panel-border);
     border-right:none;
-    overflow:hidden;
 }
 .strip-cell--thumb img {
     position:absolute;
@@ -122,70 +86,7 @@
     object-fit:cover;
     display:block;
 }
-.strip-thumb-fallback {
-    position:absolute;
-    inset:0;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-    font-size:0.58rem;
-    line-height:1.3;
-    letter-spacing:0.05em;
-    color:var(--panel-muted);
-}
-@media (max-width: 720px) {
-    .strip-cell--thumb {
-        flex:0 0 5.5rem;
-        aspect-ratio:1 / 1;
-        height:auto;
-        border-right:none;
-        border-left:1px solid var(--panel-border);
-        order:3;
-    }
-}
-.strip-cell--id { flex:0 0 8rem; }
-.strip-callsign { font-size:0.85rem; font-weight:700; color:var(--panel-fg); letter-spacing:0.04em; }
-.strip-status { font-size:0.58rem; text-transform:uppercase; letter-spacing:0.08em; color:var(--panel-muted); }
-.strip-status--current, .strip-status--ongoing { color:var(--c-accent); }
-.strip-cell--squawk { flex:0 0 5.5rem; }
-.strip-cell-label { font-size:0.58rem; text-transform:uppercase; letter-spacing:0.08em; color:var(--c-accent); }
-.strip-squawk-value { font-size:0.95rem; font-weight:700; color:var(--panel-fg); }
-.strip-cell--route { flex:1 1 16rem; border-right:1px solid var(--panel-border); gap:0.35rem; }
-.strip-cell--route:last-child { border-right:none; }
-.strip-cell--route h3 { margin:0; font-size:0.95rem; font-weight:700; text-transform:uppercase; letter-spacing:0.02em; color:var(--panel-fg); }
-.strip-blurb { margin:0; font-size:0.8rem; color:var(--panel-fg); opacity:0.85; line-height:1.5; }
-.strip-supervisors { margin:0; font-size:0.72rem; color:var(--panel-muted); }
-.strip-remarks {
-    display:flex;
-    flex-wrap:wrap;
-    align-items:center;
-    gap:0.5rem;
-    padding:0.65rem 1rem;
-    border-top:1px solid var(--panel-border);
-}
-.strip-tool {
-    font-size:0.62rem;
-    letter-spacing:0.04em;
-    text-transform:uppercase;
-    padding:0.2rem 0.5rem;
-    border:1px solid var(--panel-border);
-    color:var(--panel-muted);
-}
-.strip-link {
-    display:inline-flex;
-    align-items:center;
-    gap:0.35rem;
-    font-size:0.62rem;
-    font-weight:700;
-    text-transform:uppercase;
-    letter-spacing:0.04em;
-    padding:0.2rem 0.55rem;
-    border:1px solid var(--c-accent);
-    color:var(--c-accent);
-    text-decoration:none;
-    transition:color 0.15s ease, border-color 0.15s ease, background-color 0.15s ease;
-}
+
 .strip-link:hover {
     background:color-mix(in srgb, var(--c-accent) 14%, transparent);
     color:var(--panel-fg);
@@ -195,9 +96,14 @@
     outline-offset:2px;
 }
 
+/* --- mobile reflow (custom 720px breakpoint, not a Tailwind default) --- */
 @media (max-width: 720px) {
     .strip-cell--id {
-        flex:1 1 auto;
+        /* basis 0, not auto: flex line-breaking uses hypothetical (basis) sizes
+           before shrinking, so a long callsign at max-content width would push
+           the thumbnail onto its own line. Growing from 0 keeps the row intact
+           and lets the callsign text wrap instead. */
+        flex:1 1 0;
         min-width:0;
         order:1;
     }
@@ -205,6 +111,13 @@
         flex:0 0 auto;
         padding:0.8rem 0.95rem;
         order:2;
+    }
+    .strip-cell--thumb {
+        flex:0 0 5.5rem;
+        aspect-ratio:1 / 1;
+        height:auto;
+        border-left:1px solid var(--panel-border);
+        order:3;
     }
     .strip-cell--route {
         flex:1 1 100%;

@@ -16,23 +16,25 @@ const { education } = Astro.props;
 
     <div class="space-y-3">
       {education.map((entry, index) => (
-        <details class="boarding-pass">
-          <summary class="boarding-pass-summary">
-            <span class="boarding-pass-stub">
-              <span class="boarding-pass-stub-seq">{String(index + 1).padStart(2, '0')}/{String(education.length).padStart(2, '0')}</span>
-              <span class="boarding-pass-chevron" aria-hidden="true">&#9662;</span>
+        <details class="boarding-pass block border-2 border-slate-300 dark:border-slate-800 bg-white dark:bg-slate-950">
+          <summary class="boarding-pass-summary flex items-stretch cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-delta-red">
+            <span class="boarding-pass-stub flex-none w-16 sm:w-[5.5rem] flex flex-col items-center justify-center gap-1.5 py-[0.85rem] px-2 text-center border-r-2 border-dashed border-slate-300 dark:border-slate-800">
+              <span class="text-[0.66rem] tracking-[0.08em] text-slate-500 dark:text-slate-500">
+                {String(index + 1).padStart(2, '0')}/{String(education.length).padStart(2, '0')}
+              </span>
+              <span class="boarding-pass-chevron text-[0.8rem] text-delta-red" aria-hidden="true">&#9662;</span>
             </span>
-            <span class="boarding-pass-head">
-              <span class="boarding-pass-field-label">{entry.years}</span>
-              <h3 class="boarding-pass-title">{entry.programme}</h3>
-              <span class="boarding-pass-inst" set:html={entry.institution} />
+            <span class="flex-1 min-w-0 flex flex-col justify-center py-[0.85rem] px-[1.1rem]">
+              <span class="block text-[0.68rem] tracking-[0.12em] uppercase text-slate-500 dark:text-slate-500 mb-0.5">{entry.years}</span>
+              <h3 class="m-0 text-[0.95rem] font-bold uppercase tracking-[0.02em] text-slate-900 dark:text-slate-100">{entry.programme}</h3>
+              <span class="block text-[0.76rem] text-slate-500 dark:text-slate-500 mt-0.5" set:html={entry.institution} />
             </span>
           </summary>
-          <dl class="boarding-pass-meta">
+          <dl class="grid grid-cols-1 sm:grid-cols-[5.5rem_1fr] gap-x-0 gap-y-[0.1rem] sm:gap-x-4 sm:gap-y-[0.35rem] m-0 pt-[0.7rem] pb-[0.9rem] px-4 sm:px-[1.1rem] border-t border-dashed border-slate-300 dark:border-slate-800 text-[0.82rem]">
             {entry.meta.map((row) => (
               <>
-                <dt>{row.label}</dt>
-                <dd>{row.value}</dd>
+                <dt class="self-center font-bold uppercase tracking-[0.1em] text-[0.7rem] text-delta-red">{row.label}</dt>
+                <dd class="m-0 mb-2 sm:mb-0 text-slate-900 dark:text-slate-100">{row.value}</dd>
               </>
             ))}
           </dl>

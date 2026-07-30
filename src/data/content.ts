@@ -33,7 +33,6 @@ export interface ProjectEntry {
   callsign: string;
   status: 'current' | 'ongoing' | 'landed';
   squawk: string;
-  types: string[];
   title: string;
   blurb: string;
   featured?: boolean;
@@ -143,7 +142,7 @@ export const projects: ProjectEntry[] = [
     status: 'current',
     squawk: '2026',
     title: 'Kokkos Kernels for Quinoa',
-    blurb: 'Adding GPU capability to the DG code Quinoa using Kokkos.',
+    blurb: 'I added GPU capability to the DG code Quinoa using Kokkos.',
     featured: true,
     supervisors: ['Dr. Aditya Pandare', 'Dr. Facundo Airaudo'],
     tools: ['Kokkos', 'Charm++', 'C++', 'CUDA', 'Make', 'Bash'],
@@ -154,7 +153,7 @@ export const projects: ProjectEntry[] = [
     status: 'ongoing',
     squawk: '2026',
     title: 'Mixed precision for discontinuous Galerkin codes',
-    blurb: 'Benchmarking DG operations in single- and double-precision across devices, and developing interval-arithmetic methodology to rigorously bound the resulting floating-point error.',
+    blurb: 'Benchmarking and error analysis of DG operations in single- and double-precision across devices using JAX, and development of interval-arithmetic methodology to rigorously bound the resulting floating-point error.',
     supervisors: ['Prof. Juan Alonso'],
     tools: ['Python', 'JAX'],
     links: [{ label: 'Paper →', href: 'https://arc.aiaa.org/doi/10.2514/6.2026-0376' }],
@@ -163,8 +162,8 @@ export const projects: ProjectEntry[] = [
     callsign: '',
     status: 'landed',
     squawk: '2025',
-    title: 'BLASTNet',
-    blurb: 'Redesigned interface with Isotope filtering and analytics synced from Kaggle API, built using a JSON cache with cron and the GitHub API along with Jekyll templating.',
+    title: 'BLASTNet Website',
+    blurb: 'Redesigned interface with Isotope filtering and analytics pulled from Kaggle API, built using a Firebase-hosted JSON cache with cron and the GitHub API for automatic syncing, along with Jekyll templating.',
     featured: true,
     image: '/research/blastnet.png',
     supervisors: ['Prof. Matthias Ihme'],

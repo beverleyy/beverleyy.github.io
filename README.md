@@ -40,5 +40,6 @@ B612 and B612 Mono are the very readable airplane-inspired body typefaces and I 
 
 ## To-do
 * Improve analytics
+* Modularize the diabolically long content.ts file
 * Find and/or make better hero background images
 * Proper documentation because 2027 me is not going to remember what 2026 me was cooking

@@ -1,28 +1,10 @@
-/* boarding pass */
-.boarding-pass {
-    display:block;
-    border:2px solid var(--panel-border);
-    background:var(--panel-bg);
-}
-.boarding-pass-summary {
-    display:flex;
-    align-items:stretch;
-    cursor:pointer;
-    list-style:none;
-}
+/* hide the native <details> disclosure triangle */
+.boarding-pass-summary { list-style:none; }
 .boarding-pass-summary::-webkit-details-marker { display:none; }
 .boarding-pass-summary::marker { content:''; }
+
+/* ticket-stub perforation stripes; transparent so the pass background shows through */
 .boarding-pass-stub {
-    flex:none;
-    width:5.5rem;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    gap:0.4rem;
-    padding:0.85rem 0.5rem;
-    text-align:center;
-    border-right:2px dashed var(--panel-border);
     background:
         repeating-linear-gradient(
             to bottom,
@@ -32,70 +14,9 @@
             transparent 16px
         );
 }
-.boarding-pass-stub-seq {
-    font-size:0.58rem;
-    letter-spacing:0.08em;
-    color:var(--panel-muted);
-}
-.boarding-pass-chevron {
-    font-size:0.8rem;
-    color:var(--c-accent);
-    transition:transform 0.2s ease;
-}
+
+.boarding-pass-chevron { transition:transform 0.2s ease; }
 .boarding-pass[open] .boarding-pass-chevron { transform:rotate(180deg); }
-.boarding-pass-head {
-    flex:1 1 auto;
-    padding:0.85rem 1.1rem;
-    min-width:0;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-}
-.boarding-pass-field-label {
-    display:block;
-    font-size:0.64rem;
-    letter-spacing:0.12em;
-    text-transform:uppercase;
-    color:var(--panel-muted);
-    margin-bottom:0.15rem;
-}
-.boarding-pass-title {
-    margin:0;
-    font-size:0.92rem;
-    font-weight:700;
-    text-transform:uppercase;
-    letter-spacing:0.02em;
-    color:var(--panel-fg);
-}
-.boarding-pass-inst {
-    display:block;
-    font-size:0.72rem;
-    color:var(--panel-muted);
-    margin-top:0.15rem;
-}
-.boarding-pass-meta {
-    display:grid;
-    grid-template-columns:5.5rem 1fr;
-    gap:0.3rem 1rem;
-    margin:0;
-    padding:0.7rem 1.1rem 0.9rem;
-    border-top:1px dashed var(--panel-border);
-    font-size:0.7rem;
-}
-.boarding-pass-meta dt {
-    font-weight:700;
-    text-transform:uppercase;
-    letter-spacing:0.1em;
-    font-size:0.58rem;
-    color:var(--c-accent);
-    align-self:center;
-}
-.boarding-pass-meta dd {
-    margin:0;
-    color:var(--panel-fg);
-}
-@media (max-width: 560px) {
-    .boarding-pass-stub { width:4rem; }
-    .boarding-pass-meta { grid-template-columns:1fr; gap:0.1rem 0; padding-left:1rem; padding-right:1rem; }
-    .boarding-pass-meta dd { margin-bottom:0.5rem; }
+@media (prefers-reduced-motion: reduce) {
+    .boarding-pass-chevron { transition-duration:0.01ms; }
 }

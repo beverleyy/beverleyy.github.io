@@ -42,11 +42,11 @@ html[data-airline='united'] .tape-tick.active .tape-tick-line {
 }
 
 html[data-airline='southwest'] .border-delta-red { border-color:var(--c-primary) !important; }
-html[data-airline='southwest'] .filter-btn.is-active {
+html[data-airline='southwest'] .filter-btn.is-active:not(.filter-toggle) {
     color:var(--c-primary) !important;
     border-color:var(--c-primary) !important;
 }
-html[data-airline='southwest'] .filter-btn.is-active .filter-btn-led {
+html[data-airline='southwest'] .filter-btn.is-active:not(.filter-toggle) .filter-btn-led {
     background:var(--c-primary) !important;
     box-shadow:0 0 4px 1px color-mix(in srgb, var(--c-primary) 65%, transparent) !important;
 }
@@ -74,6 +74,9 @@ html[data-airline].dark .dark\:border-slate-800,
 html[data-airline].dark .dark\:border-slate-900 { border-color:var(--panel-border) !important; }
 html[data-airline].dark .dark\:divide-slate-800 > * + * { border-color:var(--panel-border) !important; }
 html[data-airline].dark .dark\:hover\:border-slate-500:hover { border-color:var(--c-accent) !important; }
+/* strongest body text maps to panel-fg, so `text-slate-900 dark:text-slate-100`
+   is the theme-aware pair for primary text */
+html[data-airline] .text-slate-900 { color:var(--panel-fg) !important; }
 html[data-airline] .text-slate-300,
 html[data-airline] .text-slate-400,
 html[data-airline] .text-slate-500,

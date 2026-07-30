@@ -2,10 +2,18 @@
 ---
 <section id="hero-viewport" data-tape-section data-tape-label="Flight Deck" style="background-color:var(--hero-bg);" class="sm:min-h-screen flex items-center relative px-6 pt-24 sm:pt-16 overflow-hidden flow-field transition-colors">
   <div class="max-w-7xl mx-auto w-full">
-    <div class="flex flex-col lg:flex-row lg:items-center gap-10 lg:gap-14 relative z-10">
+    <div class="flex flex-col xl:flex-row xl:items-center xl:justify-between gap-10 xl:gap-14 relative z-10">
 
-      <!-- LEFT: identity + bio + skills -->
-      <div class="max-w-2xl w-full mx-auto lg:mx-0 lg:flex-1 text-center lg:text-left space-y-6">
+      <!-- LEFT: identity + tagline + readout/CV pill -->
+      <div class="max-w-2xl w-full mx-auto xl:mx-0 xl:flex-1 text-center xl:text-left space-y-6">
+        <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-delta-navy dark:text-white uppercase leading-tight">
+          <span id="hero-name">Beverley YEO</span>
+        </h1>
+
+        <p class="hero-tagline text-base font-bold uppercase tracking-wide text-delta-red dark:text-delta-sky">
+          I build high-performance software for aerospace
+        </p>
+
         <div class="inline-flex items-center gap-4 px-3 py-1 bg-white dark:bg-slate-900 border-2 border-slate-300 dark:border-slate-800 text-[10px] tracking-widest text-slate-600 dark:text-slate-400 uppercase">
           <span>HDG: <span id="hdg-digital">045</span>&deg;</span>
           <a href="/Beverley_CV_PhD.pdf" class="text-delta-red dark:text-delta-sky font-bold hover:opacity-80 transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-delta-red">
@@ -13,33 +21,13 @@
           </a>
           <span>MACH: <span id="mach-digital">0.82</span></span>
         </div>
-
-        <h1 class="text-5xl md:text-6xl font-bold tracking-tight text-delta-navy dark:text-white uppercase leading-tight">
-          <span id="hero-name">Beverley YEO</span>
-        </h1>
-
-        <p class="hero-tagline text-base font-bold uppercase tracking-wide text-delta-red dark:text-delta-sky">
-          Accelerating aircraft simulations with GPUs
-        </p>
-
-        <p class="text-sm text-slate-600 dark:text-slate-400 max-w-lg mx-auto lg:mx-0 leading-relaxed">
-          I'm a mechanical engineering PhD candidate at Stanford and a software engineer at heart. I build GPU-accelerated scientific codes, numerical methods, and (sometimes) full-stack web apps. I'm interested in engineering software for aviation and aerospace applications.
-        </p>
-
-        <div class="flex flex-wrap gap-2 justify-center lg:justify-start">
-          <span class="keyword-chip">Software</span>
-          <span class="keyword-chip">HPC</span>
-          <span class="keyword-chip">Aviation</span>
-          <span class="keyword-chip">Mathematics</span>
-          <span class="keyword-chip">Design</span>
-        </div>
       </div>
 
       <!-- RIGHT: route line + square 2x2 instrument panel -->
-      <div id="showcase" class="w-full lg:w-auto lg:flex-shrink-0 space-y-3">
+      <div id="showcase" class="w-full xl:w-auto xl:flex-shrink-0 space-y-3">
         <p class="text-[10px] uppercase tracking-widest text-slate-500 dark:text-slate-500 text-center">SIN &rarr; SFO &middot; 8,440 MI &middot; NONSTOP &middot; 15H 40M &middot; ON TIME</p>
 
-        <div class="grid grid-cols-2 gap-1.5 sm:gap-4 bg-slate-100 dark:bg-slate-900 p-1.5 sm:p-5 border-2 border-slate-300 dark:border-slate-800 relative mx-auto lg:w-[360px]">
+        <div class="grid grid-cols-3 gap-1.5 sm:gap-4 bg-slate-100 dark:bg-slate-900 p-1.5 sm:p-5 border-2 border-slate-300 dark:border-slate-800 relative mx-auto max-w-[520px] xl:w-[520px]">
 
           <div class="aspect-square bg-white dark:bg-slate-950 border-2 border-slate-300 dark:border-slate-800 p-1.5 sm:p-3 flex flex-col items-center justify-center relative text-center">
             <span class="absolute top-2 left-3 text-[9px] text-slate-400 dark:text-slate-500 tracking-wider z-20">ATT / EADI</span>
@@ -55,7 +43,7 @@
                 <div class="aircraft-ref w-4 h-1 bg-delta-red"></div>
               </div>
             </div>
-            <div class="mt-1 bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 px-2 py-0.5 text-xs font-bold text-delta-navy dark:text-delta-sky tracking-widest">
+            <div class="mt-1 bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 px-1.5 sm:px-2 py-0.5 text-[9px] sm:text-xs font-bold text-delta-navy dark:text-delta-sky tracking-wider sm:tracking-widest whitespace-nowrap">
               P<span id="pitch-display">+00</span>&deg; R<span id="roll-display">+00</span>&deg;
             </div>
           </div>
@@ -71,7 +59,7 @@
               <line id="mach-needle" x1="50" y1="50" x2="50" y2="15" stroke="currentColor" class="text-delta-navy dark:text-delta-sky mach-needle" stroke-width="2" stroke-linecap="round" />
               <circle cx="50" cy="50" r="3" stroke="currentColor" class="text-delta-navy dark:text-delta-sky fill-current" />
             </svg>
-            <div class="mt-1 bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 px-2 py-0.5 text-xs font-bold text-delta-navy dark:text-delta-sky tracking-widest">
+            <div class="mt-1 bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 px-1.5 sm:px-2 py-0.5 text-[9px] sm:text-xs font-bold text-delta-navy dark:text-delta-sky tracking-wider sm:tracking-widest whitespace-nowrap">
               M <span id="mach-display-box">0.82</span>
             </div>
           </div>
@@ -88,21 +76,8 @@
               </g>
               <polygon class="hsi-marker" points="50,5 45,14 55,14" fill="var(--c-accent)" />
             </svg>
-            <div class="mt-1 bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 px-2 py-0.5 text-xs font-bold text-delta-navy dark:text-delta-sky tracking-widest">
+            <div class="mt-1 bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 px-1.5 sm:px-2 py-0.5 text-[9px] sm:text-xs font-bold text-delta-navy dark:text-delta-sky tracking-wider sm:tracking-widest whitespace-nowrap">
               <span id="hdg-display-box">045</span>&deg;
-            </div>
-          </div>
-
-          <div class="aspect-square bg-white dark:bg-slate-950 border-2 border-slate-300 dark:border-slate-800 p-1.5 sm:p-3 flex flex-col items-center justify-center relative text-center">
-            <span class="absolute top-2 left-3 text-[9px] text-slate-400 dark:text-slate-500 tracking-wider">THR</span>
-            <div class="throttle-track relative border-2 border-slate-300 dark:border-slate-700 mt-4">
-              <span class="throttle-tick" style="bottom:25%;"></span>
-              <span class="throttle-tick" style="bottom:50%;"></span>
-              <span class="throttle-tick" style="bottom:75%;"></span>
-              <div id="throttle-lever" class="throttle-lever bg-delta-red"></div>
-            </div>
-            <div class="mt-1 bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 px-2 py-0.5 text-xs font-bold text-delta-navy dark:text-delta-sky tracking-widest">
-              <span id="throttle-display">50</span>%
             </div>
           </div>
 
