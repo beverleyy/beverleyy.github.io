@@ -242,6 +242,24 @@ function tapeUpdate(): void {
     bottomTapeTicks.forEach((t) => t.classList.toggle("active", t.dataset.id === activeId));
 }
 
+/* Cached offsets above go stale whenever the document height changes —
+   filtering strips, opening a boarding pass, late-loading images. Recalibrate
+   on those, debounced to a frame and guarded so we only redo the work when the
+   height really moved (tapeLayout writes --header-h, which feeds the hero's
+   padding, so an unguarded observer could feed back on itself). */
+let lastDocHeight = 0;
+let tapeFrame = 0;
+function scheduleTapeLayout(force = false): void {
+    if (tapeFrame) return;
+    tapeFrame = requestAnimationFrame(() => {
+        tapeFrame = 0;
+        const h = document.documentElement.scrollHeight;
+        if (!force && h === lastDocHeight) return;
+        lastDocHeight = h;
+        tapeLayout();
+    });
+}
+
 if (tapeSections.length && tapeTicks.length) {
     let ticking = false;
     window.addEventListener(
@@ -257,8 +275,12 @@ if (tapeSections.length && tapeTicks.length) {
         { passive: true }
     );
     window.addEventListener("resize", tapeLayout);
-    window.addEventListener("load", tapeLayout);
+    window.addEventListener("load", () => scheduleTapeLayout(true));
+    if ("ResizeObserver" in window) {
+        new ResizeObserver(() => scheduleTapeLayout()).observe(document.body);
+    }
     tapeLayout();
+    lastDocHeight = document.documentElement.scrollHeight;
 } else {
     setHeaderHeight();
     window.addEventListener("resize", setHeaderHeight);
@@ -296,6 +318,9 @@ function applyStripFilter(): void {
         const statusOk = !activeOnly || item.dataset.status === "current" || item.dataset.status === "ongoing";
         item.hidden = !(scopeOk && statusOk);
     });
+    // showing/hiding strips changes the page height, which invalidates the
+    // altimeter tape's cached section offsets and scroll range
+    scheduleTapeLayout(true);
 }
 
 function setScope(next: string): void {
