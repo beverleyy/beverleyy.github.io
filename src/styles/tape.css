@@ -40,7 +40,7 @@
     font-size:0.85rem;
     font-weight:700;
     letter-spacing:0.03em;
-    color:var(--c-accent);
+    color:var(--c-chrome);
     white-space:nowrap;
 }
 
@@ -75,12 +75,16 @@
     height:0;
     border-top:5px solid transparent;
     border-bottom:5px solid transparent;
-    border-right:8px solid var(--c-accent);
+    border-right:8px solid var(--c-chrome);
     transform:translateY(-50%);
     transition:top 0.05s linear;
     z-index:2;
-    filter:drop-shadow(0 0 4px color-mix(in srgb, var(--c-accent) 75%, transparent));
+    filter:drop-shadow(0 0 4px color-mix(in srgb, var(--c-chrome) 75%, transparent));
 }
+/* The visible tick is a 13x2px rule, far under the 24x24 minimum target size, and
+   it carried no focus style at all. Padding grows the hit area (and the focus ring)
+   without moving the mark: translateY(-50%) still centres the box on its scroll
+   fraction, and the extra width extends left, away from the viewport edge. */
 .tape-tick {
     position:absolute;
     right:0;
@@ -89,8 +93,13 @@
     align-items:center;
     justify-content:flex-end;
     gap:0.4em;
+    padding:0.7rem 0 0.7rem 0.9rem;
     transform:translateY(-50%);
     text-decoration:none;
+}
+.tape-tick:focus-visible {
+    outline:2px solid var(--c-chrome);
+    outline-offset:1px;
 }
 .tape-tick-alt {
     font-size:0.62rem;
@@ -109,15 +118,17 @@
     transition:background 0.15s ease, width 0.15s ease;
 }
 .tape-tick:hover .tape-tick-alt,
+.tape-tick:focus-visible .tape-tick-alt,
 .tape-tick.active .tape-tick-alt {
     opacity:1;
     transform:translateX(0);
     color:var(--panel-fg);
 }
 .tape-tick:hover .tape-tick-line,
+.tape-tick:focus-visible .tape-tick-line,
 .tape-tick.active .tape-tick-line {
-    background:var(--c-accent);
+    background:var(--c-chrome);
     opacity:1;
     width:18px;
-    box-shadow:0 0 6px color-mix(in srgb, var(--c-accent) 65%, transparent);
+    box-shadow:0 0 6px color-mix(in srgb, var(--c-chrome) 65%, transparent);
 }

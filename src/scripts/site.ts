@@ -22,8 +22,20 @@ const liveryCredits: Record<Airline, string> = {
     southwest: "REG: N500WR",
 };
 
-let lightsOn = false;
-let gainOn = true;
+/* The inline boot script in Layout.astro already resolved these (saved choice,
+   else OS colour scheme, else Delta + dark) and stamped them on <html>. Read them
+   back rather than re-declaring a default, or the first applyTheme() would fight
+   the pre-paint state and flash. */
+let lightsOn = root.dataset.panelLights === "on";
+let gainOn = root.dataset.panelGain !== "off";
+
+function persistPanelState(): void {
+    try {
+        localStorage.setItem("panel-state", JSON.stringify({ lights: lightsOn, gain: gainOn }));
+    } catch (e) {
+        /* private mode or blocked storage; the session still works, it just won't be remembered */
+    }
+}
 
 function airlineFor(lights: boolean, gain: boolean): Airline {
     if (!lights && gain) return "delta";
@@ -42,17 +54,28 @@ function applyTheme(): void {
 
     document.getElementById("lights-led")?.classList.toggle("is-on", lightsOn);
     document.getElementById("contrast-led")?.classList.toggle("is-on", gainOn);
-    document.getElementById("lights-toggle")?.classList.toggle("is-on", lightsOn);
-    document.getElementById("contrast-toggle")?.classList.toggle("is-on", gainOn);
+
+    const lightsBtn = document.getElementById("lights-toggle");
+    const gainBtn = document.getElementById("contrast-toggle");
+    lightsBtn?.classList.toggle("is-on", lightsOn);
+    gainBtn?.classList.toggle("is-on", gainOn);
+    /* these are on/off panel switches, so state belongs in aria-pressed, not just the class */
+    lightsBtn?.setAttribute("aria-pressed", String(lightsOn));
+    gainBtn?.setAttribute("aria-pressed", String(gainOn));
+
+    root.dataset.panelLights = lightsOn ? "on" : "off";
+    root.dataset.panelGain = gainOn ? "on" : "off";
 }
 
 document.getElementById("lights-toggle")?.addEventListener("click", () => {
     lightsOn = !lightsOn;
     applyTheme();
+    persistPanelState();
 });
 document.getElementById("contrast-toggle")?.addEventListener("click", () => {
     gainOn = !gainOn;
     applyTheme();
+    persistPanelState();
 });
 
 applyTheme();
@@ -115,6 +138,7 @@ if (machNeedle && compassGroup && horizonCard) {
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     let idleActive = true;
     let frameId = 0;
+    let running = false;
 
     const frame = (time: number): void => {
         if (idleActive) {
@@ -135,14 +159,38 @@ if (machNeedle && compassGroup && horizonCard) {
         hdgRotation += step;
 
         render(targetY, targetX, hdgRotation);
+        if (running) frameId = requestAnimationFrame(frame);
+    };
+
+    const startLoop = (): void => {
+        if (running || prefersReducedMotion) return;
+        running = true;
         frameId = requestAnimationFrame(frame);
+    };
+    const stopLoop = (): void => {
+        running = false;
+        cancelAnimationFrame(frameId);
     };
 
     if (prefersReducedMotion) {
         idleActive = false;
         render(0.5, 0.5, 0);
     } else {
-        frameId = requestAnimationFrame(frame);
+        /* The panel used to animate for as long as the tab was open, including the
+           whole time it was scrolled out of view - a needless drain on battery and
+           a busy main thread while reading the rest of the page. */
+        const heroEl = document.getElementById("hero-viewport");
+        if (heroEl && "IntersectionObserver" in window) {
+            new IntersectionObserver(
+                (entries) => {
+                    if (entries.some((e) => e.isIntersecting)) startLoop();
+                    else stopLoop();
+                },
+                { threshold: 0 }
+            ).observe(heroEl);
+        } else {
+            startLoop();
+        }
     }
 
     const updateInstruments = (clientX: number, clientY: number): void => {
@@ -168,7 +216,17 @@ if (machNeedle && compassGroup && horizonCard) {
         },
         { passive: true }
     );
-    window.addEventListener("pagehide", () => cancelAnimationFrame(frameId));
+    window.addEventListener("pagehide", stopLoop);
+}
+
+/* Autoplaying loops are motion the same as any animation, and CSS can't stop a
+   <video>. The poster frame stays visible, so nothing is lost. */
+if (prefersReducedMotion) {
+    document.querySelectorAll<HTMLVideoElement>("video.strip-media").forEach((v) => {
+        v.autoplay = false;
+        v.removeAttribute("autoplay");
+        v.pause();
+    });
 }
 
 // hero scroll cue — fades once the person has actually started scrolling
@@ -287,23 +345,64 @@ if (tapeSections.length && tapeTicks.length) {
 }
 
 // nav links, routed through lenis when active
+function goToSection(id: string, smooth = true): boolean {
+    const el = document.getElementById(id);
+    if (!el) return false;
+    const top = scrollTargetFor(el);
+    if (!smooth) {
+        if (lenis) lenis.scrollTo(top, { immediate: true });
+        else window.scrollTo({ top, behavior: "auto" });
+    } else if (lenis) {
+        lenis.scrollTo(top);
+    } else {
+        el.scrollIntoView({ behavior: prefersReducedMotion ? "auto" : "smooth", block: "start" });
+    }
+    return true;
+}
+
+function goToTop(smooth = true): void {
+    if (lenis) lenis.scrollTo(0, smooth ? undefined : { immediate: true });
+    else window.scrollTo({ top: 0, behavior: smooth && !prefersReducedMotion ? "smooth" : "auto" });
+}
+
 document.addEventListener("click", (e) => {
     const target = e.target;
     if (!(target instanceof Element)) return;
     const link = target.closest<HTMLAnchorElement>('a[href^="#"]');
     if (!link) return;
-    e.preventDefault();
     const hash = link.getAttribute("href");
     if (hash === "#" || hash === "") {
-        if (lenis) lenis.scrollTo(0);
-        else window.scrollTo({ top: 0, behavior: prefersReducedMotion ? "auto" : "smooth" });
+        e.preventDefault();
+        goToTop();
+        /* drop the fragment so a copied URL doesn't carry a bare "#" */
+        history.pushState(null, "", window.location.pathname + window.location.search);
         return;
     }
-    const targetEl = document.getElementById(hash!.slice(1));
-    if (!targetEl) return;
-    if (lenis) lenis.scrollTo(scrollTargetFor(targetEl));
-    else targetEl.scrollIntoView({ behavior: prefersReducedMotion ? "auto" : "smooth", block: "start" });
+    const id = hash!.slice(1);
+    if (!document.getElementById(id)) return; // let the browser handle a dead fragment
+    e.preventDefault();
+    goToSection(id);
+    /* pushState, not replaceState: sections should be shareable AND backtrackable */
+    history.pushState(null, "", hash);
 });
+
+/* Back/forward between sections. Skipped under lenis's own programmatic scrolls
+   because those don't emit popstate. */
+window.addEventListener("popstate", () => {
+    const id = window.location.hash.slice(1);
+    if (id) goToSection(id);
+    else goToTop();
+});
+
+/* A URL that arrives with a fragment needs handling here: lenis takes over the
+   scroll position, and the tape offsets aren't measured until layout settles, so
+   the browser's native jump lands in the wrong place. */
+if (window.location.hash.length > 1) {
+    const initialId = window.location.hash.slice(1);
+    window.addEventListener("load", () => {
+        requestAnimationFrame(() => goToSection(initialId, false));
+    });
+}
 
 // project strip filters
 let scope = "featured"; // "featured" shows only featured; "*" shows all
@@ -326,7 +425,9 @@ function applyStripFilter(): void {
 function setScope(next: string): void {
     scope = next;
     scopeGroup?.querySelectorAll<HTMLButtonElement>(".filter-btn").forEach((b) => {
-        b.classList.toggle("is-active", b.dataset.filterValue === next);
+        const selected = b.dataset.filterValue === next;
+        b.classList.toggle("is-active", selected);
+        b.setAttribute("aria-pressed", String(selected));
     });
 }
 

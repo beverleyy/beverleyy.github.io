@@ -11,7 +11,7 @@
         </h1>
 
         <p class="hero-tagline text-base font-bold uppercase tracking-wide text-delta-red dark:text-delta-sky">
-          Building high-performance software for aerospace
+          Aerospace engineer, heading for aviation operations
         </p>
 
         <div class="inline-flex items-center gap-4 px-3 py-1 bg-white dark:bg-slate-900 border-2 border-slate-300 dark:border-slate-800 text-[10px] tracking-widest text-slate-600 dark:text-slate-400 uppercase">
@@ -31,7 +31,7 @@
 
           <div class="aspect-square bg-white dark:bg-slate-950 border-2 border-slate-300 dark:border-slate-800 p-1.5 sm:p-3 flex flex-col items-center justify-center relative text-center">
             <span class="absolute top-2 left-3 text-[9px] text-slate-400 dark:text-slate-500 tracking-wider z-20">ATT / EADI</span>
-            <div class="gauge rounded-full border-2 border-slate-400 dark:border-slate-700 overflow-hidden relative mt-4 bg-amber-900">
+            <div class="gauge rounded-full border-2 border-slate-400 dark:border-slate-700 overflow-hidden relative mt-4 bg-amber-900" aria-hidden="true">
               <!-- oversized to cover bank angles -->
               <div id="horizon-card" style="top:-48px;bottom:-48px;left:-48px;right:-48px;" class="absolute horizon-card">
                 <div class="h-1/2 bg-gradient-to-b from-blue-500 to-sky-400 border-b border-white"></div>
@@ -50,7 +50,7 @@
 
           <div class="aspect-square bg-white dark:bg-slate-950 border-2 border-slate-300 dark:border-slate-800 p-1.5 sm:p-3 flex flex-col items-center justify-center relative text-center">
             <span class="absolute top-2 left-3 text-[9px] text-slate-400 dark:text-slate-500 tracking-wider">MACH / M</span>
-            <svg viewBox="5 5 90 90" class="gauge mt-4">
+            <svg viewBox="5 5 90 90" class="gauge mt-4" aria-hidden="true">
               <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" class="text-slate-300 dark:text-slate-700" stroke-width="1.5" stroke-dasharray="2,2" />
               <!-- Mmo warning arc, fixed red -->
               <path d="M 81.8 18.2 A 45 45 0 0 1 84.5 74.5" fill="none" stroke="#dc2626" stroke-width="3" opacity="0.85" />
@@ -66,7 +66,7 @@
 
           <div class="aspect-square bg-white dark:bg-slate-950 border-2 border-slate-300 dark:border-slate-800 p-1.5 sm:p-3 flex flex-col items-center justify-center relative text-center">
             <span class="absolute top-2 left-3 text-[9px] text-slate-400 dark:text-slate-500 tracking-wider">HDG / HSI</span>
-            <svg id="hdg-gauge" viewBox="5 5 90 90" class="gauge mt-4">
+            <svg id="hdg-gauge" viewBox="5 5 90 90" class="gauge mt-4" aria-hidden="true">
               <g id="compass-rose-group" class="hdg-dial">
                 <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" class="text-slate-300 dark:text-slate-700" stroke-width="1" />
                 <text x="47" y="14" fill="currentColor" class="text-slate-800 dark:text-slate-100 font-bold" font-size="7">N</text>
@@ -74,7 +74,7 @@
                 <text x="48" y="92" fill="currentColor" class="text-slate-400 dark:text-slate-500" font-size="7">S</text>
                 <text x="8" y="53" fill="currentColor" class="text-slate-400 dark:text-slate-500" font-size="7">W</text>
               </g>
-              <polygon class="hsi-marker" points="50,5 45,14 55,14" fill="var(--c-accent)" />
+              <polygon class="hsi-marker" points="50,5 45,14 55,14" fill="var(--c-highlight)" />
             </svg>
             <div class="mt-1 bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 px-1.5 sm:px-2 py-0.5 text-[9px] sm:text-xs font-bold text-delta-navy dark:text-delta-sky tracking-wider sm:tracking-widest whitespace-nowrap">
               <span id="hdg-display-box">045</span>&deg;

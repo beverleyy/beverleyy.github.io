@@ -23,15 +23,43 @@ const { title, description = '' } = Astro.props;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="preload" href="/fonts/ailerons.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/b612-400.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/b612-mono-400.woff2" as="font" type="font/woff2" crossorigin />
     <title>{title}</title>
     <meta name="description" content={description} />
     <script is:inline>
-      /* boot Delta before first paint, avoids flash; site.ts owns it after */
-      document.documentElement.setAttribute('data-airline', 'delta');
-      document.documentElement.classList.add('dark');
+      /* Resolve the panel state before first paint so there's no flash. Reads the
+         saved choice, else follows the OS colour scheme, else Delta + dark. The
+         derivation has to match airlineFor() in site.ts, which picks the state up
+         from these data attributes rather than assuming a default. */
+      (function () {
+        var root = document.documentElement;
+        var lights = false;
+        var gain = true;
+        try {
+          var saved = localStorage.getItem('panel-state');
+          if (saved) {
+            var s = JSON.parse(saved);
+            lights = !!s.lights;
+            gain = !!s.gain;
+          } else if (window.matchMedia('(prefers-color-scheme: light)').matches) {
+            lights = true;
+          }
+        } catch (e) {
+          /* private mode or blocked storage; defaults are fine */
+        }
+        root.setAttribute('data-airline', lights ? (gain ? 'united' : 'american') : (gain ? 'delta' : 'southwest'));
+        root.classList.toggle('dark', !lights);
+        root.dataset.panelLights = lights ? 'on' : 'off';
+        root.dataset.panelGain = gain ? 'on' : 'off';
+      })();
     </script>
   </head>
   <body>
+    <a href="#hero-viewport" class="skip-link">Skip to content</a>
     <div class="hud-corner tl"></div>
     <div class="hud-corner tr"></div>
     <div class="hud-corner bl"></div>

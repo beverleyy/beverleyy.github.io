@@ -6,7 +6,10 @@ export default {
     extend: {
       colors: {
         'delta-navy': 'var(--c-primary)',
-        'delta-red': 'var(--c-accent)',
+        /* the alias name is historical; it resolves to the semantic highlight role
+           (see main.css) so every text-/border-/bg-delta-red in the markup follows
+           whichever palette colour the active livery assigns to that role */
+        'delta-red': 'var(--c-highlight)',
         'delta-sky': 'var(--c-sky)',
         'delta-slate': '#F4F5F7',
       },

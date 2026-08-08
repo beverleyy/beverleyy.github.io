@@ -9,13 +9,13 @@
     transition:background 0.15s ease, box-shadow 0.15s ease;
 }
 .masthead-led.is-on {
-    background:var(--c-accent);
-    box-shadow:0 0 4px 1px color-mix(in srgb, var(--c-accent) 70%, transparent);
+    background:var(--c-highlight);
+    box-shadow:0 0 4px 1px color-mix(in srgb, var(--c-highlight) 70%, transparent);
 }
 
 /* ids, not classes — must outrank airlines.css's dark:border-slate-700 override */
 #lights-toggle.is-on,
 #contrast-toggle.is-on {
-    border-color:var(--c-accent) !important;
-    color:var(--c-accent) !important;
+    border-color:var(--c-highlight) !important;
+    color:var(--c-highlight) !important;
 }

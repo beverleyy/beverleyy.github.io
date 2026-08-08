@@ -1,4 +1,5 @@
 ---
+import { Image, getImage } from 'astro:assets';
 import type { ProjectEntry } from '../data/content';
 
 interface Props {
@@ -6,6 +7,16 @@ interface Props {
 }
 
 const { projects } = Astro.props;
+
+/* Poster frames need a plain URL for the video's poster attribute, so they're
+   resolved here rather than in the template - getImage is async and the strips
+   are rendered inside a .map(). */
+const posters = new Map<string, string>();
+for (const item of projects) {
+  if (item.video) {
+    posters.set(item.title, (await getImage({ src: item.video.poster, format: 'webp', width: 384 })).src);
+  }
+}
 
 const statusLabel: Record<ProjectEntry['status'], string> = {
   current: 'Current',
@@ -33,8 +44,8 @@ const microLabel = 'text-[0.58rem] uppercase tracking-[0.08em]';
       <div class="flex flex-wrap items-center gap-4">
         <div class="flex flex-wrap items-center gap-1.5 w-full sm:w-auto" data-filter-group="scope">
           <span class="filter-group-label text-[0.62rem] uppercase tracking-[0.08em] text-delta-red mr-0.5">Show</span>
-          <button type="button" class="filter-btn is-active" data-filter-value="featured"><span class="filter-btn-led"></span>Featured</button>
-          <button type="button" class="filter-btn" data-filter-value="*"><span class="filter-btn-led"></span>All</button>
+          <button type="button" class="filter-btn is-active" data-filter-value="featured" aria-pressed="true"><span class="filter-btn-led"></span>Featured</button>
+          <button type="button" class="filter-btn" data-filter-value="*" aria-pressed="false"><span class="filter-btn-led"></span>All</button>
         </div>
       </div>
       <button type="button" class="filter-btn filter-toggle" id="activeToggle" aria-pressed="false">
@@ -51,7 +62,9 @@ const microLabel = 'text-[0.58rem] uppercase tracking-[0.08em]';
         >
           <div class="strip-row flex items-stretch flex-wrap">
             <div class={`${cell} strip-cell--id`}>
-              <span class="strip-callsign text-[0.85rem] font-bold tracking-[0.04em] text-slate-900 dark:text-slate-100">{item.callsign}</span>
+              {item.callsign && (
+                <span class="strip-callsign text-[0.85rem] font-bold tracking-[0.04em] text-slate-900 dark:text-slate-100">{item.callsign}</span>
+              )}
               <span class={`strip-status strip-status--${item.status} ${microLabel}`}>{statusLabel[item.status]}</span>
             </div>
 
@@ -71,10 +84,33 @@ const microLabel = 'text-[0.58rem] uppercase tracking-[0.08em]';
               )}
             </div>
 
-            {item.image && (
+            {(item.image || item.video) && (
               <div class="strip-cell strip-cell--thumb relative overflow-hidden bg-slate-300 dark:bg-slate-800">
-                <span class="absolute inset-0 flex items-center justify-center text-center text-[0.58rem] leading-[1.3] tracking-[0.05em] text-slate-500 dark:text-slate-500">ADD<br />PHOTO</span>
-                <img src={item.image} alt="" loading="lazy" onerror="this.style.display='none'" />
+                {item.video ? (
+                  <video
+                    class="strip-media"
+                    autoplay
+                    loop
+                    muted
+                    playsinline
+                    preload="metadata"
+                    poster={posters.get(item.title)}
+                    role="img"
+                    aria-label={item.alt}
+                  >
+                    <source src={item.video.webm} type="video/webm" />
+                    <source src={item.video.mp4} type="video/mp4" />
+                  </video>
+                ) : (
+                  <Image
+                    src={item.image!}
+                    alt={item.alt ?? ''}
+                    widths={[128, 256, 384]}
+                    sizes="(max-width: 720px) 5.5rem, 8rem"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                )}
               </div>
             )}
           </div>

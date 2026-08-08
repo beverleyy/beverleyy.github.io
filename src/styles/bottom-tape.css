@@ -47,14 +47,20 @@
     background:var(--panel-muted);
     opacity:0.7;
 }
+.bottom-tape-tick:focus-visible {
+    outline:2px solid var(--c-chrome);
+    outline-offset:-2px;
+}
 .bottom-tape-tick:hover .bottom-tape-tick-label,
-.bottom-tape-tick.active .bottom-tape-tick-label { color:var(--c-accent); }
+.bottom-tape-tick:focus-visible .bottom-tape-tick-label,
+.bottom-tape-tick.active .bottom-tape-tick-label { color:var(--c-chrome); }
 .bottom-tape-tick:hover .bottom-tape-tick-mark,
+.bottom-tape-tick:focus-visible .bottom-tape-tick-mark,
 .bottom-tape-tick.active .bottom-tape-tick-mark {
-    background:var(--c-accent);
+    background:var(--c-chrome);
     opacity:1;
     width:20px;
-    box-shadow:0 0 6px color-mix(in srgb, var(--c-accent) 65%, transparent);
+    box-shadow:0 0 6px color-mix(in srgb, var(--c-chrome) 65%, transparent);
 }
 @media (max-width: 1024px) {
     .bottom-tape { display:flex; align-items:center; }

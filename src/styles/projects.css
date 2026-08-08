@@ -15,9 +15,13 @@
     transition:color 0.15s ease, border-color 0.15s ease;
 }
 .filter-btn:hover { color:var(--panel-fg); border-color:var(--panel-fg); }
+.filter-btn:focus-visible {
+    outline:2px solid var(--c-highlight);
+    outline-offset:2px;
+}
 .filter-btn.is-active {
-    color:var(--c-accent);
-    border-color:var(--c-accent);
+    color:var(--c-highlight);
+    border-color:var(--c-highlight);
 }
 .filter-btn-led {
     width:5px;
@@ -28,28 +32,18 @@
     background:var(--panel-muted);
 }
 .filter-btn.is-active .filter-btn-led {
-    background:var(--c-accent);
-    box-shadow:0 0 4px 1px color-mix(in srgb, var(--c-accent) 70%, transparent);
+    background:var(--c-highlight);
+    box-shadow:0 0 4px 1px color-mix(in srgb, var(--c-highlight) 70%, transparent);
 }
-/* active-only toggle uses primary, not accent, to read as a different kind of control */
+/* the active-only toggle takes the emphasis role, not the highlight, so it reads as
+   a different kind of control; --c-emphasis already resolves per light/dark/livery */
 .filter-toggle.is-active {
-    color:var(--c-primary);
-    border-color:var(--c-primary);
+    color:var(--c-emphasis);
+    border-color:var(--c-emphasis);
 }
 .filter-toggle.is-active .filter-btn-led {
-    background:var(--c-primary);
-    box-shadow:0 0 4px 1px color-mix(in srgb, var(--c-primary) 70%, transparent);
-}
-/* --c-primary is a light-panel colour (delta's is #003366), so on dark themes it
-   renders near-invisible against the panel; --c-sky is its dark-mode counterpart,
-   matching the `text-delta-navy dark:text-delta-sky` pairing used elsewhere. */
-html.dark .filter-toggle.is-active {
-    color:var(--c-sky);
-    border-color:var(--c-sky);
-}
-html.dark .filter-toggle.is-active .filter-btn-led {
-    background:var(--c-sky);
-    box-shadow:0 0 4px 1px color-mix(in srgb, var(--c-sky) 70%, transparent);
+    background:var(--c-emphasis);
+    box-shadow:0 0 4px 1px color-mix(in srgb, var(--c-emphasis) 70%, transparent);
 }
 
 /* --- flight strips --- */
@@ -62,9 +56,9 @@ html.dark .filter-toggle.is-active .filter-btn-led {
     border-left:5px solid var(--panel-muted);
 }
 .strip[data-status='current'],
-.strip[data-status='ongoing'] { border-left-color:var(--c-accent); }
+.strip[data-status='ongoing'] { border-left-color:var(--c-highlight); }
 .strip-status { color:var(--panel-muted); }
-.strip-status--current, .strip-status--ongoing { color:var(--c-accent); }
+.strip-status--current, .strip-status--ongoing { color:var(--c-highlight); }
 
 /* fixed cell widths; kept here so the ≤720px reflow below can override them */
 .strip-cell--id { flex:0 0 8rem; }
@@ -78,7 +72,8 @@ html.dark .filter-toggle.is-active .filter-btn-led {
     aspect-ratio:16 / 9;
     border-right:none;
 }
-.strip-cell--thumb img {
+.strip-cell--thumb img,
+.strip-cell--thumb video {
     position:absolute;
     inset:0;
     width:100%;
@@ -88,11 +83,11 @@ html.dark .filter-toggle.is-active .filter-btn-led {
 }
 
 .strip-link:hover {
-    background:color-mix(in srgb, var(--c-accent) 14%, transparent);
+    background:color-mix(in srgb, var(--c-highlight) 14%, transparent);
     color:var(--panel-fg);
 }
 .strip-link:focus-visible {
-    outline:2px solid var(--c-accent);
+    outline:2px solid var(--c-highlight);
     outline-offset:2px;
 }
 
