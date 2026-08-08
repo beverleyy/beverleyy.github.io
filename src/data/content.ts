@@ -53,7 +53,6 @@ export const tapeSections: TapeSection[] = [
 ];
 
 export const socialLinks: SocialLink[] = [
-  { label: 'Mail', href: 'mailto:yeokwb@stanford.edu' },
   { label: 'GitHub', href: 'https://github.com/beverleyy' },
   { label: 'LinkedIn', href: 'https://www.linkedin.com/in/beverleyy' },
   { label: 'Scholar', href: 'https://scholar.google.com/citations?user=wDYVyhYAAAAJ' },

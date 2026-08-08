@@ -16,10 +16,10 @@ function setHeaderHeight(): void {
 type Airline = "delta" | "southwest" | "united" | "american";
 
 const liveryCredits: Record<Airline, string> = {
-    delta: "REG: N653DL",
+    delta: "REG: N845MH",
     united: "REG: N91007",
-    american: "REG: N953NN",
-    southwest: "REG: N1776R",
+    american: "REG: N735AT",
+    southwest: "REG: N500WR",
 };
 
 let lightsOn = false;
