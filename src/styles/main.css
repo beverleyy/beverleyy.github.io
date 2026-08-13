@@ -2,10 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* B612 is self-hosted alongside Ailerons rather than pulled from Google Fonts. A
-   CSS @import serialises the request behind this stylesheet, so the fonts couldn't
-   even start downloading until it had parsed; these are same-origin and preloaded
-   in Layout.astro. Latin subset only, the two weights the site actually uses. */
 @font-face {
     font-family:'B612';
     src:url('/fonts/b612-400.woff2') format('woff2');
@@ -43,11 +39,6 @@
     font-display:swap;
 }
 
-/* No `scroll-behavior:smooth` here on purpose: lenis owns scrolling (site.ts), and
-   a CSS smooth-scroll underneath it fights the easing and lands inconsistently. */
-/* overflow-x:hidden would force overflow-y to `auto`, making these scroll
-   containers and breaking position:sticky (the projects filter bar). `clip`
-   contains the overflow without creating a scroll container. */
 html, body { overflow-x:hidden; max-width:100%; }
 @supports (overflow-x: clip) {
     html, body { overflow-x:clip; }
@@ -66,22 +57,8 @@ html {
 html[data-airline='delta']     { --c-primary:#003366; --c-accent:#E31837; --c-sky:#FFFFFF; }
 html[data-airline='american']  { --c-primary:#C60C30; --c-accent:#0B5FA5; --c-sky:#A9D3F0; }
 html[data-airline='united']    { --c-primary:#041E42; --c-accent:#0033A0; --c-sky:#2F97E8; }
-html[data-airline='southwest'] { --c-primary:#E4022C; --c-accent:#F9B612; --c-sky:#dde2ec; }
+html[data-airline='sia']       { --c-primary:#1D4886; --c-accent:#FCB130; --c-sky:#DCE6F5; }
 
-/* Semantic roles. The palettes above name colours by brand identity, but which of
-   them can carry a given job differs per livery - Southwest's accent is a yellow
-   that dies on its navy panel, United's is a navy that dies on its white one. So
-   components consume these role tokens only, never --c-primary/accent/sky
-   directly, and a livery is defined by remapping roles rather than by patching
-   each rule downstream.
-
-     --c-highlight     loud accent: labels, statuses, LEDs, focus rings, section bars
-                       (the `delta-red` Tailwind alias resolves here)
-     --c-chrome        instrument and navigation furniture: HUD corners, tick rules, tape
-     --c-emphasis      emphasised text and links
-     --c-display       the hero wordmark
-     --c-on-highlight  text drawn on top of --c-highlight
-*/
 html {
     --c-highlight:var(--c-accent);
     --c-chrome:var(--c-highlight);
@@ -91,13 +68,11 @@ html {
 }
 html.dark { --c-emphasis:var(--c-sky); }
 html[data-airline='delta'] { --c-display:var(--c-accent); }
-/* United's accent reads as flat navy on white, so its furniture takes the sky blue */
 html[data-airline='united'] { --c-chrome:var(--c-sky); }
-/* Southwest inverts: the yellow accent is unusable as a highlight on the navy
-   panel, so red leads and the yellow is demoted to emphasis */
-html[data-airline='southwest'] {
-    --c-highlight:var(--c-primary);
-    --c-emphasis:var(--c-accent);
+
+html[data-airline='sia'] {
+    --c-display:var(--c-accent);
+    --c-on-highlight:var(--panel-bg);
 }
 
 /* panel roles */
@@ -116,22 +91,13 @@ html.dark {
     --hero-bg:#01030A;
 }
 html[data-airline='united']    { --panel-bg:#ffffff; --hero-bg:#D0D0CE; --panel-border:#d8e0e8; --panel-muted:#475569; }
-/* delta's panel is darker than the generic dark theme, and the inherited
-   --panel-muted (#64748b) only reached 4.09:1 on it — below AA for the small
-   labels that use it. #8b9bb0 keeps the same blue-grey character at ~6.9:1. */
-html[data-airline='delta']     { --panel-bg:#050d1a; --hero-bg:#020610; --panel-muted:#8b9bb0; }
-/* american's muted was 3.67:1 on panel and only 3.06:1 on its lighter hero.
-   #515151 is the smallest change that clears 4.5 on both (5.46 / 4.55), so the
-   theme keeps its intentionally soft, low-contrast character.
-   southwest keeps #8195d1: it already passes at 4.88 / 5.60. */
-html[data-airline='american']  { --panel-bg:#d6d6d6; --hero-bg:#c4c4c4; --panel-fg:#3a3a3a; --panel-border:#bfbfbf; --panel-muted:#515151; }
-/* southwest is intentionally low-contrast; pure white read as glare, so the
-   highlight and body text are softened to blue-greys. --c-sky stays brighter
-   than --panel-fg so highlights still register as emphasis. */
-html[data-airline='southwest'] { --panel-bg:#16265c; --hero-bg:#0f1c47; --panel-fg:#c9d1e0; --panel-border:#2f4390; --panel-muted:#8195d1; }
 
-/* B612 is a proportional sans, so it must fall back to one; only 'B612 Mono' below
-   should degrade to a monospace stack */
+html[data-airline='delta']     { --panel-bg:#050d1a; --hero-bg:#020610; --panel-muted:#8b9bb0; }
+
+html[data-airline='american']  { --panel-bg:#d6d6d6; --hero-bg:#c4c4c4; --panel-fg:#3a3a3a; --panel-border:#bfbfbf; --panel-muted:#515151; }
+
+html[data-airline='sia']       { --panel-bg:#0E2547; --hero-bg:#081830; --panel-fg:#EAF0FA; --panel-border:#27497F; --panel-muted:#93AAD0; }
+
 body {
     font-family:'B612', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 }

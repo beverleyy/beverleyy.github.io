@@ -47,11 +47,12 @@ const { title, description = '' } = Astro.props;
             gain = !!s.gain;
           } else if (window.matchMedia('(prefers-color-scheme: light)').matches) {
             lights = true;
+            gain = true;
           }
         } catch (e) {
           /* private mode or blocked storage; defaults are fine */
         }
-        root.setAttribute('data-airline', lights ? (gain ? 'united' : 'american') : (gain ? 'delta' : 'southwest'));
+        root.setAttribute('data-airline', lights ? (gain ? 'united' : 'american') : (gain ? 'delta' : 'sia'));
         root.classList.toggle('dark', !lights);
         root.dataset.panelLights = lights ? 'on' : 'off';
         root.dataset.panelGain = gain ? 'on' : 'off';

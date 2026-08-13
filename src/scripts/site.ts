@@ -13,20 +13,16 @@ function setHeaderHeight(): void {
 }
 
 // livery toggle
-type Airline = "delta" | "southwest" | "united" | "american";
+type Airline = "delta" | "sia" | "united" | "american";
 
 const liveryCredits: Record<Airline, string> = {
     delta: "REG: N845MH",
     united: "REG: N91007",
     american: "REG: N735AT",
-    southwest: "REG: N500WR",
+    sia: "REG: 9V-SMF",
 };
 
-/* The inline boot script in Layout.astro already resolved these (saved choice,
-   else OS colour scheme, else Delta + dark) and stamped them on <html>. Read them
-   back rather than re-declaring a default, or the first applyTheme() would fight
-   the pre-paint state and flash. */
-let lightsOn = root.dataset.panelLights === "on";
+let lightsOn = root.dataset.panelLights === "off";
 let gainOn = root.dataset.panelGain !== "off";
 
 function persistPanelState(): void {
@@ -39,7 +35,7 @@ function persistPanelState(): void {
 
 function airlineFor(lights: boolean, gain: boolean): Airline {
     if (!lights && gain) return "delta";
-    if (!lights && !gain) return "southwest";
+    if (!lights && !gain) return "sia";
     if (lights && gain) return "united";
     return "american";
 }

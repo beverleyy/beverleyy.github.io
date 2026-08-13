@@ -11,7 +11,7 @@ This is my (new) personal website and portfolio, built with [Astro](https://astr
 
 ### Colors
 
-I refrained from using brat green and decided to use airline colors to create and maintain a more professional image. However, I couldn't commit to just one airline, so now the whole site is a livery switcher instead of a fixed color scheme. Two toggles in the masthead — LIGHTS and GAIN — flip between four themes: Delta, United, American, and Southwest. The GAIN button uses a theme with more/less contrast, and the LIGHTS button toggles light/dark mode.
+I refrained from using brat green and decided to use airline colors to create and maintain a more professional image. However, I couldn't commit to just one airline, so now the whole site is a livery switcher instead of a fixed color scheme. Two toggles in the masthead — LIGHTS and GAIN — flip between four themes: Delta, United, American, and SIA. The GAIN button uses a theme with more/less contrast, and the LIGHTS button toggles light/dark mode.
 
 ### Typography
 
@@ -35,11 +35,14 @@ B612 and B612 Mono are the very readable airplane-inspired body typefaces and I 
 ## Credits
 
 ### Fonts
+
 * Ailerons - [Adilson Gonzales](https://www.behance.net/gallery/25541553/Ailerons-Typeface)
-* B612 & B612 Mono - [Google Fonts](https://fonts.google.com/specimen/B612)
+* B612 \& B612 Mono - [Google Fonts](https://fonts.google.com/specimen/B612)
 
 ## To-do
+
 * Improve analytics
 * Modularize the diabolically long content.ts file
 * Find and/or make better hero background images
 * Proper documentation because 2027 me is not going to remember what 2026 me was cooking
+

@@ -1,14 +1,3 @@
-/* Per-livery colour work now lives in main.css, as a remap of the semantic role
-   tokens (--c-highlight / --c-chrome / --c-emphasis / --c-display). Everything that
-   used to be here - roughly thirty rules patching individual components per
-   airline - collapsed into those few token assignments.
-
-   What remains is the bridge between Tailwind's slate utilities, which the markup
-   uses throughout, and the panel tokens. These !importants are load-bearing: they
-   must outrank utilities of equal specificity that ship later in the cascade.
-   Removing them would mean rewriting the class list on every component, so they
-   stay, confined to this one block. */
-
 html[data-airline] {
     --panel-alt:color-mix(in srgb, var(--panel-fg) 6%, var(--panel-bg));
 }
@@ -55,13 +44,4 @@ html[data-airline].dark .dark\:hover\:border-delta-sky:hover { border-color:var(
 html[data-airline] .hover\:text-delta-navy:hover { color:var(--c-emphasis) !important; }
 html[data-airline] .hover\:border-delta-navy:hover { border-color:var(--c-emphasis) !important; }
 
-/* hero wordmark: flat --c-display everywhere except Southwest, the one livery whose
-   two brand colours are close enough in value to gradient without muddying */
 #hero-name { color:var(--c-display); }
-html[data-airline='southwest'] #hero-name {
-    background:linear-gradient(90deg, var(--c-accent), var(--c-primary));
-    -webkit-background-clip:text;
-    background-clip:text;
-    color:transparent;
-    -webkit-text-fill-color:transparent;
-}
