@@ -22,15 +22,16 @@ const liveryCredits: Record<Airline, string> = {
     sia: "REG: 9V-SMF",
 };
 
-let lightsOn = root.dataset.panelLights === "off";
+let lightsOn = root.dataset.panelLights === "on";
 let gainOn = root.dataset.panelGain !== "off";
 
 function persistPanelState(): void {
     try {
-        localStorage.setItem("panel-state", JSON.stringify({ lights: lightsOn, gain: gainOn }));
-    } catch (e) {
-        /* private mode or blocked storage; the session still works, it just won't be remembered */
-    }
+      var saved = localStorage.getItem('panel-state');
+      if (saved) { 
+        var s = JSON.parse(saved); lights = !!s.lights; gain = !!s.gain; 
+      }
+    } catch (e) {}
 }
 
 function airlineFor(lights: boolean, gain: boolean): Airline {
