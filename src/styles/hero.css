@@ -1,11 +1,14 @@
-/* instrument gauges — sized as a share of their (square) card so the dials
-   scale with the panel instead of staying a fixed size when it grows */
+/* instrument gauges */
 .gauge {
     flex:none;
     display:block;
-    width:70%;
+    width:77%;
     height:auto;
     aspect-ratio:1 / 1;
+}
+
+@media (min-width: 640px) {
+    .gauge { width:77%; }
 }
 
 /* rotation set via SVG transform attr in JS, not here — don't set .style.transform, it overrides the attribute */
