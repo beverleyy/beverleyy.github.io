@@ -1,0 +1,314 @@
+---
+import { Image, getImage } from 'astro:assets';
+import airshow from '../assets/airshow.jpg';
+import BoardingPass from './BoardingPass.astro';
+import FlightStrip from './FlightStrip.astro';
+import type { EducationEntry, ExperienceEntry, ProjectEntry } from '../data/content';
+
+interface Props {
+  education: EducationEntry[];
+  experience: ExperienceEntry[];
+  projects: ProjectEntry[];
+}
+
+const { education, experience, projects } = Astro.props;
+
+/* Poster frames need a plain URL for the video's poster attribute, so they're
+   resolved here rather than in the template - getImage is async and the tiles
+   are rendered inside a .map(). */
+const posters = new Map<string, string>();
+for (const item of projects) {
+  if (item.video) {
+    posters.set(item.title, (await getImage({ src: item.video.poster, format: 'webp', width: 640 })).src);
+  }
+}
+
+const projectStatus: Record<ProjectEntry['status'], string> = {
+  current: 'Current',
+  ongoing: 'Ongoing',
+  landed: 'Landed',
+};
+
+/* Chronological ordering across three differently-shaped date formats: education
+   gives only a starting year ("2023 – 2028", "SPRING 2020"), experience gives a
+   year.month ("2026.06 – Present"), and projects give a bare year (squawk). Each
+   is reduced to a single comparable start-year number so the whole board can
+   read as one interleaved timeline instead of three stacked, same-order blocks -
+   a third axis (time) on top of category and content. */
+type TimelineEntry =
+  | { kind: 'education'; sortYear: number; seq: number; total: number; entry: EducationEntry }
+  | { kind: 'experience'; sortYear: number; entry: ExperienceEntry }
+  | { kind: 'project'; sortYear: number; entry: ProjectEntry };
+
+function firstYear(text: string): number {
+  const match = text.match(/\d{4}/);
+  return match ? Number(match[0]) : 0;
+}
+
+function experienceStartYear(dates: string): number {
+  const match = dates.match(/^(\d{4})\.(\d{2})/);
+  return match ? Number(match[1]) + (Number(match[2]) - 1) / 12 : firstYear(dates);
+}
+
+const timeline: TimelineEntry[] = [
+  ...education.map((entry, i) => ({
+    kind: 'education' as const,
+    sortYear: firstYear(entry.years),
+    seq: i + 1,
+    total: education.length,
+    entry,
+  })),
+  ...experience.map((entry) => ({
+    kind: 'experience' as const,
+    sortYear: experienceStartYear(entry.dates),
+    entry,
+  })),
+  ...projects.map((entry) => ({
+    kind: 'project' as const,
+    sortYear: Number(entry.squawk) || 0,
+    entry,
+  })),
+].sort((a, b) => b.sortYear - a.sortYear);
+
+/* sectioned view: same entries, but grouped by category instead of merged into
+   one chronological board - newest first within each category, matching the
+   grid's own tie-break ordering */
+const educationByDate = [...education].sort((a, b) => firstYear(b.years) - firstYear(a.years));
+const experienceByDate = [...experience].sort((a, b) => experienceStartYear(b.dates) - experienceStartYear(a.dates));
+const projectsByDate = [...projects].sort((a, b) => (Number(b.squawk) || 0) - (Number(a.squawk) || 0));
+---
+<section id="work" class="work-section page-x bg-panel">
+  <div class="work-inner grid-view">
+    <div class="work-head">
+      <div class="filter-bar" role="group" aria-label="Filter manifest">
+        <div class="filter-set" data-filter-group="category">
+          <button type="button" class="filter-btn is-active" data-cat-filter="all" aria-pressed="true"><span class="filter-btn-led"></span>All</button>
+          <button type="button" class="filter-btn" data-cat-filter="profile" aria-pressed="false"><span class="filter-btn-led"></span>Profile</button>
+          <button type="button" class="filter-btn" data-cat-filter="education" aria-pressed="false"><span class="filter-btn-led"></span>Education</button>
+          <button type="button" class="filter-btn" data-cat-filter="experience" aria-pressed="false"><span class="filter-btn-led"></span>Experience</button>
+          <button type="button" class="filter-btn" data-cat-filter="projects" aria-pressed="false"><span class="filter-btn-led"></span>Projects</button>
+        </div>
+        <div class="filter-set" data-filter-group="scope">
+          <button type="button" class="filter-btn is-active" data-filter-value="featured" aria-pressed="true"><span class="filter-btn-led"></span>Featured</button>
+          <button type="button" class="filter-btn" data-filter-value="*" aria-pressed="false"><span class="filter-btn-led"></span>All work</button>
+        </div>
+        <button type="button" class="filter-btn filter-toggle" id="activeToggle" aria-pressed="false">
+          <span class="filter-btn-led"></span>Active only
+        </button>
+      </div>
+    </div>
+
+    <div class="work-grid" id="workGrid">
+      <p class="work-empty" id="workEmpty">Nothing matches those filters.</p>
+
+      <!-- CREW ID: a plain badge, deliberately not expandable -->
+      <div class="tile tile--crew" data-cat="profile" data-status="current">
+        <div class="crew-card">
+          <div class="crew-card-top">
+            <span class="crew-card-photo">
+              <Image src={airshow} alt="Kai Wen Beverley Yeo" widths={[144, 288]} sizes="4.5rem" loading="lazy" decoding="async" />
+            </span>
+            <span class="crew-card-rows">
+              <span class="crew-card-label">Crew ID</span>
+              <span class="crew-card-name">Yeo</span>
+              <span class="crew-card-given">Kai Wen Beverley</span>
+              <span class="crew-card-base">Base: SIN</span>
+            </span>
+          </div>
+          <div class="crew-card-skills">
+            <span class="strip-tool">GPU programming</span>
+            <span class="strip-tool">Numerical methods</span>
+            <span class="strip-tool">Aerospace engineering</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- EDUCATION / EXPERIENCE / PROJECTS, interleaved chronologically -->
+      {timeline.map((item) => (
+        item.kind === 'education' ? (
+          <details class="tile tile--pass" data-cat="education" data-status={item.entry.status}>
+            <summary class="tile-face">
+              <span class="tile-media tile-media--pass" aria-hidden="true"></span>
+              <span class="tile-cap">
+                <span class="tile-category">{item.entry.code}</span>
+                <span class="tile-kicker">{item.entry.years}</span>
+                <span class="tile-name" set:html={item.entry.institution} />
+              </span>
+            </summary>
+            <div class="tile-open">
+              <BoardingPass entry={item.entry} seq={item.seq} total={item.total} mode="static" />
+            </div>
+          </details>
+        ) : item.kind === 'experience' ? (
+          <details class="tile tile--log" data-cat="experience" data-status={item.entry.status}>
+            <summary class="tile-face">
+              <span class="tile-media tile-media--log" aria-hidden="true"></span>
+              <span class="tile-cap">
+                <span class="tile-category">Experience</span>
+                <span class="tile-kicker">{item.entry.dates}</span>
+                <span class="tile-name">{item.entry.role}</span>
+              </span>
+            </summary>
+            <div class="tile-open">
+              <div class="strip">
+                <div class="strip-cell strip-cell--code">
+                  <span class="cell-label">Status</span>
+                  <span class={`cell-value cell-value--${item.entry.status}`}>{item.entry.status === 'current' ? 'On duty' : 'Logged'}</span>
+                </div>
+                <div class="strip-cell strip-cell--main">
+                  <h3 class="job-title">{item.entry.company}</h3>
+                  <dl class="strip-meta">
+                    <div><dt>Dept</dt><dd>{item.entry.department}</dd></div>
+                  </dl>
+                </div>
+              </div>
+            </div>
+          </details>
+        ) : (
+          <details
+            class="tile tile--strip"
+            data-cat="projects"
+            data-status={item.entry.status}
+            data-featured={item.entry.featured ? 'true' : 'false'}
+          >
+            <summary class="tile-face">
+              <span class:list={['tile-media', { 'tile-media--blank': !item.entry.video && !item.entry.image }]}>
+                {item.entry.video ? (
+                  <video autoplay loop muted playsinline preload="metadata" poster={posters.get(item.entry.title)} class="strip-media">
+                    <source src={item.entry.video.webm} type="video/webm" />
+                    <source src={item.entry.video.mp4} type="video/mp4" />
+                  </video>
+                ) : item.entry.image ? (
+                  <Image src={item.entry.image} alt="" widths={[320, 640]} sizes="20rem" loading="lazy" decoding="async" />
+                ) : null}
+              </span>
+              <span class="tile-cap">
+                <span class="tile-category">Project</span>
+                <span class="tile-kicker">
+                  <span class:list={['status-dot', `status-dot--${item.entry.status}`]}></span>
+                  {projectStatus[item.entry.status]}
+                </span>
+                <span class="tile-name">{item.entry.title}</span>
+              </span>
+            </summary>
+
+            <div class="tile-open">
+              <FlightStrip
+                item={item.entry}
+                poster={posters.get(item.entry.title)}
+                statusLabel={projectStatus[item.entry.status]}
+                collapsible
+              />
+            </div>
+          </details>
+        )
+      ))}
+
+      <!-- RADIO CHECK -->
+      <details class="tile tile--radio" data-cat="profile" data-status="current">
+        <summary class="tile-face">
+          <span class="tile-media tile-media--radio" aria-hidden="true">
+            <span class="face-readout">121.5</span>
+          </span>
+          <span class="tile-cap">
+            <span class="tile-kicker">Radio check</span>
+            <span class="tile-name">Say hello</span>
+          </span>
+        </summary>
+        <div class="tile-open">
+          <div class="strip">
+            <div class="strip-cell strip-cell--code">
+              <span class="cell-label">Freq</span>
+              <span class="cell-value">121.5</span>
+            </div>
+            <div class="strip-cell strip-cell--main">
+              <p>Trying to find my way into the coolest industry on earth. Come in to talk aviation,
+                <a href="https://beverleyy.notion.site/Keyboard-Collection-30c75a1e8b8e810da7f6c9b19b8c99d5" target="_blank" rel="noopener">mechanical keyboards</a>,
+		or ask me about the <a href="/hub-run" target="_blank" rel="noopener">United 7&#8209;Hub Run</a> I'm attempting in 2027.</p>
+            </div>
+          </div>
+          <div class="strip-foot">
+            <a href="mailto:yeokwb@stanford.edu" class="strip-link">Email &rarr;</a>
+            <a href="https://www.linkedin.com/in/beverleyy" target="_blank" rel="noopener" class="strip-link">LinkedIn &rarr;</a>
+          </div>
+        </div>
+      </details>
+    </div>
+  </div>
+
+  <!-- SECTIONED VIEW: traditional scroll, everything already open, grouped by
+       category instead of merged into one filterable board. Crew ID and Radio
+       Check live in the footer here instead of repeating as tiles. -->
+  <div class="work-inner sectioned-view">
+    <section id="sec-education" data-tape-section data-tape-label="Education" class="work-list-section">
+      <div class="tick-rule" aria-hidden="true"></div>
+      <div class="section-heading">
+        <h2>Education</h2>
+      </div>
+      <div class="boarding-pass-list">
+        {educationByDate.map((entry) => (
+          <BoardingPass entry={entry} seq={education.indexOf(entry) + 1} total={education.length} />
+        ))}
+      </div>
+    </section>
+
+    <section id="sec-experience" data-tape-section data-tape-label="Experience" class="work-list-section">
+      <div class="tick-rule" aria-hidden="true"></div>
+      <div class="section-heading">
+        <h2>Experience</h2>
+      </div>
+      <div class="exp-table-wrap">
+        <table class="exp-table">
+          <thead>
+            <tr>
+              <th scope="col">Dates</th>
+              <th scope="col">Company</th>
+              <th scope="col">Role</th>
+              <th scope="col">Department</th>
+              <th scope="col" class="exp-table-status-col">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            {experienceByDate.map((job) => (
+              <tr>
+                <td class="exp-table-dates">{job.dates}</td>
+                <td class="job-title">{job.company}</td>
+                <td>{job.role}</td>
+                <td>{job.department}</td>
+                <td class="exp-table-status-col">
+                  <span class={`exp-status-badge exp-status-badge--${job.status}`}>{job.status === 'current' ? 'Current' : 'Past'}</span>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="sec-projects" data-tape-section data-tape-label="Projects" class="work-list-section">
+      <div class="tick-rule" aria-hidden="true"></div>
+      <div class="section-heading">
+        <h2>Projects</h2>
+      </div>
+      <div class="flightstrip-list">
+        <div class="filter-bar" role="group" aria-label="Filter projects">
+          <div class="filter-set" data-filter-group="scope">
+            <button type="button" class="filter-btn is-active" data-filter-value="featured" aria-pressed="true"><span class="filter-btn-led"></span>Featured</button>
+            <button type="button" class="filter-btn" data-filter-value="*" aria-pressed="false"><span class="filter-btn-led"></span>All</button>
+          </div>
+          <button type="button" class="filter-btn filter-toggle" id="activeToggleList" aria-pressed="false">
+            <span class="filter-btn-led"></span>Active only
+          </button>
+        </div>
+
+        {projectsByDate.map((item) => (
+          <FlightStrip
+            item={item}
+            poster={posters.get(item.title)}
+            statusLabel={projectStatus[item.status]}
+          />
+        ))}
+      </div>
+    </section>
+  </div>
+</section>

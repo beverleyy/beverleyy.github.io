@@ -1,0 +1,72 @@
+---
+import { Image } from 'astro:assets';
+import type { ProjectEntry } from '../data/content';
+
+interface Props {
+  item: ProjectEntry;
+  /** Resolved poster URL for video projects (see Work.astro's posters map). */
+  poster?: string;
+  statusLabel: string;
+  /**
+   * Grid view renders the strip inside a collapsible tile, so its row doubles
+   * as the close control. List view shows it permanently and needs neither.
+   */
+  collapsible?: boolean;
+}
+
+const { item, poster, statusLabel, collapsible = false } = Astro.props;
+---
+<div
+  class="flightstrip"
+  data-status={item.status}
+  data-featured={item.featured ? 'true' : 'false'}
+>
+  <div
+    class:list={['flightstrip-row', { 'tile-close': collapsible }]}
+    role={collapsible ? 'button' : undefined}
+    tabindex={collapsible ? 0 : undefined}
+    aria-label={collapsible ? 'Collapse' : undefined}
+  >
+    <div class="flightstrip-cell flightstrip-cell--id">
+      {collapsible && <span class="tile-close-tag">Project</span>}
+      {item.callsign && <span class="flightstrip-callsign">{item.callsign}</span>}
+      <span class:list={['flightstrip-status', `flightstrip-status--${item.status}`]}>{statusLabel}</span>
+    </div>
+
+    <div class="flightstrip-cell flightstrip-cell--squawk">
+      <span class="flightstrip-cell-label">SQK</span>
+      <span class="flightstrip-squawk-value">{item.squawk}</span>
+    </div>
+
+    <div class="flightstrip-cell flightstrip-cell--route">
+      <h3>{item.title}</h3>
+      <p>{item.blurb}</p>
+      {item.supervisors?.length ? (
+        <p class="flightstrip-note">Supervised by {item.supervisors.join(', ')}</p>
+      ) : null}
+      {item.team?.length ? (
+        <p class="flightstrip-note">Team: {item.team.join(', ')}</p>
+      ) : null}
+    </div>
+
+    {(item.image || item.video) && (
+      <div class="flightstrip-cell flightstrip-cell--thumb">
+        {item.video ? (
+          <video autoplay loop muted playsinline preload="metadata" poster={poster} role="img" aria-label={item.alt}>
+            <source src={item.video.webm} type="video/webm" />
+            <source src={item.video.mp4} type="video/mp4" />
+          </video>
+        ) : (
+          <Image src={item.image!} alt={item.alt ?? ''} widths={[128, 256, 384]} sizes="(max-width: 720px) 5.5rem, 8rem" loading="lazy" decoding="async" />
+        )}
+      </div>
+    )}
+  </div>
+
+  <div class="flightstrip-foot">
+    {item.tools.map((tool) => <span class="strip-tool">{tool}</span>)}
+    {item.links.map((link) => (
+      <a href={link.href} target="_blank" rel="noopener" class="flightstrip-link">{link.label}</a>
+    ))}
+  </div>
+</div>

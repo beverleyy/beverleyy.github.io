@@ -1,0 +1,25 @@
+---
+/*
+ * The LIGHTS/GAIN panel switches. `aria-pressed` is the single source of truth:
+ * it carries the state for assistive tech and drives both the lit border and
+ * the LED (see header.css), so there's no mirrored class to keep in sync.
+ */
+interface Props {
+  id: string;
+  label: string;
+  ariaLabel: string;
+  pressed?: boolean;
+}
+
+const { id, label, ariaLabel, pressed = false } = Astro.props;
+---
+<button
+  type="button"
+  id={id}
+  aria-pressed={pressed ? 'true' : 'false'}
+  aria-label={ariaLabel}
+  class="masthead-toggle h-8 flex items-center gap-2 px-3 leading-none text-[10px] font-semibold uppercase tracking-wider border-2 border-panel-border bg-panel-alt text-panel-muted hover:border-emphasis hover:text-emphasis transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-highlight"
+>
+  <span class="masthead-led"></span>
+  {label}
+</button>

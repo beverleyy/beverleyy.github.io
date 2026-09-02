@@ -4,15 +4,12 @@ import SiteHeader from '../components/SiteHeader.astro';
 import AltitudeTape from '../components/AltitudeTape.astro';
 import BottomTape from '../components/BottomTape.astro';
 import Hero from '../components/Hero.astro';
-import Highlights from '../components/Highlights.astro';
-import Education from '../components/Education.astro';
-import Experience from '../components/Experience.astro';
-import Projects from '../components/Projects.astro';
+import Work from '../components/Work.astro';
 import Contact from '../components/Contact.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import {
-  tapeSections,
   highlightLinks,
+  tapeSections,
   education,
   experience,
   projects,
@@ -23,11 +20,8 @@ import {
   <AltitudeTape sections={tapeSections} />
   <BottomTape sections={tapeSections} />
 
-  <Hero />
-  <Highlights links={highlightLinks} />
-  <Education education={education} />
-  <Experience experience={experience} />
-  <Projects projects={projects} />
+  <Hero links={highlightLinks} />
+  <Work education={education} experience={experience} projects={projects} />
   <Contact />
 
   <SiteFooter />

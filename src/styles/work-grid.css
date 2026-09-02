@@ -1,0 +1,529 @@
+/* ============================================================
+   MANIFEST BOARD
+   Closed: every tile carries a 2px frame on the sides/bottom, with a bolder
+   accent-coloured top edge when current/ongoing — the instrument-panel
+   border treatment, not a background tint standing in for one.
+   Open:   the tile pulls out to the full row as a flight strip, media on the
+           left edge like the thumbnail block on a real strip. Height is auto,
+           never a fixed row span, which is what stops content clipping.
+   ============================================================ */
+
+.work-section { padding-bottom:2.5rem; transition:background-color 0.3s ease; }
+/* in list view the Contact section follows directly in the footer, so this
+   section shouldn't add grid-view's trailing breathing room on top of it */
+html[data-view='sectioned'] .work-section { padding-bottom:0; }
+@media (max-width: 640px) {
+    .work-section { padding-bottom:2.5rem; }
+}
+.work-inner { max-width:80rem; margin:0 auto; }
+
+/* grid vs sectioned: the toggle just flips which of these two is visible */
+html[data-view='grid'] .sectioned-view { display:none; }
+html[data-view='sectioned'] .grid-view { display:none; }
+
+/* ============================================================
+   SECTIONED VIEW
+   Traditional top-to-bottom scroll, matching the original design: a
+   tick-rule and left-accented heading at the top of each section, then that
+   category's own layout (boarding passes, an experience table, flight strips).
+   ============================================================ */
+.sectioned-view { padding-top:0; }
+/* only bottom padding: each gap comes from the preceding block's 2rem, so
+   every boundary on the page measures the same. Top padding here as well
+   would double it to 4rem between sections while the hero-to-first-divider
+   gap stayed at 2rem. */
+.work-list-section { padding:0 0 2.5rem; }
+.work-list-section .tick-rule { margin-bottom:2.25rem; }
+.section-heading {
+    margin-bottom:2.25rem;
+    padding-left:1rem;
+    border-left:2px solid var(--c-highlight);
+}
+.section-heading h2 {
+    margin:0;
+    font-size:1.875rem;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:0.03em;
+    color:var(--c-display);
+}
+html.dark .section-heading h2 { color:var(--panel-fg); }
+
+.work-head {
+    position:sticky;
+    top:var(--header-h, 4.5rem);
+    z-index:40;
+    background:var(--panel-bg);
+    padding:1.25rem 0;
+    margin-bottom:2.5rem;
+}
+
+/* --- filter rail: styled to match the masthead's LIGHTS/GAIN/VIEW switches -
+   panel-alt surface, and an active state that lights the border, text and LED
+   rather than filling the whole button --- */
+.filter-bar { display:flex; flex-wrap:wrap; align-items:center; gap:0.85rem; }
+.filter-set { display:flex; flex-wrap:wrap; gap:0.3rem; }
+.filter-btn {
+    display:inline-flex;
+    align-items:center;
+    gap:0.45rem;
+    font-family:'B612 Mono', ui-monospace, monospace;
+    font-size:0.68rem;
+    font-weight:700;
+    line-height:1.1rem;
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    color:var(--panel-muted);
+    background:var(--panel-alt, transparent);
+    border:2px solid var(--panel-border);
+    padding:0.5rem 0.8rem;
+    cursor:pointer;
+    transition:color 0.15s ease, border-color 0.15s ease;
+}
+.filter-btn:hover { color:var(--c-emphasis); border-color:var(--c-emphasis); }
+.filter-btn:focus-visible { outline:2px solid var(--c-highlight); outline-offset:2px; }
+.filter-btn.is-active { color:var(--c-highlight); border-color:var(--c-highlight); }
+.filter-btn-led {
+    width:6px;
+    height:6px;
+    border-radius:50%;
+    flex:none;
+    background:var(--panel-muted);
+    transition:background 0.15s ease, box-shadow 0.15s ease;
+}
+.filter-btn.is-active .filter-btn-led {
+    background:var(--c-highlight);
+    box-shadow:0 0 4px 1px color-mix(in srgb, var(--c-highlight) 70%, transparent);
+}
+.filter-toggle.is-active { color:var(--c-emphasis); border-color:var(--c-emphasis); }
+.filter-toggle.is-active .filter-btn-led {
+    background:var(--c-emphasis);
+    box-shadow:0 0 4px 1px color-mix(in srgb, var(--c-emphasis) 70%, transparent);
+}
+
+/* --- the board --- */
+.work-grid {
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(16rem, 1fr));
+    gap:1.75rem;
+    align-items:start;
+}
+@media (max-width: 640px) {
+    .work-grid { grid-template-columns:repeat(2, 1fr); gap:0.85rem; }
+    /* the crew badge is the one closed tile that can't "open" to full width
+       to escape a cramped column — everything else only needs its cap
+       (category/kicker/name) to fit at half-width, and expands to the full
+       row once opened regardless of column count. */
+    .tile--crew { grid-column:1 / -1; }
+}
+.work-empty {
+    display:none;
+    grid-column:1 / -1;
+    margin:0;
+    padding:3.5rem 1rem;
+    text-align:center;
+    font-family:'B612 Mono', ui-monospace, monospace;
+    font-size:0.75rem;
+    letter-spacing:0.06em;
+    color:var(--panel-muted);
+}
+.work-empty.is-visible { display:block; }
+
+/* --- tile: closed. panel-alt fill against the section's panel-bg is what
+   separates it from the page, not an outline; the top edge is the one
+   place colour is allowed to do real signalling work. --- */
+.tile {
+    position:relative;
+    min-width:0;
+    background:transparent;
+    border:2px solid var(--panel-border);
+    border-top:4px solid var(--panel-muted);
+}
+.tile[data-status='current'],
+.tile[data-status='ongoing'] { border-top-color:var(--c-highlight); }
+
+.tile-face {
+    display:block;
+    position:relative;
+    cursor:pointer;
+    list-style:none;
+    aspect-ratio:4 / 3;
+    overflow:hidden;
+}
+@media (max-width: 640px) {
+    .tile-face { aspect-ratio:16 / 9; }
+}
+.tile-face::-webkit-details-marker { display:none; }
+.tile-face::marker { content:''; }
+.tile-face:focus-visible { outline:2px solid var(--c-highlight); outline-offset:2px; }
+
+.tile-media { position:absolute; inset:0; display:block; background:var(--panel-alt, var(--panel-border)); }
+.tile-media img, .tile-media video {
+    width:100%; height:100%; object-fit:cover; display:block;
+    transition:transform 0.4s ease;
+}
+.tile-media::after {
+    content:'';
+    position:absolute; inset:0;
+    background:linear-gradient(to top, var(--panel-bg) 2%, color-mix(in srgb, var(--panel-bg) 58%, transparent) 44%, transparent 80%);
+}
+.tile:hover .tile-media img, .tile:hover .tile-media video { transform:scale(1.03); }
+/* no photo to fade into the caption on any of these, so don't fake one */
+.tile-media.tile-media--blank::after,
+.tile-media.tile-media--pass::after,
+.tile-media.tile-media--log::after,
+.tile-media.tile-media--radio::after { content:none; }
+@media (prefers-reduced-motion: reduce) {
+    .tile-media img, .tile-media video { transition:none; }
+    .tile:hover .tile-media img, .tile:hover .tile-media video { transform:none; }
+}
+
+.tile-cap {
+    position:absolute;
+    inset:auto 0 0 0;
+    z-index:2;
+    display:flex;
+    flex-direction:column;
+    gap:0.35rem;
+    padding:1.1rem 1.25rem;
+}
+@media (max-width: 640px) {
+    .tile-cap { gap:0.25rem; padding:0.85rem 0.9rem; }
+}
+.tile-category {
+    align-self:flex-start;
+    font-family:'B612 Mono', ui-monospace, monospace;
+    font-size:0.55rem;
+    font-weight:600;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    padding:0.2rem 0.5rem;
+    color:var(--panel-bg);
+    background:var(--panel-fg);
+}
+.tile-kicker {
+    display:flex;
+    align-items:center;
+    gap:0.4rem;
+    font-family:'B612 Mono', ui-monospace, monospace;
+    font-size:0.6rem;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--c-highlight);
+}
+.tile-name {
+    font-size:0.92rem;
+    font-weight:600;
+    line-height:1.35;
+    color:var(--panel-fg);
+    display:-webkit-box;
+    -webkit-line-clamp:2;
+    -webkit-box-orient:vertical;
+    overflow:hidden;
+    /* reserves room for the trailing blinker (::after) so line-wrapping
+       always leaves it space on the same line as the last word, instead of
+       it having nowhere to fit and getting bumped onto an orphan line */
+    padding-right:0.85rem;
+}
+.status-dot { width:5px; height:5px; border-radius:50%; flex:none; background:var(--panel-muted); }
+.status-dot--current, .status-dot--ongoing {
+    background:var(--c-highlight);
+    box-shadow:0 0 4px 1px color-mix(in srgb, var(--c-highlight) 70%, transparent);
+}
+
+/* --- HUD corner ticks: all four, blinking while hovered --- */
+@keyframes hud-blink { from { opacity:0; } to { opacity:1; } }
+.tile-face::before {
+    content:'';
+    position:absolute;
+    inset:0;
+    z-index:3;
+    pointer-events:none;
+    opacity:0;
+    background-repeat:no-repeat;
+    background-image:
+        linear-gradient(var(--c-highlight), var(--c-highlight)), linear-gradient(var(--c-highlight), var(--c-highlight)),
+        linear-gradient(var(--c-highlight), var(--c-highlight)), linear-gradient(var(--c-highlight), var(--c-highlight)),
+        linear-gradient(var(--c-highlight), var(--c-highlight)), linear-gradient(var(--c-highlight), var(--c-highlight)),
+        linear-gradient(var(--c-highlight), var(--c-highlight)), linear-gradient(var(--c-highlight), var(--c-highlight));
+    background-size:
+        14px 2px, 2px 14px,
+        14px 2px, 2px 14px,
+        14px 2px, 2px 14px,
+        14px 2px, 2px 14px;
+    background-position:
+        top left, top left,
+        top right, top right,
+        bottom left, bottom left,
+        bottom right, bottom right;
+}
+.tile:hover .tile-face::before,
+.tile-face:focus-visible::before {
+    animation:hud-blink 0.4s cubic-bezier(0.5, 0, 1, 1) infinite alternate;
+}
+.tile[open] .tile-face::before { display:none; }
+
+/* blinker bar right after the title text, same idea as the HUD corners.
+   Inline, not fixed-position — the reserved padding-right on .tile-name
+   (above) is what keeps this from getting bumped onto its own orphan line
+   when a title happens to fill exactly two lines. */
+.tile-name::after {
+    content:'';
+    display:inline-block;
+    width:0.45em;
+    height:0.9em;
+    margin-left:0.4em;
+    vertical-align:-0.08em;
+    background:var(--c-highlight);
+    opacity:0;
+}
+.tile:hover .tile-name::after {
+    animation:hud-blink 0.4s cubic-bezier(0.5, 0, 1, 1) infinite alternate;
+}
+.tile[open] .tile-name::after { display:none; }
+@media (prefers-reduced-motion: reduce) {
+    .tile:hover .tile-face::before,
+    .tile:hover .tile-name::after { animation:none; opacity:1; }
+}
+
+/* placeholder faces for entries with no photograph */
+.tile-media--blank,
+.tile-media--pass,
+.tile-media--log,
+.tile-media--radio {
+    position:absolute; inset:0;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'B612 Mono', ui-monospace, monospace;
+    color:var(--panel-muted);
+    background:transparent;
+}
+.tile-media--blank { font-size:1.5rem; letter-spacing:0.1em; }
+.face-readout {
+    font-size:1.35rem;
+    font-weight:600;
+    letter-spacing:0.08em;
+    color:var(--c-highlight);
+}
+
+/* ============================================================
+   OPEN: full-row flight strip, media on the left. panel-alt again, so an
+   open strip reads as the same kind of surface as the closed board -
+   distinguished by fill, with the left accent edge doing the signalling.
+   ============================================================ */
+.tile[open] {
+    grid-column:1 / -1;
+    border:2px solid var(--panel-border);
+    border-left:5px solid var(--panel-muted);
+    background:var(--panel-bg);
+}
+.tile[open][data-status='current'],
+.tile[open][data-status='ongoing'] { border-left-color:var(--c-highlight); }
+
+/* Open education/project tiles stop drawing anything of their own and become
+   transparent wrappers, so the nested .flightstrip / .boarding-pass component
+   supplies all the visuals and renders identically to list view. Their summary
+   header is hidden (it would otherwise repeat the title above the content), so
+   closing happens via the .tile-close button instead. Experience and radio
+   tiles have no list-view counterpart, so they keep the framing above. */
+.tile--pass[open],
+.tile--strip[open] {
+    border:none;
+    background:transparent;
+}
+.tile--pass[open] > .tile-face,
+.tile--strip[open] > .tile-face { display:none; }
+.tile-open { position:relative; }
+/* The whole content row doubles as the collapse control (everything except the
+   tools/links footer, which has its own interactive content). Not a <button>:
+   these rows contain an <h3>, which isn't valid inside one - hence
+   role="button" plus the keyboard handling in site.ts. */
+.tile-close { cursor:pointer; }
+.tile-close:focus-visible { outline:2px solid var(--c-highlight); outline-offset:-2px; }
+.tile-close-tag {
+    font-family:'B612 Mono', ui-monospace, monospace;
+    font-size:0.52rem;
+    font-weight:700;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--c-highlight);
+}
+/* the stub is a centred column, so its tag centres too */
+.boarding-pass-stub .tile-close-tag { text-align:center; }
+/* the chevron points up while open; the summary itself is the close target,
+   so it keeps a pointer cursor rather than the default */
+.boarding-pass-summary.is-static .boarding-pass-chevron { transform:rotate(180deg); }
+
+/* the summary becomes the strip's header row rather than a picture */
+.tile[open] .tile-face {
+    aspect-ratio:auto;
+    height:auto;
+    overflow:visible;
+    padding:1rem 1.25rem;
+    border-bottom:2px solid var(--panel-border);
+}
+.tile[open] .tile-media { display:none; }
+.tile[open] .tile-cap { position:static; inset:auto; padding:0; }
+.tile[open] .tile-name { -webkit-line-clamp:unset; font-size:1rem; text-transform:uppercase; letter-spacing:0.03em; padding-right:0; }
+
+.strip { display:flex; flex-wrap:nowrap; align-items:stretch; }
+@media (max-width: 46rem) {
+    .strip { flex-wrap:wrap; }
+}
+
+.strip-cell {
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    gap:0.4rem;
+    padding:1.15rem 1.35rem;
+    border-right:2px solid var(--panel-border);
+    min-width:0;
+}
+.strip-cell--code { flex:0 0 8rem; }
+.strip-cell--main { flex:1 1 20rem; gap:0.6rem; border-right:none; }
+.cell-label {
+    font-family:'B612 Mono', ui-monospace, monospace;
+    font-size:0.56rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--c-highlight);
+}
+.cell-value {
+    font-family:'B612 Mono', ui-monospace, monospace;
+    font-size:0.9rem;
+    font-weight:600;
+    letter-spacing:0.03em;
+    color:var(--panel-fg);
+}
+.cell-value--current, .cell-value--ongoing { color:var(--c-highlight); }
+
+.strip-cell--main h3 {
+    margin:0;
+    font-size:0.95rem;
+    font-weight:600;
+    text-transform:uppercase;
+    letter-spacing:0.03em;
+    color:var(--panel-fg);
+}
+.strip-cell--main > p { margin:0; font-size:0.85rem; line-height:1.65; color:var(--panel-fg); }
+.strip-cell--main a { color:var(--c-emphasis); text-decoration:underline; }
+
+.strip-meta { margin:0.2rem 0 0; display:flex; flex-direction:column; gap:0.4rem; }
+.strip-meta > div { display:grid; grid-template-columns:6rem 1fr; gap:0.75rem; align-items:baseline; }
+.strip-meta dt {
+    font-family:'B612 Mono', ui-monospace, monospace;
+    font-size:0.58rem;
+    font-weight:600;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--panel-muted);
+}
+.strip-meta dd { margin:0; font-size:0.8rem; line-height:1.5; color:var(--panel-fg); }
+@media (max-width: 34rem) {
+    .strip-meta > div { grid-template-columns:1fr; gap:0.1rem; }
+}
+
+.strip-foot {
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    gap:0.6rem;
+    padding:0.75rem 1.35rem;
+    border-top:2px solid var(--panel-border);
+}
+/* skill/tool tags: bordered, matching the instrument-panel chip convention */
+.strip-tool {
+    font-family:'B612 Mono', ui-monospace, monospace;
+    font-size:0.6rem;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    padding:0.3rem 0.6rem;
+    border:2px solid var(--panel-border);
+    color:var(--panel-muted);
+    background:var(--panel-bg);
+}
+.strip-link {
+    display:inline-flex;
+    align-items:center;
+    gap:0.3rem;
+    font-family:'B612 Mono', ui-monospace, monospace;
+    font-size:0.6rem;
+    font-weight:600;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    padding:0.3rem 0.7rem;
+    border:2px solid var(--c-highlight);
+    color:var(--c-highlight);
+    text-decoration:none;
+    transition:background 0.15s ease, color 0.15s ease;
+}
+.strip-link:hover { background:color-mix(in srgb, var(--c-highlight) 16%, transparent); color:var(--panel-fg); }
+.strip-link:focus-visible { outline:2px solid var(--c-highlight); outline-offset:2px; }
+
+@media (max-width: 34rem) {
+    .strip-cell--code { flex:1 1 auto; border-right:none; border-bottom:2px solid var(--panel-border); }
+    .strip-cell--main { flex:1 1 100%; }
+}
+
+/* ============================================================
+   CREW ID
+   A standalone badge, not a strip: no summary, nothing to open. Every other
+   tile now borrows this card's frame (see .tile, above), so nothing further
+   is needed here beyond the card's own internal layout.
+   ============================================================ */
+.crew-card {
+    /* matches the 4:3 face of every other tile so the row lines up. A row
+       layout (photo beside text) is what actually fits that shape without
+       overflowing it — a photo-over-text stack needs more height than a
+       4:3 box has to give, which is why this used to run taller than its
+       neighbours. */
+    aspect-ratio:4 / 3;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    gap:0.6rem;
+    padding:1.1rem 1.25rem;
+}
+@media (max-width: 640px) {
+    .crew-card { aspect-ratio:16 / 9; }
+}
+.crew-card-top {
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+    gap:0.9rem;
+}
+.crew-card-skills {
+    display:flex;
+    flex-wrap:wrap;
+    gap:0.3rem;
+}
+/* sized to match the badge's own text rows; the phrases wrap to three lines,
+   which still fits inside the card's 4:3 box alongside the photo row */
+.crew-card-skills .strip-tool {
+    padding:0.2rem 0.45rem;
+    font-size:0.62rem;
+}
+.crew-card-photo {
+    flex:none;
+    display:block;
+    width:4.5rem;
+    height:4.5rem;
+    overflow:hidden;
+    background:linear-gradient(to bottom, #7dd3fc, #172554);
+}
+.crew-card-photo img { width:100%; height:100%; object-fit:cover; display:block; }
+.crew-card-rows {
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    gap:0.15rem;
+    min-width:0;
+    font-family:'B612 Mono', ui-monospace, monospace;
+    text-transform:uppercase;
+}
+.crew-card-label { font-size:0.5rem; letter-spacing:0.14em; color:var(--panel-muted); }
+.crew-card-name { font-size:0.8rem; font-weight:600; letter-spacing:0.04em; color:var(--panel-fg); }
+.crew-card-given { font-size:0.62rem; letter-spacing:0.02em; color:var(--panel-muted); }
+.crew-card-base { margin-top:0.3rem; font-size:0.52rem; letter-spacing:0.08em; color:var(--c-highlight); }

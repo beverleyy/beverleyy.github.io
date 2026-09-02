@@ -67,6 +67,9 @@ html {
     --c-on-highlight:#fff;
 }
 html.dark { --c-emphasis:var(--c-sky); }
+/* raised surface, derived so each livery gets it for free */
+html[data-airline] { --panel-alt:color-mix(in srgb, var(--panel-fg) 6%, var(--panel-bg)); }
+#hero-name { color:var(--c-display); }
 html[data-airline='delta'] { --c-display:var(--c-accent); }
 html[data-airline='united'] { --c-chrome:var(--c-sky); }
 
@@ -82,6 +85,14 @@ html[data-airline='sia'] {
     --panel-muted:#94a3b8;
     --panel-fg:#1c1c1c;
     --hero-bg:#DCDFE5;
+    /* Dial glass. The face is the page background sitting inside the panel-alt
+       frame, which is the same relationship the original instrument boxes had -
+       it reads as a recessed window and stays livery-aware. Kept as tokens so
+       the markings are named once rather than repeated per gauge. */
+    --gauge-face:var(--panel-bg);
+    --gauge-ring:var(--panel-border);
+    --gauge-tick:var(--panel-muted);
+    --gauge-label:var(--panel-fg);
 }
 html.dark {
     --panel-bg:#020617;
@@ -111,16 +122,14 @@ h1, h2, .hero-name {
 button,
 .uppercase:not(h1):not(h2):not(h3),
 .filter-btn,
-.filter-group-label,
 .keyword-chip,
 .strip-tool,
-.strip-status,
-.strip-callsign,
-.strip-cell-label,
-.strip-squawk-value,
 .strip-link,
-.boarding-pass-stub-code,
-.boarding-pass-field-label,
+.flightstrip-status,
+.flightstrip-callsign,
+.flightstrip-cell-label,
+.flightstrip-squawk-value,
+.flightstrip-link,
 .boarding-pass-meta dt,
 .tape-readout-label,
 .tape-readout-alt,
@@ -130,30 +139,12 @@ nav a {
     font-family:'B612 Mono', ui-monospace, SFMono-Regular, monospace;
 }
 
-/* streamline field */
-.flow-field {
-    background-repeat:no-repeat;
-    background-position:center;
-    background-size:100% auto;
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='600' viewBox='0 0 1200 600'%3E%3Cg fill='none' stroke='%2394a0ac' stroke-width='1.1' opacity='0.13'%3E%3Cpath d='M-50 90 C 200 40 400 40 600 90 S 1000 140 1250 90'/%3E%3Cpath d='M-50 160 C 200 100 400 100 600 160 S 1000 220 1250 160'/%3E%3Cpath d='M-50 230 C 220 160 420 160 600 230 S 1000 300 1250 230'/%3E%3Cpath d='M-50 300 C 240 220 440 220 600 300 S 1000 380 1250 300'/%3E%3Cpath d='M-50 370 C 220 300 420 300 600 370 S 1000 440 1250 370'/%3E%3Cpath d='M-50 440 C 200 380 400 380 600 440 S 1000 500 1250 440'/%3E%3Cpath d='M-50 510 C 200 460 400 460 600 510 S 1000 560 1250 510'/%3E%3C/g%3E%3C/svg%3E");
-}
-html.dark .flow-field {
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='600' viewBox='0 0 1200 600'%3E%3Cg fill='none' stroke='%2394a0ac' stroke-width='1.1' opacity='0.10'%3E%3Cpath d='M-50 90 C 200 40 400 40 600 90 S 1000 140 1250 90'/%3E%3Cpath d='M-50 160 C 200 100 400 100 600 160 S 1000 220 1250 160'/%3E%3Cpath d='M-50 230 C 220 160 420 160 600 230 S 1000 300 1250 230'/%3E%3Cpath d='M-50 300 C 240 220 440 220 600 300 S 1000 380 1250 300'/%3E%3Cpath d='M-50 370 C 220 300 420 300 600 370 S 1000 440 1250 370'/%3E%3Cpath d='M-50 440 C 200 380 400 380 600 440 S 1000 500 1250 440'/%3E%3Cpath d='M-50 510 C 200 460 400 460 600 510 S 1000 560 1250 510'/%3E%3C/g%3E%3C/svg%3E");
-}
-
-/* section divider */
+/* instrument-scale divider: a graduated tick mark, like a ruler etched into
+   the panel, standing in for the hairline borders we removed */
 .tick-rule {
-    height:7px;
-    margin-top:-3.5rem;
-    margin-bottom:2.5rem;
+    height:4px;
     background-image:repeating-linear-gradient(to right, currentColor 0, currentColor 1px, transparent 1px, transparent 9px);
     color:var(--c-chrome);
-    opacity:0.55;
-}
-
-#hero-viewport { padding-bottom:2.5rem; }
-@media (min-width: 640px) {
-    #hero-viewport { padding-bottom:7rem; }
 }
 
 /* HUD corners */
@@ -161,7 +152,6 @@ html.dark .flow-field {
     position:fixed;
     width:22px;
     height:22px;
-    opacity:0.55;
     pointer-events:none;
     z-index:60;
 }
@@ -181,65 +171,25 @@ html.dark .flow-field {
     html { scroll-behavior:auto !important; }
 }
 
-/* cloud divider */
-.cloud-divider {
-    position:relative;
-    z-index:0;
-    width:100%;
-    height:0;
-    border-bottom:30px solid var(--panel-bg);
-}
+/* sections stack above the hero */
 section[id]:not(#hero-viewport) { position:relative; z-index:1; }
-.cloud-divider::before,
-.cloud-divider::after {
-    content:'';
-    display:block;
-    position:absolute;
-    width:20vw;
-    height:20vw;
-    left:-5rem;
-    border-radius:50%;
-    background:var(--panel-bg);
-    box-shadow:
-        10vw 6.25vw 0 var(--panel-bg),
-        21vw 5.4vw 0 var(--panel-bg),
-        29vw 3.5vw 0 var(--panel-bg),
-        40vw 3vw 0 var(--panel-bg),
-        49vw 6vw 0 var(--panel-bg),
-        59.5vw 3.25vw 0 var(--panel-bg),
-        71vw 4.9vw 0 var(--panel-bg),
-        80.5vw 2.75vw 0 var(--panel-bg),
-        90vw 3.6vw 0 var(--panel-bg),
-        99vw 5.4vw 0 var(--panel-bg);
-}
-.cloud-divider::before { top:-8vw; left:-5rem; }
-.cloud-divider::after {
-    top:-9vw;
-    right:-5rem;
-    left:auto;
-    transform:scaleX(-1);
-    opacity:0.8;
-}
-@media (max-width: 640px) {
-    .cloud-divider { border-bottom-width:18px; }
-    .cloud-divider::before, .cloud-divider::after { left:-2rem; }
-    .cloud-divider::after { right:-2rem; left:auto; }
-}
 
 .keyword-chip {
-    font-size:0.68rem;
-    font-weight:700;
+    display:inline-flex;
+    align-items:center;
+    font-size:0.72rem;
+    font-weight:600;
     letter-spacing:0.05em;
     text-transform:uppercase;
-    padding:0.35rem 0.7rem;
+    padding:0.5rem 0.9rem;
     border:2px solid var(--panel-border);
     color:var(--panel-muted);
     transition:color 0.15s ease, border-color 0.15s ease;
 }
-html.dark .keyword-chip { background:rgba(255, 255, 255, 0.06); }
-html:not(.dark) .keyword-chip { background:rgba(0, 0, 0, 0.04); }
-/* company names in the experience table */
-.job-title { color:var(--c-emphasis); }
+/* company names in the experience table. Specificity bumped on purpose: this
+   must outrank the generic `.strip-cell--main h3` colour rule the tile system
+   applies to every heading, or the emphasis colour silently never shows. */
+.strip-cell--main .job-title { color:var(--c-emphasis); }
 
 .keyword-chip:hover { color:var(--c-highlight); border-color:var(--c-highlight); }
 .keyword-chip:focus-visible {
@@ -259,9 +209,179 @@ html:not(.dark) .keyword-chip { background:rgba(0, 0, 0, 0.04); }
     font-weight:700;
     letter-spacing:0.08em;
     text-transform:uppercase;
-    color:var(--panel-fg);
-    background:var(--panel-bg);
-    border:2px solid var(--c-highlight);
+    color:var(--c-on-highlight);
+    background:var(--c-highlight);
     transform:translateY(-200%);
 }
 .skip-link:focus-visible { transform:translateY(0); }
+
+/* footer contact block: sectioned-view only - grid view already covers this
+   via the Crew ID and Radio Check tiles */
+html[data-view='grid'] .contact-section { display:none; }
+.contact-section { padding-top:0; padding-bottom:2.5rem; }
+/* matches .work-list-section's tick-rule spacing, so Contact reads like the
+   other content sections */
+.contact-section .tick-rule { margin-bottom:2.25rem; }
+/* the copyright row sits in its own full-width block, so this border spans the
+   whole viewport while the text inside stays aligned with the section content */
+.footer-legal {
+    border-top:2px solid var(--panel-border);
+    padding-top:1.25rem;
+}
+
+/* matches the original's grid-template-areas: heading/desc/buttons stack
+   beside the badge, buttons drop to their own full-width row on mobile */
+.contact-grid {
+    display:grid;
+    grid-template-columns:1fr 7.3rem;
+    grid-template-areas:
+        "heading badge"
+        "desc badge"
+        "buttons buttons";
+    gap:0.9rem 1rem;
+}
+@media (min-width: 640px) {
+    .contact-grid {
+        grid-template-columns:1fr auto;
+        grid-template-areas:
+            "heading badge"
+            "desc badge"
+            "buttons badge";
+        gap:1.5rem 2.5rem;
+    }
+}
+.contact-heading {
+    grid-area:heading;
+    align-self:start;
+    padding-left:1rem;
+    border-left:2px solid var(--c-highlight);
+}
+.contact-heading h2 {
+    margin:0;
+    font-size:1.875rem;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:0.03em;
+    color:var(--c-display);
+}
+html.dark .contact-heading h2 { color:var(--panel-fg); }
+.contact-desc {
+    grid-area:desc;
+    max-width:42rem;
+    margin:0;
+    font-size:0.875rem;
+    line-height:1.6;
+    color:var(--panel-muted);
+}
+.contact-link-inline { color:inherit; text-decoration:underline; }
+.contact-link-inline:hover { color:var(--c-highlight); }
+.contact-buttons {
+    grid-area:buttons;
+    align-self:start;
+    display:flex;
+    flex-wrap:wrap;
+    gap:0.75rem;
+    font-size:0.7rem;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+}
+.contact-btn {
+    height:2.75rem;
+    padding:0 1.25rem;
+    display:inline-flex;
+    align-items:center;
+    border:2px solid var(--panel-border);
+    color:var(--panel-fg);
+    text-decoration:none;
+    transition:color 0.15s ease, border-color 0.15s ease;
+}
+.contact-btn:hover { color:var(--c-highlight); border-color:var(--c-highlight); }
+.contact-btn:focus-visible { outline:2px solid var(--c-highlight); outline-offset:2px; }
+
+/* --- crew ID badge: a lanyard tab at top, photo, name rows, coloured foot --- */
+.id-badge {
+    grid-area:badge;
+    position:relative;
+    display:flex;
+    flex-direction:column;
+    width:100%;
+    max-width:9rem;
+    background:var(--panel-bg);
+    border:2px solid var(--panel-border);
+}
+.id-badge-tab {
+    position:absolute;
+    top:3px;
+    left:50%;
+    transform:translateX(-50%);
+    width:0.875rem;
+    height:0.25rem;
+    border-radius:2px;
+    background:var(--panel-border);
+    z-index:3;
+}
+.id-badge-label {
+    position:absolute;
+    top:11px;
+    left:0.5rem;
+    font-size:0.5rem;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--panel-muted);
+    z-index:3;
+}
+.id-badge-photo { padding:1.85rem 0.4rem 0.4rem; }
+.id-badge-photo-frame {
+    position:relative;
+    width:100%;
+    aspect-ratio:1 / 1;
+    border:2px solid var(--panel-muted);
+    overflow:hidden;
+}
+.id-badge-silhouette {
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    background:linear-gradient(to bottom, #bae6fd, #1e3a8a, #172554);
+}
+.id-badge-photo-frame img {
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+}
+.id-badge-rows {
+    display:flex;
+    flex-direction:column;
+    gap:0.15rem;
+    padding:0.35rem 0.4rem 0.4rem;
+    border-top:1px solid var(--panel-border);
+    font-family:'B612 Mono', ui-monospace, monospace;
+}
+.id-badge-name {
+    text-transform:uppercase;
+    white-space:nowrap;
+    font-size:0.62rem;
+    font-weight:700;
+    letter-spacing:0.04em;
+    color:var(--panel-fg);
+}
+.id-badge-given {
+    text-transform:uppercase;
+    white-space:nowrap;
+    font-size:0.62rem;
+    letter-spacing:0.01em;
+    color:var(--panel-muted);
+}
+.id-badge-base {
+    text-transform:uppercase;
+    font-size:0.42rem;
+    letter-spacing:0.04em;
+    color:var(--c-highlight);
+    margin-top:0.2rem;
+}
+.id-badge-foot { display:block; height:0.25rem; flex-shrink:0; background:var(--c-highlight); }

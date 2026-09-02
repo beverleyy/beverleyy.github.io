@@ -1,0 +1,274 @@
+/* ============================================================
+   LIST VIEW: ORIGINAL DESIGN PORT
+   Faithful recreations of the original site's Education (boarding pass),
+   Experience (table), and Projects (flight strip) sections.
+   ============================================================ */
+
+/* --- boarding pass (education): stub stays visible, only the meta list
+   is hidden until opened - years/programme/institution are always shown --- */
+.boarding-pass-list { display:flex; flex-direction:column; gap:0.75rem; }
+.boarding-pass {
+    display:block;
+    border:2px solid var(--panel-border);
+    background:var(--panel-bg);
+}
+.boarding-pass-summary {
+    display:flex;
+    align-items:stretch;
+    cursor:pointer;
+    list-style:none;
+}
+.boarding-pass-summary::-webkit-details-marker { display:none; }
+.boarding-pass-summary::marker { content:''; }
+.boarding-pass-summary:focus-visible {
+    outline:2px solid var(--c-highlight);
+    outline-offset:2px;
+}
+.boarding-pass-stub {
+    flex:none;
+    width:4rem;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:0.4rem;
+    padding:0.85rem 0.5rem;
+    text-align:center;
+    border-right:2px dashed var(--panel-border);
+    background:repeating-linear-gradient(
+        to bottom,
+        color-mix(in srgb, var(--c-highlight) 6%, transparent) 0,
+        color-mix(in srgb, var(--c-highlight) 6%, transparent) 8px,
+        transparent 8px,
+        transparent 16px
+    );
+}
+@media (min-width: 640px) { .boarding-pass-stub { width:5.5rem; } }
+.boarding-pass-seq {
+    font-family:'B612 Mono', ui-monospace, monospace;
+    font-size:0.66rem;
+    letter-spacing:0.08em;
+    color:var(--panel-muted);
+}
+.boarding-pass-chevron {
+    font-size:0.8rem;
+    color:var(--c-highlight);
+    display:inline-block;
+    transition:transform 0.2s ease;
+}
+.boarding-pass[open] .boarding-pass-chevron { transform:rotate(180deg); }
+@media (prefers-reduced-motion: reduce) {
+    .boarding-pass-chevron { transition-duration:0.01ms; }
+}
+.boarding-pass-main {
+    flex:1;
+    min-width:0;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    padding:0.85rem 1.1rem;
+}
+.boarding-pass-years {
+    font-family:'B612 Mono', ui-monospace, monospace;
+    font-size:0.68rem;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--panel-muted);
+    margin-bottom:0.15rem;
+}
+.boarding-pass-main h3 {
+    margin:0;
+    font-size:0.95rem;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:0.02em;
+    color:var(--panel-fg);
+}
+.boarding-pass-institution {
+    display:block;
+    font-size:0.76rem;
+    color:var(--panel-muted);
+    margin-top:0.15rem;
+}
+.boarding-pass-meta {
+    display:grid;
+    grid-template-columns:1fr;
+    gap:0.1rem;
+    margin:0;
+    padding:0.7rem 1.1rem 0.9rem;
+    border-top:1px dashed var(--panel-border);
+    font-size:0.82rem;
+}
+@media (min-width: 640px) {
+    .boarding-pass-meta { grid-template-columns:5.5rem 1fr; gap:0.35rem 1rem; }
+}
+.boarding-pass-meta dt {
+    align-self:center;
+    margin:0;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:0.1em;
+    font-size:0.7rem;
+    color:var(--c-highlight);
+}
+.boarding-pass-meta dd {
+    margin:0 0 0.5rem;
+    color:var(--panel-fg);
+}
+@media (min-width: 640px) {
+    .boarding-pass-meta dd { margin-bottom:0; }
+}
+/* --- experience table --- */
+.exp-table-wrap {
+    width:100%;
+    overflow-x:auto;
+    border:2px solid var(--panel-border);
+}
+.exp-table {
+    width:100%;
+    text-align:left;
+    border-collapse:collapse;
+    font-size:0.85rem;
+    background:var(--panel-bg);
+}
+.exp-table thead tr {
+    background:var(--panel-alt, var(--panel-bg));
+    border-bottom:2px solid var(--panel-border);
+    color:var(--panel-muted);
+    text-transform:uppercase;
+    letter-spacing:0.04em;
+    font-weight:700;
+}
+.exp-table th, .exp-table td { padding:1rem; }
+.exp-table-status-col { text-align:right; }
+.exp-table tbody tr { border-bottom:1px solid var(--panel-border); color:var(--panel-fg); }
+.exp-table tbody tr:last-child { border-bottom:none; }
+.exp-table tbody tr:hover { background:color-mix(in srgb, var(--panel-fg) 4%, transparent); }
+.exp-table-dates { font-weight:700; white-space:nowrap; }
+.exp-table .job-title { color:var(--c-emphasis); font-weight:700; }
+.exp-status-badge {
+    display:inline-block;
+    padding:0.15rem 0.5rem;
+    font-weight:700;
+    font-size:0.62rem;
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+    border:1px solid;
+    white-space:nowrap;
+}
+.exp-status-badge--current { border-color:#059669; color:#059669; }
+html.dark .exp-status-badge--current { color:#34d399; }
+.exp-status-badge--past { border-color:#d97706; color:#d97706; }
+html.dark .exp-status-badge--past { color:#fbbf24; }
+
+/* --- flight strip (projects): always visible, no expand/collapse - the
+   detail IS the row, with a compact thumbnail as the last cell --- */
+.flightstrip-list { display:flex; flex-direction:column; gap:0.75rem; }
+.flightstrip {
+    background:var(--panel-bg);
+    border:2px solid var(--panel-border);
+    border-left:5px solid var(--panel-muted);
+}
+.flightstrip[data-status='current'],
+.flightstrip[data-status='ongoing'] { border-left-color:var(--c-highlight); }
+.flightstrip-row { display:flex; align-items:stretch; flex-wrap:wrap; }
+.flightstrip-cell {
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    gap:0.25rem;
+    padding:0.8rem 1rem;
+    border-right:1px solid var(--panel-border);
+    min-width:0;
+}
+.flightstrip-cell--id { flex:0 0 8rem; }
+.flightstrip-cell--squawk { flex:0 0 5.5rem; }
+.flightstrip-cell--route { flex:1 1 16rem; gap:0.35rem; }
+.flightstrip-cell--route:last-child { border-right:none; }
+.flightstrip-callsign {
+    font-family:'B612 Mono', ui-monospace, monospace;
+    font-size:0.85rem;
+    font-weight:700;
+    letter-spacing:0.04em;
+    color:var(--panel-fg);
+}
+.flightstrip-status {
+    font-family:'B612 Mono', ui-monospace, monospace;
+    font-size:0.58rem;
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    color:var(--panel-muted);
+}
+.flightstrip-status--current, .flightstrip-status--ongoing { color:var(--c-highlight); }
+.flightstrip-cell-label {
+    font-family:'B612 Mono', ui-monospace, monospace;
+    font-size:0.58rem;
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    color:var(--c-highlight);
+}
+.flightstrip-squawk-value {
+    font-family:'B612 Mono', ui-monospace, monospace;
+    font-size:0.95rem;
+    font-weight:700;
+    color:var(--panel-fg);
+}
+.flightstrip-cell--route h3 {
+    margin:0;
+    font-size:0.95rem;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:0.02em;
+    color:var(--panel-fg);
+}
+.flightstrip-cell--route p { margin:0; font-size:0.8rem; line-height:1.5; color:var(--panel-fg); }
+.flightstrip-cell--route p.flightstrip-note { font-size:0.72rem; color:var(--panel-muted); }
+.flightstrip-cell--thumb {
+    flex:0 0 8rem;
+    padding:0;
+    position:relative;
+    aspect-ratio:16 / 9;
+    border-right:none;
+    background:var(--panel-border);
+    overflow:hidden;
+}
+.flightstrip-cell--thumb img, .flightstrip-cell--thumb video {
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+}
+.flightstrip-foot {
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    gap:0.5rem;
+    padding:0.65rem 1rem;
+    border-top:1px solid var(--panel-border);
+}
+.flightstrip-link {
+    display:inline-flex;
+    align-items:center;
+    gap:0.3rem;
+    font-family:'B612 Mono', ui-monospace, monospace;
+    font-size:0.62rem;
+    font-weight:700;
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+    padding:0.2rem 0.55rem;
+    border:1px solid var(--c-highlight);
+    color:var(--c-highlight);
+    text-decoration:none;
+    transition:background 0.15s ease, color 0.15s ease;
+}
+.flightstrip-link:hover { background:color-mix(in srgb, var(--c-highlight) 14%, transparent); color:var(--panel-fg); }
+.flightstrip-link:focus-visible { outline:2px solid var(--c-highlight); outline-offset:2px; }
+
+@media (max-width: 45rem) {
+    .flightstrip-cell--id { flex:1 1 0; min-width:0; order:1; border-right:1px solid var(--panel-border); }
+    .flightstrip-cell--squawk { flex:0 0 auto; order:2; border-right:1px solid var(--panel-border); }
+    .flightstrip-cell--thumb { flex:0 0 5.5rem; aspect-ratio:1 / 1; height:auto; order:3; border-right:none; }
+    .flightstrip-cell--route { flex:1 1 100%; border-top:1px solid var(--panel-border); border-right:none; order:4; }
+}

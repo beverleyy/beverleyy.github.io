@@ -27,6 +27,7 @@ export interface EducationEntry {
   years: string;
   programme: string;
   institution: string;
+  status: 'current' | 'past';
   meta: { label: string; value: string }[];
 }
 
@@ -69,12 +70,13 @@ export interface ProjectEntry {
 }
 
 /* order drives both tapes */
+/* order drives both tapes; only used in the sectioned (list) view */
 export const tapeSections: TapeSection[] = [
   { id: 'hero-viewport', label: 'Flight Deck' },
-  { id: 'education', label: 'Education' },
-  { id: 'experience', label: 'Experience' },
-  { id: 'research', label: 'Projects' },
-  { id: 'contact', label: 'Contact' },
+  { id: 'sec-education', label: 'Education' },
+  { id: 'sec-experience', label: 'Experience' },
+  { id: 'sec-projects', label: 'Projects' },
+  { id: 'sec-contact', label: 'Contact' },
 ];
 
 export const socialLinks: SocialLink[] = [
@@ -82,11 +84,12 @@ export const socialLinks: SocialLink[] = [
   { label: 'LinkedIn', href: 'https://www.linkedin.com/in/beverleyy' },
   { label: 'Scholar', href: 'https://scholar.google.com/citations?user=wDYVyhYAAAAJ' },
   { label: 'ORCID', href: 'https://orcid.org/0000-0003-0600-8065' },
+  { label: 'Email', href: 'mailto:yeokwb@stanford.edu' },
 ];
 
 export const highlightLinks: SocialLink[] = [
-  { label: 'Stanford Mechanical Engineering PhD Candidate', href: 'https://me.stanford.edu' },
-  { label: 'A*STAR NSS (PhD) Scholar', href: 'https://www.a-star.edu.sg/scholarships/home/scholarships/national-science-scholarship-(phd)' },
+  { label: 'Stanford Mechanical Engineering', href: 'https://me.stanford.edu' },
+  { label: 'A*STAR NSS (PhD)', href: 'https://www.a-star.edu.sg/scholarships/home/scholarships/national-science-scholarship-(phd)' },
   { label: 'Supervised by Prof. Juan Alonso', href: 'https://adl.stanford.edu' },
 ];
 
@@ -96,6 +99,7 @@ export const education: EducationEntry[] = [
     years: '2023 – 2028 (EXPECTED)',
     programme: 'Ph.D. in Mechanical Engineering',
     institution: 'Stanford University &middot; CA, USA',
+    status: 'current',
     meta: [
       { label: 'Advisor', value: 'Prof. J. Alonso, Prof. G. Iaccarino' },
       { label: 'Focus', value: 'GPU-accelerated discontinuous Galerkin methods for compressible flows' },
@@ -107,6 +111,7 @@ export const education: EducationEntry[] = [
     years: '2021 – 2022',
     programme: 'M.Eng. in Mechanical & Aerospace Engineering',
     institution: 'Nanyang Technological University &middot; Singapore',
+    status: 'past',
     meta: [
       { label: 'Advisor', value: 'Prof. W.L. Chan, Dr. B. Elhadidi' },
       { label: 'Thesis', value: 'Investigating Galilean invariance in CFD' },
@@ -118,6 +123,7 @@ export const education: EducationEntry[] = [
     years: '2017 – 2021',
     programme: 'B.Eng. in Aerospace Engineering (Honours with Distinction)',
     institution: 'Nanyang Technological University &middot; Singapore',
+    status: 'past',
     meta: [
       { label: 'Advisor', value: 'Prof. T.H. New' },
       { label: 'Thesis', value: 'On the flow behavior of confined vortex-rings' },
@@ -129,6 +135,7 @@ export const education: EducationEntry[] = [
     years: 'SPRING 2020',
     programme: 'Exchange in Aeronautics & Astronautics',
     institution: 'Purdue University &middot; IN, USA',
+    status: 'past',
     meta: [
       { label: 'Honours', value: "Dean's List Spring 2020, Semester Honors Spring 2020" },
       { label: 'Coursework', value: 'Aerospace Structural Analysis, Computational Aerodynamics, Experimental Aerodynamics, Spacecraft Design, Thermal Sciences' },

@@ -27,11 +27,10 @@ let gainOn = root.dataset.panelGain !== "off";
 
 function persistPanelState(): void {
     try {
-      var saved = localStorage.getItem('panel-state');
-      if (saved) { 
-        var s = JSON.parse(saved); lights = !!s.lights; gain = !!s.gain; 
-      }
-    } catch (e) {}
+        localStorage.setItem("panel-state", JSON.stringify({ lights: lightsOn, gain: gainOn }));
+    } catch (e) {
+        /* private mode or blocked storage; the choice just won't survive a reload */
+    }
 }
 
 function airlineFor(lights: boolean, gain: boolean): Airline {
@@ -49,16 +48,10 @@ function applyTheme(): void {
     const liveryCredit = document.getElementById("livery-credit");
     if (liveryCredit) liveryCredit.textContent = liveryCredits[airline];
 
-    document.getElementById("lights-led")?.classList.toggle("is-on", lightsOn);
-    document.getElementById("contrast-led")?.classList.toggle("is-on", gainOn);
-
-    const lightsBtn = document.getElementById("lights-toggle");
-    const gainBtn = document.getElementById("contrast-toggle");
-    lightsBtn?.classList.toggle("is-on", lightsOn);
-    gainBtn?.classList.toggle("is-on", gainOn);
-    /* these are on/off panel switches, so state belongs in aria-pressed, not just the class */
-    lightsBtn?.setAttribute("aria-pressed", String(lightsOn));
-    gainBtn?.setAttribute("aria-pressed", String(gainOn));
+    /* aria-pressed is the only state written: header.css derives both the lit
+       border and the LED from it, so there's no mirrored class to keep in sync */
+    document.getElementById("lights-toggle")?.setAttribute("aria-pressed", String(lightsOn));
+    document.getElementById("contrast-toggle")?.setAttribute("aria-pressed", String(gainOn));
 
     root.dataset.panelLights = lightsOn ? "on" : "off";
     root.dataset.panelGain = gainOn ? "on" : "off";
@@ -226,18 +219,10 @@ if (prefersReducedMotion) {
     });
 }
 
-// hero scroll cue — fades once the person has actually started scrolling
-const scrollCueWrap = document.querySelector<HTMLElement>(".scroll-cue-wrap");
-if (scrollCueWrap) {
-    const updateScrollCue = (): void => {
-        scrollCueWrap.classList.toggle("is-hidden", window.scrollY > 80);
-    };
-    window.addEventListener("scroll", updateScrollCue, { passive: true });
-    updateScrollCue();
-}
-
-// altimeter tape + scroll spy
-const tapeSections = Array.from(document.querySelectorAll<HTMLElement>("[data-tape-section]"));
+// altimeter tape + scroll spy. Only relevant in the sectioned view (both tapes
+// are hidden entirely in grid view via CSS) - restores what the tape
+// originally did before sections were merged into one filterable board.
+const tapeSectionEls = Array.from(document.querySelectorAll<HTMLElement>("[data-tape-section]"));
 const tapeTicks = Array.from(document.querySelectorAll<HTMLElement>(".tape-tick"));
 const bottomTapeTicks = Array.from(document.querySelectorAll<HTMLElement>(".bottom-tape-tick"));
 const tapeMarker = document.getElementById("tapeMarker");
@@ -260,7 +245,7 @@ function scrollTargetFor(el: HTMLElement): number {
 function tapeLayout(): void {
     setHeaderHeight();
     totalScroll = Math.max(document.documentElement.scrollHeight - window.innerHeight, 1);
-    sectionTops = tapeSections.map((sec) => scrollTargetFor(sec));
+    sectionTops = tapeSectionEls.map((sec) => scrollTargetFor(sec));
     sectionTops.forEach((top, i) => {
         const tick = tapeTicks[i];
         if (!tick) return;
@@ -277,17 +262,23 @@ function tapeUpdate(): void {
     const frac = Math.min(Math.max(scrollY / totalScroll, 0), 1);
     if (tapeMarker) tapeMarker.style.top = `${frac * 100}%`;
 
-    const readPoint = scrollY + window.innerHeight * 0.35;
+    /* Which section's top has reached the top of the viewport. This has to be
+       the same measure the ticks are positioned by (sectionTops / totalScroll)
+       and the same one goToSection scrolls to, or the lit tick, the marker and
+       the click target all disagree. The couple of px absorbs subpixel landings
+       from lenis's programmatic scrolls. */
+    const readPoint = scrollY + 2;
     let activeIndex = 0;
     for (let i = 0; i < sectionTops.length; i++) {
         if (readPoint >= sectionTops[i]) activeIndex = i;
     }
-    // force last section at bottom of page, short trailing sections can miss the lookahead above
+    /* A trailing section whose top sits past the maximum scroll can never be
+       reached by the measure above, so pin it at the bottom of the page. */
     if (scrollY >= totalScroll - 1) {
-        activeIndex = tapeSections.length - 1;
+        activeIndex = tapeSectionEls.length - 1;
     }
 
-    const activeSection = tapeSections[activeIndex];
+    const activeSection = tapeSectionEls[activeIndex];
     const activeId = activeSection ? activeSection.id : "";
     const flLabel = activeSection ? activeSection.dataset.tapeLabel : "";
     if (tapeLabel && flLabel) tapeLabel.textContent = flLabel;
@@ -315,7 +306,7 @@ function scheduleTapeLayout(force = false): void {
     });
 }
 
-if (tapeSections.length && tapeTicks.length) {
+if (tapeSectionEls.length && tapeTicks.length) {
     let ticking = false;
     window.addEventListener(
         "scroll",
@@ -340,6 +331,35 @@ if (tapeSections.length && tapeTicks.length) {
     setHeaderHeight();
     window.addEventListener("resize", setHeaderHeight);
 }
+
+// view toggle: isotope grid (filterable board) vs sectioned (traditional scroll,
+// everything open, tape doubles as section nav)
+let sectionedView = root.dataset.view === "sectioned";
+const viewChoices = Array.from(document.querySelectorAll<HTMLButtonElement>("[data-view-choice]"));
+
+function applyView(): void {
+    const current = sectionedView ? "sectioned" : "grid";
+    root.setAttribute("data-view", current);
+    /* aria-pressed doubles as the seated-position styling hook (see header.css) */
+    viewChoices.forEach((btn) => {
+        btn.setAttribute("aria-pressed", String(btn.dataset.viewChoice === current));
+    });
+    try {
+        localStorage.setItem("view-state-v2", current);
+    } catch (e) {}
+    scheduleTapeLayout();
+}
+
+viewChoices.forEach((btn) => {
+    btn.addEventListener("click", () => {
+        const next = btn.dataset.viewChoice === "sectioned";
+        if (next === sectionedView) return; // already seated here
+        sectionedView = next;
+        applyView();
+    });
+});
+
+applyView();
 
 // nav links, routed through lenis when active
 function goToSection(id: string, smooth = true): boolean {
@@ -379,19 +399,15 @@ document.addEventListener("click", (e) => {
     if (!document.getElementById(id)) return; // let the browser handle a dead fragment
     e.preventDefault();
     goToSection(id);
-    /* pushState, not replaceState: sections should be shareable AND backtrackable */
-    history.pushState(null, "", hash);
+    /* Deliberately no pushState: the fragment shouldn't show up in the address
+       bar. If one arrived on an inbound link, drop it so it doesn't linger
+       while the visitor navigates elsewhere. */
+    if (window.location.hash) {
+        history.replaceState(null, "", window.location.pathname + window.location.search);
+    }
 });
 
-/* Back/forward between sections. Skipped under lenis's own programmatic scrolls
-   because those don't emit popstate. */
-window.addEventListener("popstate", () => {
-    const id = window.location.hash.slice(1);
-    if (id) goToSection(id);
-    else goToTop();
-});
-
-/* A URL that arrives with a fragment needs handling here: lenis takes over the
+/* An inbound URL with a fragment still needs handling here: lenis takes over the
    scroll position, and the tape offsets aren't measured until layout settles, so
    the browser's native jump lands in the wrong place. */
 if (window.location.hash.length > 1) {
@@ -401,23 +417,55 @@ if (window.location.hash.length > 1) {
     });
 }
 
-// project strip filters
-let scope = "featured"; // "featured" shows only featured; "*" shows all
+// work grid filters: category (all/education/experience/projects) is exclusive,
+// combined with the projects-only scope (featured/all) and an active-only toggle
+// that applies to every dated category
+let category = "all";
+let scope = "featured"; // "featured" shows only featured projects; "*" shows all
 let activeOnly = false;
-// hook on .strip / the data attribute, not on styling classes (those moved to Tailwind)
-const strips = Array.from(document.querySelectorAll<HTMLElement>("#research .strip"));
-const scopeGroup = document.querySelector<HTMLElement>('[data-filter-group="scope"]');
 
-function applyStripFilter(): void {
-    strips.forEach((item) => {
-        const scopeOk = scope === "*" || item.dataset.featured === "true";
-        const statusOk = !activeOnly || item.dataset.status === "current" || item.dataset.status === "ongoing";
-        item.hidden = !(scopeOk && statusOk);
+const tiles = Array.from(document.querySelectorAll<HTMLElement>("#workGrid .tile"));
+const catGroup = document.querySelector<HTMLElement>('.grid-view [data-filter-group="category"]');
+const scopeGroup = document.querySelector<HTMLElement>('.grid-view [data-filter-group="scope"]');
+const workEmpty = document.getElementById("workEmpty");
+
+function applyWorkFilter(): void {
+    let visible = 0;
+    tiles.forEach((tile) => {
+        const cat = tile.dataset.cat ?? "";
+        const status = tile.dataset.status;
+
+        const catOk = category === "all" || cat === category;
+        // featured only ever narrows projects; the other categories have no
+        // featured notion and shouldn't vanish when it's on
+        const scopeOk = cat !== "projects" || scope === "*" || tile.dataset.featured === "true";
+        const activeOk = !activeOnly || status === "current" || status === "ongoing";
+
+        const show = catOk && scopeOk && activeOk;
+        tile.hidden = !show;
+        if (show) visible++;
     });
-    // showing/hiding strips changes the page height, which invalidates the
-    // altimeter tape's cached section offsets and scroll range
-    scheduleTapeLayout(true);
+    if (workEmpty) workEmpty.classList.toggle("is-visible", visible === 0);
 }
+
+function setCategory(next: string): void {
+    category = next;
+    catGroup?.querySelectorAll<HTMLButtonElement>(".filter-btn").forEach((b) => {
+        const selected = b.dataset.catFilter === next;
+        b.classList.toggle("is-active", selected);
+        b.setAttribute("aria-pressed", String(selected));
+    });
+}
+
+catGroup?.querySelectorAll<HTMLButtonElement>(".filter-btn").forEach((btn) => {
+    btn.addEventListener("click", () => {
+        const next = btn.dataset.catFilter || "all";
+        // clicking the already-active category returns to "all", matching a
+        // toggle rather than a plain radio button
+        setCategory(category === next && next !== "all" ? "all" : next);
+        applyWorkFilter();
+    });
+});
 
 function setScope(next: string): void {
     scope = next;
@@ -431,7 +479,7 @@ function setScope(next: string): void {
 scopeGroup?.querySelectorAll<HTMLButtonElement>(".filter-btn").forEach((btn) => {
     btn.addEventListener("click", () => {
         setScope(btn.dataset.filterValue || "featured");
-        applyStripFilter();
+        applyWorkFilter();
     });
 });
 
@@ -441,11 +489,83 @@ if (activeToggle) {
         activeOnly = !activeOnly;
         activeToggle.classList.toggle("is-active", activeOnly);
         activeToggle.setAttribute("aria-pressed", String(activeOnly));
-        // filtering to active work across only the featured subset leaves almost
-        // nothing on screen, so widen the scope automatically
+        // active + featured together can leave almost nothing on screen, so
+        // turning on active-only widens the project scope to compensate
         if (activeOnly) setScope("*");
-        applyStripFilter();
+        applyWorkFilter();
     });
 }
 
-applyStripFilter();
+applyWorkFilter();
+
+/* Open education/project tiles hide their summary header (it would repeat the
+   title above the nested list-view component), so the content row itself takes
+   over closing. It's a role="button" div rather than a real <button> (it
+   contains an <h3>, invalid inside one), so Enter/Space need wiring by hand. */
+document.querySelectorAll<HTMLElement>(".tile-close").forEach((el) => {
+    function collapse(): void {
+        const details = el.closest("details");
+        if (!details) return;
+        details.open = false;
+        // the summary reappears once closed; move focus there so keyboard
+        // users aren't stranded on a now-hidden element
+        details.querySelector<HTMLElement>("summary")?.focus();
+    }
+    el.addEventListener("click", collapse);
+    el.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " " || e.key === "Spacebar") {
+            e.preventDefault();
+            collapse();
+        }
+    });
+});
+
+// list view: same idea, applied to the always-visible flight strips instead of
+// the grid's tiles. Kept as a separate, independently-scoped instance rather
+// than generalising the grid's, since the two filter bars are unrelated DOM
+// (a shared #id or query would otherwise collide between the two views).
+let listScope = "featured";
+let listActiveOnly = false;
+
+const flightstrips = Array.from(document.querySelectorAll<HTMLElement>("#sec-projects .flightstrip"));
+const listScopeGroup = document.querySelector<HTMLElement>('#sec-projects [data-filter-group="scope"]');
+
+function applyListFilter(): void {
+    flightstrips.forEach((strip) => {
+        const scopeOk = listScope === "*" || strip.dataset.featured === "true";
+        const statusOk = !listActiveOnly || strip.dataset.status === "current" || strip.dataset.status === "ongoing";
+        strip.hidden = !(scopeOk && statusOk);
+    });
+    // showing/hiding strips changes page height, which invalidates the
+    // altimeter tape's cached section offsets and scroll range
+    scheduleTapeLayout();
+}
+
+function setListScope(next: string): void {
+    listScope = next;
+    listScopeGroup?.querySelectorAll<HTMLButtonElement>(".filter-btn").forEach((b) => {
+        const selected = b.dataset.filterValue === next;
+        b.classList.toggle("is-active", selected);
+        b.setAttribute("aria-pressed", String(selected));
+    });
+}
+
+listScopeGroup?.querySelectorAll<HTMLButtonElement>(".filter-btn").forEach((btn) => {
+    btn.addEventListener("click", () => {
+        setListScope(btn.dataset.filterValue || "featured");
+        applyListFilter();
+    });
+});
+
+const activeToggleList = document.querySelector<HTMLButtonElement>("#activeToggleList");
+if (activeToggleList) {
+    activeToggleList.addEventListener("click", () => {
+        listActiveOnly = !listActiveOnly;
+        activeToggleList.classList.toggle("is-active", listActiveOnly);
+        activeToggleList.setAttribute("aria-pressed", String(listActiveOnly));
+        if (listActiveOnly) setListScope("*");
+        applyListFilter();
+    });
+}
+
+applyListFilter();

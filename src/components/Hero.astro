@@ -1,84 +1,86 @@
 ---
+import type { SocialLink } from '../data/content';
+
+interface Props {
+  links: SocialLink[];
+}
+
+const { links } = Astro.props;
 ---
-<section id="hero-viewport" data-tape-section data-tape-label="Flight Deck" style="background-color:var(--hero-bg);" class="sm:min-h-screen flex items-center relative px-6 pt-[calc(var(--header-h,4rem)+2rem)] sm:pt-[calc(var(--header-h,4rem)+0.5rem)] overflow-hidden flow-field transition-colors">
+<section id="hero-viewport" data-tape-section data-tape-label="Flight Deck" class="flex items-center relative bg-panel page-x pt-[calc(var(--header-h,4rem)+2.5rem)] pb-12 transition-colors">
   <div class="max-w-7xl mx-auto w-full">
-    <div class="flex flex-col xl:flex-row xl:items-center xl:justify-between gap-10 xl:gap-14 relative z-10">
+    <div class="flex flex-col xl:flex-row xl:items-center xl:justify-between gap-10 xl:gap-16 relative z-10">
 
       <!-- LEFT: identity + tagline + readout/CV pill -->
       <div class="max-w-2xl w-full mx-auto xl:mx-0 xl:flex-1 text-center xl:text-left space-y-6">
-        <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-delta-navy dark:text-white uppercase leading-tight">
+        <h1 class="text-4xl sm:text-5xl md:text-6xl xl:text-[3.4rem] font-bold tracking-tight text-display uppercase leading-tight">
           <span id="hero-name">Beverley YEO</span>
         </h1>
 
-        <p class="hero-tagline text-base font-bold uppercase tracking-wide text-delta-red dark:text-delta-sky">
-          I fly the longer routes… on&nbsp;purpose
-        </p>
+        <div class="flex flex-wrap justify-center xl:justify-start gap-2">
+          {links.map((link) => (
+            <a href={link.href} class="keyword-chip">{link.label}</a>
+          ))}
+        </div>
 
-        <div class="inline-flex items-center gap-4 px-3 py-1 bg-white dark:bg-slate-900 border-2 border-slate-300 dark:border-slate-800 text-[10px] tracking-widest text-slate-600 dark:text-slate-400 uppercase">
+        <div class="inline-flex items-center gap-4 px-[0.9rem] py-2 bg-panel-alt border-2 border-panel-border text-[0.72rem] tracking-widest text-panel-muted uppercase">
           <span>HDG: <span id="hdg-digital">045</span>&deg;</span>
-          <a href="/Beverley_Resume.pdf" class="text-delta-red dark:text-delta-sky font-bold hover:opacity-80 transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-delta-red">
+          <a href="/Beverley_Resume.pdf" class="text-highlight font-bold hover:text-emphasis transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-highlight">
             DOWNLOAD_CV
           </a>
           <span>MACH: <span id="mach-digital">0.82</span></span>
         </div>
       </div>
 
-      <!-- RIGHT: route line + square 2x2 instrument panel -->
-      <div id="showcase" class="w-full xl:w-auto xl:flex-shrink-0 space-y-3">
-        <p class="text-[10px] uppercase tracking-widest text-slate-500 dark:text-slate-500 text-center">SIN &rarr; SFO &middot; 8,440 MI &middot; 15H 45M &middot; ON TIME</p>
+      <!-- RIGHT: route line + 3-across instrument panel, each gauge kept square -->
+      <div id="showcase" class="w-full xl:w-auto xl:flex-shrink-0 space-y-4">
+        <p class="text-[10px] uppercase tracking-widest text-panel-muted text-center">SIN &rarr; SFO &middot; 8,440 MI &middot; 15H 45M &middot; ON TIME</p>
 
-        <div class="grid grid-cols-3 gap-1.5 sm:gap-3 bg-slate-100 dark:bg-slate-900 p-1.5 sm:p-4 border-2 border-slate-300 dark:border-slate-800 relative mx-auto max-w-[520px] xl:w-[520px]">
+        <div class="grid grid-cols-3 gap-3 sm:gap-5 bg-panel-alt p-4 sm:p-6 border-2 border-panel-border relative mx-auto max-w-[420px] xl:w-[420px] instrument-panel">
 
-          <div class="aspect-square flex flex-col items-center justify-center relative text-center">
-            <span class="text-[9px] text-slate-400 dark:text-slate-500 tracking-wider z-20">ATT / EADI</span>
-            <div class="gauge rounded-full border-2 border-slate-400 dark:border-slate-700 overflow-hidden relative mt-1 bg-amber-900" aria-hidden="true">
+          <div class="flex flex-col items-center justify-center gap-2">
+            <span class="text-[9px] text-panel-muted tracking-wider">ATT / EADI</span>
+            <div class="gauge rounded-full overflow-hidden relative border-2 border-panel-border bg-amber-900" aria-hidden="true">
               <!-- oversized to cover bank angles -->
               <div id="horizon-card" style="top:-48px;bottom:-48px;left:-48px;right:-48px;" class="absolute horizon-card">
                 <div class="h-1/2 bg-gradient-to-b from-blue-500 to-sky-400 border-b border-white"></div>
                 <div class="h-1/2 bg-gradient-to-b from-amber-800 to-amber-950"></div>
               </div>
               <div class="absolute inset-0 flex items-center justify-between px-5 pointer-events-none z-10">
-                <div class="aircraft-ref w-4 h-1 bg-delta-red"></div>
-                <div class="aircraft-ref w-2 h-2 rounded-full bg-delta-red"></div>
-                <div class="aircraft-ref w-4 h-1 bg-delta-red"></div>
+                <div class="aircraft-ref w-4 h-1 bg-highlight"></div>
+                <div class="aircraft-ref w-2 h-2 rounded-full bg-highlight"></div>
+                <div class="aircraft-ref w-4 h-1 bg-highlight"></div>
               </div>
             </div>
-            <div class="mt-1 bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 px-1.5 sm:px-2 py-0.5 text-[9px] sm:text-xs font-bold text-delta-navy dark:text-delta-sky tracking-wider sm:tracking-widest whitespace-nowrap">
-              P<span id="pitch-display">+00</span>&deg; R<span id="roll-display">+00</span>&deg;
-            </div>
           </div>
 
-          <div class="aspect-square flex flex-col items-center justify-center relative text-center">
-            <span class="text-[9px] text-slate-400 dark:text-slate-500 tracking-wider">MACH / M</span>
-            <svg viewBox="5 5 90 90" class="gauge mt-1" aria-hidden="true">
-              <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" class="text-slate-300 dark:text-slate-700" stroke-width="1.5" stroke-dasharray="2,2" />
+          <div class="flex flex-col items-center justify-center gap-2">
+            <span class="text-[9px] text-panel-muted tracking-wider">MACH / M</span>
+            <svg viewBox="5 5 90 90" class="gauge" aria-hidden="true">
+              <circle cx="50" cy="50" r="45" fill="var(--gauge-face)" />
+              <circle cx="50" cy="50" r="45" fill="none" stroke="var(--gauge-ring)" stroke-width="1.5" stroke-dasharray="2,2" />
               <!-- Mmo warning arc, fixed red -->
-              <path d="M 81.8 18.2 A 45 45 0 0 1 84.5 74.5" fill="none" stroke="#dc2626" stroke-width="3" opacity="0.85" />
+              <path d="M 81.8 18.2 A 45 45 0 0 1 84.5 74.5" fill="none" stroke="#dc2626" stroke-width="3" />
               <path d="M 18.2 81.8 L 21.7 78.3 M 5 50 L 10 50 M 18.2 18.2 L 21.7 21.7 M 50 5 L 50 10 M 81.8 18.2 L 78.3 21.7 M 95 50 L 90 50"
-                stroke="currentColor" class="text-slate-400 dark:text-slate-600" stroke-width="1" />
-              <line id="mach-needle" x1="50" y1="50" x2="50" y2="15" stroke="currentColor" class="text-delta-navy dark:text-delta-sky mach-needle" stroke-width="2" stroke-linecap="round" />
-              <circle cx="50" cy="50" r="3" stroke="currentColor" class="text-delta-navy dark:text-delta-sky fill-current" />
+                stroke="var(--gauge-tick)" stroke-width="1" />
+              <line id="mach-needle" x1="50" y1="50" x2="50" y2="15" stroke="var(--c-highlight)" class="mach-needle" stroke-width="2" stroke-linecap="round" />
+              <circle cx="50" cy="50" r="3" fill="var(--c-highlight)" />
             </svg>
-            <div class="mt-1 bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 px-1.5 sm:px-2 py-0.5 text-[9px] sm:text-xs font-bold text-delta-navy dark:text-delta-sky tracking-wider sm:tracking-widest whitespace-nowrap">
-              M <span id="mach-display-box">0.82</span>
-            </div>
           </div>
 
-          <div class="aspect-square flex flex-col items-center justify-center relative text-center">
-            <span class="text-[9px] text-slate-400 dark:text-slate-500 tracking-wider">HDG / HSI</span>
-            <svg id="hdg-gauge" viewBox="5 5 90 90" class="gauge mt-1" aria-hidden="true">
+          <div class="flex flex-col items-center justify-center gap-2">
+            <span class="text-[9px] text-panel-muted tracking-wider">HDG / HSI</span>
+            <svg id="hdg-gauge" viewBox="5 5 90 90" class="gauge" aria-hidden="true">
+              <circle cx="50" cy="50" r="45" fill="var(--gauge-face)" />
               <g id="compass-rose-group" class="hdg-dial">
-                <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" class="text-slate-300 dark:text-slate-700" stroke-width="1" />
-                <text x="47" y="14" fill="currentColor" class="text-slate-800 dark:text-slate-100 font-bold" font-size="7">N</text>
-                <text x="86" y="53" fill="currentColor" class="text-slate-400 dark:text-slate-500" font-size="7">E</text>
-                <text x="48" y="92" fill="currentColor" class="text-slate-400 dark:text-slate-500" font-size="7">S</text>
-                <text x="8" y="53" fill="currentColor" class="text-slate-400 dark:text-slate-500" font-size="7">W</text>
+                <circle cx="50" cy="50" r="45" fill="none" stroke="var(--gauge-ring)" stroke-width="1" />
+                <text x="47" y="14" fill="var(--gauge-label)" font-weight="600" font-size="7">N</text>
+                <text x="86" y="53" fill="var(--gauge-tick)" font-size="7">E</text>
+                <text x="48" y="92" fill="var(--gauge-tick)" font-size="7">S</text>
+                <text x="8" y="53" fill="var(--gauge-tick)" font-size="7">W</text>
               </g>
               <polygon class="hsi-marker" points="50,5 45,14 55,14" fill="var(--c-highlight)" />
             </svg>
-            <div class="mt-1 bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 px-1.5 sm:px-2 py-0.5 text-[9px] sm:text-xs font-bold text-delta-navy dark:text-delta-sky tracking-wider sm:tracking-widest whitespace-nowrap">
-              <span id="hdg-display-box">045</span>&deg;
-            </div>
           </div>
 
         </div>
@@ -86,12 +88,5 @@
 
     </div>
   </div>
-
-  <div class="scroll-cue-wrap hidden sm:flex absolute bottom-6 inset-x-0 justify-center z-10 pointer-events-none">
-    <svg class="scroll-cue text-slate-400 dark:text-slate-500" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-      <polyline points="6 9 12 15 18 9"></polyline>
-    </svg>
-  </div>
 </section>
 
-<div class="cloud-divider" aria-hidden="true"></div>

@@ -1,0 +1,54 @@
+---
+import type { EducationEntry } from '../data/content';
+
+interface Props {
+  entry: EducationEntry;
+  seq: number;
+  total: number;
+  /**
+   * 'toggle' - a real <details> the visitor opens (list view).
+   * 'static' - already open inside a grid tile, so its head closes that tile
+   *            instead of toggling anything itself.
+   */
+  mode?: 'toggle' | 'static';
+}
+
+const { entry, seq, total, mode = 'toggle' } = Astro.props;
+const isStatic = mode === 'static';
+/* dynamic tags: a <summary> only toggles when it's a direct child of
+   <details>, which the static variant isn't - it lives inside an open tile */
+const Root = isStatic ? 'div' : 'details';
+const Head = isStatic ? 'div' : 'summary';
+---
+<Root class="boarding-pass" data-status={entry.status}>
+  <Head
+    class:list={['boarding-pass-summary', { 'is-static': isStatic, 'tile-close': isStatic }]}
+    role={isStatic ? 'button' : undefined}
+    tabindex={isStatic ? 0 : undefined}
+    aria-label={isStatic ? 'Collapse' : undefined}
+  >
+    <span class="boarding-pass-stub">
+      {isStatic ? (
+        <span class="tile-close-tag">Education</span>
+      ) : (
+        <span class="boarding-pass-seq">
+          {String(seq).padStart(2, '0')}/{String(total).padStart(2, '0')}
+        </span>
+      )}
+      <span class="boarding-pass-chevron" aria-hidden="true">&#9662;</span>
+    </span>
+    <span class="boarding-pass-main">
+      <span class="boarding-pass-years">{entry.years}</span>
+      <h3>{entry.programme}</h3>
+      <span class="boarding-pass-institution" set:html={entry.institution} />
+    </span>
+  </Head>
+  <dl class="boarding-pass-meta">
+    {entry.meta.map((row) => (
+      <>
+        <dt>{row.label}</dt>
+        <dd>{row.value}</dd>
+      </>
+    ))}
+  </dl>
+</Root>

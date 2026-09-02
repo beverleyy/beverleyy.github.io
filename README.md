@@ -1,4 +1,4 @@
-# beverleyy.github.io, version 2.1
+# beverleyy.github.io, version 2.2
 
 This is my (new) personal website and portfolio, built with [Astro](https://astro.build/), [Tailwind CSS](https://tailwindcss.com/), and hosted on [GitHub Pages](https://pages.github.com). Full disclaimer, Claude Sonnet 5 taught me how to write Astro and now I'm addicted (to Astro, not Claude lol). Astro really is for everyone! Also, I learned Tailwind.css from Claude Opus 5.
 
@@ -8,6 +8,8 @@ This is my (new) personal website and portfolio, built with [Astro](https://astr
 * **If you are interested in using this code for your site, please include attribution and remove all the images (and my CV) from your directory.**
 
 ## Design
+
+I still love Isotope, so compared to v2.1, I added here an optional grid view that isn't sectioned. Also, the hero section wasn't doing anything for me, so I shrunk it.
 
 ### Colors
 

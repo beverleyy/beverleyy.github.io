@@ -7,8 +7,8 @@ interface Props {
 
 const { sections } = Astro.props;
 // skip hero + contact, add contact back at end
-const visible = sections.filter((s) => s.id !== 'hero-viewport' && s.id !== 'contact');
-const withContact = [...visible, ...sections.filter((s) => s.id === 'contact')];
+const visible = sections.filter((s) => s.id !== 'hero-viewport' && s.id !== 'sec-contact');
+const withContact = [...visible, ...sections.filter((s) => s.id === 'sec-contact')];
 ---
 <nav class="bottom-tape" aria-label="Section position">
   <div class="bottom-tape-track">

@@ -5,17 +5,19 @@ import '../styles/header.css';
 import '../styles/tape.css';
 import '../styles/bottom-tape.css';
 import '../styles/hero.css';
-import '../styles/education.css';
-import '../styles/projects.css';
-import '../styles/airlines.css';
-import '../styles/contact.css';
+import '../styles/work-grid.css';
+import '../styles/list-view.css';
 
 interface Props {
   title: string;
   description?: string;
 }
 
-const { title, description = '' } = Astro.props;
+const {
+  title,
+  description = 'Kai Wen Beverley Yeo - mechanical engineering PhD candidate at Stanford, headed for the aviation industry. Education, experience and projects.',
+} = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
 ---
 <!doctype html>
 <html lang="en">
@@ -30,6 +32,11 @@ const { title, description = '' } = Astro.props;
     <link rel="preload" href="/fonts/b612-mono-400.woff2" as="font" type="font/woff2" crossorigin />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
     <script is:inline>
       /* Resolve the panel state before first paint so there's no flash. Reads the saved choice, else SIA + dark. The derivation has to match airlineFor() in site.ts, which picks the state up from these data attributes rather than assuming a default. */
       (function () {
@@ -53,6 +60,15 @@ const { title, description = '' } = Astro.props;
         root.classList.toggle('dark', !lights);
         root.dataset.panelLights = lights ? 'on' : 'off';
         root.dataset.panelGain = gain ? 'on' : 'off';
+
+        var view = 'sectioned';
+        try {
+          /* key is versioned: the default flipped from grid to sectioned, and a
+             stale saved value would otherwise keep overriding it */
+          var savedView = localStorage.getItem('view-state-v2');
+          if (savedView === 'sectioned' || savedView === 'grid') view = savedView;
+        } catch (e) {}
+        root.setAttribute('data-view', view);
       })();
     </script>
   </head>

@@ -1,4 +1,5 @@
-/* bottom tape */
+/* bottom tape: mobile section nav, replaces the side altimeter tape below
+   1024px. Only relevant to the sectioned (list) view. */
 .bottom-tape {
     display:none;
     position:fixed;
@@ -45,7 +46,6 @@
     width:13px;
     height:2px;
     background:var(--panel-muted);
-    opacity:0.7;
 }
 .bottom-tape-tick:focus-visible {
     outline:2px solid var(--c-chrome);
@@ -58,11 +58,14 @@
 .bottom-tape-tick:focus-visible .bottom-tape-tick-mark,
 .bottom-tape-tick.active .bottom-tape-tick-mark {
     background:var(--c-chrome);
-    opacity:1;
     width:20px;
     box-shadow:0 0 6px color-mix(in srgb, var(--c-chrome) 65%, transparent);
 }
 @media (max-width: 1024px) {
-    .bottom-tape { display:flex; align-items:center; }
-    body { padding-bottom:4rem; }
+    html[data-view='sectioned'] .bottom-tape { display:flex; align-items:center; }
+    html[data-view='sectioned'] body { padding-bottom:4rem; }
 }
+
+/* last, so it beats the sectioned-view rule above on source order rather than
+   needing !important */
+html[data-view='grid'] .bottom-tape { display:none; }

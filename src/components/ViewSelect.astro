@@ -1,0 +1,28 @@
+---
+/*
+ * Deliberately one housing with two seats rather than two separate buttons:
+ * that shape reads as a mode selector, which distinguishes it from the LIGHTS
+ * and GAIN switches beside it. Each seat has its own lamp, and the seated one
+ * lights up - no fill, so the border language matches the rest of the panel.
+ */
+const options = [
+  { value: 'sectioned', label: 'List' },
+  { value: 'grid', label: 'Grid' },
+];
+/* must match the pre-paint default in Layout.astro */
+const initial = 'sectioned';
+---
+<div class="view-select" role="group" aria-label="Layout view">
+  {options.map((option) => (
+    <button
+      type="button"
+      class="view-select-btn"
+      data-view-choice={option.value}
+      aria-pressed={option.value === initial ? 'true' : 'false'}
+      aria-label={`Show ${option.label} layout`}
+    >
+      <span class="masthead-led"></span>
+      {option.label}
+    </button>
+  ))}
+</div>

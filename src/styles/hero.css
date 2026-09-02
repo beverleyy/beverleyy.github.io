@@ -1,17 +1,30 @@
-/* instrument gauges */
+/* instrument gauges — sized as a share of their (square) card so the dials
+   scale with the panel instead of staying a fixed size when it grows */
 .gauge {
     flex:none;
     display:block;
-    width:77%;
+    width:100%;
     height:auto;
     aspect-ratio:1 / 1;
 }
 
-@media (min-width: 640px) {
-    .gauge { width:77%; }
+/* --- instrument panel rivets: small screw-head marks at the corners, the
+   way a real avionics panel is bolted together. A radial gradient with an
+   off-centre highlight gives each one a touch of dimension. --- */
+.instrument-panel {
+    background-image:
+        radial-gradient(circle at 35% 35%, color-mix(in srgb, var(--panel-muted) 40%, white) 0%, var(--panel-muted) 55%, transparent 65%),
+        radial-gradient(circle at 35% 35%, color-mix(in srgb, var(--panel-muted) 40%, white) 0%, var(--panel-muted) 55%, transparent 65%),
+        radial-gradient(circle at 35% 35%, color-mix(in srgb, var(--panel-muted) 40%, white) 0%, var(--panel-muted) 55%, transparent 65%),
+        radial-gradient(circle at 35% 35%, color-mix(in srgb, var(--panel-muted) 40%, white) 0%, var(--panel-muted) 55%, transparent 65%);
+    background-repeat:no-repeat;
+    background-size:9px 9px;
+    background-position:
+        9px 9px,
+        calc(100% - 9px) 9px,
+        9px calc(100% - 9px),
+        calc(100% - 9px) calc(100% - 9px);
 }
-
-/* rotation set via SVG transform attr in JS, not here — don't set .style.transform, it overrides the attribute */
 /* .hdg-dial is intentionally excluded: its rotation is eased per frame in JS,
    and a CSS transition on top would double-smooth and reintroduce lag. */
 .mach-needle {
@@ -20,20 +33,4 @@
 .horizon-card {
     transform-origin:50% 50%;
     transition:transform 0.08s cubic-bezier(0.1, 0.8, 0.2, 1);
-}
-
-/* scroll cue */
-.scroll-cue {
-    animation:scroll-cue-pulse 2.2s ease-in-out infinite;
-    transition:opacity 0.3s ease;
-}
-.scroll-cue-wrap.is-hidden .scroll-cue {
-    opacity:0;
-}
-@keyframes scroll-cue-pulse {
-    0%, 100% { opacity:0.25; }
-    50% { opacity:0.85; }
-}
-@media (prefers-reduced-motion: reduce) {
-    .scroll-cue { animation:none; opacity:0.5; }
 }
