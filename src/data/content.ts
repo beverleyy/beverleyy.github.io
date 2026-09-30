@@ -11,6 +11,7 @@ import waffles from '../assets/etc/waffles.png';
 import charmcube from '../assets/etc/charmcube.jpg';
 import jaxDgVortexPoster from '../assets/research/jax-dg-vortex-poster.png';
 import bscwpPoster from '../assets/research/bscwp-poster.png';
+import special_airplanes from '../assets/etc/special_airplanes.png';
 
 export interface TapeSection {
   id: string;
@@ -183,6 +184,21 @@ export const experience: ExperienceEntry[] = [
 
 export const projects: ProjectEntry[] = [
   {
+    status: 'landed',
+    squawk: '2026',
+    title: 'Special Airplane Livery Watcher',
+    blurb: "I got addicted to watching SFO Live Planespotting and built a livery finder to anticipate what's going to be on the stream (and decide if I need to put it on during lecture).",
+    image: special_airplanes,
+    alt:
+      'Screenshot of the special airplane livery tracker showing a sample from SIN.',
+    featured: true,
+    tools: ['Python', 'HTML', 'CSS', 'JavaScript'],
+    links: [
+      { label: 'Code →', href: 'https://github.com/beverleyy/special-airplanes' },
+      { label: 'Demo →', href: 'https://beverleyy.github.io/special-airplanes' },
+    ],
+  },
+  {
     status: 'current',
     squawk: '2026',
     title: 'Kokkos Kernels for Quinoa',
@@ -196,7 +212,7 @@ export const projects: ProjectEntry[] = [
     status: 'ongoing',
     squawk: '2026',
     title: 'Mixed precision for discontinuous Galerkin codes',
-    blurb: 'Benchmarking and error analysis of DG operations in single- and double-precision across devices using JAX, and development of interval-arithmetic methodology to rigorously bound the resulting floating-point error.',
+    blurb: 'Benchmarking and error analysis of DG operations in single- and double-precision across devices using JAX, and quantifying/bounding numerical errors to optimize precision/speed tradeoffs on GPUs.',
     supervisors: ['Prof. Juan Alonso'],
     tools: ['Python', 'JAX'],
     links: [{ label: 'Paper →', href: 'https://arc.aiaa.org/doi/10.2514/6.2026-0376' }],
@@ -206,7 +222,6 @@ export const projects: ProjectEntry[] = [
     squawk: '2025',
     title: 'BLASTNet Website',
     blurb: 'Redesigned interface with Isotope filtering and analytics pulled from Kaggle API, built using a Firebase-hosted JSON cache with cron and the GitHub API for automatic syncing, along with Jekyll templating.',
-    featured: true,
     image: blastnet,
     alt:
       'Screenshot of the redesigned BLASTNet datasets page: a filter sidebar beside a grid of dataset cards, each previewing a coloured turbulent-flow volume.',
