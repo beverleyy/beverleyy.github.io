@@ -147,18 +147,18 @@ export const education: EducationEntry[] = [
 
 export const experience: ExperienceEntry[] = [
   {
-    dates: '2026.06 – Present',
-    company: 'Los Alamos National Laboratory, NM, USA',
-    role: 'Graduate Research Intern',
-    department: 'Computing & Artificial Intelligence 2 (CAI-2)',
-    status: 'current',
-  },
-  {
     dates: '2023.09 – Present',
     company: 'Stanford University, CA, USA',
     role: 'Graduate Research Assistant',
     department: 'Mechanical Engineering, then Aeronautics & Astronautics',
     status: 'current',
+  },
+  {
+    dates: '2026.06 – 2026.09',
+    company: 'Los Alamos National Laboratory, NM, USA',
+    role: 'Graduate Research Intern',
+    department: 'Computing & Artificial Intelligence 2 (CAI-2)',
+    status: 'past',
   },
   {
     dates: '2022.08 – 2023.08',
