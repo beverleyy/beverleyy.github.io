@@ -12,6 +12,7 @@ import charmcube from '../assets/etc/charmcube.jpg';
 import jaxDgVortexPoster from '../assets/research/jax-dg-vortex-poster.png';
 import bscwpPoster from '../assets/research/bscwp-poster.png';
 import special_airplanes from '../assets/etc/special_airplanes.png';
+import adsb from '../assets/etc/adsb.jpeg';
 
 export interface TapeSection {
   id: string;
@@ -184,6 +185,21 @@ export const experience: ExperienceEntry[] = [
 
 export const projects: ProjectEntry[] = [
   {
+    status: 'current',
+    squawk: '2026',
+    title: 'ADL-TV ADSB dashboard',
+    blurb: "Boss asked us to think about how to make the lab space more welcoming, and then told me about the lab's private ADSB receiver. I don't think he expected a full live dashboard of all planes in our vicinity, but who says data is strictly for research only?",
+    image: adsb,
+    alt:
+      'ADSB display on the lab TV',
+    featured: true,
+    tools: ['Python', 'JavaScript', 'ADS-B', 'Leaflet', 'Bash'],
+    links: [
+      { label: 'Code →', href: 'https://github.com/beverleyy/adl-tv' },
+      { label: 'Demo →', href: 'https://beverleyy.github.io/adl-tv' },
+    ],
+  },
+  {
     status: 'landed',
     squawk: '2026',
     title: 'Special Airplane Livery Watcher',
@@ -237,7 +253,6 @@ export const projects: ProjectEntry[] = [
     squawk: '2025',
     title: 'GPU-accelerated DG solvers with JAX',
     blurb: "Naive CuPy GPU port of in-house code wasn't fast enough, so I built a new one with JAX. It also uses automatic differentiation to optimize artificial viscosity for shock capturing.",
-    featured: true,
     video: {
       webm: '/media/jax-dg-vortex.webm',
       mp4: '/media/jax-dg-vortex.mp4',
